@@ -501,6 +501,19 @@ class PlayState extends MusicBeatState
 						stageCheck = 'school';
 					}
 					// i should check if its stage (but this is when none is found in chart anyway)
+				case 7:
+					if (songLowercase == 'song1')
+					{
+						stageCheck = 'stage1';
+					}
+					else if (songLowercase == 'song2')
+					{
+						stageCheck = 'stage2';
+					}
+					else if (songLowercase == 'song3')
+					{
+						stageCheck = 'stage3';
+					}
 			}
 		}
 		else
@@ -881,7 +894,20 @@ class PlayState extends MusicBeatState
 							add(waveSprite);
 							add(waveSpriteFG);
 						 */
+
 					}
+				case 'stage1': 
+				{
+					curStage = 'stage1';
+				}
+				case 'stage2': 
+				{
+					curStage = 'stage2';
+				}
+				case 'stage3': 
+				{
+					curStage = 'stage3';
+				}
 				default:
 					{
 						defaultCamZoom = 0.9;
@@ -933,6 +959,8 @@ class PlayState extends MusicBeatState
 					gfCheck = 'gf-christmas';
 				case 6:
 					gfCheck = 'gf-pixel';
+				case 7:
+					gfCheck = 'gf-none';
 			}
 		}
 		else
@@ -949,6 +977,8 @@ class PlayState extends MusicBeatState
 				curGf = 'gf-christmas';
 			case 'gf-pixel':
 				curGf = 'gf-pixel';
+			case 'gf-none':
+				curGf = 'gf-none';
 			default:
 				curGf = 'gf';
 		}
@@ -1041,6 +1071,9 @@ class PlayState extends MusicBeatState
 				boyfriend.y += 220;
 				gf.x += 180;
 				gf.y += 300;
+			case 'stage1':
+			case 'stage2':
+			case 'stage3':
 		}
 
 		if (!PlayStateChangeables.Optimize)

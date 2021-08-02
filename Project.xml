@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin': Kade Engine" file="Kade Engine" packageName="com.kadedev.kadeengine" package="com.kadedev.kadeengine" main="Main" version="0.2.7.1" company="kadedev" />
+	<app title="Friday Night Funkin': date-night masses" file="DNM" packageName="com.kadedev.kadeengine" package="com.kadedev.kadeengine" main="Main" version="0.2.7.1" company="kadedev" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -51,6 +51,7 @@
 		<library name="songs"    preload="true" />
 		<library name="shared"   preload="true" />
 		<library name="tutorial" preload="true" />
+		<library name="date-night masses"    preload="true" />
 		<library name="sm"    preload="true" />
 	</section>
 	
@@ -58,6 +59,7 @@
 		<library name="songs"    preload="false" />
 		<library name="shared"   preload="false" />
 		<library name="tutorial" preload="false" />
+		<library name="date-night masses"    preload="false" />
 		<library name="sm"    preload="false" />
 	</section>
 	
@@ -68,6 +70,9 @@
 	<assets path="assets/tutorial" library="tutorial" exclude="*.ogg" if="web"/>
 	<assets path="assets/tutorial" library="tutorial" exclude="*.mp3" unless="web"/>
 	<assets path="assets/sm"    library="sm"    exclude="*.ogg" if="web"/>
+	<assets path="assets/date-night masses"    library="date-night masses"    exclude="*.ogg" if="web"/>
+	<assets path="assets/date-night masses"    library="date-night masses"    exclude="*.mp3" unless="web"/>
+	<assets path="assets/date-night masses"    library="date-night masses"    exclude="*.ogg" if="web"/>
 	<assets path="assets/sm"    library="sm"    exclude="*.mp3" unless="web"/>
 
 	<assets path='example_mods' rename='mods' embed='false'/>

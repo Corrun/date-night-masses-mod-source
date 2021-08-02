@@ -230,7 +230,8 @@ class TitleState extends MusicBeatState
 			// music.loadStream(Paths.music('freakyMenu'));
 			// FlxG.sound.list.add(music);
 			// music.play();
-			FlxG.sound.playMusic(Paths.music('saxIntroThing'), 0);
+			FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+
 			FlxG.sound.music.fadeIn(4, 0, 0.7);
 			Conductor.changeBPM(102);
 			initialized = true;
@@ -372,7 +373,7 @@ class TitleState extends MusicBeatState
 			textGroup.remove(textGroup.members[0], true);
 		}
 	}
-	
+
 	override function beatHit()
 	{
 		super.beatHit();
@@ -386,12 +387,13 @@ class TitleState extends MusicBeatState
 			gfDance.animation.play('danceLeft');
 
 		FlxG.log.add(curBeat);
+
 		switch (curBeat)
 		{
 			case 0:
 				deleteCoolText();
 			case 1:
-				createCoolText(['The mid date masses team']);
+				createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
 			// credTextShit.visible = true;
 			case 3:
 				addMoreText('present');
@@ -412,8 +414,8 @@ class TitleState extends MusicBeatState
 					addMoreText('KadeDeveloper');
 				else
 				{
-					addMoreText('Mike Geno');
-					ngSpr.visible = false;
+					addMoreText('Newgrounds');
+					ngSpr.visible = true;
 				}
 			// credTextShit.text += '\nNewgrounds';
 			case 8:
@@ -435,13 +437,13 @@ class TitleState extends MusicBeatState
 			// credTextShit.text = "Friday";
 			// credTextShit.screenCenter();
 			case 13:
-				addMoreText('Date');
+				addMoreText('Friday');
 			// credTextShit.visible = true;
 			case 14:
 				addMoreText('Night');
 			// credTextShit.text += '\nNight';
 			case 15:
-				addMoreText('Masses'); // credTextShit.text += '\nFunkin';
+				addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
 
 			case 16:
 				skipIntro();

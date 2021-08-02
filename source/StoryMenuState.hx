@@ -27,18 +27,18 @@ class StoryMenuState extends MusicBeatState
 	static function weekData():Array<Dynamic>
 	{
 		return [
-			['Tutorial'],
-
+			['Tutorial']
+			['song1', 'song2', 'song3']
 		];
 	}
 	var curDifficulty:Int = 1;
 
-	public static var weekUnlocked:Array<Bool> = [];
+	public static var weekUnlocked:Array<Bool> = [true,true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['', 'bf', 'gf'],
-	
-		];
+		['date-ruv','sarv-sweater','gfnone']
+	];
 
 	var weekNames:Array<String> = CoolUtil.coolTextFile(Paths.txt('data/weekNames'));
 
