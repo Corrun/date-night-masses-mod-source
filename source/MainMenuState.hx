@@ -15,6 +15,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import io.newgrounds.NG;
 import lime.app.Application;
+import Math.random;
 
 #if windows
 import Discord.DiscordClient;
@@ -25,7 +26,6 @@ using StringTools;
 class MainMenuState extends MusicBeatState
 {
 	var curSelected:Int = 0;
-
 	var menuItems:FlxTypedGroup<FlxSprite>;
 
 	#if !switch
@@ -42,6 +42,7 @@ class MainMenuState extends MusicBeatState
 
 	public static var kadeEngineVer:String = "1.6" + nightly;
 	public static var gameVer:String = "0.2.7.1";
+	public static var chosenMenu = Std.random(10);
 
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
@@ -60,8 +61,17 @@ class MainMenuState extends MusicBeatState
 		}
 
 		persistentUpdate = persistentDraw = true;
+		var bg:FlxSprite;
 
-		var bg:FlxSprite = new FlxSprite(-100).loadGraphic(Paths.image('menuBG'));
+		bg = new FlxSprite(-100).loadGraphic(Paths.image('menuBGset1'));
+
+		if (chosenMenu >= 0 && chosenMenu <= 5) {
+			bg = new FlxSprite(-100).loadGraphic(Paths.image('menuBGset1'));
+		} else if (chosenMenu >= 6 && chosenMenu <= 8) {
+			bg = new FlxSprite(-100).loadGraphic(Paths.image('menuBGset2'));
+		} else if (chosenMenu == 9) {
+			bg = new FlxSprite(-100).loadGraphic(Paths.image('menuBGset3'));
+		}
 		bg.scrollFactor.x = 0;
 		bg.scrollFactor.y = 0.10;
 		bg.setGraphicSize(Std.int(bg.width * 1.1));
@@ -76,7 +86,13 @@ class MainMenuState extends MusicBeatState
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 
-		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
+		if (chosenMenu >= 0 && chosenMenu <= 5) {
+			magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuBGset1-magenta'));
+		} else if (chosenMenu >= 6 && chosenMenu <= 8) {
+			magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuBGset2-magenta'));
+		} else if (chosenMenu == 9) {
+			magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuBGset3-magenta'));
+		}
 		magenta.scrollFactor.x = 0;
 		magenta.scrollFactor.y = 0.10;
 		magenta.setGraphicSize(Std.int(magenta.width * 1.1));
