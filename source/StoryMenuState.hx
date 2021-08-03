@@ -33,11 +33,11 @@ class StoryMenuState extends MusicBeatState
 	}
 	var curDifficulty:Int = 1;
 
-	public static var weekUnlocked:Array<Bool> = [true,true];
+	public static var weekUnlocked:Array<Bool> = [true,true,true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['', 'bf', 'gf'],
-		['date-ruv','sarv-sweater','gfnone']
+		['date-ruv','sarv-sweater','gf-none']
 	];
 
 	var weekNames:Array<String> = CoolUtil.coolTextFile(Paths.txt('data/weekNames'));
