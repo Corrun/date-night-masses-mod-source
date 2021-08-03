@@ -39,12 +39,15 @@ class StoryMenuState extends MusicBeatState
 	}
 	var curDifficulty:Int = 1;
 
+<<<<<<< HEAD
 	public static var weekUnlocked:Array<Bool> = [true,true,true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['', 'bf', 'gf'],
 		['date-ruv','sarv-sweater','gf-none']
 
+=======
+>>>>>>> parent of 95dbd66 (receptionnist mod)
 	public static var weekUnlocked:Array<Bool> = [];
 
 	var weekCharacters:Array<Dynamic> = [
