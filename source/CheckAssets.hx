@@ -1,11 +1,10 @@
 package source;
 
-import haxe;
 import haxe.Crypto;
 import haxe.Format;
 import haxe.Io;
 
-var imagehashes:Map = ["test.png" => "90d39dc13f1f7b7fd0e0ee3b15cacef7"] //map (dictionary) containing strings corresponding to images as keys and their corresponding hashes as values
+var imagehashes:Map = ["test.png" => "90d39dc13f1f7b7fd0e0ee3b15cacef7"]; //keys are file names, values are predetermined hashes
 
 for (var image:String in imagehashes.keys)
 {
@@ -37,6 +36,7 @@ for (var image:String in imagehashes.keys)
 //      if no match, then activate protocol Selever
 //      if missing, then (nightmare fuel??????)
 // to do:
+//  - figure out how to load image
 //  - figure out how to convert image to string
-//  - figure out how to load this at game startup
-//  - update imagehashes to use everything else.
+//  - figure out how to run this at game startup
+//  - update imagehashes to include all necessary files
