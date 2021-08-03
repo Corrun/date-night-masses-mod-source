@@ -1,6 +1,5 @@
 bf
 gf
-<<<<<<< HEAD
 ruv
 date-ruv
 sweater-sarv
@@ -8,7 +7,6 @@ garden-sarv
 date-sarv
 blushing-sarv
 gf-none
-=======
 spooky
 pico
 mom
@@ -22,9 +20,4 @@ monster
 bf-pixel
 senpai
 senpai-angry
-<<<<<<< HEAD
 spirit
->>>>>>> parent of 95dbd66 (receptionnist mod)
-=======
-spirit
->>>>>>> parent of 95dbd66 (receptionnist mod)

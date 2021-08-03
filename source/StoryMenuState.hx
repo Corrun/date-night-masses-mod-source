@@ -28,33 +28,23 @@ class StoryMenuState extends MusicBeatState
 	{
 		return [
 			['Tutorial'],
-<<<<<<< HEAD
 			['song1', 'song2', 'song3']
-=======
 			['Bopeebo', 'Fresh', 'Dad Battle'],
 			['Spookeez', 'South', "Monster"],
 			['Pico', 'Philly Nice', "Blammed"],
 			['Satin Panties', "High", "Milf"],
 			['Cocoa', 'Eggnog', 'Winter Horrorland'],
 			['Senpai', 'Roses', 'Thorns']
-<<<<<<< HEAD
->>>>>>> parent of 95dbd66 (receptionnist mod)
-=======
->>>>>>> parent of 95dbd66 (receptionnist mod)
 		];
 	}
 	var curDifficulty:Int = 1;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 	public static var weekUnlocked:Array<Bool> = [true,true,true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['', 'bf', 'gf'],
 		['date-ruv','sarv-sweater','gf-none']
-=======
-=======
->>>>>>> parent of 95dbd66 (receptionnist mod)
+
 	public static var weekUnlocked:Array<Bool> = [];
 
 	var weekCharacters:Array<Dynamic> = [
@@ -65,7 +55,6 @@ class StoryMenuState extends MusicBeatState
 		['mom', 'bf', 'gf'],
 		['parents-christmas', 'bf', 'gf'],
 		['senpai', 'bf', 'gf']
->>>>>>> parent of 95dbd66 (receptionnist mod)
 	];
 
 	var weekNames:Array<String> = CoolUtil.coolTextFile(Paths.txt('data/weekNames'));
