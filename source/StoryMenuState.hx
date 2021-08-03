@@ -28,27 +28,18 @@ class StoryMenuState extends MusicBeatState
 	{
 		return [
 			['Tutorial'],
-			['song1', 'song2', 'song3']
 			['Bopeebo', 'Fresh', 'Dad Battle'],
 			['Spookeez', 'South', "Monster"],
 			['Pico', 'Philly Nice', "Blammed"],
 			['Satin Panties', "High", "Milf"],
 			['Cocoa', 'Eggnog', 'Winter Horrorland'],
-			['Senpai', 'Roses', 'Thorns']
+			['Senpai', 'Roses', 'Thorns'],
+			['song1', 'song2', 'song3']
 		];
 	}
 	var curDifficulty:Int = 1;
 
-<<<<<<< HEAD
-	public static var weekUnlocked:Array<Bool> = [true,true,true];
-
-	var weekCharacters:Array<Dynamic> = [
-		['', 'bf', 'gf'],
-		['date-ruv','sarv-sweater','gf-none']
-
-=======
->>>>>>> parent of 95dbd66 (receptionnist mod)
-	public static var weekUnlocked:Array<Bool> = [];
+	public static var weekUnlocked:Array<Bool> = [true,true,true,true,true,true,true,true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['', 'bf', 'gf'],
@@ -57,6 +48,7 @@ class StoryMenuState extends MusicBeatState
 		['pico', 'bf', 'gf'],
 		['mom', 'bf', 'gf'],
 		['parents-christmas', 'bf', 'gf'],
+		['senpai', 'bf', 'gf'],
 		['senpai', 'bf', 'gf']
 	];
 

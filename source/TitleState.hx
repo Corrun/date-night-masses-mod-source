@@ -230,7 +230,7 @@ class TitleState extends MusicBeatState
 			// music.loadStream(Paths.music('freakyMenu'));
 			// FlxG.sound.list.add(music);
 			// music.play();
-			FlxG.sound.playMusic(Paths.music('saxIntroThing'), 0);
+			FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 
 			FlxG.sound.music.fadeIn(4, 0, 0.7);
 			Conductor.changeBPM(102);
@@ -313,17 +313,17 @@ class TitleState extends MusicBeatState
 				{
 					returnedData[0] = data.substring(0, data.indexOf(';'));
 					returnedData[1] = data.substring(data.indexOf('-'), data.length);
-//				  	if (!MainMenuState.kadeEngineVer.contains(returnedData[0].trim()) && !OutdatedSubState.leftState)
-//					{
-//						trace('outdated lmao! ' + returnedData[0] + ' != ' + MainMenuState.kadeEngineVer);
-//						OutdatedSubState.needVer = returnedData[0];
-//						OutdatedSubState.currChanges = returnedData[1];
-//						FlxG.switchState(new OutdatedSubState());
-//					}
-//					else
-//					{
+				  	if (!MainMenuState.kadeEngineVer.contains(returnedData[0].trim()) && !OutdatedSubState.leftState)
+					{
+						trace('outdated lmao! ' + returnedData[0] + ' != ' + MainMenuState.kadeEngineVer);
+						OutdatedSubState.needVer = returnedData[0];
+						OutdatedSubState.currChanges = returnedData[1];
+						FlxG.switchState(new OutdatedSubState());
+					}
+					else
+					{
 						FlxG.switchState(new MainMenuState());
-//					}
+					}
 				}
 				
 				http.onError = function (error) {
@@ -393,7 +393,7 @@ class TitleState extends MusicBeatState
 			case 0:
 				deleteCoolText();
 			case 1:
-				createCoolText(['The mid date masses team']);
+				createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
 			// credTextShit.visible = true;
 			case 3:
 				addMoreText('present');
@@ -437,13 +437,13 @@ class TitleState extends MusicBeatState
 			// credTextShit.text = "Friday";
 			// credTextShit.screenCenter();
 			case 13:
-				addMoreText('Mid');
+				addMoreText('Friday');
 			// credTextShit.visible = true;
 			case 14:
-				addMoreText('Date');
+				addMoreText('Night');
 			// credTextShit.text += '\nNight';
 			case 15:
-				addMoreText('Masses'); // credTextShit.text += '\nFunkin';
+				addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
 
 			case 16:
 				skipIntro();

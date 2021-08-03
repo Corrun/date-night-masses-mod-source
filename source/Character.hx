@@ -99,6 +99,8 @@ class Character extends FlxSprite
 				updateHitbox();
 				antialiasing = false;
 
+			case 'gf-none':
+
 			case 'dad':
 				// DAD ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('DADDY_DEAREST','shared',true);
@@ -379,6 +381,86 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT-alt', 'Parent Right Note Mom', 24, false);
 
 				loadOffsetFile(curCharacter);
+
+				playAnim('idle');
+
+			case 'ruv':
+				tex = Paths.getSparrowAtlas('DADDY_DEAREST','shared',true);
+				frames = tex;
+				animation.addByPrefix('idle', 'Dad idle dance', 24);
+				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
+				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
+				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
+				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
+
+				loadOffsetFile('pico');
+
+				playAnim('idle');
+
+			case 'date-ruv':
+				tex = Paths.getSparrowAtlas('DADDY_DEAREST','shared',true);
+				frames = tex;
+				animation.addByPrefix('idle', 'Dad idle dance', 24);
+				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
+				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
+				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
+				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
+
+				loadOffsetFile('pico');
+
+				playAnim('idle');
+
+			case 'sweater-sarv':
+				tex = Paths.getSparrowAtlas('DADDY_DEAREST','shared',true);
+				frames = tex;
+				animation.addByPrefix('idle', 'Dad idle dance', 24);
+				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
+				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
+				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
+				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
+
+				loadOffsetFile('pico');
+
+				playAnim('idle');
+
+			case 'garden-sarv':
+				tex = Paths.getSparrowAtlas('DADDY_DEAREST','shared',true);
+				frames = tex;
+				animation.addByPrefix('idle', 'Dad idle dance', 24);
+				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
+				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
+				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
+				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
+
+				loadOffsetFile('pico');
+
+				playAnim('idle');
+
+			case 'date-sarv':
+				tex = Paths.getSparrowAtlas('DADDY_DEAREST','shared',true);
+				frames = tex;
+				animation.addByPrefix('idle', 'Dad idle dance', 24);
+				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
+				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
+				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
+				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
+
+				loadOffsetFile('pico');
+
+				playAnim('idle');
+
+			case 'blushing-sarv':
+				//this character will not be used, it's only to prevent errors occuring when using 
+				//"blusing-sarv" icon in freeplay song3
+				tex = Paths.getSparrowAtlas('DADDY_DEAREST','shared',true);
+				frames = tex;
+				animation.addByPrefix('idle', 'Dad idle dance', 24);
+				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
+				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
+				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
+				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
+
+				loadOffsetFile('pico');
 
 				playAnim('idle');
 		}

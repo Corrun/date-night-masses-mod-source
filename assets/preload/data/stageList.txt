@@ -1,15 +1,11 @@
 stage
-stage1
-stage2
-stage3
 halloween
 philly
 limo
 mall
 mallEvil
 school
-<<<<<<< HEAD
 schoolEvil
-=======
-schoolEvil
->>>>>>> parent of 95dbd66 (receptionnist mod)
+stage1
+stage2
+stage3
