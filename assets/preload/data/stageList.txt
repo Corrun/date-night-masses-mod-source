@@ -10,5 +10,9 @@ limo
 mall
 mallEvil
 school
+<<<<<<< HEAD
+schoolEvil
+>>>>>>> parent of 95dbd66 (receptionnist mod)
+=======
 schoolEvil
 >>>>>>> parent of 95dbd66 (receptionnist mod)

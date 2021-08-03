@@ -22,5 +22,9 @@ monster
 bf-pixel
 senpai
 senpai-angry
+<<<<<<< HEAD
+spirit
+>>>>>>> parent of 95dbd66 (receptionnist mod)
+=======
 spirit
 >>>>>>> parent of 95dbd66 (receptionnist mod)

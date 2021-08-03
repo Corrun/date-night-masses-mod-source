@@ -21,5 +21,9 @@ Eggnog:parents-christmas:5
 Winter Horrorland:monster-christmas:5
 Senpai:senpai:6
 Roses:senpai:6
+<<<<<<< HEAD
+Thorns:spirit:6
+>>>>>>> parent of 95dbd66 (receptionnist mod)
+=======
 Thorns:spirit:6
 >>>>>>> parent of 95dbd66 (receptionnist mod)

@@ -37,11 +37,15 @@ class StoryMenuState extends MusicBeatState
 			['Satin Panties', "High", "Milf"],
 			['Cocoa', 'Eggnog', 'Winter Horrorland'],
 			['Senpai', 'Roses', 'Thorns']
+<<<<<<< HEAD
+>>>>>>> parent of 95dbd66 (receptionnist mod)
+=======
 >>>>>>> parent of 95dbd66 (receptionnist mod)
 		];
 	}
 	var curDifficulty:Int = 1;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	public static var weekUnlocked:Array<Bool> = [true,true,true];
 
@@ -49,6 +53,8 @@ class StoryMenuState extends MusicBeatState
 		['', 'bf', 'gf'],
 		['date-ruv','sarv-sweater','gf-none']
 =======
+=======
+>>>>>>> parent of 95dbd66 (receptionnist mod)
 	public static var weekUnlocked:Array<Bool> = [];
 
 	var weekCharacters:Array<Dynamic> = [
