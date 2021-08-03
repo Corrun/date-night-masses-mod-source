@@ -1,5 +1,6 @@
 bf
 gf
+<<<<<<< HEAD
 ruv
 date-ruv
 sweater-sarv
@@ -7,3 +8,19 @@ garden-sarv
 date-sarv
 blushing-sarv
 gf-none
+=======
+spooky
+pico
+mom
+mom-car
+bf-car
+parents-christmas
+monster-christmas
+bf-christmas
+gf-christmas
+monster
+bf-pixel
+senpai
+senpai-angry
+spirit
+>>>>>>> parent of 95dbd66 (receptionnist mod)

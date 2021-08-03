@@ -2,7 +2,11 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
+<<<<<<< HEAD
 	<app title="Date Night Masses" file="DNM" packageName="com.kadedev.kadeengine" package="com.kadedev.kadeengine" main="Main" version="0.2.7.1" company="kadedev" />
+=======
+	<app title="Friday Night Funkin': Kade Engine" file="Kade Engine" packageName="com.kadedev.kadeengine" package="com.kadedev.kadeengine" main="Main" version="0.2.7.1" company="kadedev" />
+>>>>>>> parent of 95dbd66 (receptionnist mod)
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -51,7 +55,16 @@
 		<library name="songs"    preload="true" />
 		<library name="shared"   preload="true" />
 		<library name="tutorial" preload="true" />
+<<<<<<< HEAD
 		<library name="date-night masses"    preload="true" />
+=======
+		<library name="week1"    preload="true" />
+		<library name="week2"    preload="true" />
+		<library name="week3"    preload="true" />
+		<library name="week4"    preload="true" />
+		<library name="week5"    preload="true" />
+		<library name="week6"    preload="true" />
+>>>>>>> parent of 95dbd66 (receptionnist mod)
 		<library name="sm"    preload="true" />
 	</section>
 	
@@ -59,7 +72,16 @@
 		<library name="songs"    preload="false" />
 		<library name="shared"   preload="false" />
 		<library name="tutorial" preload="false" />
+<<<<<<< HEAD
 		<library name="date-night masses"    preload="false" />
+=======
+		<library name="week1"    preload="false" />
+		<library name="week2"    preload="false" />
+		<library name="week3"    preload="false" />
+		<library name="week4"    preload="false" />
+		<library name="week5"    preload="false" />
+		<library name="week6"    preload="false" />
+>>>>>>> parent of 95dbd66 (receptionnist mod)
 		<library name="sm"    preload="false" />
 	</section>
 	
@@ -69,10 +91,26 @@
 	<assets path="assets/shared"   library="shared"   exclude="*.mp3" unless="web"/>
 	<assets path="assets/tutorial" library="tutorial" exclude="*.ogg" if="web"/>
 	<assets path="assets/tutorial" library="tutorial" exclude="*.mp3" unless="web"/>
+<<<<<<< HEAD
 	<assets path="assets/sm"    library="sm"    exclude="*.ogg" if="web"/>
 	<assets path="assets/date-night masses"    library="date-night masses"    exclude="*.ogg" if="web"/>
 	<assets path="assets/date-night masses"    library="date-night masses"    exclude="*.mp3" unless="web"/>
 	<assets path="assets/date-night masses"    library="date-night masses"    exclude="*.ogg" if="web"/>
+=======
+	<assets path="assets/week1"    library="week1"    exclude="*.ogg" if="web"/>
+	<assets path="assets/week1"    library="week1"    exclude="*.mp3" unless="web"/>
+	<assets path="assets/week2"    library="week2"    exclude="*.ogg" if="web"/>
+	<assets path="assets/week2"    library="week2"    exclude="*.mp3" unless="web"/>
+	<assets path="assets/week3"    library="week3"    exclude="*.ogg" if="web"/>
+	<assets path="assets/week3"    library="week3"    exclude="*.mp3" unless="web"/>
+	<assets path="assets/week4"    library="week4"    exclude="*.ogg" if="web"/>
+	<assets path="assets/week4"    library="week4"    exclude="*.mp3" unless="web"/>
+	<assets path="assets/week5"    library="week5"    exclude="*.ogg" if="web"/>
+	<assets path="assets/week5"    library="week5"    exclude="*.mp3" unless="web"/>
+	<assets path="assets/week6"    library="week6"    exclude="*.ogg" if="web"/>
+	<assets path="assets/week6"    library="week6"    exclude="*.mp3" unless="web"/>
+	<assets path="assets/sm"    library="sm"    exclude="*.ogg" if="web"/>
+>>>>>>> parent of 95dbd66 (receptionnist mod)
 	<assets path="assets/sm"    library="sm"    exclude="*.mp3" unless="web"/>
 
 	<assets path='example_mods' rename='mods' embed='false'/>

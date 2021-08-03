@@ -42,16 +42,9 @@ class HealthIcon extends FlxSprite
 		animation.add('gf', [16], 0, false, isPlayer);
 		animation.add('gf-christmas', [16], 0, false, isPlayer);
 		animation.add('gf-pixel', [16], 0, false, isPlayer);
-		animation.add('gf-none', [16], 0, false, isPlayer);
 		animation.add('parents-christmas', [17, 18], 0, false, isPlayer);
 		animation.add('monster', [19, 20], 0, false, isPlayer);
 		animation.add('monster-christmas', [19, 20], 0, false, isPlayer);
-		animation.add('ruv', [26, 27], 0, false, isPlayer);
-		animation.add('date-ruv', [28, 29], 0, false, isPlayer);
-		animation.add('sweater-sarv', [24, 25], 0, false, isPlayer);
-		animation.add('garden-sarv', [24, 25], 0, false, isPlayer);
-		animation.add('date-sarv', [24, 25], 0, false, isPlayer);
-		animation.add('blushing-sarv', [25,26], 0, false, isPlayer);
 		animation.play(char);
 
 		switch(char)
