@@ -3,31 +3,34 @@ package source;
 import haxe.Crypto;
 import haxe.Format;
 import haxe.Io;
+import lime.graphics;
 
-var imagehashes:Map = ["test.png" => "90d39dc13f1f7b7fd0e0ee3b15cacef7"]; //keys are file names, values are predetermined hashes
+var imageHashes:Map = ["test.png" => "90d39dc13f1f7b7fd0e0ee3b15cacef7"]; //keys are file names, values are predetermined hashes
 
-for (var image:String in imagehashes.keys)
+for (var thisImage:String in imagehashes.keys)
 {
     //load image from storage
-    try {
-        var imagehandle:Image = //some IO thing? placeholder, idk how to program this
-        //load image from storage
-    }
-    catch (e) {
-        //image is missing, nightmare fuel mode activate
-    }
-    //convert image to string format
-    var imagestring:String = //some function? placeholder, idk how to program this
 
-    var imagehash:String = haxe.Crypto.Md5.encode(imagestring);     //generate MD5 checksum using haxe.crypto
-    trace(haxe.Crypto.Md5.encode("Hello"));     //temporary trace to test MD5 function
-    if (imagehash != imagehashes[image])
-    {
-        //image has been changed, activate protocol Selever
-    }
+    var future = Image.loadFromFile (thisImage); //load file
+    future.onComplete (function (imageHandle) { //when file is done loading
+        trace ("Image Loaded"); //temporary, check if image loading went alright
+        var imageString:String = //someething imageHandle? placeholder, idk how to program this
+        for (imageByte in imageHandle.data) //gets each byte in the image's raw data
+        {
+            imageString += toString(imageByte); //converts byte to character, concatenates character to string
+        }
+            var imageHash:String = haxe.Crypto.Md5.encode(imageString);     //generate MD5 checksum using haxe.crypto
+            trace(haxe.Crypto.Md5.encode("Hello"));     //temporary trace to test MD5 function
+            if (imageHash != imageHashes[thisImage])
+            {
+                //image has been changed, activate protocol Selever
+            }
+    });
+    future.onError (function (error) { 
+        trace (error); //image is missing, nightmare fuel mode activate  
+    });
 }
-
-
+trace ("All files verified");
 
 // for image in files:
 //  convert image to binary/hexadecimal
