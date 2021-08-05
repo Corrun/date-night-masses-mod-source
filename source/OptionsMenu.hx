@@ -27,49 +27,41 @@ class OptionsMenu extends MusicBeatState
 	var options:Array<OptionCategory> = [
 		new OptionCategory("Gameplay", [
 			new DFJKOption(controls),
-			new DownscrollOption("Toggle making the notes scroll down rather than up."),
-			new GhostTapOption("Toggle counting pressing a directional input when no arrow is there as a miss."),
-			new Judgement("Customize your Hit Timings. (LEFT or RIGHT)"),
+			new DownscrollOption("Change the layout of the strumline."),
+			new GhostTapOption("Ghost Tapping is when you tap a direction and it doesn't give you a miss."),
+			new Judgement("Customize your Hit Timings (LEFT or RIGHT)"),
 			#if desktop
-			new FPSCapOption("Change your FPS Cap."),
+			new FPSCapOption("Cap your FPS"),
 			#end
-			new ScrollSpeedOption("Change your scroll speed. (1 = Chart dependent)"),
+			new ScrollSpeedOption("Change your scroll speed (1 = Chart dependent)"),
 			new AccuracyDOption("Change how accuracy is calculated. (Accurate = Simple, Complex = Milisecond Based)"),
 			new ResetButtonOption("Toggle pressing R to gameover."),
 			// new OffsetMenu("Get a note offset based off of your inputs!"),
-			new CustomizeGameplay("Drag and drop gameplay modules to your prefered positions!")
+			new CustomizeGameplay("Drag'n'Drop Gameplay Modules around to your preference")
 		]),
 		new OptionCategory("Appearance", [
 			new DistractionsAndEffectsOption("Toggle stage distractions that can hinder your gameplay."),
 			new CamZoomOption("Toggle the camera zoom in-game."),
-			new StepManiaOption("Sets the colors of the arrows depending on quantization instead of direction."),
-			new AccuracyOption("Display accuracy information on the info bar."),
-			new SongPositionOption("Show the song's current position as a scrolling bar."),
-			new NPSDisplayOption("Shows your current Notes Per Second on the info bar."),
-			new RainbowFPSOption("Make the FPS Counter flicker through rainbow colors."),
-			new CpuStrums("Toggle the CPU's strumline lighting up when it hits a note."),
+			#if desktop
+			new RainbowFPSOption("Make the FPS Counter Rainbow"),
+			new AccuracyOption("Display accuracy information."),
+			new NPSDisplayOption("Shows your current Notes Per Second."),
+			new SongPositionOption("Show the songs current position (as a bar)"),
+			new CpuStrums("CPU's strumline lights up when a note hits it."),
+			#end
 		]),
 		
 		new OptionCategory("Misc", [
+			#if desktop
 			new FPSOption("Toggle the FPS Counter"),
+			new ReplayOption("View replays"),
+			#end
 			new FlashingLightsOption("Toggle flashing lights that can cause epileptic seizures and strain."),
 			new WatermarkOption("Enable and disable all watermarks from the engine."),
-			new AntialiasingOption("Toggle antialiasing, improving graphics quality at a slight performance penalty."),
-			new MissSoundsOption("Toggle miss sounds playing when you don't hit a note."),
 			new ScoreScreen("Show the score screen after the end of a song"),
-			new ShowInput("Display every single input on the score screen."),
-			new Optimization("No characters or backgrounds. Just a usual rhythm game layout."),
-			new GraphicLoading("On startup, cache every character. Significantly decrease load times. (HIGH MEMORY)"),
-			new BotPlay("Showcase your charts and mods with autoplay.")
-		]),
-		
-		new OptionCategory("Saves and Data", [
-			#if desktop
-			new ReplayOption("View saved song replays."),
-			#end
-			new ResetScoreOption("Reset your score on all songs and weeks. This is irreversible!"),
-			new LockWeeksOption("Reset your story mode progress. This is irreversible!"),
-			new ResetSettings("Reset ALL your settings. This is irreversible!")
+			new ShowInput("Display every single input in the score screen."),
+			new Optimization("No backgrounds, no characters, centered notes, no player 2."),
+			new BotPlay("Showcase your charts and mods with autoplay."),
 		])
 		
 	];
@@ -96,14 +88,12 @@ class OptionsMenu extends MusicBeatState
 		} else if (MainMenuState.chosenMenu >= 9) {
 			menuBG = new FlxSprite().loadGraphic(Paths.image("menuBGset3-desat"));
 		} 
+
 		menuBG.color = 0xFFea71fd;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
 		menuBG.screenCenter();
-		if(FlxG.save.data.antialiasing)
-			{
-				menuBG.antialiasing = true;
-			}
+		menuBG.antialiasing = true;
 		add(menuBG);
 
 		grpControls = new FlxTypedGroup<Alphabet>();

@@ -38,10 +38,7 @@ class LoadingState extends MusicBeatState
 	{
 		logo = new FlxSprite(-150, -100);
 		logo.frames = Paths.getSparrowAtlas('logoBumpin');
-		if(FlxG.save.data.antialiasing)
-			{
-				logo.antialiasing = true;
-			}
+		logo.antialiasing = true;
 		logo.animation.addByPrefix('bump', 'logo bumpin', 24);
 		logo.animation.play('bump');
 		logo.updateHitbox();
@@ -52,10 +49,7 @@ class LoadingState extends MusicBeatState
 		gfDance.frames = Paths.getSparrowAtlas('gfDanceTitle');
 		gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 		gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-		if(FlxG.save.data.antialiasing)
-			{
-				gfDance.antialiasing = true;
-			}
+		gfDance.antialiasing = true;
 		add(gfDance);
 		add(logo);
 		
@@ -70,7 +64,10 @@ class LoadingState extends MusicBeatState
 					checkLoadSong(getVocalPath());
 				checkLibrary("shared");
 				if (PlayState.storyWeek > 0)
-					checkLibrary("week" + PlayState.storyWeek);
+					if (PlayState.storyWeek == 7)
+						checkLibrary("week" + PlayState.storyWeek);
+					else
+						checkLibrary("kepler");
 				else
 					checkLibrary("tutorial");
 				
@@ -157,7 +154,10 @@ class LoadingState extends MusicBeatState
 	
 	static function getNextState(target:FlxState, stopMusic = false):FlxState
 	{
-		Paths.setCurrentLevel("week" + PlayState.storyWeek);
+		if (PlayState.storyWeek == 7)
+			Paths.setCurrentLevel("kepler");
+		else
+			Paths.setCurrentLevel("week" + PlayState.storyWeek);
 		#if NO_PRELOAD_ALL
 		var loaded = isSoundLoaded(getSongPath())
 			&& (!PlayState.SONG.needsVoices || isSoundLoaded(getVocalPath()))
