@@ -379,9 +379,9 @@ class PlayState extends MusicBeatState
 				case 5: if (songLowercase == 'winter-horrorland') {stageCheck = 'mallEvil';} else {stageCheck = 'mall';}
 				case 6: if (songLowercase == 'thorns') {stageCheck = 'schoolEvil';} else {stageCheck = 'school';}
 				case 7: 
-					if (songLowercase == 'song1')stageCheck = 'stage1';
+					if (songLowercase == 'matins')stageCheck = 'stage1';
 					else if (songLowercase == 'song2')stageCheck = 'stage2';
-					else if (songLowercase == 'Harmony')stageCheck = 'stage3';
+					else if (songLowercase == 'harmony')stageCheck = 'stage3';
 				//i should check if its stage (but this is when none is found in chart anyway)
 			}
 		} else {stageCheck = SONG.stage;}
@@ -741,18 +741,18 @@ class PlayState extends MusicBeatState
 						add(stageCurtains);
 				}
 
-			case 'stag1': 
+			case 'stage1': 
 				{
-					
-			}
-			case 'stage2': 
+					curStage = 'stage1';
+				}
+				case 'stage2': 
 				{
-					
-			}
-			case 'stage3': 
+					curStage = 'stage2';
+				}
+				case 'stage3': 
 				{
-					
-			}
+					curStage = 'stage3';
+				}
 			default:
 			{
 					defaultCamZoom = 0.9;
@@ -850,10 +850,13 @@ class PlayState extends MusicBeatState
 				dad.x -= 150;
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
-			case 'kepler':
+			case 'sweater-sarv':
 				dad.x -= 500;
 				dad.y -= 85;
-			case 'kepler stage 3':
+			case 'garden-sarv':
+				dad.x -= 500;
+				dad.y -= 85;
+			case 'date-sarv':
 				dad.x -= 500;
 				dad.y -= 85;
 		}
@@ -893,18 +896,17 @@ class PlayState extends MusicBeatState
 				add(evilTrail);
 				// evilTrail.scrollFactor.set(1.1, 1.1);
 				}
+
+				boyfriend.x += 200;
+				boyfriend.y += 220;
+				gf.x += 180;
+				gf.y += 300;
 			case 'stage1':
 				gf.y -= 2000;
 			case 'stage2':
 				gf.y -= 2000;
 			case 'stage3':
 				gf.y -= 2000;
-
-
-				boyfriend.x += 200;
-				boyfriend.y += 220;
-				gf.x += 180;
-				gf.y += 300;
 		}
 
 		if (!PlayStateChangeables.Optimize)
@@ -1724,6 +1726,40 @@ class PlayState extends MusicBeatState
 				
 				case 'normal':
 					babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
+					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
+					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
+					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');
+					babyArrow.animation.addByPrefix('red', 'arrow static instance 4');
+	
+					babyArrow.antialiasing = true;
+					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+	
+					switch (Math.abs(i))
+					{
+						case 0:
+							babyArrow.x += Note.swagWidth * 0;
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 1');
+							babyArrow.animation.addByPrefix('pressed', 'left press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'left confirm instance 1', 24, false);
+						case 1:
+							babyArrow.x += Note.swagWidth * 1;
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 2');
+							babyArrow.animation.addByPrefix('pressed', 'down press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'down confirm instance 1', 24, false);
+						case 2:
+							babyArrow.x += Note.swagWidth * 2;
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 4');
+							babyArrow.animation.addByPrefix('pressed', 'up press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'up confirm instance 1', 24, false);
+						case 3:
+							babyArrow.x += Note.swagWidth * 3;
+							babyArrow.animation.addByPrefix('static', 'arrow static instance 3');
+							babyArrow.animation.addByPrefix('pressed', 'right press instance 1', 24, false);
+							babyArrow.animation.addByPrefix('confirm', 'right confirm instance 1', 24, false);
+						}
+
+				case 'heart':
+					babyArrow.frames = Paths.getSparrowAtlas('heart_NOTE_assets');
 					babyArrow.animation.addByPrefix('green', 'arrow static instance 1');
 					babyArrow.animation.addByPrefix('blue', 'arrow static instance 2');
 					babyArrow.animation.addByPrefix('purple', 'arrow static instance 3');

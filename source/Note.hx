@@ -66,7 +66,10 @@ class Note extends FlxSprite
 		var noteTypeCheck:String = 'normal';
 
 		if (PlayState.SONG.noteStyle == null) {
-			switch(PlayState.storyWeek) {case 6: noteTypeCheck = 'pixel';}
+			switch(PlayState.storyWeek) 
+			{
+				case 6: noteTypeCheck = 'pixel';
+			}
 		} else {noteTypeCheck = PlayState.SONG.noteStyle;}
 
 		switch (noteTypeCheck)
@@ -94,8 +97,27 @@ class Note extends FlxSprite
 					animation.add('bluehold', [1]);
 				}
 
-				setGraphicSize(Std.int(width * PlayState.daPixelZoom));
-				updateHitbox();
+			case 'heart':
+					frames = Paths.getSparrowAtlas('heart_NOTE_assets');
+
+					animation.addByPrefix('greenScroll', 'green instance 1');
+					animation.addByPrefix('redScroll', 'red instance 1');
+					animation.addByPrefix('blueScroll', 'blue instance 1');
+					animation.addByPrefix('purpleScroll', 'purple instance 1');
+
+					animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
+					animation.addByPrefix('greenholdend', 'green hold end instance 1');
+					animation.addByPrefix('redholdend', 'red hold end instance 1');
+					animation.addByPrefix('blueholdend', 'blue hold end instance 1');
+
+					animation.addByPrefix('purplehold', 'purple hold piece instance 1');
+					animation.addByPrefix('greenhold', 'green hold piece instance 1');
+					animation.addByPrefix('redhold', 'red hold piece instance 1');
+					animation.addByPrefix('bluehold', 'blue hold piece instance 1');
+					
+					setGraphicSize(Std.int(width * 0.7));
+					updateHitbox();
+					antialiasing = true;
 			default:
 				frames = Paths.getSparrowAtlas('NOTE_assets');
 
