@@ -48,6 +48,7 @@ class TitleState extends MusicBeatState
 	var ngSpr:FlxSprite;
 
 	var curWacky:Array<String> = [];
+	var curWacky2:Array<String> = [];
 
 	var wackyImage:FlxSprite;
 
@@ -79,6 +80,7 @@ class TitleState extends MusicBeatState
 		#end
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
+		curWacky2 = FlxG.random.getObject(getIntroTextShit());
 
 		trace('hello');
 
@@ -401,7 +403,7 @@ class TitleState extends MusicBeatState
 		switch (curBeat)
 		{
 			case 1:
-				createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
+				createCoolText(['The date night masses team']);
 			// credTextShit.visible = true;
 			case 3:
 				addMoreText('present');
@@ -445,15 +447,21 @@ class TitleState extends MusicBeatState
 			// credTextShit.text = "Friday";
 			// credTextShit.screenCenter();
 			case 13:
-				addMoreText('Friday');
-			// credTextShit.visible = true;
+				addMoreText(curWacky2[0]);
 			case 14:
-				addMoreText('Night');
-			// credTextShit.text += '\nNight';
+				addMoreText(curWacky2[1]);
 			case 15:
-				addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
-
+				deleteCoolText();
 			case 16:
+				addMoreText('Mid');
+			// credTextShit.visible = true;
+			case 17:
+				addMoreText('Date');
+			// credTextShit.text += '\nNight';
+			case 18:
+				addMoreText('Masses'); // credTextShit.text += '\nFunkin';
+
+			case 19:
 				skipIntro();
 		}
 	}
