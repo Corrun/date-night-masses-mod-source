@@ -25,7 +25,7 @@ class StoryMenuState extends MusicBeatState
 	var scoreText:FlxText;
 
 	var weekData:Array<Dynamic> = [
-		['matins','song2','harmony']
+		['matins','blammed','harmony']
 	];
 	var curDifficulty:Int = 1;
 
@@ -323,8 +323,8 @@ class StoryMenuState extends MusicBeatState
 			{
 				switch(PlayState.SONG.song.toLowerCase())
 						{
-							case 'kepler':
-							LoadingState.loadAndSwitchState(new VideoState("assets/videos/Progress_update.webm", new PlayState()));
+							case 'matins':
+							LoadingState.loadAndSwitchState(new VideoState("assets/videos/selever_afterscene.webm", new PlayState()));
 
 						default:
 							LoadingState.loadAndSwitchState(new PlayState());

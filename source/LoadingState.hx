@@ -64,10 +64,7 @@ class LoadingState extends MusicBeatState
 					checkLoadSong(getVocalPath());
 				checkLibrary("shared");
 				if (PlayState.storyWeek > 0)
-					if (PlayState.storyWeek == 7)
-						checkLibrary("week" + PlayState.storyWeek);
-					else
-						checkLibrary("kepler");
+					checkLibrary("date-night masses");
 				else
 					checkLibrary("tutorial");
 				
