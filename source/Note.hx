@@ -118,6 +118,27 @@ class Note extends FlxSprite
 					setGraphicSize(Std.int(width * 0.7));
 					updateHitbox();
 					antialiasing = true;
+			case 'flowers':
+						frames = Paths.getSparrowAtlas('flowers_NOTE_assets');
+	
+						animation.addByPrefix('greenScroll', 'green instance 1');
+						animation.addByPrefix('redScroll', 'red instance 1');
+						animation.addByPrefix('blueScroll', 'blue instance 1');
+						animation.addByPrefix('purpleScroll', 'purple instance 1');
+	
+						animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
+						animation.addByPrefix('greenholdend', 'green hold end instance 1');
+						animation.addByPrefix('redholdend', 'red hold end instance 1');
+						animation.addByPrefix('blueholdend', 'blue hold end instance 1');
+	
+						animation.addByPrefix('purplehold', 'purple hold piece instance 1');
+						animation.addByPrefix('greenhold', 'green hold piece instance 1');
+						animation.addByPrefix('redhold', 'red hold piece instance 1');
+						animation.addByPrefix('bluehold', 'blue hold piece instance 1');
+						
+						setGraphicSize(Std.int(width * 0.7));
+						updateHitbox();
+						antialiasing = true;
 			default:
 				frames = Paths.getSparrowAtlas('NOTE_assets');
 
