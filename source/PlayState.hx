@@ -367,8 +367,8 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
 			case 'matins':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('matins/matinsDialogue'));
-			case 'song2':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('song2/song2Dialogue'));
+			case 'serafim':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('serafim/serafimDialogue'));
 			case 'harmony':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('harmony/harmonyDialogue'));
 		}
@@ -386,7 +386,7 @@ class PlayState extends MusicBeatState
 				case 6: if (songLowercase == 'thorns') {stageCheck = 'schoolEvil';} else {stageCheck = 'school';}
 				case 7: 
 					if (songLowercase == 'matins')stageCheck = 'stage1';
-					else if (songLowercase == 'song2')stageCheck = 'stage2';
+					else if (songLowercase == 'serafim')stageCheck = 'stage2';
 					else if (songLowercase == 'harmony')stageCheck = 'stage3';
 				//i should check if its stage (but this is when none is found in chart anyway)
 			}
@@ -1149,7 +1149,7 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 				case 'matins':
 					schoolIntro(doof);
-				case 'song2':
+				case 'serafim':
 					schoolIntro(doof);
 				case 'harmony':
 					schoolIntro(doof);
