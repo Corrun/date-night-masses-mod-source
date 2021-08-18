@@ -144,4 +144,8 @@ class Paths
 	{
 		return FlxAtlasFrames.fromSpriteSheetPacker(image(key, library), file('images/$key.txt', library));
 	}
+	inline static public function datePicture(key:String,folder:String)
+		{
+			return getPath('images/$folder/$key.png', IMAGE, "date-night masses");
+		}
 }

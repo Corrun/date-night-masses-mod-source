@@ -750,6 +750,11 @@ class PlayState extends MusicBeatState
 			case 'stage1': 
 				{
 					curStage = 'stage1';
+					var bg:FlxSprite = new FlxSprite(100,100).loadGraphic(Paths.datePicture('house','Cloister'));
+					bg.antialiasing = true;
+					bg.scrollFactor.set(0.9, 0.9);
+					bg.active = false;
+					add(bg);
 				}
 				case 'stage2': 
 				{
