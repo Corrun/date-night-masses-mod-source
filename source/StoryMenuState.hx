@@ -25,7 +25,7 @@ class StoryMenuState extends MusicBeatState
 	var scoreText:FlxText;
 
 	var weekData:Array<Dynamic> = [
-		['matins','blammed','harmony']
+		['matins','serafim','harmony']
 	];
 	var curDifficulty:Int = 1;
 
@@ -68,7 +68,7 @@ class StoryMenuState extends MusicBeatState
 		if (FlxG.sound.music != null)
 		{
 			if (!FlxG.sound.music.playing)
-				FlxG.sound.playMusic(Paths.music('freakyMenu'));
+				FlxG.sound.playMusic(Paths.music('mp3'));
 		}
 
 		persistentUpdate = persistentDraw = true;
