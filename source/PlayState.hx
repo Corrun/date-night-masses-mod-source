@@ -2848,14 +2848,14 @@ class PlayState extends MusicBeatState
 
 					FlxG.sound.music.stop();
 					vocals.stop();
-					/*
+					
 					if (SONG.song.toLowerCase() == 'matins') 
 					{
 
 						schoolIntro(doof);
 					}
-					*/
- 					if (FlxG.save.data.scoreScreen)
+					  
+ 					else if (FlxG.save.data.scoreScreen)
 						openSubState(new ResultsScreen());
 					else
 					{
