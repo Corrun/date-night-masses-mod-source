@@ -366,17 +366,11 @@ class PlayState extends MusicBeatState
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
 			case 'matins':
-				if (!endingSong) {
 				dialogue = CoolUtil.coolTextFile(Paths.txt('matins/matinsDialogue'));
-				}
-				else {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('matins/songLol'));
-				}
 			case 'serafim':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('serafim/serafimDialogue'));
 			case 'harmony':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('harmony/harmonyDialogue'));
-
 		}
 
 		//defaults if no stage was found in chart
@@ -760,30 +754,15 @@ class PlayState extends MusicBeatState
 					bg.antialiasing = true;
 					bg.scrollFactor.set(0.9, 0.9);
 					bg.active = false;
-					bg.setGraphicSize(bg.frameWidth * 2);
 					add(bg);
 				}
 				case 'stage2': 
 				{
 					curStage = 'stage2';
-					var bg:FlxSprite = new FlxSprite(100,100).loadGraphic(Paths.datePicture('houseOfGreen','Greenhouse'));
-					trace('Found greenhouse');
-					bg.antialiasing = true;
-					bg.scrollFactor.set(0.9,0.9);
-					bg.active = false;
-					bg.setGraphicSize(bg.frameWidth * 2);
-					add(bg);
-					trace('added greenhouse');
 				}
 				case 'stage3': 
 				{
 					curStage = 'stage3';
-					var bg:FlxSprite = new FlxSprite(100,100).loadGraphic(Paths.datePicture('haunted','Garden'));
-					bg.antialiasing = true;
-					bg.scrollFactor.set(0.9,0.9);
-					bg.active = false;
-					bg.setGraphicSize(bg.frameWidth * 2);
-					add(bg);
 				}
 			default:
 			{
@@ -935,10 +914,6 @@ class PlayState extends MusicBeatState
 				gf.y += 300;
 			case 'stage1':
 				gf.y -= 2000;
-				boyfriend.x -= 200;
-				boyfriend.y -= 350;
-				dad.x += 250;
-				dad.y += 10;
 			case 'stage2':
 				gf.y -= 2000;
 			case 'stage3':
@@ -978,12 +953,6 @@ class PlayState extends MusicBeatState
 		// doof.y = FlxG.height * 0.5;
 		doof.scrollFactor.set();
 		doof.finishThing = startCountdown;
-
-		var endSongDialogue:DialogueBox = new DialogueBox(false, dialogue);
-		// doof.x += 70;
-		// doof.y = FlxG.height * 0.5;
-		endSongDialogue.scrollFactor.set();
-		endSongDialogue.finishThing = startCountdown;
 
 		Conductor.songPosition = -5000;
 		
@@ -2825,7 +2794,7 @@ class PlayState extends MusicBeatState
 
 		if (offsetTesting)
 		{
-			FlxG.sound.playMusic(Paths.music('mp69'));
+			FlxG.sound.playMusic(Paths.music('freakyMenu'));
 			offsetTesting = false;
 			LoadingState.loadAndSwitchState(new OptionsMenu());
 			FlxG.save.data.offset = offsetTest;
@@ -2843,11 +2812,11 @@ class PlayState extends MusicBeatState
 					transIn = FlxTransitionableState.defaultTransIn;
 					transOut = FlxTransitionableState.defaultTransOut;
 
-
 					paused = true;
 
 					FlxG.sound.music.stop();
 					vocals.stop();
+<<<<<<< HEAD
 					/*
 					if (SONG.song.toLowerCase() == 'matins') 
 					{
@@ -2856,10 +2825,13 @@ class PlayState extends MusicBeatState
 					}
 					*/
  					if (FlxG.save.data.scoreScreen)
+=======
+					if (FlxG.save.data.scoreScreen)
+>>>>>>> parent of 1eb069b (commit deez nuts)
 						openSubState(new ResultsScreen());
 					else
 					{
-						FlxG.sound.playMusic(Paths.music('mp3'));
+						FlxG.sound.playMusic(Paths.music('freakyMenu'));
 						FlxG.switchState(new MainMenuState());
 					}
 

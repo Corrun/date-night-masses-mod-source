@@ -47,9 +47,6 @@ class DialogueBox extends FlxSpriteGroup
 			case 'thorns':
 				FlxG.sound.playMusic(Paths.music('LunchboxScary'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
-
-//			case 'matins':
-//				FlxG.sound.playMusic(Paths.music());
 		}
 
 		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
@@ -98,7 +95,7 @@ class DialogueBox extends FlxSpriteGroup
 				box.frames = Paths.getSparrowAtlas('weeb/TEXTBOX');
 				box.animation.addByPrefix('normalOpen', 'TEXTBOX RuvNormal', 24, false);
 				box.animation.addByIndices('normal', 'TEXTBOX RuvNormal', [1], "", 24);
-			case 'serafim':
+			case 'song2':
 				hasDialog = true;
 				hasVoice = true;
 				box.frames = Paths.getSparrowAtlas('weeb/TEXTBOX');
@@ -126,7 +123,7 @@ class DialogueBox extends FlxSpriteGroup
 			portraitLeft.scrollFactor.set();
 			add(portraitLeft);
 			portraitLeft.visible = false;
-		} else if (PlayState.SONG.song.toLowerCase()=='matins' || PlayState.SONG.song.toLowerCase()=='serafim' || PlayState.SONG.song.toLowerCase()=='harmony') {
+		} else if (PlayState.SONG.song.toLowerCase()=='matins' || PlayState.SONG.song.toLowerCase()=='song2' || PlayState.SONG.song.toLowerCase()=='harmony') {
 			portraitLeft = new FlxSprite(200, 150);
 			portraitLeft.frames = Paths.getSparrowAtlas('weeb/sarvPortrait');
 
@@ -154,7 +151,7 @@ class DialogueBox extends FlxSpriteGroup
 			portraitRight.scrollFactor.set();
 			add(portraitRight);
 			portraitRight.visible = false;
-		} else if (PlayState.SONG.song.toLowerCase()=='matins' || PlayState.SONG.song.toLowerCase()=='serafim' || PlayState.SONG.song.toLowerCase()=='harmony') {
+		} else if (PlayState.SONG.song.toLowerCase()=='matins' || PlayState.SONG.song.toLowerCase()=='song2' || PlayState.SONG.song.toLowerCase()=='harmony') {
 			portraitRight = new FlxSprite(800, 150);
 			portraitRight.frames = Paths.getSparrowAtlas('weeb/ruvPortrait');
 
