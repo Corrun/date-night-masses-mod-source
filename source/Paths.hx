@@ -96,6 +96,16 @@ class Paths
 		return getPath('music/$key.$SOUND_EXT', MUSIC, library);
 	}
 
+	inline static public function date(key:String)
+		{
+			return 'assets/date-night masses/images/heartUI/$key.xml';
+		}
+	
+	inline static public function datePicture(key:String,folder:String)
+		{
+			return getPath('images/$folder/$key.png', IMAGE, "date-night masses");
+		}
+
 	inline static public function voices(song:String)
 	{
 		var songLowercase = StringTools.replace(song, " ", "-").toLowerCase();

@@ -140,7 +140,13 @@ class Note extends FlxSprite
 		else
 		{
 			if (PlayState.SONG.noteStyle == null) {
-				switch(PlayState.storyWeek) {case 6: noteTypeCheck = 'pixel';}
+				switch(PlayState.storyWeek) 
+				{
+					case 0:
+						if (StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'harmony') noteTypeCheck = 'heart';
+						else noteTypeCheck = 'flower';
+					case 6: noteTypeCheck = 'pixel';
+				}
 			} else {noteTypeCheck = PlayState.SONG.noteStyle;}
 			
 			switch (noteTypeCheck)
@@ -159,8 +165,48 @@ class Note extends FlxSprite
 
 					setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 					updateHitbox();
-				default:
-					frames = Paths.getSparrowAtlas('NOTE_assets');
+				case 'flower':
+					frames = Paths.getSparrowAtlas('flower_NOTE_assets');
+	
+					animation.addByPrefix('greenScroll', 'green instance 1');
+					animation.addByPrefix('redScroll', 'red instance 1');
+					animation.addByPrefix('blueScroll', 'blue instance 1');
+					animation.addByPrefix('purpleScroll', 'purple instance 1');
+	
+					animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
+					animation.addByPrefix('greenholdend', 'green hold end instance 1');
+					animation.addByPrefix('redholdend', 'red hold end instance 1');
+					animation.addByPrefix('blueholdend', 'blue hold end instance 1');
+	
+					animation.addByPrefix('purplehold', 'purple hold piece instance 1');
+					animation.addByPrefix('greenhold', 'green hold piece instance 1');
+					animation.addByPrefix('redhold', 'red hold piece instance 1');
+					animation.addByPrefix('bluehold', 'blue hold piece instance 1');
+						
+					setGraphicSize(Std.int(width * 0.7));
+					updateHitbox();
+					antialiasing = true;
+				case 'heart':
+					frames = Paths.getSparrowAtlas('heart_NOTE_assets');
+
+					animation.addByPrefix('greenScroll', 'green instance 1');
+					animation.addByPrefix('redScroll', 'red instance 1');
+					animation.addByPrefix('blueScroll', 'blue instance 1');
+					animation.addByPrefix('purpleScroll', 'purple instance 1');
+	
+					animation.addByPrefix('purpleholdend', 'pruple end hold instance 1');
+					animation.addByPrefix('greenholdend', 'green hold end instance 1');
+					animation.addByPrefix('redholdend', 'red hold end instance 1');
+					animation.addByPrefix('blueholdend', 'blue hold end instance 1');
+	
+					animation.addByPrefix('purplehold', 'purple hold piece instance 1');
+					animation.addByPrefix('greenhold', 'green hold piece instance 1');
+					animation.addByPrefix('redhold', 'red hold piece instance 1');
+					animation.addByPrefix('bluehold', 'blue hold piece instance 1');
+						
+					//setGraphicSize(Std.int(width * 0.7));
+					updateHitbox();
+					antialiasing = true;
 
 					for (i in 0...4)
 					{

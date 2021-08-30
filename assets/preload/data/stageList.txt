@@ -6,3 +6,6 @@ mall
 mallEvil
 school
 schoolEvil
+stage1
+stage2
+stage3

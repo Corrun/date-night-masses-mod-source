@@ -395,6 +395,47 @@ class Stage
 							add(waveSpriteFG);
 						 */
 					}
+					case 'stage1': 
+					{
+						camZoom = 0.9;
+						curStage = 'stage1';
+						var bg:FlxSprite = new FlxSprite(100,100).loadGraphic(Paths.datePicture('house','Cloister'));
+						bg.antialiasing = true;
+						bg.scrollFactor.set(0.9, 0.9);
+						bg.active = false;
+						bg.setGraphicSize(bg.frameWidth * 2);
+						
+						swagBacks['bg'] = bg;
+                        toAdd.push(bg);
+					}
+					case 'stage2': 
+					{
+						camZoom = 0.9;
+						curStage = 'stage2';
+						var bg:FlxSprite = new FlxSprite(100,100).loadGraphic(Paths.datePicture('houseOfGreen','Greenhouse'));
+						trace('Found greenhouse');
+						bg.antialiasing = true;
+						bg.scrollFactor.set(0.9,0.9);
+						bg.active = false;
+						bg.setGraphicSize(bg.frameWidth * 2);
+
+						swagBacks['bg'] = bg;
+                        toAdd.push(bg);
+						trace('added greenhouse');
+					}
+					case 'stage3': 
+					{
+						camZoom = 0.9;
+						curStage = 'stage3';
+						var bg:FlxSprite = new FlxSprite(100,100).loadGraphic(Paths.datePicture('haunted','Garden'));
+						bg.antialiasing = true;
+						bg.scrollFactor.set(0.9,0.9);
+						bg.active = false;
+						bg.setGraphicSize(bg.frameWidth * 2);
+
+						swagBacks['bg'] = bg;
+                        toAdd.push(bg);
+					}
 				default:
 					{
 						camZoom = 0.9;

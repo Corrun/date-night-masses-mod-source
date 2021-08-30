@@ -18,8 +18,10 @@ class DialogueBox extends FlxSpriteGroup
 	var box:FlxSprite;
 
 	var curCharacter:String = '';
+	var voiceActing:String = '';
 
 	var dialogue:Alphabet;
+	
 	var dialogueList:Array<String> = [];
 
 	// SECOND DIALOGUE FOR THE PIXEL SHIT INSTEAD???
@@ -70,6 +72,7 @@ class DialogueBox extends FlxSpriteGroup
 		box = new FlxSprite(-20, 45);
 		
 		var hasDialog = false;
+		var hasVoice = false;
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'senpai':
@@ -100,7 +103,7 @@ class DialogueBox extends FlxSpriteGroup
 				box.frames = Paths.getSparrowAtlas('weeb/TEXTBOX');
 				box.animation.addByPrefix('normalOpen', 'TEXTBOX RuvNormal', 24, false);
 				box.animation.addByIndices('normal', 'TEXTBOX RuvNormal', [1], "", 24);
-			case 'song2':
+			case 'serafim':
 				hasDialog = true;
 				hasVoice = true;
 				box.frames = Paths.getSparrowAtlas('weeb/TEXTBOX');
@@ -330,22 +333,79 @@ class DialogueBox extends FlxSpriteGroup
 		swagDialogue.resetText(dialogueList[0]);
 		swagDialogue.start(0.04, true);
 
+		if (voiceActing != '') {
+			FlxG.sound.playMusic(Paths.sound(voiceActing), 0, false);
+			FlxG.sound.music.fadeIn(1, 0, 0.8);
+		}
+
 		switch (curCharacter)
 		{
 			case 'dad':
 				portraitRight.visible = false;
 				if (!portraitLeft.visible)
 				{
-					portraitLeft.visible = true;
 					portraitLeft.animation.play('enter');
+					portraitLeft.visible = true;
 				}
 			case 'bf':
 				portraitLeft.visible = false;
 				if (!portraitRight.visible)
 				{
-					portraitRight.visible = true;
 					portraitRight.animation.play('enter');
+					portraitRight.visible = true;
 				}
+			case 'ruvContent': 
+				portraitLeft.visible = false;
+				portraitRight.animation.play('ruvContent');
+				portraitRight.visible = true;
+			case 'ruvDateContent':
+				portraitLeft.visible = false;
+				portraitRight.animation.play('ruvDateContent');
+				portraitRight.visible = true;
+			case 'ruvDateNerv':
+				portraitLeft.visible = false;
+				portraitRight.animation.play('ruvDateNerv');
+				portraitRight.visible = true;
+			case 'ruvDateNeutral':
+				portraitLeft.visible = false;
+				portraitRight.animation.play('ruvDateNeutral');
+				portraitRight.visible = true;
+			case 'ruvNerv':
+				portraitLeft.visible = false;
+				portraitRight.animation.play('ruvNerv');
+				portraitRight.visible = true;
+			case 'ruvNeutral':
+				portraitLeft.visible = false;
+				portraitRight.animation.play('ruvNeutral');
+				portraitRight.visible = true;
+			case 'ruvRonv':
+				portraitLeft.visible = false;
+				portraitRight.animation.play('ruvRonv');
+				portraitRight.visible = true;
+			case 'sarvCheerful': 
+				portraitRight.visible = false;
+				portraitLeft.animation.play('sarvCheerful');
+				portraitLeft.visible = true;
+			case 'sarvConfused':
+				portraitRight.visible = false;
+				portraitLeft.animation.play('sarvConfused');
+				portraitLeft.visible = true;
+			case 'sarvDateCheerful':
+				portraitRight.visible = false;
+				portraitLeft.animation.play('sarvDateCheerful');
+				portraitLeft.visible = true;
+			case 'sarvDateConfused':
+				portraitRight.visible = false;
+				portraitLeft.animation.play('sarvDateConfused');
+				portraitLeft.visible = true;
+			case 'sarvDateDelighted':
+				portraitRight.visible = false;
+				portraitLeft.animation.play('sarvDateDelighted');
+				portraitLeft.visible = true;
+			case 'sarvDelighted':
+				portraitRight.visible = false;
+				portraitLeft.animation.play('sarvDelighted');
+				portraitLeft.visible = true;
 		}
 	}
 
