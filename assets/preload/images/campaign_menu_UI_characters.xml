@@ -158,6 +158,4 @@
 	<SubTexture name="spooky dance idle BLACK LINES0013" x="2164" y="3066" width="357" height="484" frameX="-79" frameY="-61" frameWidth="492" frameHeight="549"/>
 	<SubTexture name="spooky dance idle BLACK LINES0014" x="2531" y="3066" width="354" height="494" frameX="-78" frameY="-52" frameWidth="492" frameHeight="549"/>
 	<SubTexture name="spooky dance idle BLACK LINES0015" x="2531" y="3066" width="354" height="494" frameX="-78" frameY="-52" frameWidth="492" frameHeight="549"/>
-
-	<SubTexture name="Kepler's CROWN0000" x="4160" y="3080" width="570" height="590" frameX="100" frameY="-350" frameWidth="570" frameHeight="590"/>
 </TextureAtlas>
