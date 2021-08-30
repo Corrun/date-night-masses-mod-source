@@ -2816,7 +2816,6 @@ class PlayState extends MusicBeatState
 
 					FlxG.sound.music.stop();
 					vocals.stop();
-<<<<<<< HEAD
 					/*
 					if (SONG.song.toLowerCase() == 'matins') 
 					{
@@ -2824,10 +2823,7 @@ class PlayState extends MusicBeatState
 						schoolIntro(doof);
 					}
 					*/
- 					if (FlxG.save.data.scoreScreen)
-=======
 					if (FlxG.save.data.scoreScreen)
->>>>>>> parent of 1eb069b (commit deez nuts)
 						openSubState(new ResultsScreen());
 					else
 					{
