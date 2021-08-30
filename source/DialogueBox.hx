@@ -413,6 +413,7 @@ class DialogueBox extends FlxSpriteGroup
 	{
 		var splitName:Array<String> = dialogueList[0].split(":");
 		curCharacter = splitName[1];
-		dialogueList[0] = dialogueList[0].substr(splitName[1].length + 2).trim();
+		dialogueList[0] = splitName[2]; //dialogueList[0].substr(splitName[1].length + 2).trim();
+		voiceActing = splitName[3];
 	}
 }
