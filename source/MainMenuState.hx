@@ -15,7 +15,6 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import io.newgrounds.NG;
 import lime.app.Application;
-import Math.random;
 
 #if windows
 import Discord.DiscordClient;
@@ -30,7 +29,7 @@ class MainMenuState extends MusicBeatState
 	var menuItems:FlxTypedGroup<FlxSprite>;
 
 	#if !switch
-	var optionShit:Array<String> = ['story mode', 'freeplay', 'credits', 'options'];
+	var optionShit:Array<String> = ['story mode', 'freeplay', 'donate', 'options'];
 	#else
 	var optionShit:Array<String> = ['story mode', 'freeplay'];
 	#end
@@ -41,9 +40,8 @@ class MainMenuState extends MusicBeatState
 
 	public static var nightly:String = "";
 
-	public static var kadeEngineVer:String = "1.5.4" + nightly;
+	public static var kadeEngineVer:String = "1.7" + nightly;
 	public static var gameVer:String = "0.2.7.1";
-	public static var chosenMenu = Std.random(10);
 
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
@@ -51,6 +49,7 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
+		clean();
 		#if windows
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
@@ -63,42 +62,26 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		var bg:FlxSprite;
-
-		bg = new FlxSprite(-100).loadGraphic(Paths.image('menuBGset1'));
-
-		if (chosenMenu >= 0 && chosenMenu <= 5) {
-			bg = new FlxSprite(-100).loadGraphic(Paths.image('menuBGset1'));
-		} else if (chosenMenu >= 6 && chosenMenu <= 8) {
-			bg = new FlxSprite(-100).loadGraphic(Paths.image('menuBGset2'));
-		} else if (chosenMenu == 9) {
-			bg = new FlxSprite(-100).loadGraphic(Paths.image('menuBGset3'));
-		}
+		var bg:FlxSprite = new FlxSprite(-100).loadGraphic(Paths.image('menuBG'));
 		bg.scrollFactor.x = 0;
 		bg.scrollFactor.y = 0.10;
 		bg.setGraphicSize(Std.int(bg.width * 1.1));
 		bg.updateHitbox();
 		bg.screenCenter();
-		bg.antialiasing = true;
+		bg.antialiasing = FlxG.save.data.antialiasing;
 		add(bg);
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 
-		if (chosenMenu >= 0 && chosenMenu <= 5) {
-			magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuBGset1-magenta'));
-		} else if (chosenMenu >= 6 && chosenMenu <= 8) {
-			magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuBGset2-magenta'));
-		} else if (chosenMenu == 9) {
-			magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuBGset3-magenta'));
-		}
+		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
 		magenta.scrollFactor.x = 0;
 		magenta.scrollFactor.y = 0.10;
 		magenta.setGraphicSize(Std.int(magenta.width * 1.1));
 		magenta.updateHitbox();
 		magenta.screenCenter();
 		magenta.visible = false;
-		magenta.antialiasing = true;
+		magenta.antialiasing = FlxG.save.data.antialiasing;
 		magenta.color = 0xFFfd719b;
 		add(magenta);
 		// magenta.scrollFactor.set();
@@ -119,7 +102,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.screenCenter(X);
 			menuItems.add(menuItem);
 			menuItem.scrollFactor.set();
-			menuItem.antialiasing = true;
+			menuItem.antialiasing = FlxG.save.data.antialiasing;
 			if (firstStart)
 				FlxTween.tween(menuItem,{y: 60 + (i * 160)},1 + (i * 0.25) ,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
 					{ 
@@ -198,9 +181,9 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.ACCEPT)
 			{
-				if (optionShit[curSelected] == 'credits')
+				if (optionShit[curSelected] == 'donate')
 				{
-					fancyOpenURL("https://fridaynightfunking.fandom.com/wiki/Date-Night_Masses");
+					fancyOpenURL("https://ninja-muffin24.itch.io/funkin");
 				}
 				else
 				{

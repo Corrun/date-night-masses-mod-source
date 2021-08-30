@@ -33,6 +33,7 @@ class GameplayCustomizeState extends MusicBeatState
 
     var bf:Boyfriend;
     var dad:Character;
+    var gf:Character;
 
     var strumLine:FlxSprite;
     var strumLineNotes:FlxTypedGroup<FlxSprite>;
@@ -42,16 +43,20 @@ class GameplayCustomizeState extends MusicBeatState
     public override function create() {
         #if windows
 		// Updating Discord Rich Presence
-		DiscordClient.changePresence("Customizing Gameplay", null);
+		DiscordClient.changePresence("Customizing Gameplay Modules", null);
 		#end
 
         sick = new FlxSprite().loadGraphic(Paths.image('sick','shared'));
+        sick.antialiasing = FlxG.save.data.antialiasing;
         sick.scrollFactor.set();
-        background = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback','shared'));
+        background = new FlxSprite(-1000, -200).loadGraphic(Paths.image('stageback','shared'));
         curt = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains','shared'));
         front = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront','shared'));
+        background.antialiasing = FlxG.save.data.antialiasing;
+        curt.antialiasing = FlxG.save.data.antialiasing;
+        front.antialiasing = FlxG.save.data.antialiasing;
 
-		Conductor.changeBPM(102);
+		//Conductor.changeBPM(102);
 		persistentUpdate = true;
 
         super.create();
@@ -59,6 +64,8 @@ class GameplayCustomizeState extends MusicBeatState
 		camHUD = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
         FlxG.cameras.add(camHUD);
+
+        camHUD.zoom = FlxG.save.data.zoom;
 
         background.scrollFactor.set(0.9,0.9);
         curt.scrollFactor.set(0.9,0.9);
@@ -74,10 +81,14 @@ class GameplayCustomizeState extends MusicBeatState
 
         bf = new Boyfriend(770, 450, 'bf');
 
+        gf = new Character(400, 130, 'gf');
+		gf.scrollFactor.set(0.95, 0.95);
+
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x + 400, dad.getGraphicMidpoint().y);
 
 		camFollow.setPosition(camPos.x, camPos.y);
 
+        add(gf);
         add(bf);
         add(dad);
 
@@ -111,12 +122,18 @@ class GameplayCustomizeState extends MusicBeatState
 		generateStaticArrows(0);
 		generateStaticArrows(1);
 
-        text = new FlxText(5, FlxG.height + 40, 0, "Drag around gameplay elements, R to reset, Escape to go back.", 12);
+        text = new FlxText(5, FlxG.height + 40, 0, "Click and drag around gameplay elements to customize their positions. Press R to reset. Q/E to change zoom. Press Escape to go back.", 12);
 		text.scrollFactor.set();
 		text.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         
         blackBorder = new FlxSprite(-30,FlxG.height + 40).makeGraphic((Std.int(text.width + 900)),Std.int(text.height + 600),FlxColor.BLACK);
 		blackBorder.alpha = 0.5;
+
+        background.cameras = [camHUD];
+        text.cameras = [camHUD];
+
+        text.scrollFactor.set();
+        background.scrollFactor.set();
 
 		add(blackBorder);
 
@@ -145,19 +162,38 @@ class GameplayCustomizeState extends MusicBeatState
 
         super.update(elapsed);
 
+        if (FlxG.save.data.zoom < 0.8)
+            FlxG.save.data.zoom = 0.8;
+
+        if (FlxG.save.data.zoom > 1.2)
+            FlxG.save.data.zoom = 1.2;
+
         FlxG.camera.zoom = FlxMath.lerp(0.9, FlxG.camera.zoom, 0.95);
-        camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, 0.95);
+        camHUD.zoom = FlxMath.lerp(FlxG.save.data.zoom, camHUD.zoom, 0.95);
 
         if (FlxG.mouse.overlaps(sick) && FlxG.mouse.pressed)
         {
-            sick.x = FlxG.mouse.x - sick.width / 2;
-            sick.y = FlxG.mouse.y - sick.height;
+            sick.x = (FlxG.mouse.x - sick.width / 2) - 60;
+            sick.y = (FlxG.mouse.y - sick.height) - 60;
         }
 
         for (i in playerStrums)
             i.y = strumLine.y;
         for (i in strumLineNotes)
             i.y = strumLine.y;
+
+        if (FlxG.keys.justPressed.Q)
+        {
+            FlxG.save.data.zoom += 0.02;
+            camHUD.zoom = FlxG.save.data.zoom;
+        }
+
+        if (FlxG.keys.justPressed.E)
+        {
+            FlxG.save.data.zoom -= 0.02;
+            camHUD.zoom = FlxG.save.data.zoom;
+        }
+
 
         if (FlxG.mouse.overlaps(sick) && FlxG.mouse.justReleased)
         {
@@ -170,6 +206,8 @@ class GameplayCustomizeState extends MusicBeatState
         {
             sick.x = defaultX;
             sick.y = defaultY;
+            FlxG.save.data.zoom = 1;
+            camHUD.zoom = FlxG.save.data.zoom;
             FlxG.save.data.changedHitX = sick.x;
             FlxG.save.data.changedHitY = sick.y;
             FlxG.save.data.changedHit = false;
@@ -188,8 +226,9 @@ class GameplayCustomizeState extends MusicBeatState
     {
         super.beatHit();
 
-        bf.playAnim('idle');
-        dad.dance();
+        bf.playAnim('idle', true);
+        dad.dance(true);
+        gf.dance();
 
         FlxG.camera.zoom += 0.015;
         camHUD.zoom += 0.010;
@@ -212,7 +251,7 @@ class GameplayCustomizeState extends MusicBeatState
                 babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
                 babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
                 babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
-                babyArrow.antialiasing = true;
+                babyArrow.antialiasing = FlxG.save.data.antialiasing;
                 babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
                 switch (Math.abs(i))
                 {

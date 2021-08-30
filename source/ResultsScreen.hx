@@ -1,5 +1,10 @@
 package;
-
+import haxe.Exception;
+#if sys
+import smTools.SMFile;
+import sys.FileSystem;
+import sys.io.File;
+#end
 import openfl.geom.Matrix;
 import openfl.display.BitmapData;
 import flixel.system.FlxSound;
@@ -54,9 +59,13 @@ class ResultsScreen extends FlxSubState
         background.scrollFactor.set();
         add(background);
 
-        music = new FlxSound().loadEmbedded(Paths.music('breakfast'), true, true);
-		music.volume = 0;
-		music.play(false, FlxG.random.int(0, Std.int(music.length / 2)));
+        if (!PlayState.inResults) 
+        {
+            music = new FlxSound().loadEmbedded(Paths.music('breakfast'), true, true);
+            music.volume = 0;
+            music.play(false, FlxG.random.int(0, Std.int(music.length / 2)));
+            FlxG.sound.list.add(music);
+        }
 
         background.alpha = 0;
 
@@ -74,7 +83,12 @@ class ResultsScreen extends FlxSubState
             text.text = "Week Cleared!";
         }
 
-        comboText = new FlxText(20,-75,0,'Judgements:\nSicks - ${PlayState.sicks}\nGoods - ${PlayState.goods}\nBads - ${PlayState.bads}\n\nCombo Breaks: ${(PlayState.isStoryMode ? PlayState.campaignMisses : PlayState.misses)}\nHighest Combo: ${PlayState.highestCombo + 1}\n\nScore: ${PlayState.instance.songScore}\nAccuracy: ${HelperFunctions.truncateFloat(PlayState.instance.accuracy,2)}%\n\n${Ratings.GenerateLetterRank(PlayState.instance.accuracy)}\n\nF1 - View replay\nF2 - Replay song
+        var sicks = PlayState.isStoryMode ? PlayState.campaignSicks : PlayState.sicks;
+        var goods = PlayState.isStoryMode ? PlayState.campaignGoods : PlayState.goods;
+        var bads = PlayState.isStoryMode ? PlayState.campaignBads : PlayState.bads;
+        var shits = PlayState.isStoryMode ? PlayState.campaignShits : PlayState.shits;
+
+        comboText = new FlxText(20,-75,0,'Judgements:\nSicks - ${sicks}\nGoods - ${goods}\nBads - ${bads}\n\nCombo Breaks: ${(PlayState.isStoryMode ? PlayState.campaignMisses : PlayState.misses)}\nHighest Combo: ${PlayState.highestCombo + 1}\nScore: ${PlayState.instance.songScore}\nAccuracy: ${HelperFunctions.truncateFloat(PlayState.instance.accuracy,2)}%\n\n${Ratings.GenerateLetterRank(PlayState.instance.accuracy)}\nRate: ${PlayState.songMultiplier}x\n\n${!PlayState.loadRep ? "\nF1 - Replay song" : ""}
         ');
         comboText.size = 28;
         comboText.setBorderStyle(FlxTextBorderStyle.OUTLINE,FlxColor.BLACK,4,1);
@@ -130,10 +144,16 @@ class ResultsScreen extends FlxSubState
 
             var diff = obj[3];
             var judge = obj2;
-            mean += diff;
+            if (diff != (166 * Math.floor((PlayState.rep.replay.sf / 60) * 1000) / 166))
+                mean += diff;
             if (obj[1] != -1)
-                graph.addToHistory(diff, judge, obj3);
+                graph.addToHistory(diff / PlayState.songMultiplier, judge, obj3 / PlayState.songMultiplier);
         }
+
+        if (sicks == Math.POSITIVE_INFINITY || sicks == Math.NaN)
+            sicks = 0;
+        if (goods == Math.POSITIVE_INFINITY || goods == Math.NaN)
+            goods = 0;
 
         graph.update();
 
@@ -167,8 +187,8 @@ class ResultsScreen extends FlxSubState
 
 	override function update(elapsed:Float)
 	{
-        if (music.volume < 0.5)
-			music.volume += 0.01 * elapsed;
+        if (music != null && music.volume < 0.5)
+		    music.volume += 0.01 * elapsed;
 
         // keybinds
 
@@ -193,51 +213,15 @@ class ResultsScreen extends FlxSubState
             if (PlayState.isStoryMode)
             {
                 FlxG.sound.playMusic(Paths.music('freakyMenu'));
+                Conductor.changeBPM(102);
                 FlxG.switchState(new MainMenuState());
             }
             else
                 FlxG.switchState(new FreeplayState());
+            PlayState.instance.clean();
         }
 
-        if (FlxG.keys.justPressed.F1)
-        {
-            trace(PlayState.rep.path);
-            PlayState.rep = Replay.LoadReplay(PlayState.rep.path);
-
-            PlayState.loadRep = true;
-
-            var songFormat = StringTools.replace(PlayState.rep.replay.songName, " ", "-");
-            switch (songFormat) {
-                case 'Dad-Battle': songFormat = 'Dadbattle';
-                case 'Philly-Nice': songFormat = 'Philly';
-                    // Replay v1.0 support
-                case 'dad-battle': songFormat = 'Dadbattle';
-                case 'philly-nice': songFormat = 'Philly';
-            }
-
-			var songHighscore = StringTools.replace(PlayState.SONG.song, " ", "-");
-			switch (songHighscore) {
-				case 'Dad-Battle': songHighscore = 'Dadbattle';
-				case 'Philly-Nice': songHighscore = 'Philly';
-			}
-
-			#if !switch
-			Highscore.saveScore(songHighscore, Math.round(PlayState.instance.songScore), PlayState.storyDifficulty);
-			Highscore.saveCombo(songHighscore, Ratings.GenerateLetterRank(PlayState.instance.accuracy),PlayState.storyDifficulty);
-			#end
-
-            var poop:String = Highscore.formatSong(songFormat, PlayState.rep.replay.songDiff);
-
-            music.fadeOut(0.3);
-
-            PlayState.SONG = Song.loadFromJson(poop, PlayState.rep.replay.songName);
-            PlayState.isStoryMode = false;
-            PlayState.storyDifficulty = PlayState.rep.replay.songDiff;
-            PlayState.storyWeek = 0;
-            LoadingState.loadAndSwitchState(new PlayState());
-        }
-
-        if (FlxG.keys.justPressed.F2 )
+        if (FlxG.keys.justPressed.F1 && !PlayState.loadRep)
         {
             PlayState.rep = null;
 
@@ -254,23 +238,13 @@ class ResultsScreen extends FlxSubState
 			Highscore.saveCombo(songHighscore, Ratings.GenerateLetterRank(PlayState.instance.accuracy),PlayState.storyDifficulty);
 			#end
 
-            var songFormat = StringTools.replace(PlayState.SONG.song, " ", "-");
-            switch (songFormat) {
-                case 'Dad-Battle': songFormat = 'Dadbattle';
-                case 'Philly-Nice': songFormat = 'Philly';
-                case 'dad-battle': songFormat = 'Dadbattle';
-                case 'philly-nice': songFormat = 'Philly';
-            }
+            if (music != null)
+                music.fadeOut(0.3);
 
-            var poop:String = Highscore.formatSong(songFormat, PlayState.storyDifficulty);
-
-            music.fadeOut(0.3);
-
-            PlayState.SONG = Song.loadFromJson(poop, PlayState.SONG.song);
             PlayState.isStoryMode = false;
             PlayState.storyDifficulty = PlayState.storyDifficulty;
-            PlayState.storyWeek = 0;
             LoadingState.loadAndSwitchState(new PlayState());
+            PlayState.instance.clean();
         }
 
 		super.update(elapsed);
