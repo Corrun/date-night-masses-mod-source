@@ -26,7 +26,7 @@ class StoryMenuState extends MusicBeatState
 	static function weekData():Array<Dynamic>
 	{
 		return [
-			['blammed','serafim','harmony']
+			['matins','serafim','harmony']
 		];
 	}
 	var curDifficulty:Int = 1;
@@ -116,6 +116,9 @@ class StoryMenuState extends MusicBeatState
 		var ui_tex = Paths.getSparrowAtlas('campaign_menu_UI_assets');
 		var yellowBG:FlxSprite = new FlxSprite(0, 56).makeGraphic(FlxG.width, 410, 0xFFF9CF51); 
 
+		var rugAndSarv:FlxSprite = new FlxSprite(0,56).loadGraphic(Paths.image("srvrugstars"));
+		add(rugAndSarv);
+
 		grpWeekText = new FlxTypedGroup<MenuItem>();
 		add(grpWeekText);
 
@@ -155,11 +158,11 @@ class StoryMenuState extends MusicBeatState
 		}
 
 		trace("Line 96");
-
+/*
 		grpWeekCharacters.add(new MenuCharacter(0, 100, 0.5, false));
 		grpWeekCharacters.add(new MenuCharacter(450, 25, 0.9, true));
 		grpWeekCharacters.add(new MenuCharacter(850, 100, 0.5, true));
-
+*/
 		difficultySelectors = new FlxGroup();
 		add(difficultySelectors);
 
@@ -190,10 +193,10 @@ class StoryMenuState extends MusicBeatState
 		difficultySelectors.add(rightArrow);
 
 		trace("Line 150");
-
+/*
 		add(yellowBG);
 		add(grpWeekCharacters);
-
+*/
 		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height + 100, 0, "Tracks", 32);
 		txtTracklist.alignment = CENTER;
 		txtTracklist.font = rankText.font;
@@ -335,8 +338,8 @@ class StoryMenuState extends MusicBeatState
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 
-				grpWeekText.members[curWeek].startFlashing();
-				grpWeekCharacters.members[1].animation.play('bfConfirm');
+/*				grpWeekText.members[curWeek].startFlashing();
+				grpWeekCharacters.members[1].animation.play('bfConfirm'); */
 				stopspamming = true;
 			}
 
@@ -438,10 +441,10 @@ class StoryMenuState extends MusicBeatState
 
 	function updateText()
 	{
-		grpWeekCharacters.members[0].setCharacter(weekCharacters[curWeek][0]);
+/*		grpWeekCharacters.members[0].setCharacter(weekCharacters[curWeek][0]);
 		grpWeekCharacters.members[1].setCharacter(weekCharacters[curWeek][1]);
 		grpWeekCharacters.members[2].setCharacter(weekCharacters[curWeek][2]);
-
+*/
 		txtTracklist.text = "Tracks\n";
 		var stringThing:Array<String> = weekData()[curWeek];
 
@@ -475,9 +478,10 @@ class StoryMenuState extends MusicBeatState
 	override function beatHit()
 	{
 		super.beatHit();
-
+/*
 		grpWeekCharacters.members[0].bopHead();
 		grpWeekCharacters.members[1].bopHead();
 		grpWeekCharacters.members[2].bopHead();
+		*/
 	}
 }
