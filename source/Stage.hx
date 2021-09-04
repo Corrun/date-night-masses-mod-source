@@ -412,7 +412,7 @@ class Stage
 					{
 						camZoom = 0.9;
 						curStage = 'stage2';
-						var bg:FlxSprite = new FlxSprite(100,100).loadGraphic(Paths.datePicture('houseOfGreen','Greenhouse'));
+						var bg:FlxSprite = new FlxSprite(100,100).loadGraphic(Paths.datePicture('background2','Greenhouse'));
 						trace('Found greenhouse');
 						bg.antialiasing = true;
 						bg.scrollFactor.set(0.9,0.9);
@@ -427,7 +427,7 @@ class Stage
 					{
 						camZoom = 0.9;
 						curStage = 'stage3';
-						var bg:FlxSprite = new FlxSprite(100,100).loadGraphic(Paths.datePicture('haunted','Garden'));
+						var bg:FlxSprite = new FlxSprite(100,100).loadGraphic(Paths.datePicture('bg3STG3MOON','Garden'));
 						bg.antialiasing = true;
 						bg.scrollFactor.set(0.9,0.9);
 						bg.active = false;

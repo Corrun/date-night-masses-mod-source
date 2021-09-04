@@ -34,7 +34,7 @@ class StoryMenuState extends MusicBeatState
 	public static var weekUnlocked:Array<Bool> = [true];
 
 	var weekCharacters:Array<Dynamic> = [
-		['', 'bf', 'gf']
+		['', '', '']
 	];
 
 	var weekNames:Array<String> = CoolUtil.coolTextFile(Paths.txt('data/weekNames'));
@@ -99,10 +99,6 @@ class StoryMenuState extends MusicBeatState
 		scoreText = new FlxText(10, 10, 0, "SCORE: 49324858", 36);
 		scoreText.setFormat("VCR OSD Mono", 32);
 
-		var corrunBG:FlxSprite = new FlxSprite(0, 457).makeGraphic(FlxG.width, FlxG.height );
-		corrunBG.color = 0xFF0C0A3E;
-		add(corrunBG);
-
 		txtWeekTitle = new FlxText(FlxG.width * 0.7, 10, 0, "", 32);
 		txtWeekTitle.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, RIGHT);
 		txtWeekTitle.alpha = 0.7;
@@ -114,10 +110,9 @@ class StoryMenuState extends MusicBeatState
 		rankText.screenCenter(X);
 
 		var ui_tex = Paths.getSparrowAtlas('campaign_menu_UI_assets');
-		var yellowBG:FlxSprite = new FlxSprite(0, 56).makeGraphic(FlxG.width, 410, 0xFFF9CF51); 
+		var yellowBG:FlxSprite = new FlxSprite(0, 56).makeGraphic(FlxG.width, 400, 0xFFF9CF51);
 
-		var rugAndSarv:FlxSprite = new FlxSprite(0,56).loadGraphic(Paths.image("srvrugstars"));
-		add(rugAndSarv);
+		var BG:FlxSprite = new FlxSprite(0, 56).loadGraphic(Paths.image('weekthing', 'date-night masses'));
 
 		grpWeekText = new FlxTypedGroup<MenuItem>();
 		add(grpWeekText);
@@ -125,7 +120,7 @@ class StoryMenuState extends MusicBeatState
 		grpLocks = new FlxTypedGroup<FlxSprite>();
 		add(grpLocks);
 
-		var blackBarThingie:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, 56, 0xFF0C0A3E);
+		var blackBarThingie:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, 56, FlxColor.BLACK);
 		add(blackBarThingie);
 
 		grpWeekCharacters = new FlxTypedGroup<MenuCharacter>();
@@ -142,7 +137,9 @@ class StoryMenuState extends MusicBeatState
 			weekThing.screenCenter(X);
 			weekThing.antialiasing = FlxG.save.data.antialiasing;
 			// weekThing.updateHitbox();
-
+			if (i == 0) {
+				weekThing.x -= 70;
+			}
 			// Needs an offset thingie
 			if (!weekUnlocked[i])
 			{
@@ -158,11 +155,11 @@ class StoryMenuState extends MusicBeatState
 		}
 
 		trace("Line 96");
-/*
+
 		grpWeekCharacters.add(new MenuCharacter(0, 100, 0.5, false));
 		grpWeekCharacters.add(new MenuCharacter(450, 25, 0.9, true));
 		grpWeekCharacters.add(new MenuCharacter(850, 100, 0.5, true));
-*/
+
 		difficultySelectors = new FlxGroup();
 		add(difficultySelectors);
 
@@ -193,14 +190,15 @@ class StoryMenuState extends MusicBeatState
 		difficultySelectors.add(rightArrow);
 
 		trace("Line 150");
-/*
+
 		add(yellowBG);
 		add(grpWeekCharacters);
-*/
+		add (BG);
+
 		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height + 100, 0, "Tracks", 32);
 		txtTracklist.alignment = CENTER;
 		txtTracklist.font = rankText.font;
-		txtTracklist.color = 0xFF0C0A3E;
+		txtTracklist.color = 0xFFe55777;
 		add(txtTracklist);
 		// add(rankText);
 		add(scoreText);
@@ -338,8 +336,8 @@ class StoryMenuState extends MusicBeatState
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 
-/*				grpWeekText.members[curWeek].startFlashing();
-				grpWeekCharacters.members[1].animation.play('bfConfirm'); */
+				grpWeekText.members[curWeek].startFlashing();
+				grpWeekCharacters.members[1].animation.play('bfConfirm');
 				stopspamming = true;
 			}
 
@@ -441,10 +439,10 @@ class StoryMenuState extends MusicBeatState
 
 	function updateText()
 	{
-/*		grpWeekCharacters.members[0].setCharacter(weekCharacters[curWeek][0]);
+		grpWeekCharacters.members[0].setCharacter(weekCharacters[curWeek][0]);
 		grpWeekCharacters.members[1].setCharacter(weekCharacters[curWeek][1]);
 		grpWeekCharacters.members[2].setCharacter(weekCharacters[curWeek][2]);
-*/
+
 		txtTracklist.text = "Tracks\n";
 		var stringThing:Array<String> = weekData()[curWeek];
 
@@ -478,10 +476,9 @@ class StoryMenuState extends MusicBeatState
 	override function beatHit()
 	{
 		super.beatHit();
-/*
+
 		grpWeekCharacters.members[0].bopHead();
 		grpWeekCharacters.members[1].bopHead();
 		grpWeekCharacters.members[2].bopHead();
-		*/
 	}
 }

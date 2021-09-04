@@ -200,7 +200,7 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.ACCEPT)
 			{
-				if (optionShit[curSelected] == 'credits')
+				if (optionShit[curSelected] == '')
 				{
 					fancyOpenURL("https://fridaynightfunking.fandom.com/wiki/Date-Night_Masses");
 				}
@@ -267,7 +267,8 @@ class MainMenuState extends MusicBeatState
 				FlxG.switchState(new FreeplayState());
 
 				trace("Freeplay Menu Selected");
-
+			case 'credits':
+				FlxG.switchState(new CreditsMenuState());
 			case 'options':
 				FlxG.switchState(new OptionsMenu());
 		}

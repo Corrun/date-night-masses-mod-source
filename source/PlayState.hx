@@ -272,6 +272,8 @@ class PlayState extends MusicBeatState
 
 	// API stuff
 
+	//for da dialogues at the end
+
 	public function addObject(object:FlxBasic)
 	{
 		add(object);
@@ -448,11 +450,11 @@ class PlayState extends MusicBeatState
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
 			case 'matins':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('matins/matinsDialogue'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('matins/dialogue'));
 			case 'serafim':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('serafim/serafimDialogue'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('serafim/dialogue'));
 			case 'harmony':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('harmony/harmonyDialogue'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('harmony/dialogue'));
 		}
 		Conductor.bpm = SONG.bpm;
 
@@ -499,7 +501,7 @@ class PlayState extends MusicBeatState
 		switch(songLowercase)
 		{
 			//if the song has dialogue, so we don't accidentally try to load a nonexistant file and crash the game
-			case 'senpai' | 'roses' | 'thorns':
+			case 'senpai' | 'roses' | 'thorns' | 'matins' | 'serafim' | 'harmony':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/dialogue'));
 		}
 
@@ -922,6 +924,8 @@ class PlayState extends MusicBeatState
               healthBar.createFilledBar(0xFFF76D6D, 0xFF0097C4);
              case 'spirit':
               healthBar.createFilledBar(0xFFAD0505, 0xFF0097C4);
+			 case 'sweater-sarv' | 'garden-sarv' | 'date-sarv':
+			  healthBar.createFilledBar(0xFFd49dbd, 0xFFa798af);
             }
         }
         else
@@ -1048,6 +1052,12 @@ class PlayState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
 				case 'thorns':
+					schoolIntro(doof);
+				case 'matins':
+					schoolIntro(doof);
+				case 'serafim':
+					schoolIntro(doof);
+				case 'harmony':
 					schoolIntro(doof);
 				default:
 					new FlxTimer().start(1, function(timer) {
@@ -2383,17 +2393,23 @@ class PlayState extends MusicBeatState
 		iconP1.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01) - iconOffset);
 		iconP2.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) - (iconP2.width - iconOffset);
 
-		if (health > 2)
-			health = 2;
+		if (health > 2) health = 2;
+		/*
 		if (healthBar.percent < 20)
 			iconP1.animation.curAnim.curFrame = 1;
 		else
-			iconP1.animation.curAnim.curFrame = 0;
+			*/
 
 		if (healthBar.percent > 80)
+		{
 			iconP2.animation.curAnim.curFrame = 1;
+			iconP1.animation.curAnim.curFrame = 1;
+		}
 		else
+		{
 			iconP2.animation.curAnim.curFrame = 0;
+			iconP1.animation.curAnim.curFrame = 0;
+		}
 
 		/* if (FlxG.keys.justPressed.NINE)
 			FlxG.switchState(new Charting()); */
@@ -3274,10 +3290,10 @@ class PlayState extends MusicBeatState
 		if (!inCutscene && songStarted)
 			keyShit();
 
-		#if debug
+		//#if debug
 		if (FlxG.keys.justPressed.ONE)
 			endSong();
-		#end
+		//#end
 
 		super.update(elapsed);
 	}
@@ -3330,6 +3346,7 @@ class PlayState extends MusicBeatState
 
 	function endSong():Void
 	{
+
 		endingSong = true;
 		FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
 		FlxG.stage.removeEventListener(KeyboardEvent.KEY_UP, releaseInput);
@@ -3406,7 +3423,7 @@ class PlayState extends MusicBeatState
 				campaignShits += shits;
 
 				storyPlaylist.remove(storyPlaylist[0]);
-
+				
 				if (storyPlaylist.length <= 0)
 				{
 					transIn = FlxTransitionableState.defaultTransIn;
@@ -3570,7 +3587,7 @@ class PlayState extends MusicBeatState
 				score = -300;
 				combo = 0;
 				misses++;
-				health -= 0.1;
+				health -= 0.05;
 				ss = false;
 				shits++;
 				if (FlxG.save.data.accuracyMod == 0)
