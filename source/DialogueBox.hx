@@ -113,7 +113,7 @@ class DialogueBox extends FlxSpriteGroup
 				hasVoice = true;
 				box.frames = Paths.getSparrowAtlas('weeb/TEXTBOX');
 				box.animation.addByPrefix('normalOpen', 'TEXTBOX Sarvtext', 24, false);
-				box.animation.addByIndices('normal', 'TEXTBOX Sarvtext', [1], "", 24);
+				box.animation.addByIndices('normal', 'TEXTBOX Sarvtext', [1], "", 24);	
 		}
 
 		this.dialogueList = dialogueList;

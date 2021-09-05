@@ -436,7 +436,6 @@ class TitleState extends MusicBeatState
 		{
 			remove(ngSpr);
 			remove(mfmSpr);
-
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);
 
