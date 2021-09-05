@@ -450,11 +450,11 @@ class PlayState extends MusicBeatState
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
 			case 'matins':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('matins/dialogue'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/dialogue'));
 			case 'serafim':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('serafim/dialogue'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('data/serafim/dialogue'));
 			case 'harmony':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('harmony/dialogue'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('data/harmony/dialogue'));
 		}
 		Conductor.bpm = SONG.bpm;
 
