@@ -205,6 +205,7 @@ class PlayState extends MusicBeatState
 	var idleBeat:Int = 2; // how frequently bf and dad would play their idle animation(1 - every beat, 2 - every 2 beats and so on)
 
 	public var dialogue:Array<String> = ['dad:blah blah blah', 'bf:coolswag'];
+	public var endDialogue:Array<String> = ['dad:blah blah blah', 'bf:coolswag']; 
 
 	public static var trainSound:FlxSound;
 
@@ -450,11 +451,14 @@ class PlayState extends MusicBeatState
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
 			case 'matins':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('matins/dialogue'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/matinsDialogue'));
+				endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/troll'));
 			case 'serafim':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('serafim/dialogue'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('data/serafim/dialogue'));
+//				endDialogue = CoolUtil.coolTextFile(Paths.txt('serafim/trolldialogue'));
 			case 'harmony':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('harmony/dialogue'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('data/harmony/harmonyDialogue'));
+//				endDialogue = CoolUtil.coolTextFile(Paths.txt('harmony/funnytalking'));
 		}
 		Conductor.bpm = SONG.bpm;
 
@@ -502,6 +506,9 @@ class PlayState extends MusicBeatState
 		{
 			//if the song has dialogue, so we don't accidentally try to load a nonexistant file and crash the game
 			case 'senpai' | 'roses' | 'thorns' | 'matins' | 'serafim' | 'harmony':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/dialogue'));
+			
+			case 'matins' | 'serafim' | 'harmony':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/dialogue'));
 		}
 
@@ -742,6 +749,7 @@ class PlayState extends MusicBeatState
 		trace("SF CALC: " + Math.floor((PlayStateChangeables.safeFrames / 60) * 1000));
 
 		var doof = null;
+		var doof1 = null;
 
 		if (isStoryMode)
 		{
@@ -750,6 +758,8 @@ class PlayState extends MusicBeatState
 			// doof.y = FlxG.height * 0.5;
 			doof.scrollFactor.set();
 			doof.finishThing = startCountdown;
+
+
 		}
 
 		Conductor.songPosition = -5000;
@@ -1098,7 +1108,10 @@ class PlayState extends MusicBeatState
 		senpaiEvil.screenCenter();
 
 		if (StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'roses'
-			|| StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'thorns')
+			|| StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'thorns' 
+		|| StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'matins'
+		|| StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'serafim'
+		|| StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'harmony') 
 		{
 			remove(black);
 
@@ -1270,11 +1283,11 @@ class PlayState extends MusicBeatState
 						}
 					});
 					FlxG.sound.play(Paths.sound('introGo' + altSuffix), 0.6);
-				case 4:
-			}
 
+			}
 			swagCounter += 1;
-		}, 5);
+
+		}, 4);
 	}
 	
 	var previousFrameTime:Int = 0;
@@ -3465,6 +3478,15 @@ class PlayState extends MusicBeatState
 
 					StoryMenuState.unlockNextWeek(storyWeek);
 				} else {
+					
+					if (SONG.song.toLowerCase() == 'matins') {
+						var doof1 = null;
+						doof1 = new DialogueBox(false, endDialogue);
+						doof1.scrollFactor.set();
+						doof1.finishThing = nextSongPlease; 
+						schoolIntro(doof1);
+					}
+					else {
 					// adjusting the song name to be compatible
 					var songFormat = StringTools.replace(PlayState.storyPlaylist[0], " ", "-");
 					switch (songFormat)
@@ -3490,7 +3512,7 @@ class PlayState extends MusicBeatState
 
 						FlxG.sound.play(Paths.sound('Lights_Shut_off'));
 					}
-
+					
 					FlxTransitionableState.skipNextTransIn = true;
 					FlxTransitionableState.skipNextTransOut = true;
 					prevCamFollow = camFollow;
@@ -3501,6 +3523,7 @@ class PlayState extends MusicBeatState
 					LoadingState.loadAndSwitchState(new PlayState());
 					clean();
 				}
+			}
 			}
 			else
 			{
@@ -4931,4 +4954,42 @@ class PlayState extends MusicBeatState
 		}
 
 	var curLight:Int = 0;
+
+	function nextSongPlease()	{
+		// adjusting the song name to be compatible
+		var songFormat = StringTools.replace(PlayState.storyPlaylist[0], " ", "-");
+		switch (songFormat)
+		{
+			case 'Dad-Battle':
+				songFormat = 'Dadbattle';
+			case 'Philly-Nice':
+				songFormat = 'Philly';
+		}
+
+		var poop:String = Highscore.formatSong(songFormat, storyDifficulty);
+
+		trace('LOADING NEXT SONG');
+		trace(poop);
+
+		if (StringTools.replace(PlayState.storyPlaylist[0], " ", "-").toLowerCase() == 'eggnog')
+		{
+			var blackShit:FlxSprite = new FlxSprite(-FlxG.width * FlxG.camera.zoom,
+				-FlxG.height * FlxG.camera.zoom).makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
+			blackShit.scrollFactor.set();
+			add(blackShit);
+			camHUD.visible = false;
+
+			FlxG.sound.play(Paths.sound('Lights_Shut_off'));
+		}
+
+		FlxTransitionableState.skipNextTransIn = true;
+		FlxTransitionableState.skipNextTransOut = true;
+		prevCamFollow = camFollow;
+
+		PlayState.SONG = Song.loadFromJson(poop, PlayState.storyPlaylist[0]);
+		FlxG.sound.music.stop();
+
+		LoadingState.loadAndSwitchState(new PlayState());
+		clean();
+	} 
 }
