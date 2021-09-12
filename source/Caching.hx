@@ -6,6 +6,8 @@ import lime.app.Application;
 import Discord.DiscordClient;
 #end
 import openfl.display.BitmapData;
+import GameJolt.GameJoltAPI;
+import GameJolt.GameJoltLogin;
 import openfl.utils.Assets;
 import flixel.ui.FlxBar;
 import haxe.Exception;
@@ -175,13 +177,11 @@ class Caching extends MusicBeatState
 			done++;
 		}
 
-
 		trace("Finished caching...");
 
 		loaded = true;
 
 		trace(Assets.cache.hasBitmapData('GF_assets'));
-
 		#end
 		FlxG.switchState(new TitleState());
 	}

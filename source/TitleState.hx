@@ -1,13 +1,13 @@
 package;
 
-import GameJolt.GameJoltLogin;
 #if sys
 import smTools.SMFile;
 #end
-import GameJolt.GameJoltAPI;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import GameJolt.GameJoltAPI;
+import GameJolt.GameJoltLogin;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
 import flixel.addons.transition.FlxTransitionableState;
@@ -49,6 +49,8 @@ class TitleState extends MusicBeatState
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
 	var mfmSpr:FlxSprite;
+	
+	static var API:Int = 0;
 
 	var curWacky:Array<String> = [];
 	var curWacky2:Array<String> = [];
@@ -57,9 +59,13 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		GameJoltAPI.connect();
-		GameJoltAPI.authDaUser(FlxG.save.data.gjUser, FlxG.save.data.gjToken);
-		FlxG.switchState(new GameJoltLogin());
+		if (API == 0) {
+			GameJoltAPI.connect();
+			GameJoltAPI.authDaUser(FlxG.save.data.gjUser, FlxG.save.data.gjToken);
+			FlxG.switchState(new GameJoltLogin());
+			API ++;
+		}
+
 		#if polymod
 		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end
@@ -212,7 +218,7 @@ class TitleState extends MusicBeatState
 
 		FlxG.mouse.visible = false;
 
-		if (initialized)
+		if (API == 2 && initialized)
 			skipIntro();
 		else {
 			var diamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileDiamond);
@@ -239,7 +245,8 @@ class TitleState extends MusicBeatState
 
 			FlxG.sound.music.fadeIn(4, 0, 0.7);
 			Conductor.changeBPM(150);
-			initialized = true;
+			if (API == 2) initialized = true;
+			else API = 2;
 		}
 
 		// credGroup.add(credTextShit);

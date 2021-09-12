@@ -58,7 +58,7 @@ class MainMenuState extends MusicBeatState
 
 		if (!FlxG.sound.music.playing)
 		{
-			FlxG.sound.playMusic(Paths.music('freakyMenu'));
+			FlxG.sound.playMusic(Paths.music('mp3'));
 		}
 
 		persistentUpdate = persistentDraw = true;
@@ -67,13 +67,9 @@ class MainMenuState extends MusicBeatState
 
 		bg = new FlxSprite(-100).loadGraphic(Paths.image('menuBGset1'));
 
-		if (chosenMenu >= 0 && chosenMenu <= 5) {
-			bg = new FlxSprite(-100).loadGraphic(Paths.image('menuBGset1'));
-		} else if (chosenMenu >= 6 && chosenMenu <= 8) {
+		if (chosenMenu >= 7 && chosenMenu <= 9) {
 			bg = new FlxSprite(-100).loadGraphic(Paths.image('menuBGset2'));
-		} else if (chosenMenu == 9) {
-			bg = new FlxSprite(-100).loadGraphic(Paths.image('menuBGset3'));
-		}
+		} 
 
 		bg.scrollFactor.x = 0;
 		bg.scrollFactor.y = 0.10;
@@ -86,12 +82,10 @@ class MainMenuState extends MusicBeatState
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 
-		if (chosenMenu >= 0 && chosenMenu <= 5) {
+		if (chosenMenu >= 0 && chosenMenu <= 6) {
 			magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuBGset1-magenta'));
-		} else if (chosenMenu >= 6 && chosenMenu <= 8) {
+		} else if (chosenMenu >= 7 && chosenMenu <= 9) {
 			magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuBGset2-magenta'));
-		} else if (chosenMenu == 9) {
-			magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuBGset3-magenta'));
 		}
 
 		magenta.scrollFactor.x = 0;

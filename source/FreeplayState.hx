@@ -198,12 +198,8 @@ class FreeplayState extends MusicBeatState
 
 		bg = new FlxSprite().loadGraphic(Paths.image('menuBGset1-blue'));
 
-		if (MainMenuState.chosenMenu >= 0 && MainMenuState.chosenMenu <= 5) {
-			bg = new FlxSprite().loadGraphic(Paths.image('menuBGset1-blue'));
-		} if (MainMenuState.chosenMenu >= 6 && MainMenuState.chosenMenu <= 8) {
+		if (MainMenuState.chosenMenu >= 7 && MainMenuState.chosenMenu <= 9) {
 			bg = new FlxSprite().loadGraphic(Paths.image('menuBGset2-blue'));
-		} if (MainMenuState.chosenMenu == 9) {
-			bg = new FlxSprite().loadGraphic(Paths.image('menuBGset3-blue'));
 		}
 		add(bg);
 		bg.antialiasing = FlxG.save.data.antialiasing;

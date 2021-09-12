@@ -93,13 +93,9 @@ class OptionsMenu extends MusicBeatState
 
 		menuBG = new FlxSprite().loadGraphic(Paths.image("menuBGset1-desat"));
 
-		if (MainMenuState.chosenMenu >= 0 && MainMenuState.chosenMenu <= 5) {
-			menuBG = new FlxSprite().loadGraphic(Paths.image("menuBGset1-desat"));
-		} else if (MainMenuState.chosenMenu >= 6 && MainMenuState.chosenMenu <= 8) {
+		if (MainMenuState.chosenMenu >= 7 && MainMenuState.chosenMenu <= 9) {
 			menuBG = new FlxSprite().loadGraphic(Paths.image("menuBGset2-desat"));
-		} else if (MainMenuState.chosenMenu >= 9) {
-			menuBG = new FlxSprite().loadGraphic(Paths.image("menuBGset3-desat"));
-		} 
+		}
 
 
 		menuBG.color = 0xFFea71fd;
