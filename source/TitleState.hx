@@ -1,8 +1,10 @@
 package;
 
+import GameJolt.GameJoltLogin;
 #if sys
 import smTools.SMFile;
 #end
+import GameJolt.GameJoltAPI;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -55,6 +57,9 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+		GameJoltAPI.connect();
+		GameJoltAPI.authDaUser(FlxG.save.data.gjUser, FlxG.save.data.gjToken);
+		FlxG.switchState(new GameJoltLogin());
 		#if polymod
 		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end
