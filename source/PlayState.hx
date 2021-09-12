@@ -452,13 +452,13 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
 			case 'matins':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/matinsDialogue'));
-				endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/troll'));
+				endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/endDialogue'));
 			case 'serafim':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/serafim/dialogue'));
-//				endDialogue = CoolUtil.coolTextFile(Paths.txt('serafim/trolldialogue'));
+				endDialogue = CoolUtil.coolTextFile(Paths.txt('data/serafim/endDialogue'));
 			case 'harmony':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/harmony/harmonyDialogue'));
-//				endDialogue = CoolUtil.coolTextFile(Paths.txt('harmony/funnytalking'));
+				endDialogue = CoolUtil.coolTextFile(Paths.txt('data/harmony/endDialogue'));
 		}
 		Conductor.bpm = SONG.bpm;
 
@@ -3303,10 +3303,10 @@ class PlayState extends MusicBeatState
 		if (!inCutscene && songStarted)
 			keyShit();
 
-		//#if debug
+		#if debug
 		if (FlxG.keys.justPressed.ONE)
 			endSong();
-		//#end
+		#end
 
 		super.update(elapsed);
 	}
@@ -3479,7 +3479,7 @@ class PlayState extends MusicBeatState
 					StoryMenuState.unlockNextWeek(storyWeek);
 				} else {
 					
-					if (SONG.song.toLowerCase() == 'matins') {
+					if (SONG.song.toLowerCase() == 'matins' || SONG.song.toLowerCase() == 'serafim' || SONG.song.toLowerCase() == 'harmony') {
 						var doof1 = null;
 						doof1 = new DialogueBox(false, endDialogue);
 						doof1.scrollFactor.set();

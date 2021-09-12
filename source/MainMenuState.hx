@@ -1,5 +1,5 @@
 package;
-
+import GameJolt.GameJoltAPI;
 import flixel.input.gamepad.FlxGamepad;
 import Controls.KeyboardScheme;
 import flixel.FlxG;
@@ -268,7 +268,8 @@ class MainMenuState extends MusicBeatState
 
 				trace("Freeplay Menu Selected");
 			case 'credits':
-				FlxG.switchState(new CreditsMenuState());
+				//FlxG.switchState(new GameJolt());
+				//FlxG.switchState(new CreditsMenuState());
 			case 'options':
 				FlxG.switchState(new OptionsMenu());
 		}

@@ -19,6 +19,7 @@ class DialogueBox extends FlxSpriteGroup
 
 	var curCharacter:String = '';
 //	var voiceActing:String = '';
+	var textbox = '';
 
 	var dialogue:Alphabet;
 	var dialogueList:Array<String> = [];
@@ -100,20 +101,33 @@ class DialogueBox extends FlxSpriteGroup
 				hasDialog = true;
 //				hasVoice = false;
 				box.frames = Paths.getSparrowAtlas('weeb/TEXTBOX');
-				box.animation.addByPrefix('normalOpen', 'TEXTBOX RuvNormal', 24, false);
-				box.animation.addByIndices('normal', 'TEXTBOX RuvNormal', [1], "", 24);
+				box.animation.addByPrefix('RuvOpen', 'TEXTBOX RuvNormal', 24, false);
+				box.animation.addByIndices('Ruvnormal', 'TEXTBOX RuvNormal', [1], "", 24);
+				box.animation.addByPrefix('SarvOpen', 'TEXTBOX Sarvtext', 24, false);
+				box.animation.addByIndices('Sarvnormal', 'TEXTBOX Sarvtext', [1], "", 24);
+				box.animation.addByPrefix('OtherOpen', 'TEXTBOX RuvQuiet', 24, false);
+				box.animation.addByIndices('Othernormal', 'TEXTBOX RuvQuiet', [1], "", 24);
+
 			case 'serafim':
 				hasDialog = true;
 //				hasVoice = false;
 				box.frames = Paths.getSparrowAtlas('weeb/TEXTBOX');
-				box.animation.addByPrefix('normalOpen', 'TEXTBOX RuvQuiet', 24, false);
-				box.animation.addByIndices('normal', 'TEXTBOX RuvQuiet', [1], "", 24);
+				box.animation.addByPrefix('RuvOpen', 'TEXTBOX RuvNormal', 24, false);
+				box.animation.addByIndices('Ruvnormal', 'TEXTBOX RuvNormal', [1], "", 24);
+				box.animation.addByPrefix('SarvOpen', 'TEXTBOX Sarvtext', 24, false);
+				box.animation.addByIndices('Sarvnormal', 'TEXTBOX Sarvtext', [1], "", 24);
+				box.animation.addByPrefix('OtherOpen', 'TEXTBOX RuvQuiet', 24, false);
+				box.animation.addByIndices('Othernormal', 'TEXTBOX RuvQuiet', [1], "", 24);
 			case 'harmony':
 				hasDialog = true;
 //				hasVoice = false;
 				box.frames = Paths.getSparrowAtlas('weeb/TEXTBOX');
-				box.animation.addByPrefix('normalOpen', 'TEXTBOX Sarvtext', 24, false);
-				box.animation.addByIndices('normal', 'TEXTBOX Sarvtext', [1], "", 24);	
+				box.animation.addByPrefix('RuvOpen', 'TEXTBOX RuvNormal', 24, false);
+				box.animation.addByIndices('Ruvnormal', 'TEXTBOX RuvNormal', [1], "", 24);
+				box.animation.addByPrefix('SarvOpen', 'TEXTBOX Sarvtext', 24, false);
+				box.animation.addByIndices('Sarvnormal', 'TEXTBOX Sarvtext', [1], "", 24);
+				box.animation.addByPrefix('OtherOpen', 'TEXTBOX RuvQuiet', 24, false);
+				box.animation.addByIndices('Othernormal', 'TEXTBOX RuvQuiet', [1], "", 24);
 		}
 
 		this.dialogueList = dialogueList;
@@ -177,16 +191,11 @@ class DialogueBox extends FlxSpriteGroup
 			add(portraitRight);
 			portraitRight.visible = false;
 		}
-		
-		box.animation.play('normalOpen');
+			box.animation.play('RuvOpen');
 		if (PlayState.SONG.song.toLowerCase() == "senpai" || PlayState.SONG.song.toLowerCase() == "roses" || PlayState.SONG.song.toLowerCase() == "thorns") 
 		{
 			box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
-		} else 
-		{
-			box.y += 300;
-			box.setGraphicSize(Std.int(box.width * 0.9));
-		}
+		} 
 		box.updateHitbox();
 		add(box);
 
@@ -246,16 +255,27 @@ class DialogueBox extends FlxSpriteGroup
 		}
 
 		dropText.text = swagDialogue.text;
-
+		
 		if (box.animation.curAnim != null)
 		{
-			if (box.animation.curAnim.name == 'normalOpen' && box.animation.curAnim.finished)
+			switch (box.animation.curAnim.name)
 			{
+			case 'RuvOpen':
+				box.animation.play('Ruvnormal');
+				box.updateHitbox();
+			case 'SarvOpen':
+				box.animation.play('Sarvnormal');
+				box.updateHitbox();
+			case 'OtherOpen':
+				box.animation.play('Othernormal');
+				box.updateHitbox();
+			case 'normalOpen':
 				box.animation.play('normal');
-				dialogueOpened = true;
+				updateHitbox();
 			}
+			dialogueOpened = true;
 		}
-
+		
 		if (dialogueOpened && !dialogueStarted)
 		{
 			startDialogue();
@@ -321,7 +341,33 @@ class DialogueBox extends FlxSpriteGroup
 			FlxG.sound.playMusic(Paths.sound('Voices/$voiceActing'), 0, false);
 			FlxG.sound.music.fadeIn(1, 0, 0.8);
 		}
-*/
+*/		
+		box.alpha = 0;
+		switch (textbox)
+		{
+			case 'ruv':
+				box.animation.play('RuvOpen');
+				box.x = 20;
+				box.y = 340;
+				box.scale.set(0.95, 0.95);
+			case 'sarv':
+				box.animation.play('SarvOpen');
+				box.x = 20;
+				box.y = 330;
+				box.scale.set(0.9, 0.9);
+			case 'other':
+				box.animation.play('OtherOpen');
+				box.x = 20;
+				box.y = 330;
+				box.scale.set(0.9, 0.9);
+			default:
+				box.animation.play('normalOpen');
+				box.x = 0;
+				box.y = 0;
+		}
+		box.alpha = 1;
+		
+
 		switch (curCharacter)
 		{
 			case 'dad':
@@ -399,5 +445,6 @@ class DialogueBox extends FlxSpriteGroup
 		curCharacter = splitName[1];
 		dialogueList[0] = splitName[2]; //dialogueList[0].substr(splitName[1].length + 2).trim();
 //		voiceActing = splitName[3];
+		textbox = splitName[3];
 	}
 }

@@ -55,13 +55,25 @@
 	<SubTexture name="credits basic0000" x="0" y="1420" width="633" height="157"/>
 	<SubTexture name="credits basic0001" x="0" y="1420" width="633" height="157"/>
 	<SubTexture name="credits basic0002" x="0" y="1420" width="633" height="157"/>
-	<SubTexture name="credits basic0003" x="650" y="1420" width="633" height="157"/>
-	<SubTexture name="credits basic0004" x="650" y="1420" width="633" height="157"/>
-	<SubTexture name="credits basic0005" x="650" y="1420" width="633" height="157"/>
-	<SubTexture name="credits basic0006" x="1240" y="1420" width="633" height="157"/>
-	<SubTexture name="credits basic0007" x="1240" y="1420" width="633" height="157"/>
-	<SubTexture name="credits basic0008" x="1240" y="1420" width="633" height="157"/>
+	<SubTexture name="credits basic0004" x="0" y="1420" width="633" height="157"/>
+	<SubTexture name="credits basic0005" x="0" y="1420" width="633" height="157"/>
+	<SubTexture name="credits basic0006" x="0" y="1420" width="633" height="157"/>
+	<SubTexture name="credits basic0007" x="650" y="1420" width="633" height="157"/>
+	<SubTexture name="credits basic0008" x="650" y="1420" width="633" height="157"/>
+	<SubTexture name="credits basic0009" x="650" y="1420" width="633" height="157"/>
+	<SubTexture name="credits basic0010" x="650" y="1420" width="633" height="157"/>
+	<SubTexture name="credits basic0011" x="650" y="1420" width="633" height="157"/>
+	<SubTexture name="credits basic0012" x="650" y="1420" width="633" height="157"/>
+	<SubTexture name="credits basic0013" x="1240" y="1420" width="633" height="157"/>
+	<SubTexture name="credits basic0014" x="1240" y="1420" width="633" height="157"/>
+	<SubTexture name="credits basic0015" x="1240" y="1420" width="633" height="157"/>
+	<SubTexture name="credits basic0016" x="1240" y="1420" width="633" height="157"/>
+	<SubTexture name="credits basic0017" x="1240" y="1420" width="633" height="157"/>
+	<SubTexture name="credits basic0018" x="1240" y="1420" width="633" height="157"/>
 	<SubTexture name="credits white0000" x="0" y="1600" width="659" height="179"/>
 	<SubTexture name="credits white0001" x="730" y="1600" width="659" height="179"/>
 	<SubTexture name="credits white0002" x="0" y="1800" width="659" height="179"/>
+	<SubTexture name="credits white0003" x="0" y="1600" width="659" height="179"/>
+	<SubTexture name="credits white0004" x="730" y="1600" width="659" height="179"/>
+	<SubTexture name="credits white0005" x="0" y="1800" width="659" height="179"/>
 </TextureAtlas>

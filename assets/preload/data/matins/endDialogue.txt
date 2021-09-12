@@ -1,0 +1,5 @@
+:sarvCheerful:Okay, you convinced me !:sarv:
+:sarvCheerful:We can spend the day together.:sarv:
+:ruvNeutral:Sounds good.:TEXTBOX RuvNormal:
+:ruvNeutral:Want to start in the garden?:ruv:
+:sarvCheerful:Sounds like a plan!:sarv:
