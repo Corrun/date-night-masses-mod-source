@@ -18,7 +18,7 @@ class DialogueBox extends FlxSpriteGroup
 	var box:FlxSprite;
 
 	var curCharacter:String = '';
-//	var voiceActing:String = '';
+	var voiceActing:String = '';
 
 	var dialogue:Alphabet;
 	var dialogueList:Array<String> = [];
@@ -37,6 +37,7 @@ class DialogueBox extends FlxSpriteGroup
 	var bgFade:FlxSprite;
 
 	var sound:FlxSound;
+	var voiceAct:FlxSound;
 
 	public function new(talkingRight:Bool = true, ?dialogueList:Array<String>)
 	{
@@ -71,7 +72,7 @@ class DialogueBox extends FlxSpriteGroup
 		box = new FlxSprite(-20, 45);
 		
 		var hasDialog = false;
-//		var hasVoice = false;
+		var hasVoice = false;
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'senpai':
@@ -98,19 +99,19 @@ class DialogueBox extends FlxSpriteGroup
 				add(face);
 			case 'matins':
 				hasDialog = true;
-//				hasVoice = false;
+				hasVoice = true;
 				box.frames = Paths.getSparrowAtlas('weeb/TEXTBOX');
 				box.animation.addByPrefix('normalOpen', 'TEXTBOX RuvNormal', 24, false);
 				box.animation.addByIndices('normal', 'TEXTBOX RuvNormal', [1], "", 24);
 			case 'serafim':
 				hasDialog = true;
-//				hasVoice = false;
+				hasVoice = true;
 				box.frames = Paths.getSparrowAtlas('weeb/TEXTBOX');
 				box.animation.addByPrefix('normalOpen', 'TEXTBOX RuvQuiet', 24, false);
 				box.animation.addByIndices('normal', 'TEXTBOX RuvQuiet', [1], "", 24);
 			case 'harmony':
 				hasDialog = true;
-//				hasVoice = false;
+				hasVoice = true;
 				box.frames = Paths.getSparrowAtlas('weeb/TEXTBOX');
 				box.animation.addByPrefix('normalOpen', 'TEXTBOX Sarvtext', 24, false);
 				box.animation.addByIndices('normal', 'TEXTBOX Sarvtext', [1], "", 24);	
@@ -218,9 +219,9 @@ class DialogueBox extends FlxSpriteGroup
 		} else {
 			swagDialogue = new FlxTypeText(240, 430, Std.int(FlxG.width * 0.6), "", 32);
 		}
-/*		if (!hasVoice) {
+		if (!hasVoice) {
 			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
-		}*/
+		}
 		swagDialogue.font = 'Pixel Arial 11 Bold';
 		swagDialogue.color = 0xFF3F2021;
 		add(swagDialogue);
@@ -265,7 +266,6 @@ class DialogueBox extends FlxSpriteGroup
 		if (PlayerSettings.player1.controls.ACCEPT && dialogueStarted == true)
 		{
 			remove(dialogue);
-			
 
 			FlxG.sound.play(Paths.sound('clickText'), 0.8);
 
@@ -308,6 +308,7 @@ class DialogueBox extends FlxSpriteGroup
 
 	function startDialogue():Void
 	{
+
 		cleanDialog();
 		// var theDialog:Alphabet = new Alphabet(0, 70, dialogueList[0], false, true);
 		// dialogue = theDialog;
@@ -317,11 +318,10 @@ class DialogueBox extends FlxSpriteGroup
 		swagDialogue.resetText(dialogueList[0]);
 		swagDialogue.start(0.04, true);
 
-/*		if (voiceActing != '') {
-			FlxG.sound.playMusic(Paths.sound('Voices/$voiceActing'), 0, false);
-			FlxG.sound.music.fadeIn(1, 0, 0.8);
+		if (voiceActing != '') {
+			voiceAct = FlxG.sound.load(Paths.sound('Voices/$voiceActing'));
+			voiceAct.play();
 		}
-*/
 		switch (curCharacter)
 		{
 			case 'dad':
@@ -398,6 +398,6 @@ class DialogueBox extends FlxSpriteGroup
 		var splitName:Array<String> = dialogueList[0].split(":");
 		curCharacter = splitName[1];
 		dialogueList[0] = splitName[2]; //dialogueList[0].substr(splitName[1].length + 2).trim();
-//		voiceActing = splitName[3];
+		voiceActing = splitName[3];
 	}
 }
