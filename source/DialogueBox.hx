@@ -18,7 +18,7 @@ class DialogueBox extends FlxSpriteGroup
 	var box:FlxSprite;
 
 	var curCharacter:String = '';
-//	var voiceActing:String = '';
+	var voiceActing:String = '';
 	var textbox = '';
 
 	var dialogue:Alphabet;
@@ -294,6 +294,7 @@ class DialogueBox extends FlxSpriteGroup
 				if (!isEnding)
 				{
 					isEnding = true;
+					if (voiceAct != null) voiceAct.destroy();
 
 					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns')
 						sound.fadeOut(2.2, 0);
@@ -317,6 +318,7 @@ class DialogueBox extends FlxSpriteGroup
 			else
 			{
 				dialogueList.remove(dialogueList[0]);
+				if (voiceAct != null) voiceAct.destroy();
 				startDialogue();
 			}
 		}
@@ -342,7 +344,7 @@ class DialogueBox extends FlxSpriteGroup
 			voiceAct = FlxG.sound.load(Paths.sound('Voices/$voiceActing'));
 			voiceAct.play();
 		}
-*/		
+
 		box.alpha = 0;
 		switch (textbox)
 		{
@@ -445,7 +447,7 @@ class DialogueBox extends FlxSpriteGroup
 		var splitName:Array<String> = dialogueList[0].split(":");
 		curCharacter = splitName[1];
 		dialogueList[0] = splitName[2]; //dialogueList[0].substr(splitName[1].length + 2).trim();
-//		voiceActing = splitName[3];
 		textbox = splitName[3];
+		voiceActing = splitName[4];
 	}
 }

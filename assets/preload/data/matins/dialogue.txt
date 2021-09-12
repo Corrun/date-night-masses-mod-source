@@ -1,11 +1,11 @@
-:ruvNeutral:So you have nothing you're doing tonight?:ruvVoice1
-:sarvCheerful:Nope!:sarvVoice1
-:sarvCheerful:Not a thing!:sarvVoice2
-:sarvCheerful:Why, what were your plans for the day?:sarvVoice3
-:ruvNerv:Well, I thought we could maybe spend time together tonight.:ruvVoice2
-:ruvNerv:Just the two of us.:ruvVoice3
-:ruvNerv:It's been a while.:ruvVoice4
-:sarvConfused:...:sarvVoice4
-:ruvNerv:We don't have to.:ruvVoice5
-:ruvNerv:I just thought we could maybe spend the evening together in the garden.:ruvVoice6
-:ruvNerv:Have dinner out there, like a picnic.:ruvVoice7
+:ruvNeutral:So you have nothing you're doing tonight?:ruv:ruvVoice1
+:sarvCheerful:Nope!:sarv:sarvVoice1
+:sarvCheerful:Not a thing!:sarv:sarvVoice2
+:sarvCheerful:Why, what were your plans for the day?:sarv:sarvVoice3
+:ruvNerv:Well, I thought we could maybe spend time together tonight.:ruv:ruvVoice2
+:ruvNerv:Just the two of us.:ruv:ruvVoice3
+:ruvNerv:It's been a while.:ruv:ruvVoice4
+:sarvConfused:...:sarv:sarvVoice4
+:ruvNerv:We don't have to.:ruv:ruvVoice5
+:ruvNerv:I just thought we could maybe spend the evening together in the garden.:ruv:ruvVoice6
+:ruvNerv:Have dinner out there, like a picnic.:ruv:ruvVoice7
