@@ -2407,16 +2407,15 @@ class PlayState extends MusicBeatState
 		iconP2.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) - (iconP2.width - iconOffset);
 
 		if (health > 2) health = 2;
-		/*
-		if (healthBar.percent < 20)
-			iconP1.animation.curAnim.curFrame = 1;
-		else
-			*/
-
-		if (healthBar.percent > 80)
+		if (healthBar.percent < 20) 
 		{
 			iconP2.animation.curAnim.curFrame = 1;
 			iconP1.animation.curAnim.curFrame = 1;
+		}
+		else if (healthBar.percent > 80)
+		{
+			iconP2.animation.curAnim.curFrame = 2;
+			iconP1.animation.curAnim.curFrame = 2;
 		}
 		else
 		{
