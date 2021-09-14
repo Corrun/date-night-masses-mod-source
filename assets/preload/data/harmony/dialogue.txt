@@ -1,6 +1,6 @@
-:ruvDateNerv:Hey sarv?:ruv:
-:sarvDateConfused:hmm? What is it?:sarv:
-:ruvDateNeutral:I-I wanted to say something to you...:ruv:
-:ruvDateNeutral:I...:ruv:
-:ruvDateNerv:...Really like spending time with you.:ruv:
-:sarvDateCheerful:Well, I really like you.:sarv:
+:ruvDateNerv:Hey sarv?:ruv:ruvVoice13
+:sarvDateConfused:hmm? What is it?:sarv:sarvVoice14
+:ruvDateNeutral:I-I wanted to say something to you...:ruv:ruvVoice14
+:ruvDateNeutral:I...:ruv:ruvVoice15
+:ruvDateNerv:...Really like spending time with you.:ruv:ruvVoice16
+:sarvDateCheerful:Well, I really like you.:sarv:sarvVoice15

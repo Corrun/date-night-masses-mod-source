@@ -1,6 +1,6 @@
-:sarvCheerful:This was a great idea!:sarv:
-:sarvCheerful:I've been meaning to re-pot these peonies for weeks!:sarv:
-:ruvNeutral:Well i know you like being out here.:ruv:
-:ruvNeutral:It's the best way to spend time with you.:ruv:
-:sarvDelighted:Well, i'm glad we did this. I really am.:sarv:
-:sarvDelighted:All i ever wanted was to spend time with you:sarv:
+:sarvCheerful:This was a great idea!:sarv:sarvVoice8
+:sarvCheerful:I've been meaning to re-pot these peonies for weeks!:sarv:sarvVoice9
+:ruvNeutral:Well i know you like being out here.:ruv:ruvVoice10
+:ruvNeutral:It's the best way to spend time with you.:ruv:ruvVoice11
+:sarvDelighted:Well, i'm glad we did this. I really am.:sarv:sarvVoice10
+:sarvDelighted:All i ever wanted was to spend time with you:sarv:sarvVoice11

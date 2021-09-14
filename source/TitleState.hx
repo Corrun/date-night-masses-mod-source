@@ -219,7 +219,7 @@ class TitleState extends MusicBeatState
 		FlxG.mouse.visible = false;
 
 		if (API == 2 && initialized)
-			skipIntro();
+			startIntro();
 		else {
 			var diamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileDiamond);
 			diamond.persist = true;

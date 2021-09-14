@@ -1,4 +1,4 @@
-:ruvDateNerv:I don't know why i didn't say anything earlier.:ruv:
-:sarvDateConfused:You silly man!:sarv:
-:ruvDateNeutral:I’ve been waiting for years for you to pluck up the courage to tell me how you felt.:ruv:
-:ruvDateNeutral:Well I feel stupid.:ruv:
+:ruvDateNerv:I don't know why i didn't say anything earlier.:ruv:ruvVoice17
+:sarvDateConfused:You silly man!:sarv:sarvVoice16
+:sarvDateConfused:I’ve been waiting for years for you to pluck up the courage to tell me how you felt.:sarv:sarvVoice17
+:ruvDateNeutral:Well I feel stupid.:ruv:ruvVoice18
