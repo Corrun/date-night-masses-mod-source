@@ -55,7 +55,7 @@ class MainMenuState extends MusicBeatState
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
-
+		GameJoltAPI.getTrophy(148519);
 		if (!FlxG.sound.music.playing)
 		{
 			FlxG.sound.playMusic(Paths.music('mp3'));
