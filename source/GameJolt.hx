@@ -155,6 +155,7 @@ class GameJoltAPI // Connects to tentools.api.FlxGameJolt
         if(userLogin)
         {
             GJApi.addTrophy(trophyID, function(){trace("Unlocked a trophy with an ID of "+trophyID);});
+            var blackBox:FlxSprite = new FlxSprite(50, 50).makeGraphic(200, 50, FlxColor.BLACK);
         }
     }
 
