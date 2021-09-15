@@ -1,6 +1,8 @@
 package;
 
 import flixel.FlxG;
+import GameJolt.GameJoltAPI;
+import GameJolt;
 
 using StringTools;
 class Highscore
@@ -12,7 +14,7 @@ class Highscore
 	public static var songScores:Map<String, Int> = new Map<String, Int>();
 	public static var songCombos:Map<String, String> = new Map<String, String>();
 	#end
-
+	public static var curDifficulty:Int = 1;
 
 	public static function saveScore(song:String, score:Int = 0, ?diff:Int = 0):Void
 	{
@@ -29,6 +31,23 @@ class Highscore
 			{
 				if (songScores.get(daSong) < score)
 					setScore(daSong, score);
+				curDifficulty = PlayState.storyDifficulty;
+				//FreeplayState.curDifficulty = 
+				if (curDifficulty == 2) {
+					switch (PlayState.SONG.song.toLowerCase()) 
+					{
+						case 'matins':
+							GameJoltAPI.addfnfScore(score, 655918);
+						case 'serafim':
+							GameJoltAPI.addfnfScore(score, 655919);
+						case 'harmony':
+							GameJoltAPI.addfnfScore(score, 655920);
+						case 'together':
+							GameJoltAPI.addfnfScore(score, 655921);
+						case 'clandestine-ditty':
+							GameJoltAPI.addfnfScore(score, 655925);
+					}
+				}
 			}
 			else
 				setScore(daSong, score);

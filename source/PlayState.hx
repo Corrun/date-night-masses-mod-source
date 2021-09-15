@@ -3358,7 +3358,6 @@ class PlayState extends MusicBeatState
 
 	function endSong():Void
 	{
-
 		endingSong = true;
 		FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
 		FlxG.stage.removeEventListener(KeyboardEvent.KEY_UP, releaseInput);
