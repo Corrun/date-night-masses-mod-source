@@ -667,6 +667,9 @@ class PlayState extends MusicBeatState
 				dad.x += 150;
 				dad.y += 360;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+			case 'sweater-sarv':
+				dad.x -= 300;
+				dad.y += 100;
 			case 'spirit':
 				if (FlxG.save.data.distractions)
 				{
@@ -714,6 +717,8 @@ class PlayState extends MusicBeatState
 				gf.x += 180;
 				gf.y += 300;
 			case 'stage1':
+				boyfriend.x -= 200;
+				boyfriend.y -= 400;
 				gf.y -= 2000;
 			case 'stage2':
 				gf.y -= 2000;

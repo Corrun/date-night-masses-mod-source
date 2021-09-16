@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="ruv.png"><SubTexture name="ruv down0000" x="0" y="0" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
+<SubTexture name="ruv down0001" x="853" y="0" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
+<SubTexture name="ruv idle0000" x="1706" y="0" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
+<SubTexture name="ruv idle0001" x="2559" y="0" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
+<SubTexture name="ruv idle0002" x="0" y="859" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
+<SubTexture name="ruv idle0003" x="853" y="859" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
+<SubTexture name="ruv left0000" x="1706" y="859" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
+<SubTexture name="ruv left0001" x="2559" y="859" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
+<SubTexture name="ruv miss0000" x="0" y="1718" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
+<SubTexture name="ruv miss0001" x="853" y="1718" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
+<SubTexture name="ruv miss0002" x="1706" y="1718" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
+<SubTexture name="ruv right0000" x="2559" y="1718" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
+<SubTexture name="ruv right0001" x="0" y="2577" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
+<SubTexture name="ruv up0000" x="853" y="2577" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
+<SubTexture name="ruv up0001" x="1706" y="2577" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
+</TextureAtlas>

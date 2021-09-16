@@ -380,22 +380,21 @@ class Character extends FlxSprite
 				playAnim('idle');
 			case 'ruv':
 				// DAD ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('characters/DADDY_DEAREST', 'shared');
+				tex = Paths.getSparrowAtlas('characters/ruv', 'shared');
 				frames = tex;
-				animation.addByPrefix('idle', 'Dad idle dance', 24);
-				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
-				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
-				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
-				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
-	
-				addOffset('idle');
-				addOffset("singUP", -6, 50);
-				addOffset("singRIGHT", 0, 27);
-				addOffset("singLEFT", -10, 10);
-				addOffset("singDOWN", 0, -30);
+				animation.addByPrefix('idle', 'ruv idle', 8);
+				animation.addByPrefix('singUP', 'ruv up', 8);
+				animation.addByPrefix('singRIGHT', 'ruv right', 8);
+				animation.addByPrefix('singDOWN', 'ruv down', 8);
+				animation.addByPrefix('singLEFT', 'ruv left', 8);
+
+				animation.addByPrefix('singUPmiss', 'ruv miss', 8, false);
+				animation.addByPrefix('singLEFTmiss', 'ruv miss', 8, false);
+				animation.addByPrefix('singRIGHTmiss', 'ruv miss', 8, false);
+				animation.addByPrefix('singDOWNmiss', 'ruv miss', 8, false);
 	
 				playAnim('idle');
-	
+				flipX = true;
 			case 'date-ruv':
 				// DAD ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('characters/DADDY_DEAREST', 'shared');
@@ -415,19 +414,13 @@ class Character extends FlxSprite
 				playAnim('idle');
 			case 'sweater-sarv':
 				// DAD ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('characters/DADDY_DEAREST', 'shared');
+				tex = Paths.getSparrowAtlas('characters/dogo', 'shared');
 				frames = tex;
-				animation.addByPrefix('idle', 'Dad idle dance', 24);
-				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
-				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
-				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
-				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
-	
-				addOffset('idle');
-				addOffset("singUP", -6, 50);
-				addOffset("singRIGHT", 0, 27);
-				addOffset("singLEFT", -10, 10);
-				addOffset("singDOWN", 0, -30);
+				animation.addByPrefix('idle', 'dogo idle', 24);
+				animation.addByPrefix('singUP', 'dogo up', 24);
+				animation.addByPrefix('singRIGHT', 'dogo right', 24);
+				animation.addByPrefix('singDOWN', 'dogo down', 24);
+				animation.addByPrefix('singLEFT', 'dogo left', 24);
 	
 				playAnim('idle');
 			case 'garden-sarv':
