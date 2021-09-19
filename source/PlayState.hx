@@ -3595,7 +3595,7 @@ class PlayState extends MusicBeatState
 		var coolText:FlxText = new FlxText(0, 0, 0, placement, 32);
 		coolText.screenCenter();
 		coolText.x = FlxG.width * 0.55;
-		coolText.y -= 350;
+		coolText.y = 350;
 		coolText.cameras = [camHUD];
 		//
 

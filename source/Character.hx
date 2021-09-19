@@ -382,16 +382,16 @@ class Character extends FlxSprite
 				// DAD ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('characters/ruv', 'shared');
 				frames = tex;
-				animation.addByPrefix('idle', 'ruv idle', 8);
-				animation.addByPrefix('singUP', 'ruv up', 8);
-				animation.addByPrefix('singRIGHT', 'ruv right', 8);
-				animation.addByPrefix('singDOWN', 'ruv down', 8);
-				animation.addByPrefix('singLEFT', 'ruv left', 8);
+				animation.addByPrefix('idle', 'ruv idle', 36);
+				animation.addByPrefix('singUP', 'ruv up', 30);
+				animation.addByPrefix('singRIGHT', 'ruv right', 20);
+				animation.addByPrefix('singDOWN', 'ruv down', 20);
+				animation.addByPrefix('singLEFT', 'ruv left', 30);
 
-				animation.addByPrefix('singUPmiss', 'ruv miss', 8, false);
-				animation.addByPrefix('singLEFTmiss', 'ruv miss', 8, false);
-				animation.addByPrefix('singRIGHTmiss', 'ruv miss', 8, false);
-				animation.addByPrefix('singDOWNmiss', 'ruv miss', 8, false);
+				animation.addByPrefix('singUPmiss', 'ruv miss', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'ruv miss', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'ruv miss', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'ruv miss', 24, false);
 	
 				playAnim('idle');
 				flipX = true;
@@ -399,8 +399,8 @@ class Character extends FlxSprite
 				// DAD ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('characters/DADDY_DEAREST', 'shared');
 				frames = tex;
-				animation.addByPrefix('idle', 'Dad idle dance', 24);
-				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
+				animation.addByPrefix('idle', 'Dad idle dance', 20);
+				animation.addByPrefix('singUP', 'Dad Sing Note UP', 2);
 				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
 				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
 				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
@@ -412,6 +412,7 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 0, -30);
 	
 				playAnim('idle');
+				flipX = true;
 			case 'sweater-sarv':
 				// DAD ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('characters/dogo', 'shared');
