@@ -105,7 +105,10 @@ class Paths
 		{
 			return getPath('images/$folder/$key.png', IMAGE, "date-night masses");
 		}
-
+	inline static public function dateMusic(key:String)
+		{
+			return getPath('music/$key.$SOUND_EXT', MUSIC, "date-night masses");
+		}
 	inline static public function voices(song:String)
 	{
 		var songLowercase = StringTools.replace(song, " ", "-").toLowerCase();

@@ -39,6 +39,7 @@ class DialogueBox extends FlxSpriteGroup
 
 	var sound:FlxSound;
 	var voiceAct:FlxSound;
+	var bgmus:FlxSound;
 
 	public function new(talkingRight:Bool = true, ?dialogueList:Array<String>)
 	{
@@ -56,6 +57,21 @@ class DialogueBox extends FlxSpriteGroup
 				sound.volume = 0;
 				FlxG.sound.list.add(sound);
 				sound.fadeIn(1, 0, 0.8);
+			case 'matins':
+				bgmus = new FlxSound().loadEmbedded(Paths.dateMusic('Morning'), true);
+				bgmus.volume = 0;
+				FlxG.sound.list.add(bgmus);
+				bgmus.fadeIn(1, 0, 0.8);
+			case 'serafim':
+				bgmus = new FlxSound().loadEmbedded(Paths.dateMusic('Work'), true);
+				bgmus.volume = 0;
+				FlxG.sound.list.add(bgmus);
+				bgmus.fadeIn(1, 0, 0.8);
+			case 'harmony':
+				bgmus = new FlxSound().loadEmbedded(Paths.dateMusic('Evening'), true);
+				bgmus.volume = 0;
+				FlxG.sound.list.add(bgmus);
+				bgmus.fadeIn(1, 0, 0.8);
 		}
 
 		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
@@ -298,6 +314,11 @@ class DialogueBox extends FlxSpriteGroup
 
 					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns')
 						sound.fadeOut(2.2, 0);
+
+					if (PlayState.SONG.song.toLowerCase	() == 'matins' || PlayState.SONG.song.toLowerCase() == 'serafim' || PlayState.SONG.song.toLowerCase() == 'harmony') {
+						bgmus.fadeOut(2.2, 0);
+					}
+					
 					new FlxTimer().start(0.2, function(tmr:FlxTimer)
 					{
 						box.alpha -= 1 / 5;

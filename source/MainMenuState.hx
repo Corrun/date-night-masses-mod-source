@@ -55,7 +55,8 @@ class MainMenuState extends MusicBeatState
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
-		GameJoltAPI.getTrophy(148519);
+
+		
 		if (!FlxG.sound.music.playing)
 		{
 			FlxG.sound.playMusic(Paths.music('mp3'));
@@ -145,6 +146,14 @@ class MainMenuState extends MusicBeatState
 
 		changeItem();
 
+		GameJoltAPI.getTrophy(148519);
+//		if (lol ！= "The user already has this trophy") {
+			var blackBox:FlxSprite = new FlxSprite(FlxG.width - 350, 50).makeGraphic(300, 50, FlxColor.BLACK);
+		add(blackBox);
+		var achText = new FlxText(blackBox.x, blackBox.y, 0, "You unlocked a trohpy :)", 16);
+		add(achText);
+//		}
+//		FlxTween.color(blackBox, 5, FlxColor.BLACK, FlxColor.BLACK, 0);
 		super.create();
 	}
 
@@ -263,7 +272,7 @@ class MainMenuState extends MusicBeatState
 				trace("Freeplay Menu Selected");
 			case 'credits':
 				//FlxG.switchState(new GameJolt());
-				//FlxG.switchState(new CreditsMenuState());
+				FlxG.switchState(new CreditsMenuState());
 			case 'options':
 				FlxG.switchState(new OptionsMenu());
 		}
