@@ -1,0 +1,3 @@
+:ruvNeutral:Tu as vu ma grosse baguette ?:ruv:ruvVoice1
+:sarvCheerful:Nope!:sarv:sarvVoice1
+:sarvCheerful:et je te castre si tu me la montres.:sarv:sarvVoice2

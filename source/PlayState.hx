@@ -451,8 +451,19 @@ class PlayState extends MusicBeatState
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
 			case 'matins':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/dialogue'));
-				endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/endDialogue'));
+				if (OptionsMenu.language == "English") {
+					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/EnglishDialogue'));
+					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/EnglishEndDialogue'));
+				} else if (OptionsMenu.language == "French") {
+					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/FrenchDialogue'));
+					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/FrenchEndDialogue'));
+				} else if (OptionsMenu.language == "Spanish") {
+					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/SpanishDialogue'));
+					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/SpanishEndDialogue'));
+				} else if (OptionsMenu.language == "Korean") {
+					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/KoreanDialogue'));
+					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/KoreanEndDialogue'));
+				}
 			case 'serafim':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/serafim/dialogue'));
 				endDialogue = CoolUtil.coolTextFile(Paths.txt('data/serafim/endDialogue'));

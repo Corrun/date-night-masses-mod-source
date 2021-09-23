@@ -23,8 +23,15 @@ class OptionsMenu extends MusicBeatState
 
 	var selector:FlxText;
 	var curSelected:Int = 0;
+	public static var language:String = "English";
 
 	var options:Array<OptionCategory> = [
+		new OptionCategory("Language", [
+			new English("Hi"),
+			new French("Hi"),
+			new Spanish("Hi"),
+			new Korean("Hi")
+		]),
 		new OptionCategory("Gameplay", [
 			new DFJKOption(controls),
 			new DownscrollOption("Toggle making the notes scroll down rather than up."),
