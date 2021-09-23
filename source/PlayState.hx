@@ -211,8 +211,15 @@ class PlayState extends MusicBeatState
 
 	var songName:FlxText;
 
-	var songInfo:FlxText;
-	var songBPM:FlxText;
+//	var songInfo:FlxText;
+//	var songBPM:FlxText;
+
+	var songComposer:String;
+	var songBPM:String;
+	var songCharter:String;
+	var songInfo1:FlxText;
+	var songInfo2:FlxText;
+	var songInfo3:FlxText;
 
 	public var currentSection:SwagSection;
 
@@ -964,7 +971,7 @@ class PlayState extends MusicBeatState
 
 		if (PlayStateChangeables.useDownscroll)
 			kadeEngineWatermark.y = FlxG.height * 0.9 + 45;
-
+/*
 		//add random junk that belgian wanted per song lmao
 		if (SONG.song.toLowerCase() == 'matins') {
 			//add the shit
@@ -1027,6 +1034,44 @@ class PlayState extends MusicBeatState
 			songBPM.scrollFactor.set();
 			add(songBPM);
 		}
+*/
+
+		//use a switch statement because that'll be less spaghetti
+		switch (SONG.song.toLowerCase()) {
+			case 'matins':
+				songComposer = 'Zhad The Impulsive';
+				songBPM = '120';
+				songCharter = 'Placeholder for charter';
+			case 'serafim':
+				songComposer = 'Zhad The Impulsive';
+				songBPM = '140';
+				songCharter = 'Placeholder for charter';
+			case 'harmony':
+				songComposer = 'Lawlessness Upstairs';
+				songBPM = '160';
+				songCharter = 'Placeholder for charter';
+			case 'together':
+				songComposer = 'SeliSeliSelina';
+				songBPM = '90';
+				songCharter = 'Placeholder for charter';
+			case 'clandestine-ditty':
+				songComposer = 'Mike Geno';
+				songBPM = '107'	;
+				songCharter = 'Placeholder for charter';
+		}
+
+		songInfo1 = new FlxText(kadeEngineWatermark.x, kadeEngineWatermark.y - 72, "Composer: " + songComposer);
+		songInfo1.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		songInfo1.scrollFactor.set();
+		add(songInfo1);
+		songInfo2 = new FlxText(songInfo1.x, songInfo1.y + 24, "BPM: " + songBPM);
+		songInfo2.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		songInfo2.scrollFactor.set();
+		add(songInfo2);
+		songInfo3 = new FlxText(songInfo2.x, songInfo2.y + 24, "Charter: " + songCharter);
+		songInfo3.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		songInfo3.scrollFactor.set();
+		add(songInfo3);
 
 		scoreTxt = new FlxText(FlxG.width / 2 - 235, healthBarBG.y + 50, 0, "", 20);
 
@@ -1083,8 +1128,9 @@ class PlayState extends MusicBeatState
 			songPosBar.cameras = [camHUD];
 		}
 		kadeEngineWatermark.cameras = [camHUD];
-		songInfo.cameras = [camHUD];
-		songBPM.cameras = [camHUD];
+		songInfo1.cameras = [camHUD];
+		songInfo2.cameras = [camHUD];
+		songInfo3.cameras = [camHUD];
 
 		if (loadRep)
 			replayTxt.cameras = [camHUD];
