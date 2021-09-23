@@ -114,28 +114,7 @@ class DialogueBox extends FlxSpriteGroup
 				var face:FlxSprite = new FlxSprite(320, 170).loadGraphic(Paths.image('weeb/spiritFaceForward'));
 				face.setGraphicSize(Std.int(face.width * 6));
 				add(face);
-			case 'matins':
-				hasDialog = true;
-				hasVoice = true;
-				box.frames = Paths.getSparrowAtlas('weeb/TEXTBOX');
-				box.animation.addByPrefix('RuvOpen', 'TEXTBOX RuvNormal', 24, false);
-				box.animation.addByIndices('Ruvnormal', 'TEXTBOX RuvNormal', [1], "", 24);
-				box.animation.addByPrefix('SarvOpen', 'TEXTBOX Sarvtext', 24, false);
-				box.animation.addByIndices('Sarvnormal', 'TEXTBOX Sarvtext', [1], "", 24);
-				box.animation.addByPrefix('OtherOpen', 'TEXTBOX RuvQuiet', 24, false);
-				box.animation.addByIndices('Othernormal', 'TEXTBOX RuvQuiet', [1], "", 24);
-
-			case 'serafim':
-				hasDialog = true;
-				hasVoice = true;
-				box.frames = Paths.getSparrowAtlas('weeb/TEXTBOX');
-				box.animation.addByPrefix('RuvOpen', 'TEXTBOX RuvNormal', 24, false);
-				box.animation.addByIndices('Ruvnormal', 'TEXTBOX RuvNormal', [1], "", 24);
-				box.animation.addByPrefix('SarvOpen', 'TEXTBOX Sarvtext', 24, false);
-				box.animation.addByIndices('Sarvnormal', 'TEXTBOX Sarvtext', [1], "", 24);
-				box.animation.addByPrefix('OtherOpen', 'TEXTBOX RuvQuiet', 24, false);
-				box.animation.addByIndices('Othernormal', 'TEXTBOX RuvQuiet', [1], "", 24);
-			case 'harmony':
+			case 'matins' | 'serafim' | 'harmony':
 				hasDialog = true;
 				hasVoice = true;
 				box.frames = Paths.getSparrowAtlas('weeb/TEXTBOX');

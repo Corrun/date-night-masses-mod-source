@@ -27,6 +27,7 @@ class MainMenuState extends MusicBeatState
 	var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
+	public static var language:String = "English"; 
 
 	#if !switch
 	var optionShit:Array<String> = ['story mode', 'freeplay', 'credits', 'options'];

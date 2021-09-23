@@ -23,7 +23,6 @@ class OptionsMenu extends MusicBeatState
 
 	var selector:FlxText;
 	var curSelected:Int = 0;
-	public static var language:String = "English";
 
 	var options:Array<OptionCategory> = [
 		new OptionCategory("Language", [

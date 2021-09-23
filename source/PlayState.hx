@@ -461,16 +461,16 @@ class PlayState extends MusicBeatState
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
 			case 'matins':
-				if (OptionsMenu.language == "English") {
+				if (MainMenuState.language == "English") {
 					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/EnglishDialogue'));
 					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/EnglishEndDialogue'));
-				} else if (OptionsMenu.language == "French") {
+				} else if (MainMenuState.language == "French") {
 					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/FrenchDialogue'));
 					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/FrenchEndDialogue'));
-				} else if (OptionsMenu.language == "Spanish") {
+				} else if (MainMenuState.language == "Spanish") {
 					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/SpanishDialogue'));
 					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/SpanishEndDialogue'));
-				} else if (OptionsMenu.language == "Korean") {
+				} else if (MainMenuState.language == "Korean") {
 					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/KoreanDialogue'));
 					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/KoreanEndDialogue'));
 				}
@@ -526,11 +526,23 @@ class PlayState extends MusicBeatState
 		switch(songLowercase)
 		{
 			//if the song has dialogue, so we don't accidentally try to load a nonexistant file and crash the game
-			case 'senpai' | 'roses' | 'thorns' | 'matins' | 'serafim' | 'harmony':
+			case 'senpai' | 'roses' | 'thorns' :
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/dialogue'));
 			
 			case 'matins' | 'serafim' | 'harmony':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/dialogue'));
+				if (MainMenuState.language == "English") {
+					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/EnglishDialogue'));
+					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/EnglishEndDialogue'));
+				} else if (MainMenuState.language == "French") {
+					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/FrenchDialogue'));
+					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/FrenchEndDialogue'));
+				} else if (MainMenuState.language == "Spanish") {
+					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/SpanishDialogue'));
+					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/SpanishEndDialogue'));
+				} else if (MainMenuState.language == "Korean") {
+					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/KoreanDialogue'));
+					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/KoreanEndDialogue'));
+				}
 		}
 
 		// defaults if no stage was found in chart

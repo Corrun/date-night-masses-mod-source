@@ -89,7 +89,7 @@ class French extends Option
 			display = updateDisplay();
 			return true;
 		}
-		OptionsMenu.language = "French";
+		MainMenuState.language = "French";
 		confirm = false;
 		trace('Highscores Wiped');
 		display = updateDisplay();
@@ -119,7 +119,7 @@ class Spanish extends Option
 			display = updateDisplay();
 			return true;
 		}
-		OptionsMenu.language = "Spanish";
+		MainMenuState.language = "Spanish";
 		confirm = false;
 		trace('Highscores Wiped');
 		display = updateDisplay();
@@ -149,7 +149,7 @@ class English extends Option
 			display = updateDisplay();
 			return true;
 		}
-		OptionsMenu.language = "English";
+		MainMenuState.language = "English";
 		confirm = false;
 		trace('Highscores Wiped');
 		display = updateDisplay();
@@ -179,7 +179,7 @@ class Korean extends Option
 			display = updateDisplay();
 			return true;
 		}
-		OptionsMenu.language = "Korean";
+		MainMenuState.language = "Korean";
 		confirm = false;
 		trace('Highscores Wiped');
 		display = updateDisplay();
