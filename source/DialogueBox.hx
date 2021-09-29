@@ -57,7 +57,7 @@ class DialogueBox extends FlxSpriteGroup
 				sound.volume = 0;
 				FlxG.sound.list.add(sound);
 				sound.fadeIn(1, 0, 0.8);
-			case 'matins':
+/*			case 'matins':
 				bgmus = new FlxSound().loadEmbedded(Paths.dateMusic('Morning'), true);
 				bgmus.volume = 0;
 				FlxG.sound.list.add(bgmus);
@@ -72,6 +72,7 @@ class DialogueBox extends FlxSpriteGroup
 				bgmus.volume = 0;
 				FlxG.sound.list.add(bgmus);
 				bgmus.fadeIn(1, 0, 0.8);
+*/
 		}
 
 		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
@@ -116,7 +117,7 @@ class DialogueBox extends FlxSpriteGroup
 				add(face);
 			case 'matins' | 'serafim' | 'harmony':
 				hasDialog = true;
-				hasVoice = true;
+//				hasVoice = true;
 				box.frames = Paths.getSparrowAtlas('weeb/TEXTBOX');
 				box.animation.addByPrefix('RuvOpen', 'TEXTBOX RuvNormal', 24, false);
 				box.animation.addByIndices('Ruvnormal', 'TEXTBOX RuvNormal', [1], "", 24);
@@ -294,10 +295,10 @@ class DialogueBox extends FlxSpriteGroup
 					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns')
 						sound.fadeOut(2.2, 0);
 
-					if (PlayState.SONG.song.toLowerCase	() == 'matins' || PlayState.SONG.song.toLowerCase() == 'serafim' || PlayState.SONG.song.toLowerCase() == 'harmony') {
+/*					if (PlayState.SONG.song.toLowerCase	() == 'matins' || PlayState.SONG.song.toLowerCase() == 'serafim' || PlayState.SONG.song.toLowerCase() == 'harmony') {
 						bgmus.fadeOut(2.2, 0);
 					}
-					
+*/					
 					new FlxTimer().start(0.2, function(tmr:FlxTimer)
 					{
 						box.alpha -= 1 / 5;
@@ -339,12 +340,12 @@ class DialogueBox extends FlxSpriteGroup
 		// swagDialogue.text = ;
 		swagDialogue.resetText(dialogueList[0]);
 		swagDialogue.start(0.04, true);
-
+/*
 		if (voiceActing != '') {
 			voiceAct = FlxG.sound.load(Paths.sound('Voices/$voiceActing'));
 			voiceAct.play();
 		}
-
+*/
 		box.alpha = 0;
 		switch (textbox)
 		{

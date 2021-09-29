@@ -461,24 +461,37 @@ class PlayState extends MusicBeatState
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
 			case 'matins':
-				if (MainMenuState.language == "English") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/EnglishDialogue'));
-					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/EnglishEndDialogue'));
-				} else if (MainMenuState.language == "French") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/FrenchDialogue'));
-					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/FrenchEndDialogue'));
-				} else if (MainMenuState.language == "Spanish") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/SpanishDialogue'));
-					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/SpanishEndDialogue'));
-				} else if (MainMenuState.language == "Korean") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/KoreanDialogue'));
-					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/KoreanEndDialogue'));
-				}
+				switch (MainMenuState.language) {
+					case "English":
+						dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/EnglishDialogue'));
+						endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/EnglishEndDialogue'));
+					case "French":
+						dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/FrenchDialogue'));
+						endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/FrenchEndDialogue'));
+					case "Spanish":
+						dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/SpanishDialogue'));
+						endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/SpanishEndDialogue'));
+					case "Korean":
+						dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/KoreanDialogue'));
+						endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/KoreanEndDialogue'));
+					}
 			case 'serafim':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('data/serafim/dialogue'));
-				endDialogue = CoolUtil.coolTextFile(Paths.txt('data/serafim/endDialogue'));
+				switch (MainMenuState.language) {
+					case "English":
+						dialogue = CoolUtil.coolTextFile(Paths.txt('data/serafim/EnglishDialogue'));
+						endDialogue = CoolUtil.coolTextFile(Paths.txt('data/serafim/EnglishEndDialogue'));
+					case "French":
+						dialogue = CoolUtil.coolTextFile(Paths.txt('data/serafim/FrenchDialogue'));
+						endDialogue = CoolUtil.coolTextFile(Paths.txt('data/serafim/FrenchEndDialogue'));
+					case "Spanish":
+						dialogue = CoolUtil.coolTextFile(Paths.txt('data/serafim/SpanishDialogue'));
+						endDialogue = CoolUtil.coolTextFile(Paths.txt('data/serafim/SpanishEndDialogue'));
+					case "Korean":
+						dialogue = CoolUtil.coolTextFile(Paths.txt('data/serafim/KoreanDialogue'));
+						endDialogue = CoolUtil.coolTextFile(Paths.txt('data/serafim/KoreanEndDialogue'));
+					}
 			case 'harmony':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('data/harmony/harmonyDialogue'));
+				dialogue = CoolUtil.coolTextFile(Paths.txt('data/harmony/dialogue'));
 				endDialogue = CoolUtil.coolTextFile(Paths.txt('data/harmony/endDialogue'));
 		}
 		Conductor.bpm = SONG.bpm;
