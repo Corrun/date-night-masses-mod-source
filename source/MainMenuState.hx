@@ -159,6 +159,8 @@ class MainMenuState extends MusicBeatState
 	}
 
 	var selectedSomethin:Bool = false;
+	var code:String = "";
+	static var password:String = "SECRETSONG";
 
 	override function update(elapsed:Float)
 	{
@@ -246,6 +248,26 @@ class MainMenuState extends MusicBeatState
 							}
 						}
 					});
+				}
+			}
+		if (FlxG.keys.justPressed.ANY) {
+			code += FlxG.keys.getIsDown()[0].ID.toString().toUpperCase();
+			trace("current guess is " + code);
+		}
+			if (password.startsWith(code)) {
+				if (code == password) {
+					trace('lets go you guessed the password lmfao');
+					PlayState.SONG = Song.loadFromJson('clandestine-ditty', 'clandestine-ditty');
+					PlayState.isStoryMode = false;
+					PlayState.storyDifficulty = 1;
+					LoadingState.loadAndSwitchState(new PlayState());
+					code = '';
+				}
+			}
+			else {
+				if (code.length >= 2) {
+					trace('password reset, you suck at guessing');
+					code = '';
 				}
 			}
 		}
