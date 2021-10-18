@@ -73,6 +73,7 @@ class DialogueBox extends FlxSpriteGroup
 				bgmus.volume = 0;
 				FlxG.sound.list.add(bgmus);
 				bgmus.fadeIn(1, 0, 0.8);
+
 		}
 
 		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
@@ -354,11 +355,11 @@ class DialogueBox extends FlxSpriteGroup
 		swagDialogue.resetText(dialogueList[0]);
 		swagDialogue.start(0.04, true);
 
-		if (voiceActing != '') {
+/*		if (voiceActing != '') {
 			voiceAct = FlxG.sound.load(Paths.sound('Voices/$voiceActing'));
 			voiceAct.play();
 		}
-
+*/
 		box.alpha = 0;
 		switch (textbox)
 		{
