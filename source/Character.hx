@@ -415,6 +415,7 @@ class Character extends FlxSprite
 				flipX = true;
 			case 'sweater-sarv':
 				// DAD ANIMATION LOADING CODE
+				/*
 				tex = Paths.getSparrowAtlas('characters/dogo', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'dogo idle', 24);
@@ -422,6 +423,17 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'dogo right', 24);
 				animation.addByPrefix('singDOWN', 'dogo down', 24);
 				animation.addByPrefix('singLEFT', 'dogo left', 24);
+	
+				playAnim('idle');
+				*/
+				
+				tex = Paths.getSparrowAtlas('characters/Tori', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'arch0000', 24);
+				animation.addByPrefix('singUP', 'arch0001', 24);
+				animation.addByPrefix('singRIGHT', 'arch0002', 24);
+				animation.addByPrefix('singDOWN', 'arch0004', 24);
+				animation.addByPrefix('singLEFT', 'arch0003', 24);
 	
 				playAnim('idle');
 			case 'garden-sarv':
@@ -456,6 +468,16 @@ class Character extends FlxSprite
 				addOffset("singRIGHT", 0, 27);
 				addOffset("singLEFT", -10, 10);
 				addOffset("singDOWN", 0, -30);
+	
+				playAnim('idle');
+			case 'Tori':
+				tex = Paths.getSparrowAtlas('characters/Tori', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'arch0000', 24);
+				animation.addByPrefix('singUP', 'arch0001', 24);
+				animation.addByPrefix('singRIGHT', 'arch0002', 24);
+				animation.addByPrefix('singDOWN', 'arch0004', 24);
+				animation.addByPrefix('singLEFT', 'arch0003', 24);
 	
 				playAnim('idle');
 		}

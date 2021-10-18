@@ -110,6 +110,8 @@
 	<haxelib name="hxvm-luajit" if="windows"/>
 	<haxelib name="tentools" />
 	<haxelib name="systools" />
+	<haxelib name="openfl" />
+	<haxelib name="actuate" />
 	<ndll name="systools" haxelib="systools" />
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
 

@@ -64,6 +64,9 @@ import flixel.addons.ui.FlxUIInputText;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.util.FlxColor;
 import flixel.FlxG;
+import flixel.group.FlxGroup;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import lime.system.System;
 import flixel.util.FlxTimer;
 import flixel.FlxSprite;
@@ -86,6 +89,9 @@ class GameJoltAPI // Connects to tentools.api.FlxGameJolt
 {
     static var userLogin:Bool = false;
     public static var totalTrophies:Float = GJApi.TROPHIES_ACHIEVED + GJApi.TROPHIES_MISSING;
+
+    
+
     public static function getUserInfo(username:Bool = true):String /* Grabs user data and returns as a string, true for Username, false for Token */
     {
         if(username)return GJApi.username;
@@ -155,17 +161,13 @@ class GameJoltAPI // Connects to tentools.api.FlxGameJolt
         if(userLogin)
         {
             GJApi.addTrophy(trophyID, function(){trace("Unlocked a trophy with an ID of "+trophyID);});
-            var blackBox:FlxSprite = new FlxSprite(50, 50).makeGraphic(200, 50, FlxColor.BLACK);
         }
     }
 
     public static function addfnfScore(score:Int, tableID:Int) /* Add the player's score to a leaderboard */
         {
-            if(userLogin)
-            {
-                var s = Std.string(score);
-                GJApi.addScore(s, score, tableID, function(){trace("adding a score on the table with an ID of "+tableID);});
-            }
+            var s = Std.string(score);
+            GJApi.addScore(s, score, tableID, true, MainMenuState.playerName, "", function(){trace("adding a score on the table with an ID of "+tableID);});
         }
 
     // public static function isTropheyCollected(id:Int):Bool

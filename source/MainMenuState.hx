@@ -1,6 +1,8 @@
 package;
 import GameJolt.GameJoltAPI;
 import flixel.input.gamepad.FlxGamepad;
+import tentools.api.FlxGameJolt as GJApi;
+import openfl.display.BitmapData;
 import Controls.KeyboardScheme;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -15,6 +17,12 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import io.newgrounds.NG;
 import lime.app.Application;
+import flash.filters.GlowFilter;
+import openfl.display.Bitmap;
+import openfl.display.BitmapData;
+import openfl.display.Sprite;
+import openfl.Assets;
+import haxe.io.Bytes;
 
 #if windows
 import Discord.DiscordClient;
@@ -38,6 +46,7 @@ class MainMenuState extends MusicBeatState
 	var newGaming:FlxText;
 	var newGaming2:FlxText;
 	public static var firstStart:Bool = true;
+	public static var playerName:String = "";
 
 	public static var nightly:String = "";
 
@@ -146,15 +155,18 @@ class MainMenuState extends MusicBeatState
 			controls.setKeyboardScheme(KeyboardScheme.Duo(true), true);
 
 		changeItem();
+		
+		if (FlxG.save.data.trophy2) {
+			var curCharacter:String = "안";
+			var bUtf8 = Bytes.ofString(curCharacter, UTF8);
+			trace(bUtf8);
+			var DescThing = new FlxText(FlxG.width /2, FlxG.height/2, 0, Bytes.ofHex(curCharacter), 15);
+			DescThing.scrollFactor.set();
+			DescThing.setFormat(Paths.font("BenmoJinHei"), 50, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			add(DescThing);
+			
+		}
 
-		GameJoltAPI.getTrophy(148519);
-//		if (lol ！= "The user already has this trophy") {
-			var blackBox:FlxSprite = new FlxSprite(FlxG.width - 350, 50).makeGraphic(300, 50, FlxColor.BLACK);
-		add(blackBox);
-		var achText = new FlxText(blackBox.x, blackBox.y, 0, "You unlocked a trohpy :)", 16);
-		add(achText);
-//		}
-//		FlxTween.color(blackBox, 5, FlxColor.BLACK, FlxColor.BLACK, 0);
 		super.create();
 	}
 

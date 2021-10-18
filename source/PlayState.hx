@@ -460,26 +460,20 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('roses/rosesDialogue'));
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
-			case 'matins':
+			case 'matins' | 'serafim' | 'harmony':
 				if (MainMenuState.language == "English") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/EnglishDialogue'));
-					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/EnglishEndDialogue'));
+					dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/EnglishDialogue'));
+					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/EnglishEndDialogue'));
 				} else if (MainMenuState.language == "French") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/FrenchDialogue'));
-					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/FrenchEndDialogue'));
+					dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/FrenchDialogue'));
+					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/FrenchEndDialogue'));
 				} else if (MainMenuState.language == "Spanish") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/SpanishDialogue'));
-					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/SpanishEndDialogue'));
+					dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/SpanishDialogue'));
+					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/SpanishEndDialogue'));
 				} else if (MainMenuState.language == "Korean") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/KoreanDialogue'));
-					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/KoreanEndDialogue'));
+					dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/KoreanDialogue'));
+					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/KoreanEndDialogue'));
 				}
-			case 'serafim':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('data/serafim/dialogue'));
-				endDialogue = CoolUtil.coolTextFile(Paths.txt('data/serafim/endDialogue'));
-			case 'harmony':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('data/harmony/harmonyDialogue'));
-				endDialogue = CoolUtil.coolTextFile(Paths.txt('data/harmony/endDialogue'));
 		}
 		Conductor.bpm = SONG.bpm;
 
@@ -702,7 +696,7 @@ class PlayState extends MusicBeatState
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'sweater-sarv':
 				dad.x -= 300;
-				dad.y += 100;
+				dad.y -= 200;
 			case 'spirit':
 				if (FlxG.save.data.distractions)
 				{
@@ -1206,12 +1200,8 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 				case 'thorns':
 					schoolIntro(doof);
-				case 'matins':
-					schoolIntro(doof);
-				case 'serafim':
-					schoolIntro(doof);
-				case 'harmony':
-					schoolIntro(doof);
+				case 'matins' | 'serafim' | 'harmony':
+					showDialogue(doof);
 				default:
 					new FlxTimer().start(1, function(timer) {
 						startCountdown();
@@ -1231,6 +1221,17 @@ class PlayState extends MusicBeatState
 		FlxG.stage.addEventListener(KeyboardEvent.KEY_DOWN, handleInput);
 		FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, releaseInput);
 		super.create();
+	}
+
+	function showDialogue(?dialogueBox:DialogueBox):Void
+	{
+		if (dialogueBox != null)
+		{
+			inCutscene = true;
+			add(dialogueBox);
+		} else {
+			startCountdown();
+		}
 	}
 
 	function schoolIntro(?dialogueBox:DialogueBox):Void
@@ -3621,11 +3622,16 @@ class PlayState extends MusicBeatState
 				} else {
 					
 					if (SONG.song.toLowerCase() == 'matins' || SONG.song.toLowerCase() == 'serafim' || SONG.song.toLowerCase() == 'harmony') {
+						/*
 						var doof1 = null;
 						doof1 = new DialogueBox(false, endDialogue);
 						doof1.scrollFactor.set();
 						doof1.finishThing = nextSongPlease; 
 						schoolIntro(doof1);
+						*/
+						var a = new Achievement("first success", "cool", "sarvRonv", "Happy ending");
+						add(a);
+						a.cameras = [camHUD];
 					}
 					else {
 					// adjusting the song name to be compatible
