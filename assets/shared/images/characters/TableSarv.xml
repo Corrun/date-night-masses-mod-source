@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="TableSarv.png"><SubTexture name="TableSarv idle0000" x="0" y="0" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
+<SubTexture name="TableSarv idle0001" x="453" y="0" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
+<SubTexture name="TableSarv idle0002" x="906" y="0" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
+<SubTexture name="TableSarv idle0003" x="1359" y="0" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
+<SubTexture name="TableSarv idle0004" x="0" y="489" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
+<SubTexture name="TableSarv idle0005" x="453" y="489" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
+<SubTexture name="TableSarv idle0006" x="906" y="489" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
+<SubTexture name="TableSarv right0000" x="1359" y="489" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
+<SubTexture name="TableSarv right0001" x="0" y="978" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
+<SubTexture name="TableSarv left0000" x="453" y="978" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
+<SubTexture name="TableSarv left0001" x="906" y="978" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
+<SubTexture name="TableSarv up0000" x="1359" y="978" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
+<SubTexture name="TableSarv up0001" x="0" y="1467" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
+<SubTexture name="TableSarv down0000" x="453" y="1467" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
+<SubTexture name="TableSarv down0001" x="906" y="1467" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
+<SubTexture name="TableSarv right0002" x="1359" y="1467" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
+<SubTexture name="TableSarv right0003" x="0" y="1956" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
+</TextureAtlas>

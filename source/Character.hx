@@ -417,12 +417,13 @@ class Character extends FlxSprite
 				// DAD ANIMATION LOADING CODE
 				/*
 				tex = Paths.getSparrowAtlas('characters/dogo', 'shared');
+				tex = Paths.getSparrowAtlas('characters/TableSarv', 'shared');
 				frames = tex;
-				animation.addByPrefix('idle', 'dogo idle', 24);
-				animation.addByPrefix('singUP', 'dogo up', 24);
-				animation.addByPrefix('singRIGHT', 'dogo right', 24);
-				animation.addByPrefix('singDOWN', 'dogo down', 24);
-				animation.addByPrefix('singLEFT', 'dogo left', 24);
+				animation.addByPrefix('idle', 'TableSarv idle', 24);
+				animation.addByPrefix('singUP', 'TableSarv up', 24);
+				animation.addByPrefix('singRIGHT', 'TableSarv right', 24);
+				animation.addByPrefix('singDOWN', 'TableSarv down', 24);
+				animation.addByPrefix('singLEFT', 'TableSarv left', 24);
 	
 				playAnim('idle');
 				*/
@@ -440,11 +441,11 @@ class Character extends FlxSprite
 				// DAD ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('characters/DADDY_DEAREST', 'shared');
 				frames = tex;
-				animation.addByPrefix('idle', 'Dad idle dance', 24);
-				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
-				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
-				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
-				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
+				animation.addByPrefix('idle', 'Dad idle dance', 12);
+				animation.addByPrefix('singUP', 'Dad Sing Note UP', 12);
+				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 12);
+				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 12);
+				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 12);
 	
 				addOffset('idle');
 				addOffset("singUP", -6, 50);

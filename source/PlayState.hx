@@ -746,6 +746,8 @@ class PlayState extends MusicBeatState
 			case 'stage1':
 				boyfriend.x -= 200;
 				boyfriend.y -= 400;
+				dad.y = 50;
+				dad.x = 300;
 				gf.y -= 2000;
 			case 'stage2':
 				gf.y -= 2000;
