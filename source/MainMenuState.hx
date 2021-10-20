@@ -22,7 +22,6 @@ import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.display.Sprite;
 import openfl.Assets;
-import haxe.io.Bytes;
 
 #if windows
 import Discord.DiscordClient;
@@ -37,11 +36,7 @@ class MainMenuState extends MusicBeatState
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	public static var language:String = "English"; 
 
-	#if !switch
-	var optionShit:Array<String> = ['story mode', 'freeplay', 'credits', 'options'];
-	#else
-	var optionShit:Array<String> = ['story mode', 'freeplay'];
-	#end
+	var optionShit:Array<String> = ['story mode', 'credits', 'options'];
 
 	var newGaming:FlxText;
 	var newGaming2:FlxText;
@@ -65,7 +60,9 @@ class MainMenuState extends MusicBeatState
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
-
+		if (!FlxG.save.data.fState) {
+			optionShit = ['story mode', 'freeplay', 'credits', 'options'];
+		}
 		
 		if (!FlxG.sound.music.playing)
 		{
@@ -158,13 +155,11 @@ class MainMenuState extends MusicBeatState
 		
 		if (FlxG.save.data.trophy2) {
 			var curCharacter:String = "안";
-			var bUtf8 = Bytes.ofString(curCharacter, UTF8);
-			trace(bUtf8);
-			var DescThing = new FlxText(FlxG.width /2, FlxG.height/2, 0, Bytes.ofHex(curCharacter), 15);
+			trace(curCharacter);
+			var DescThing = new FlxText(FlxG.width /2, FlxG.height/2, 0, curCharacter, 15);
 			DescThing.scrollFactor.set();
-			DescThing.setFormat(Paths.font("BenmoJinHei"), 50, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			DescThing.setFormat(Paths.font("Roboto-Black"), 50, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			add(DescThing);
-			
 		}
 
 		super.create();
@@ -172,7 +167,7 @@ class MainMenuState extends MusicBeatState
 
 	var selectedSomethin:Bool = false;
 	var code:String = "";
-	static var password:String = "SECRETSONG";
+	static var password:String = "FREEPLAY";
 
 	override function update(elapsed:Float)
 	{
@@ -269,10 +264,9 @@ class MainMenuState extends MusicBeatState
 			if (password.startsWith(code)) {
 				if (code == password) {
 					trace('lets go you guessed the password lmfao');
-					PlayState.SONG = Song.loadFromJson('clandestine-ditty', 'clandestine-ditty');
-					PlayState.isStoryMode = false;
-					PlayState.storyDifficulty = 1;
-					LoadingState.loadAndSwitchState(new PlayState());
+					FlxG.save.data.fState = !FlxG.save.data.fState;
+					FlxG.switchState(new MainMenuState());
+					trace(FlxG.save.data.fState);
 					code = '';
 				}
 			}
