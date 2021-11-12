@@ -72,6 +72,11 @@ class FreeplayState extends MusicBeatState
 	{
 		clean();
 		var initSonglist = CoolUtil.coolTextFile(Paths.txt('data/freeplaySonglist'));
+		if (FlxG.save.data.fState == 2) {
+			initSonglist = CoolUtil.coolTextFile(Paths.txt('data/freeplaySonglist_1'));
+		} else if (FlxG.save.data.fState == 3) {
+			initSonglist = CoolUtil.coolTextFile(Paths.txt('data/freeplaySonglist_2'));
+		}
 
 		//var diffList = "";
 

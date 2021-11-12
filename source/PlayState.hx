@@ -460,20 +460,23 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('roses/rosesDialogue'));
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
-			case 'matins' | 'serafim' | 'harmony':
-				if (MainMenuState.language == "English") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/EnglishDialogue'));
-					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/EnglishEndDialogue'));
-				} else if (MainMenuState.language == "French") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/FrenchDialogue'));
-					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/FrenchEndDialogue'));
-				} else if (MainMenuState.language == "Spanish") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/SpanishDialogue'));
-					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/SpanishEndDialogue'));
-				} else if (MainMenuState.language == "Korean") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/KoreanDialogue'));
-					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/KoreanEndDialogue'));
+			case 'senpai':
+				if (langue == "English") {
+					dialogue = CoolUtil.coolTextFile(Paths.txt('senpai/senpaiEnglsh'));
+				} else if (langue == "French") {
+					dialogue = CoolUtil.coolTextFile(Paths.txt('senpai/senpaiFrench'));
+				} else if (langue == "Spanish") {
+					dialogue = CoolUtil.coolTextFile(Paths.txt('senpai/senpaiSpanish'));
+				} else if (langue == "Korean") {
+					dialogue = CoolUtil.coolTextFile(Paths.txt('senpai/senpaiKorean'));
 				}
+
+			case 'matins' | 'serafim' | 'harmony':
+				var s = MainMenuState.language + 'Dialogue';
+				var s2 = MainMenuState.language + 'EndDialogue';
+
+				dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/$s'));
+				endDialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/$s2'));
 		}
 		Conductor.bpm = SONG.bpm;
 
@@ -524,19 +527,11 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/dialogue'));
 			
 			case 'matins' | 'serafim' | 'harmony':
-				if (MainMenuState.language == "English") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/EnglishDialogue'));
-					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/EnglishEndDialogue'));
-				} else if (MainMenuState.language == "French") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/FrenchDialogue'));
-					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/FrenchEndDialogue'));
-				} else if (MainMenuState.language == "Spanish") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/SpanishDialogue'));
-					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/SpanishEndDialogue'));
-				} else if (MainMenuState.language == "Korean") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/KoreanDialogue'));
-					endDialogue = CoolUtil.coolTextFile(Paths.txt('data/matins/KoreanEndDialogue'));
-				}
+				var s = MainMenuState.language + 'Dialogue';
+				var s2 = MainMenuState.language + 'EndDialogue';
+
+				dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/$s'));
+				endDialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/$s2'));
 		}
 
 		// defaults if no stage was found in chart
@@ -746,12 +741,20 @@ class PlayState extends MusicBeatState
 			case 'stage1':
 				boyfriend.x -= 200;
 				boyfriend.y -= 400;
-				dad.y = 50;
-				dad.x = 300;
+				dad.y += 438;
+				dad.x += 231;
 				gf.y -= 2000;
 			case 'stage2':
+				boyfriend.x += 500;
+				boyfriend.y += 175;
+				dad.y += 625;
+				dad.x += 550;
 				gf.y -= 2000;
 			case 'stage3':
+				boyfriend.x += 425;
+				boyfriend.y += 450;
+				dad.y += 650;
+				dad.x += 450;
 				gf.y -= 2000;
 		}
 
@@ -2507,7 +2510,9 @@ class PlayState extends MusicBeatState
 				clean();
 			}
 			else
-				openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+				var a = new Achievement("Certified No Skill Issue", 8);
+					trace("confirm2");
+				//openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 		}
 
 		if (FlxG.keys.justPressed.SEVEN && songStarted)
@@ -3555,7 +3560,7 @@ class PlayState extends MusicBeatState
 			}
 
 			#if !switch
-			Highscore.saveScore(songHighscore, Math.round(songScore), storyDifficulty);
+			Highscore.saveScore(songHighscore, Math.round(songScore), accuracy, storyDifficulty);
 			Highscore.saveCombo(songHighscore, Ratings.GenerateLetterRank(accuracy), storyDifficulty);
 			#end
 		}
@@ -3631,9 +3636,6 @@ class PlayState extends MusicBeatState
 						doof1.finishThing = nextSongPlease; 
 						schoolIntro(doof1);
 						*/
-						var a = new Achievement("first success", "cool", "sarvRonv", "Happy ending");
-						add(a);
-						a.cameras = [camHUD];
 					}
 					else {
 					// adjusting the song name to be compatible

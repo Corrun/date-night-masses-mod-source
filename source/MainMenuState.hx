@@ -22,6 +22,7 @@ import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.display.Sprite;
 import openfl.Assets;
+import GameJolt;
 
 #if windows
 import Discord.DiscordClient;
@@ -41,7 +42,7 @@ class MainMenuState extends MusicBeatState
 	var newGaming:FlxText;
 	var newGaming2:FlxText;
 	public static var firstStart:Bool = true;
-	public static var playerName:String = "";
+	public var value:Int = 0;
 
 	public static var nightly:String = "";
 
@@ -60,7 +61,9 @@ class MainMenuState extends MusicBeatState
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
-		if (!FlxG.save.data.fState) {
+		trace(FlxG.save.data.fState);
+
+		if (FlxG.save.data.fState > 0) {
 			optionShit = ['story mode', 'freeplay', 'credits', 'options'];
 		}
 		
@@ -152,7 +155,7 @@ class MainMenuState extends MusicBeatState
 			controls.setKeyboardScheme(KeyboardScheme.Duo(true), true);
 
 		changeItem();
-		
+		/*
 		if (FlxG.save.data.trophy2) {
 			var curCharacter:String = "안";
 			trace(curCharacter);
@@ -161,7 +164,9 @@ class MainMenuState extends MusicBeatState
 			DescThing.setFormat(Paths.font("Roboto-Black"), 50, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			add(DescThing);
 		}
-
+		*/
+		
+		
 		super.create();
 	}
 
@@ -208,7 +213,32 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.BACK)
 			{
-				FlxG.switchState(new TitleState());
+				trace(value);
+				switch (value) {
+					case 0:
+						var a = new Achievement("A New World", value);
+						trace("confirm2");
+					case 1:
+						var a = new Achievement("Happy ending", value);
+					case 2:
+						var a = new Achievement("Best Team", value);
+					case 3:
+						var a = new Achievement("Dawn of a New Day", value);
+					case 4:
+						var a = new Achievement("His Guardian Angel", value);
+					case 5:
+						var a = new Achievement("Two Harmonies, One Song", value);
+					case 6:
+						var a = new Achievement("Our Final Hymn", value);
+					case 7:
+						var a = new Achievement("Together Forever", value);
+					case 8:
+						var a = new Achievement("Certified No Skill Issue", value);
+						trace("confirm2");
+
+				}
+				value ++;
+				//FlxG.switchState(new TitleState());
 			}
 
 			if (controls.ACCEPT)
@@ -264,8 +294,8 @@ class MainMenuState extends MusicBeatState
 			if (password.startsWith(code)) {
 				if (code == password) {
 					trace('lets go you guessed the password lmfao');
-					FlxG.save.data.fState = !FlxG.save.data.fState;
-					FlxG.switchState(new MainMenuState());
+					FlxG.save.data.fState = 3;
+					FlxG.switchState(new FreeplayState());
 					trace(FlxG.save.data.fState);
 					code = '';
 				}
@@ -325,7 +355,7 @@ class MainMenuState extends MusicBeatState
 			if (spr.ID == curSelected && finishedFunnyMove)
 			{
 				spr.animation.play('selected');
-				camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y);
+				//camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y);
 			}
 
 			spr.updateHitbox();

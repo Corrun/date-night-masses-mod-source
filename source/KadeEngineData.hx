@@ -4,10 +4,24 @@ import flixel.FlxG;
 
 class KadeEngineData
 {
+	public static var trophies_unlocked:Array<Bool> = [false, false, false, false, false, false, false, false, false, false];
+
     public static function initSave()
     {
         if (FlxG.save.data.weekUnlocked == null)
 			FlxG.save.data.weekUnlocked = 7;
+
+		if (FlxG.save.data.fState == null)
+			FlxG.save.data.fState = 0;
+
+		if (FlxG.save.data.fState == null)
+			FlxG.save.data.fState = 0;
+
+		if (FlxG.save.data.gjUser == null)
+			FlxG.save.data.gjUser = "";
+
+		if (FlxG.save.data.gjToken == null)
+			FlxG.save.data.gjToken = "";
 
 		if (FlxG.save.data.newInput == null)
 			FlxG.save.data.newInput = true;
@@ -120,6 +134,47 @@ class KadeEngineData
 		
 		if (FlxG.save.data.zoom == null)
 			FlxG.save.data.zoom = 1;
+
+		//trophies
+		if (FlxG.save.data.trophy1 == null)
+			FlxG.save.data.trophy1 = false;
+		else if (FlxG.save.data.trophy1) {trophies_unlocked[0] = true;}
+
+		if (FlxG.save.data.trophy2 == null)
+			FlxG.save.data.trophy2 = false;
+		else if (FlxG.save.data.trophy2) {trophies_unlocked[1] = true;}
+
+		if (FlxG.save.data.trophy3 == null)
+			FlxG.save.data.trophy3 = false;
+		else if (FlxG.save.data.trophy3) {trophies_unlocked[2] = true;}
+
+		if (FlxG.save.data.trophy4 == null)
+			FlxG.save.data.trophy4 = false;
+		else if (FlxG.save.data.trophy4) {trophies_unlocked[3] = true;}
+
+		if (FlxG.save.data.trophy5 == null)
+			FlxG.save.data.trophy5 = false;
+		else if (FlxG.save.data.trophy5) {trophies_unlocked[4] = true;}
+
+		if (FlxG.save.data.trophy6 == null)
+			FlxG.save.data.trophy6 = false;
+		else if (FlxG.save.data.trophy6) {trophies_unlocked[5] = true;}
+
+		if (FlxG.save.data.trophy7 == null)
+			FlxG.save.data.trophy7 = false;
+		else if (FlxG.save.data.trophy7) {trophies_unlocked[6] = true;}
+
+		if (FlxG.save.data.trophy8 == null)
+			FlxG.save.data.trophy8 = false;
+		else if (FlxG.save.data.trophy8) {trophies_unlocked[7] = true;}
+
+		if (FlxG.save.data.trophy9 == null)
+			FlxG.save.data.trophy9 = false;
+		else if (FlxG.save.data.trophy9) {trophies_unlocked[8] = true;}
+
+		if (FlxG.save.data.trophy10 == null)
+			FlxG.save.data.trophy10 = false;
+		else if (FlxG.save.data.trophy10) {trophies_unlocked[9] = true;}
 
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 		

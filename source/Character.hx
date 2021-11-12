@@ -392,6 +392,11 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFTmiss', 'ruv miss', 24, false);
 				animation.addByPrefix('singRIGHTmiss', 'ruv miss', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'ruv miss', 24, false);
+				/*
+				animation.addByPrefix('firstDeath', "BF dies", 24, false);
+				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, false);
+				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
+				*/
 	
 				playAnim('idle');
 				flipX = true;
@@ -415,19 +420,22 @@ class Character extends FlxSprite
 				flipX = true;
 			case 'sweater-sarv':
 				// DAD ANIMATION LOADING CODE
-				/*
-				tex = Paths.getSparrowAtlas('characters/dogo', 'shared');
+				
+				//tex = Paths.getSparrowAtlas('characters/dogo', 'shared');
 				tex = Paths.getSparrowAtlas('characters/TableSarv', 'shared');
 				frames = tex;
-				animation.addByPrefix('idle', 'TableSarv idle', 24);
-				animation.addByPrefix('singUP', 'TableSarv up', 24);
-				animation.addByPrefix('singRIGHT', 'TableSarv right', 24);
-				animation.addByPrefix('singDOWN', 'TableSarv down', 24);
-				animation.addByPrefix('singLEFT', 'TableSarv left', 24);
-	
-				playAnim('idle');
-				*/
+				animation.addByPrefix('idle', 'TableSarv idle', 36);
+				animation.addByPrefix('singUP', 'TableSarv up', 12);
+				animation.addByPrefix('singRIGHT', 'TableSarv right', 12);
+				animation.addByPrefix('singDOWN', 'TableSarv down', 12);
+				animation.addByPrefix('singLEFT', 'TableSarv left', 12);
 				
+				setGraphicSize(Std.int(width * 1.3));
+				setGraphicSize(Std.int(height * 1.3));
+
+				playAnim('idle');
+				
+				/*
 				tex = Paths.getSparrowAtlas('characters/Tori', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'arch0000', 24);
@@ -437,6 +445,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT', 'arch0003', 24);
 	
 				playAnim('idle');
+				*/
 			case 'garden-sarv':
 				// DAD ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('characters/DADDY_DEAREST', 'shared');

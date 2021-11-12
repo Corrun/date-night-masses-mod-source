@@ -16,7 +16,7 @@ class Highscore
 	#end
 	public static var curDifficulty:Int = 1;
 
-	public static function saveScore(song:String, score:Int = 0, ?diff:Int = 0):Void
+	public static function saveScore(song:String, score:Int = 0, accuracy:Float, ?diff:Int = 0):Void
 	{
 		var daSong:String = formatSong(song, diff);
 
@@ -33,19 +33,20 @@ class Highscore
 					setScore(daSong, score);
 				curDifficulty = PlayState.storyDifficulty;
 				//FreeplayState.curDifficulty = 
-				if (curDifficulty == 2) {
+				if (FlxG.save.data.gjUser != "" && curDifficulty == 2) {
+
 					switch (PlayState.SONG.song.toLowerCase()) 
 					{
 						case 'matins':
-							GameJoltAPI.addfnfScore(score, 655918);
+							GameJoltAPI.addfnfScore(score, accuracy, 655918);
 						case 'serafim':
-							GameJoltAPI.addfnfScore(score, 655919);
+							GameJoltAPI.addfnfScore(score, accuracy, 655919);
 						case 'harmony':
-							GameJoltAPI.addfnfScore(score, 655920);
-						case 'together':
-							GameJoltAPI.addfnfScore(score, 655921);
+							GameJoltAPI.addfnfScore(score, accuracy, 655920);
 						case 'clandestine-ditty':
-							GameJoltAPI.addfnfScore(score, 655925);
+							GameJoltAPI.addfnfScore(score, accuracy, 655925);
+						case 'together':
+							GameJoltAPI.addfnfScore(score, accuracy, 655921);
 					}
 				}
 			}

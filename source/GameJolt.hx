@@ -164,10 +164,16 @@ class GameJoltAPI // Connects to tentools.api.FlxGameJolt
         }
     }
 
-    public static function addfnfScore(score:Int, tableID:Int) /* Add the player's score to a leaderboard */
-        {
-            var s = Std.string(score);
-            GJApi.addScore(s, score, tableID, true, MainMenuState.playerName, "", function(){trace("adding a score on the table with an ID of "+tableID);});
+    public static function addfnfScore(score:Int, accuracy:Float, tableID:Int) /* Add the player's score to a leaderboard */
+        { 
+            if(userLogin) {
+                var multiple = Math.round(accuracy)*0.001;
+                var onlineSCore = multiple * score;
+                trace(onlineSCore);
+                var scoreString = Std.string(onlineSCore);
+                var extraData = Std.string(Math.round(accuracy));
+                GJApi.addScore(scoreString, onlineSCore, tableID, false, "", extraData, function(){trace("adding a score on the table with an ID of "+tableID);});
+            }
         }
 
     // public static function isTropheyCollected(id:Int):Bool
