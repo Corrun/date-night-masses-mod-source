@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin': Date-Night Masses" file="DNM" packageName="com.kadedev.kadeengine" package="com.kadedev.kadeengine" main="Main" version="0.2.7.1" company="kadedev" />
+	<app title="Friday Night Funkin': Kade Engine" file="Kade Engine" packageName="com.kadedev.kadeengine" package="com.kadedev.kadeengine" main="Main" version="0.2.7.1" company="kadedev" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -53,6 +53,12 @@
 		<library name="songs"    preload="true" />
 		<library name="shared"   preload="true" />
 		<library name="tutorial" preload="true" />
+		<library name="week1"    preload="true" />
+		<library name="week2"    preload="true" />
+		<library name="week3"    preload="true" />
+		<library name="week4"    preload="true" />
+		<library name="week5"    preload="true" />
+		<library name="week6"    preload="true" />
 		<library name="date-night masses"    preload="true" />
 		<library name="sm"    preload="true" />
 	</section>
@@ -61,6 +67,12 @@
 		<library name="songs"    preload="false" />
 		<library name="shared"   preload="false" />
 		<library name="tutorial" preload="false" />
+		<library name="week1"    preload="false" />
+		<library name="week2"    preload="false" />
+		<library name="week3"    preload="false" />
+		<library name="week4"    preload="false" />
+		<library name="week5"    preload="false" />
+		<library name="week6"    preload="false" />
 		<library name="date-night masses"    preload="false" />
 		<library name="sm"    preload="false" />
 	</section>
@@ -71,11 +83,24 @@
 	<assets path="assets/shared"   library="shared"   exclude="*.mp3" unless="web"/>
 	<assets path="assets/tutorial" library="tutorial" exclude="*.ogg" if="web"/>
 	<assets path="assets/tutorial" library="tutorial" exclude="*.mp3" unless="web"/>
+	<assets path="assets/week1"    library="week1"    exclude="*.ogg" if="web"/>
+	<assets path="assets/week1"    library="week1"    exclude="*.mp3" unless="web"/>
+	<assets path="assets/week2"    library="week2"    exclude="*.ogg" if="web"/>
+	<assets path="assets/week2"    library="week2"    exclude="*.mp3" unless="web"/>
+	<assets path="assets/week3"    library="week3"    exclude="*.ogg" if="web"/>
+	<assets path="assets/week3"    library="week3"    exclude="*.mp3" unless="web"/>
+	<assets path="assets/week4"    library="week4"    exclude="*.ogg" if="web"/>
+	<assets path="assets/week4"    library="week4"    exclude="*.mp3" unless="web"/>
+	<assets path="assets/week5"    library="week5"    exclude="*.ogg" if="web"/>
+	<assets path="assets/week5"    library="week5"    exclude="*.mp3" unless="web"/>
+	<assets path="assets/week6"    library="week6"    exclude="*.ogg" if="web"/>
+	<assets path="assets/week6"    library="week6"    exclude="*.mp3" unless="web"/>
 	<assets path="assets/date-night masses"    library="date-night masses"    exclude="*.ogg" if="web"/>
 	<assets path="assets/date-night masses"    library="date-night masses"    exclude="*.mp3" unless="web"/>
 	<assets path="assets/sm"    library="sm"    exclude="*.ogg" if="web"/>
 	<assets path="assets/sm"    library="sm"    exclude="*.mp3" unless="web"/>
 
+	<assets path='example_mods' rename='mods' embed='false'/>
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
 	<assets path='LICENSE' rename='LICENSE.txt' />
 	<!-- <template path='mods' /> -->
@@ -102,15 +127,11 @@
 
 	<!--In case you want to use the ui package-->
 	<haxelib name="flixel-ui" />
-	<haxelib name="newgrounds"/>
 	<haxelib name="faxe" if='switch'/>
 	<haxelib name="polymod"/>
-	<haxelib name="discord_rpc" if="windows"/>
-	<haxelib name="linc_luajit"/>
-	<haxelib name="hxvm-luajit" if="windows"/>
-	<haxelib name="tentools" />
-	<haxelib name="systools" />
-	<ndll name="systools" haxelib="systools" />
+	<haxelib name="discord_rpc" if="desktop"/>
+	<haxelib name="linc_luajit" if="desktop"/>
+	<haxelib name="hxvm-luajit" if="desktop"/>
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
 
 	<!-- <haxelib name="markdown" /> -->
@@ -169,7 +190,23 @@
 	<haxeflag name="--no-traces" unless="debug" />
 	<haxeflag name="--dce full" if="release" />
 
-	<!-- <haxedef name="SKIP_TO_PLAYSTATE" if="debug" /> -->
-	<haxedef name="NG_LOGIN" if="newgrounds" />
-	
+  <!-- Use defines to ensure compile-time definitions have readable context. -->
+  <!-- Allowed inputs are mobile,desktop,web,ios,android,windows,mac,linux,switch,html5,cpp,neko,flash,js -->
+
+  <!-- Defines whether the Discord client should be enabled. Only works on desktop. -->
+  <haxedef name="FEATURE_DISCORD" if="desktop" />
+  <!-- Defines whether the file system can be read/written directly. Does not work in browser. -->
+  <haxedef name="FEATURE_FILESYSTEM" if="desktop" />
+  <!-- Defines whether Lua Modcharts should be enabled. Only works on Windows. -->
+  <haxedef name="FEATURE_LUAMODCHART" if="windows" />
+  <!-- Defines whether WebM videos should be enabled. Currently only enabled on Windows. -->
+  <haxedef name="FEATURE_WEBM" if="windows" />
+  <!-- Defines whether StepMania files can be loaded. -->
+  <haxedef name="FEATURE_STEPMANIA" if="desktop" />
+  <!-- Defines whether the Thread class can be used. -->
+  <haxedef name="FEATURE_MULTITHREADING" if="cpp" />
+
+  <!-- Defines whether the Mods menu will display before launching. -->
+<!--  <haxedef name="FEATURE_MODCORE" if="desktop" />  -->
+
 </project>

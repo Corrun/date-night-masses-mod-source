@@ -18,8 +18,6 @@ class DialogueBox extends FlxSpriteGroup
 	var box:FlxSprite;
 
 	var curCharacter:String = '';
-	var voiceActing:String = '';
-	var textbox = '';
 
 	var dialogue:Alphabet;
 	var dialogueList:Array<String> = [];
@@ -28,6 +26,7 @@ class DialogueBox extends FlxSpriteGroup
 	var swagDialogue:FlxTypeText;
 
 	var dropText:FlxText;
+	var skipText:FlxText;
 
 	public var finishThing:Void->Void;
 
@@ -38,41 +37,25 @@ class DialogueBox extends FlxSpriteGroup
 	var bgFade:FlxSprite;
 
 	var sound:FlxSound;
-	var voiceAct:FlxSound;
-	var bgmus:FlxSound;
+
+	var currentAnim:String;
 
 	public function new(talkingRight:Bool = true, ?dialogueList:Array<String>)
 	{
 		super();
 
-		switch (PlayState.SONG.song.toLowerCase())
+		switch (PlayState.SONG.songId.toLowerCase())
 		{
 			case 'senpai':
-				sound = new FlxSound().loadEmbedded(Paths.music('Lunchbox'),true);
+				sound = new FlxSound().loadEmbedded(Paths.music('Lunchbox'), true);
 				sound.volume = 0;
 				FlxG.sound.list.add(sound);
 				sound.fadeIn(1, 0, 0.8);
 			case 'thorns':
-				sound = new FlxSound().loadEmbedded(Paths.music('LunchboxScary'),true);
+				sound = new FlxSound().loadEmbedded(Paths.music('LunchboxScary'), true);
 				sound.volume = 0;
 				FlxG.sound.list.add(sound);
 				sound.fadeIn(1, 0, 0.8);
-			case 'matins':
-				bgmus = new FlxSound().loadEmbedded(Paths.dateMusic('Morning'), true);
-				bgmus.volume = 0;
-				FlxG.sound.list.add(bgmus);
-				bgmus.fadeIn(1, 0, 0.8);
-			case 'serafim':
-				bgmus = new FlxSound().loadEmbedded(Paths.dateMusic('Work'), true);
-				bgmus.volume = 0;
-				FlxG.sound.list.add(bgmus);
-				bgmus.fadeIn(1, 0, 0.8);
-			case 'harmony':
-				bgmus = new FlxSound().loadEmbedded(Paths.dateMusic('Evening'), true);
-				bgmus.volume = 0;
-				FlxG.sound.list.add(bgmus);
-				bgmus.fadeIn(1, 0, 0.8);
-
 		}
 
 		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
@@ -88,11 +71,17 @@ class DialogueBox extends FlxSpriteGroup
 		}, 5);
 
 		box = new FlxSprite(-20, 45);
-		
+
 		var hasDialog = false;
-		var hasVoice = false;
-		switch (PlayState.SONG.song.toLowerCase())
+		switch (PlayState.SONG.songId.toLowerCase())
 		{
+			case 'matins':
+				hasDialog = true;
+				box.frames = Paths.getSparrowAtlas('portraits/textbox','date-night masses');
+				box.animation.addByPrefix('ruv', 'textbox ruv', 24, false);
+				box.animation.addByPrefix('sarv', 'textbox sarvente', 24, false);
+				box.animation.addByPrefix('other', 'textbox other', 24, false);
+
 			case 'senpai':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-pixel');
@@ -112,128 +101,124 @@ class DialogueBox extends FlxSpriteGroup
 				box.animation.addByPrefix('normalOpen', 'Spirit Textbox spawn', 24, false);
 				box.animation.addByIndices('normal', 'Spirit Textbox spawn', [11], "", 24);
 
-				var face:FlxSprite = new FlxSprite(320, 170).loadGraphic(Paths.image('weeb/spiritFaceForward'));
+				var face:FlxSprite = new FlxSprite(320, 170).loadGraphic(Paths.loadImage('weeb/spiritFaceForward'));
 				face.setGraphicSize(Std.int(face.width * 6));
 				add(face);
-			case 'matins' | 'serafim' | 'harmony':
-				hasDialog = true;
-				hasVoice = true;
-				box.frames = Paths.getSparrowAtlas('weeb/TEXTBOX');
-				box.animation.addByPrefix('RuvOpen', 'TEXTBOX RuvNormal', 24, false);
-				box.animation.addByIndices('Ruvnormal', 'TEXTBOX RuvNormal', [1], "", 24);
-				box.animation.addByPrefix('SarvOpen', 'TEXTBOX Sarvtext', 24, false);
-				box.animation.addByIndices('Sarvnormal', 'TEXTBOX Sarvtext', [1], "", 24);
-				box.animation.addByPrefix('OtherOpen', 'TEXTBOX RuvQuiet', 24, false);
-				box.animation.addByIndices('Othernormal', 'TEXTBOX RuvQuiet', [1], "", 24);
 		}
 
 		this.dialogueList = dialogueList;
-		
+
 		if (!hasDialog)
 			return;
 		
-		if (PlayState.SONG.song.toLowerCase()=='senpai' || PlayState.SONG.song.toLowerCase()=='roses' || PlayState.SONG.song.toLowerCase()=='thorns') {
+		if (PlayState.SONG.songId.toLowerCase() == 'senpai' || 
+			PlayState.SONG.songId.toLowerCase() == 'roses' || 
+			PlayState.SONG.songId.toLowerCase() == 'thorns') {
+					
 			portraitLeft = new FlxSprite(-20, 40);
 			portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiPortrait');
 			portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
-			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * CoolUtil.daPixelZoom * 0.9));
 			portraitLeft.updateHitbox();
 			portraitLeft.scrollFactor.set();
 			add(portraitLeft);
 			portraitLeft.visible = false;
-		} else if (PlayState.SONG.song.toLowerCase()=='matins' || PlayState.SONG.song.toLowerCase()=='serafim' || PlayState.SONG.song.toLowerCase()=='harmony') {
-			portraitLeft = new FlxSprite(200, 150);
-			portraitLeft.frames = Paths.getSparrowAtlas('weeb/sarvPortrait');
 
-			portraitLeft.animation.addByPrefix('sarvCheerful', 'sarv Cheerful', 24, false);
-			portraitLeft.animation.addByPrefix('sarvConfused', 'sarv Confused', 24, false);
-			portraitLeft.animation.addByPrefix('sarvDateCheerful', 'sarv dateCheerful', 24, false);
-			portraitLeft.animation.addByPrefix('sarvDateConfused', 'sarv DateConfused', 24, false);
-			portraitLeft.animation.addByPrefix('sarvDateDelighted', 'sarv DateDelighted', 24, false);
-			portraitLeft.animation.addByPrefix('sarvDelighted', 'sarv delighted', 24, false);
-
-			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.15));
-			portraitLeft.setGraphicSize(Std.int(portraitLeft.height * PlayState.daPixelZoom * 0.15));
-			portraitLeft.updateHitbox();
-			portraitLeft.scrollFactor.set();
-			add(portraitLeft);
-			portraitLeft.visible = false;
-		}
-
-		if (PlayState.SONG.song.toLowerCase()=='senpai' || PlayState.SONG.song.toLowerCase()=='roses' || PlayState.SONG.song.toLowerCase()=='thorns') {
 			portraitRight = new FlxSprite(0, 40);
 			portraitRight.frames = Paths.getSparrowAtlas('weeb/bfPortrait');
 			portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
-			portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
+			portraitRight.setGraphicSize(Std.int(portraitRight.width * CoolUtil.daPixelZoom * 0.9));
 			portraitRight.updateHitbox();
 			portraitRight.scrollFactor.set();
 			add(portraitRight);
 			portraitRight.visible = false;
-		} else if (PlayState.SONG.song.toLowerCase()=='matins' || PlayState.SONG.song.toLowerCase()=='serafim' || PlayState.SONG.song.toLowerCase()=='harmony') {
-			portraitRight = new FlxSprite(800, 150);
-			portraitRight.frames = Paths.getSparrowAtlas('weeb/ruvPortrait');
 
-			portraitRight.animation.addByPrefix('ruvContent', 'ruv Content', 24, false);
-			portraitRight.animation.addByPrefix('ruvDateContent', 'ruv DateContent', 24, false);
-			portraitRight.animation.addByPrefix('ruvDateNerv', 'ruv DateNerv', 24, false);
-			portraitRight.animation.addByPrefix('ruvDateNeutral', 'ruv DateNeutral', 24, false);
-			portraitRight.animation.addByPrefix('ruvNerv', 'ruv Nerv', 24, false);
-			portraitRight.animation.addByPrefix('ruvNeutral', 'ruv Neutral', 24, false);
-			portraitRight.animation.addByPrefix('ruvRonv', 'ruv Ronv', 24, false);
+			box.animation.play('normalOpen');
+			box.setGraphicSize(Std.int(box.width * CoolUtil.daPixelZoom * 0.9));
+			box.updateHitbox();
+			add(box);
 
-			portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.12));
-			portraitRight.setGraphicSize(Std.int(portraitRight.height * PlayState.daPixelZoom * 0.12));
-			portraitRight.updateHitbox();
-			portraitRight.scrollFactor.set();
-			add(portraitRight);
-			portraitRight.visible = false;
-		}
-			box.animation.play('RuvOpen');
-		if (PlayState.SONG.song.toLowerCase() == "senpai" || PlayState.SONG.song.toLowerCase() == "roses" || PlayState.SONG.song.toLowerCase() == "thorns") 
-		{
-			box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
-		} 
-		box.updateHitbox();
-		add(box);
-
-		box.screenCenter(X);
-		if (PlayState.SONG.song.toLowerCase()=='senpai' || PlayState.SONG.song.toLowerCase()=='roses' || PlayState.SONG.song.toLowerCase()=='thorns') {
+			box.screenCenter(X);
 			portraitLeft.screenCenter(X);
+			skipText = new FlxText(10, 10, Std.int(FlxG.width * 0.6), "", 16);
+			skipText.font = 'Pixel Arial 11 Bold';
+			skipText.color = 0x000000;
+			skipText.text = 'press back to skip';
+			add(skipText);
+			handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9).loadGraphic(Paths.loadImage('weeb/pixelUI/hand_textbox'));
+			add(handSelect);
+
+			if (!talkingRight)
+			{
+				// box.flipX = true;
+			}
 		}
+		else if (PlayState.SONG.songId.toLowerCase() == 'matins') {
+			//Sarvente Portrait setup
+			portraitLeft = new FlxSprite(-20, 40);
+			portraitLeft.frames = Paths.getSparrowAtlas('portraits/sarvPortrait', 'date-night masses');
+			
+			portraitLeft.animation.addByPrefix('cheerful', 'sarv Cheerful', 24, false);
+			portraitLeft.animation.addByPrefix('confused', 'sarv Confused', 24, false);
+			portraitLeft.animation.addByPrefix('delighted', 'sarv Delighted', 24, false);
+			
+			portraitLeft.animation.addByPrefix('dateCheerful', 'sarv DateCheerful', 24, false);
+			portraitLeft.animation.addByPrefix('dateConfused', 'sarv DateConfused', 24, false);
+			portraitLeft.animation.addByPrefix('dateDelighted', 'sarv DateDelighted', 24, false);
+			
+			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 1.3 * 0.9));
+			portraitLeft.updateHitbox();
+			portraitLeft.scrollFactor.set();
+			add(portraitLeft);
+			portraitLeft.visible = false;
 
-		handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
-		add(handSelect);
+			//Ruv Portrait setup
+			portraitRight = new FlxSprite(0, 40);
+			portraitRight.frames = Paths.getSparrowAtlas('portraits/ruvPortrait', 'date-night masses');
+			
+			portraitRight.animation.addByPrefix('content', 'ruv Content', 24, false);
+			portraitRight.animation.addByPrefix('nervous', 'ruv Nerv', 24, false);
+			portraitRight.animation.addByPrefix('neutral', 'ruv Neutral', 24, false);
 
+			portraitRight.animation.addByPrefix('dateContent', 'ruv DateContent', 24, false);
+			portraitRight.animation.addByPrefix('dateNervous', 'ruv DateNerv', 24, false);
+			portraitRight.animation.addByPrefix('dateNeutral', 'ruv DateNeutral', 24, false);
 
-		if (!talkingRight)
-		{
-			// box.flipX = true;
+			portraitRight.animation.addByPrefix('ron', 'ruv Ronv', 24, false);
+
+			portraitRight.setGraphicSize(Std.int(portraitRight.width * 1.3 * 0.9));
+			portraitRight.updateHitbox();
+			portraitRight.scrollFactor.set();
+			add(portraitRight);
+			portraitRight.visible = false;
+
+			box.setGraphicSize(Std.int(box.width * CoolUtil.daPixelZoom * 0.9));
+			box.updateHitbox();
+			add(box);
+
+			box.screenCenter(X);
+			portraitLeft.screenCenter(X);
+			skipText = new FlxText(10, 10, Std.int(FlxG.width * 0.6), "", 16);
+			skipText.font = 'Pixel Arial 11 Bold';
+			skipText.color = 0x000000;
+			skipText.text = 'press back to skip';
+			add(skipText);
 		}
-
-		if (PlayState.SONG.song.toLowerCase()=='senpai' || PlayState.SONG.song.toLowerCase()=='roses' || PlayState.SONG.song.toLowerCase()=='thorns') {
-			dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
-		} else {
-			dropText = new FlxText(242, 432, Std.int(FlxG.width * 0.6), "", 32);
-		}
+		dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
 		dropText.font = 'Pixel Arial 11 Bold';
 		dropText.color = 0xFFD89494;
 		add(dropText);
 
-		if (PlayState.SONG.song.toLowerCase()=='senpai' || PlayState.SONG.song.toLowerCase()=='roses' || PlayState.SONG.song.toLowerCase()=='thorns') {
-			swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
-		} else {
-			swagDialogue = new FlxTypeText(240, 430, Std.int(FlxG.width * 0.6), "", 32);
-		}
-		if (!hasVoice) {
-			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
-		}
+		swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
 		swagDialogue.font = 'Pixel Arial 11 Bold';
 		swagDialogue.color = 0xFF3F2021;
+		swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
 		add(swagDialogue);
 
 		dialogue = new Alphabet(0, 80, "", false, true);
 		// dialogue.x = 90;
 		// add(dialogue);
+	
 	}
 
 	var dialogueOpened:Bool = false;
@@ -242,9 +227,9 @@ class DialogueBox extends FlxSpriteGroup
 	override function update(elapsed:Float)
 	{
 		// HARD CODING CUZ IM STUPDI
-		if (PlayState.SONG.song.toLowerCase() == 'roses')
+		if (PlayState.SONG.songId.toLowerCase() == 'roses')
 			portraitLeft.visible = false;
-		if (PlayState.SONG.song.toLowerCase() == 'thorns')
+		if (PlayState.SONG.songId.toLowerCase() == 'thorns')
 		{
 			portraitLeft.visible = false;
 			swagDialogue.color = FlxColor.WHITE;
@@ -252,33 +237,50 @@ class DialogueBox extends FlxSpriteGroup
 		}
 
 		dropText.text = swagDialogue.text;
-		
+
 		if (box.animation.curAnim != null)
 		{
-			switch (box.animation.curAnim.name)
+			if (box.animation.curAnim.name == 'normalOpen' && box.animation.curAnim.finished)
 			{
-			case 'RuvOpen':
-				box.animation.play('Ruvnormal');
-				box.updateHitbox();
-			case 'SarvOpen':
-				box.animation.play('Sarvnormal');
-				box.updateHitbox();
-			case 'OtherOpen':
-				box.animation.play('Othernormal');
-				box.updateHitbox();
-			case 'normalOpen':
 				box.animation.play('normal');
-				updateHitbox();
+				dialogueOpened = true;
 			}
-			dialogueOpened = true;
 		}
-		
+
 		if (dialogueOpened && !dialogueStarted)
 		{
 			startDialogue();
 			dialogueStarted = true;
 		}
+		if (PlayerSettings.player1.controls.BACK && isEnding != true)
+		{
+			remove(dialogue);
+			isEnding = true;
+			switch (PlayState.SONG.songId.toLowerCase())
+			{
+				case "senpai" | "thorns":
+					sound.fadeOut(2.2, 0);
+				case "roses":
+					trace("roses");
+				default:
+					trace("other song");
+			}
+			new FlxTimer().start(0.2, function(tmr:FlxTimer)
+			{
+				box.alpha -= 1 / 5;
+				bgFade.alpha -= 1 / 5 * 0.7;
+				portraitLeft.visible = false;
+				portraitRight.visible = false;
+				swagDialogue.alpha -= 1 / 5;
+				dropText.alpha = swagDialogue.alpha;
+			}, 5);
 
+			new FlxTimer().start(1.2, function(tmr:FlxTimer)
+			{
+				finishThing();
+				kill();
+			});
+		}
 		if (PlayerSettings.player1.controls.ACCEPT && dialogueStarted == true)
 		{
 			remove(dialogue);
@@ -290,15 +292,9 @@ class DialogueBox extends FlxSpriteGroup
 				if (!isEnding)
 				{
 					isEnding = true;
-					if (voiceAct != null) voiceAct.destroy();
 
-					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns')
+					if (PlayState.SONG.songId.toLowerCase() == 'senpai' || PlayState.SONG.songId.toLowerCase() == 'thorns')
 						sound.fadeOut(2.2, 0);
-
-					if (PlayState.SONG.song.toLowerCase	() == 'matins' || PlayState.SONG.song.toLowerCase() == 'serafim' || PlayState.SONG.song.toLowerCase() == 'harmony') {
-						bgmus.fadeOut(2.2, 0);
-					}
-					
 					new FlxTimer().start(0.2, function(tmr:FlxTimer)
 					{
 						box.alpha -= 1 / 5;
@@ -319,11 +315,10 @@ class DialogueBox extends FlxSpriteGroup
 			else
 			{
 				dialogueList.remove(dialogueList[0]);
-				if (voiceAct != null) voiceAct.destroy();
 				startDialogue();
 			}
 		}
-		
+
 		super.update(elapsed);
 	}
 
@@ -331,7 +326,6 @@ class DialogueBox extends FlxSpriteGroup
 
 	function startDialogue():Void
 	{
-
 		cleanDialog();
 		// var theDialog:Alphabet = new Alphabet(0, 70, dialogueList[0], false, true);
 		// dialogue = theDialog;
@@ -341,105 +335,15 @@ class DialogueBox extends FlxSpriteGroup
 		swagDialogue.resetText(dialogueList[0]);
 		swagDialogue.start(0.04, true);
 
-/*		if (voiceActing != '') {
-			voiceAct = FlxG.sound.load(Paths.sound('Voices/$voiceActing'));
-			voiceAct.play();
-		}
-*/
-		box.alpha = 0;
-		switch (textbox)
-		{
+		switch (curCharacter) {
 			case 'ruv':
-				box.animation.play('RuvOpen');
-				box.x = 20;
-				box.y = 340;
-				box.scale.set(0.95, 0.95);
-			case 'sarv':
-				box.animation.play('SarvOpen');
-				box.x = 20;
-				box.y = 330;
-				box.scale.set(0.9, 0.9);
-			case 'other':
-				box.animation.play('OtherOpen');
-				box.x = 20;
-				box.y = 330;
-				box.scale.set(0.9, 0.9);
-			default:
-				box.animation.play('normalOpen');
-				box.x = 0;
-				box.y = 0;
-		}
-		box.alpha = 1;
-		
-
-		switch (curCharacter)
-		{
-			case 'dad':
-				portraitRight.visible = false;
-				if (!portraitLeft.visible)
-				{
-					portraitLeft.animation.play('enter');
-					portraitLeft.visible = true;
-				}
-			case 'bf':
-				portraitLeft.visible = false;
-				if (!portraitRight.visible)
-				{
-					portraitRight.animation.play('enter');
-					portraitRight.visible = true;
-				}
-			case 'ruvContent': 
-				portraitLeft.visible = false;
-				portraitRight.animation.play('ruvContent');
-				portraitRight.visible = true;
-			case 'ruvDateContent':
-				portraitLeft.visible = false;
-				portraitRight.animation.play('ruvDateContent');
-				portraitRight.visible = true;
-			case 'ruvDateNerv':
-				portraitLeft.visible = false;
-				portraitRight.animation.play('ruvDateNerv');
-				portraitRight.visible = true;
-			case 'ruvDateNeutral':
-				portraitLeft.visible = false;
-				portraitRight.animation.play('ruvDateNeutral');
-				portraitRight.visible = true;
-			case 'ruvNerv':
-				portraitLeft.visible = false;
-				portraitRight.animation.play('ruvNerv');
-				portraitRight.visible = true;
-			case 'ruvNeutral':
-				portraitLeft.visible = false;
-				portraitRight.animation.play('ruvNeutral');
-				portraitRight.visible = true;
-			case 'ruvRonv':
-				portraitLeft.visible = false;
-				portraitRight.animation.play('ruvRonv');
-				portraitRight.visible = true;
-			case 'sarvCheerful': 
-				portraitRight.visible = false;
-				portraitLeft.animation.play('sarvCheerful');
-				portraitLeft.visible = true;
-			case 'sarvConfused':
-				portraitRight.visible = false;
-				portraitLeft.animation.play('sarvConfused');
-				portraitLeft.visible = true;
-			case 'sarvDateCheerful':
-				portraitRight.visible = false;
-				portraitLeft.animation.play('sarvDateCheerful');
-				portraitLeft.visible = true;
-			case 'sarvDateConfused':
-				portraitRight.visible = false;
-				portraitLeft.animation.play('sarvDateConfused');
-				portraitLeft.visible = true;
-			case 'sarvDateDelighted':
-				portraitRight.visible = false;
-				portraitLeft.animation.play('sarvDateDelighted');
-				portraitLeft.visible = true;
-			case 'sarvDelighted':
-				portraitRight.visible = false;
-				portraitLeft.animation.play('sarvDelighted');
-				portraitLeft.visible = true;
+				portraitRight.animation.play(curCharacter);
+				box.animation.play('ruv');
+				box.updateHitbox();
+			case 'sarvente':
+				portraitLeft.animation.play(curCharacter);
+				box.animation.play('sarv');
+				box.updateHitbox();
 		}
 	}
 
@@ -447,8 +351,7 @@ class DialogueBox extends FlxSpriteGroup
 	{
 		var splitName:Array<String> = dialogueList[0].split(":");
 		curCharacter = splitName[1];
-		dialogueList[0] = splitName[2]; //dialogueList[0].substr(splitName[1].length + 2).trim();
-		textbox = splitName[3];
-		voiceActing = splitName[4];
+		dialogueList[0] = dialogueList[0].substr(splitName[1].length + 2).trim();
+//		currentAnim = splitName[2];
 	}
 }

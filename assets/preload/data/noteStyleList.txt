@@ -1,4 +1,2 @@
 normal
 pixel
-flower
-heart

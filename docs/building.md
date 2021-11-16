@@ -16,21 +16,22 @@
 	 - `haxelib install lime 7.9.0`
 	 - `haxelib install openfl`
 	 - `haxelib install flixel`
-	 - `haxelib run lime setup`
-	 - `haxelib run lime setup flixel`
 	 - `haxelib install flixel-tools`
-	 - `haxelib run flixel-tools setup`
-	 - `haxelib install flixel-addons`
 	 - `haxelib install flixel-ui`
 	 - `haxelib install hscript`
-	 - `haxelib install newgrounds`
-	 - `haxelib git linc_luajit https://github.com/AndreiRudenko/linc_luajit.git`
-	 - `haxelib git faxe https://github.com/uhrobots/faxe`
-	 - `haxelib git polymod https://github.com/larsiusprime/polymod.git`
-	 - `haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc`
+	 - `haxelib install flixel-addons`
 	 - `haxelib install actuate`
+	 - `haxelib run lime setup`
+	 - `haxelib run lime setup flixel`
+	 - `haxelib run flixel-tools setup`
+	 - `haxelib git linc_luajit https://github.com/nebulazorua/linc_luajit.git`
+	 - `haxelib git hxvm-luajit https://github.com/nebulazorua/hxvm-luajit`
+	 - `haxelib git faxe https://github.com/uhrobots/faxe`
+	 - `haxelib git polymod https://github.com/MasterEric/polymod.git`
+	 - `haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc`
 	 - `haxelib git extension-webm https://github.com/KadeDev/extension-webm`
 	 - `lime rebuild extension-webm <ie. windows, macos, linux>`
+	      - Note: for Linux, you need to install the `g++-multilib` and `gcc-multilib` packages respectively. (use apt to install them.)
 
 ### Windows-only dependencies (only for building *to* Windows. Building html5 on Windows does not require this)
 If you are planning to build for Windows, you also need to install **Visual Studio 2019**. While installing it, *don't click on any of the options to install workloads*. Instead, go to the **individual components** tab and choose the following:
@@ -60,3 +61,6 @@ Finally, we are ready to build.
 - The build will be in `Kade-Engine/export/release/<target>/bin`, with `<target>` being the target you built to in the previous step. (i.e. `Kade-Engine/export/release/windows/bin`)
 - Incase you added the -debug flag the files will be inside `Kade-Engine/export/debug/<target>/bin`
 - Only the `bin` folder is necessary to run the game. The other ones in `export/release/<target>` are not.
+
+## Troubleshooting
+Check the **Troubleshooting documentation** if you have problems with these instructions.
