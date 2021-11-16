@@ -460,17 +460,6 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('roses/rosesDialogue'));
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
-			case 'senpai':
-				if (langue == "English") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('senpai/senpaiEnglsh'));
-				} else if (langue == "French") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('senpai/senpaiFrench'));
-				} else if (langue == "Spanish") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('senpai/senpaiSpanish'));
-				} else if (langue == "Korean") {
-					dialogue = CoolUtil.coolTextFile(Paths.txt('senpai/senpaiKorean'));
-				}
-
 			case 'matins' | 'serafim' | 'harmony':
 				var s = MainMenuState.language + 'Dialogue';
 				var s2 = MainMenuState.language + 'EndDialogue';
@@ -1350,7 +1339,7 @@ class PlayState extends MusicBeatState
 		Conductor.songPosition = 0;
 		Conductor.songPosition -= Conductor.crochet * 5;
 
-		var swagCounter:Int = 0;
+		var swagCounter:Int = 4;
 
 		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 		{
@@ -3742,8 +3731,8 @@ class PlayState extends MusicBeatState
 
 		var coolText:FlxText = new FlxText(0, 0, 0, placement, 32);
 		coolText.screenCenter();
-		coolText.x = FlxG.width * 0.55;
-		coolText.y = 350;
+		coolText.x = FlxG.width * 0.2;
+		coolText.y = FlxG.height * 0.8;
 		coolText.cameras = [camHUD];
 		//
 
@@ -3820,6 +3809,7 @@ class PlayState extends MusicBeatState
 
 			rating.loadGraphic(Paths.image(pixelShitPart1 + daRating + pixelShitPart2, pixelShitPart3));
 			rating.screenCenter();
+			rating.y = coolText.y;
 			rating.y -= 50;
 			rating.x = coolText.x - 125;
 

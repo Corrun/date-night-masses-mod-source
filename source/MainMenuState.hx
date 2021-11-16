@@ -155,16 +155,17 @@ class MainMenuState extends MusicBeatState
 			controls.setKeyboardScheme(KeyboardScheme.Duo(true), true);
 
 		changeItem();
-		/*
-		if (FlxG.save.data.trophy2) {
+		
+		
 			var curCharacter:String = "안";
 			trace(curCharacter);
-			var DescThing = new FlxText(FlxG.width /2, FlxG.height/2, 0, curCharacter, 15);
-			DescThing.scrollFactor.set();
-			DescThing.setFormat(Paths.font("Roboto-Black"), 50, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			add(DescThing);
-		}
-		*/
+			//var DescThing = new FlxText(FlxG.width /2, FlxG.height/2, 0, curCharacter, 15);
+			//DescThing.scrollFactor.set();
+			//DescThing.setFormat(Paths.font("Roboto-Black"), 50, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			//add(DescThing);
+
+			//__hbBuffer.addUTF16(untyped __cpp__('(uintptr_t){0}', curCharacter.wc_str()),curCharacter.length, 0, -1);
+		
 		
 		
 		super.create();

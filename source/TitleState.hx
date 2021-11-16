@@ -67,7 +67,7 @@ class TitleState extends MusicBeatState
 		}
 
 		#if polymod
-		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
+		//polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end
 		
 		#if sys
@@ -82,7 +82,7 @@ class TitleState extends MusicBeatState
 		
 		#if !cpp
 
-		FlxG.save.bind('funkin', 'ninjamuffin99');
+		FlxG.save.bind('saveStuff', 'BeyondMFM');
 
 		PlayerSettings.init();
 
@@ -243,7 +243,7 @@ class TitleState extends MusicBeatState
 			// music.play();
 			FlxG.sound.playMusic(Paths.music('mp3'), 0);
 
-			FlxG.sound.music.fadeIn(4, 0, 0.7);
+			FlxG.sound.music.fadeIn(4, 0, 0.5);
 			Conductor.changeBPM(150);
 			if (API == 2) initialized = true;
 			else API = 2;
