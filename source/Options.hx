@@ -321,6 +321,11 @@ class VolUpBind extends Option
 		super();
 		description = desc;
 		acceptType = true;
+
+		if (FlxG.save.data.volUpBind == null)
+		{
+			FlxG.save.data.volUpBind = "<";
+		}
 	}
 
 	public override function onType(text:String)
@@ -353,6 +358,11 @@ class VolDownBind extends Option
 		super();
 		description = desc;
 		acceptType = true;
+
+		if (FlxG.save.data.volUpBind == null)
+		{
+			FlxG.save.data.volUpBind = ">";
+		}
 	}
 
 	public override function onType(text:String)
