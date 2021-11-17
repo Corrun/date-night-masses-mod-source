@@ -359,9 +359,9 @@ class VolDownBind extends Option
 		description = desc;
 		acceptType = true;
 
-		if (FlxG.save.data.volUpBind == null)
+		if (FlxG.save.data.volDownBind == null)
 		{
-			FlxG.save.data.volUpBind = ">";
+			FlxG.save.data.volDownBind = ">";
 		}
 	}
 
