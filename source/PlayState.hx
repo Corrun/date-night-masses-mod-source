@@ -772,15 +772,15 @@ class PlayState extends MusicBeatState
 		playerStrums = new FlxTypedGroup<StaticArrow>();
 		cpuStrums = new FlxTypedGroup<StaticArrow>();
 
-		if (!SONG.songId.toLowerCase() == 'matins')	{
-			noteskinPixelSprite = NoteskinHelpers.generatePixelSprite(FlxG.save.data.noteskin);
-			noteskinSprite = NoteskinHelpers.generateNoteskinSprite(FlxG.save.data.noteskin);
-			noteskinPixelSpriteEnds = NoteskinHelpers.generatePixelSprite(FlxG.save.data.noteskin, true);
-		}
-		else {
-			noteskinPixelSprite = NoteskinHelpers.generatePixelSprite("Flowers");
-			noteskinSprite = NoteskinHelpers.generateNoteskinSprite("Flowers");
-			noteskinPixelSpriteEnds = NoteskinHelpers.generatePixelSprite("Flowers", true);
+		switch (SONG.songId.toLowerCase()) {
+			default:
+				noteskinPixelSprite = NoteskinHelpers.generatePixelSprite(FlxG.save.data.noteskin);
+				noteskinSprite = NoteskinHelpers.generateNoteskinSprite(FlxG.save.data.noteskin);
+				noteskinPixelSpriteEnds = NoteskinHelpers.generatePixelSprite(FlxG.save.data.noteskin, true);
+			case 'matins':
+				noteskinPixelSprite = NoteskinHelpers.generatePixelSprite(2);
+				noteskinSprite = NoteskinHelpers.generateNoteskinSprite(2);
+				noteskinPixelSpriteEnds = NoteskinHelpers.generatePixelSprite(2, true);
 		}
 
 
