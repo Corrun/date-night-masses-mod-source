@@ -36,7 +36,7 @@ class NoteskinHelpers
 			noteskinArray.push(i.replace(".png", ""));
 		}
 		#else
-		noteskinArray = ["Arrows", "Circles", "Flowers"];
+		noteskinArray = ["Arrows", "Circles", "Flowers", "Hearts"];
 		#end
 
 		return noteskinArray;
