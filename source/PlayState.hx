@@ -684,17 +684,13 @@ class PlayState extends MusicBeatState
 		trace("SF CALC: " + Math.floor((PlayStateChangeables.safeFrames / 60) * 1000));
 
 		var doof = null;
-		var coolBox = null;
 		if (isStoryMode)
 		{
 			doof = new DialogueBox(false, dialogue);
-			coolBox = new DialogueBox(false, endDialogue);
 			// doof.x += 70;
 			// doof.y = FlxG.height * 0.5;
 			doof.scrollFactor.set();
-			coolBox.scrollFactor.set();
 			doof.finishThing = startCountdown;
-			coolBox.finishThing = nextSong;
 		}
 
 		if (!isStoryMode && songMultiplier == 1)
@@ -3426,6 +3422,12 @@ class PlayState extends MusicBeatState
 			if (isStoryMode)
 			{
 				if (SONG.songId == 'matins') {
+					var coolBox = null;
+					coolBox = new DialogueBox(false, endDialogue);
+					coolBox.scrollFactor.set();
+					coolBox.finishThing = nextSong;
+
+
 					startDialogue(coolBox);
 				} 
 				else {
@@ -4773,7 +4775,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 	}
-}
+
 
 
 // u looked :O -ides
