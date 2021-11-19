@@ -3427,6 +3427,8 @@ class PlayState extends MusicBeatState
 					coolBox.scrollFactor.set();
 					coolBox.finishThing = nextSong;
 
+					camHUD.visible = false;
+
 
 					startDialogue(coolBox);
 				} 
