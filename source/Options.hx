@@ -7,6 +7,7 @@ import Controls.KeyboardScheme;
 import flixel.FlxG;
 import openfl.display.FPS;
 import openfl.Lib;
+import flixel.input.keyboard.FlxKey;
 
 class Option
 {
@@ -324,7 +325,7 @@ class VolUpBind extends Option
 
 		if (FlxG.save.data.volUpBind == null)
 		{
-			FlxG.save.data.volUpBind = "<";
+			FlxG.save.data.volUpBind = FlxKey.PLUS;
 		}
 	}
 
@@ -361,7 +362,7 @@ class VolDownBind extends Option
 
 		if (FlxG.save.data.volDownBind == null)
 		{
-			FlxG.save.data.volDownBind = ">";
+			FlxG.save.data.volDownBind = FlxKey.MINUS;
 		}
 	}
 
