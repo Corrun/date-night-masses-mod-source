@@ -217,6 +217,7 @@ class PlayState extends MusicBeatState
 	var allowedToCheer:Bool = false; // Will decide if gf is allowed to cheer depending on the song
 
 	public var dialogue:Array<String> = ['dad:blah blah blah', 'bf:coolswag'];
+	public var endDialogue:Array<String> = ['dad:oh no!', 'bf:kinda cringe'];
 
 	var songName:FlxText;
 
@@ -490,6 +491,10 @@ class PlayState extends MusicBeatState
 		{
 			dialogue = CoolUtil.coolTextFile(Paths.txt('data/songs/${PlayState.SONG.songId}/dialogue'));
 		}
+		if (Paths.doesTextAssetExist(Paths.txt('data/songs/${PlayState.SONG.songId}/endDialogue')))
+			{
+				endDialogue = CoolUtil.coolTextFile(Paths.txt('data/songs/${PlayState.SONG.songId}/endDialogue'));
+			}
 
 		// defaults if no stage was found in chart
 		var stageCheck:String = 'stage';
@@ -679,14 +684,17 @@ class PlayState extends MusicBeatState
 		trace("SF CALC: " + Math.floor((PlayStateChangeables.safeFrames / 60) * 1000));
 
 		var doof = null;
-
+		var coolBox = null;
 		if (isStoryMode)
 		{
 			doof = new DialogueBox(false, dialogue);
+			coolBox = new DialogueBox(false, endDialogue);
 			// doof.x += 70;
 			// doof.y = FlxG.height * 0.5;
 			doof.scrollFactor.set();
+			coolBox.scrollFactor.set();
 			doof.finishThing = startCountdown;
+			coolBox.finishThing = nextSong;
 		}
 
 		if (!isStoryMode && songMultiplier == 1)
@@ -3417,6 +3425,10 @@ class PlayState extends MusicBeatState
 		{
 			if (isStoryMode)
 			{
+				if (SONG.songId == 'matins') {
+					startDialogue(coolBox);
+				} 
+				else {
 				campaignScore += Math.round(songScore);
 				campaignMisses += misses;
 				campaignSicks += sicks;
@@ -3507,6 +3519,7 @@ class PlayState extends MusicBeatState
 					clean();
 				}
 			}
+		}
 			else
 			{
 				trace('WENT BACK TO FREEPLAY??');
@@ -4668,5 +4681,99 @@ class PlayState extends MusicBeatState
 			SONG = cleanedSong;
 		}
 	}
+	function nextSong() {
+			campaignScore += Math.round(songScore);
+			campaignMisses += misses;
+			campaignSicks += sicks;
+			campaignGoods += goods;
+			campaignBads += bads;
+			campaignShits += shits;
+
+			storyPlaylist.remove(storyPlaylist[0]);
+
+			if (storyPlaylist.length <= 0)
+			{
+				transIn = FlxTransitionableState.defaultTransIn;
+				transOut = FlxTransitionableState.defaultTransOut;
+
+				paused = true;
+
+				FlxG.sound.music.stop();
+				vocals.stop();
+				if (FlxG.save.data.scoreScreen)
+				{
+					if (FlxG.save.data.songPosition)
+					{
+						FlxTween.tween(songPosBar, {alpha: 0}, 1);
+						FlxTween.tween(bar, {alpha: 0}, 1);
+						FlxTween.tween(songName, {alpha: 0}, 1);
+					}
+					openSubState(new ResultsScreen());
+					new FlxTimer().start(1, function(tmr:FlxTimer)
+					{
+						inResults = true;
+					});
+				}
+				else
+				{
+					GameplayCustomizeState.freeplayBf = 'bf';
+					GameplayCustomizeState.freeplayDad = 'dad';
+					GameplayCustomizeState.freeplayGf = 'gf';
+					GameplayCustomizeState.freeplayNoteStyle = 'normal';
+					GameplayCustomizeState.freeplayStage = 'stage';
+					GameplayCustomizeState.freeplaySong = 'bopeebo';
+					GameplayCustomizeState.freeplayWeek = 1;
+					FlxG.sound.playMusic(Paths.music('freakyMenu'));
+					Conductor.changeBPM(102);
+					FlxG.switchState(new StoryMenuState());
+					clean();
+				}
+
+				#if FEATURE_LUAMODCHART
+				if (luaModchart != null)
+				{
+					luaModchart.die();
+					luaModchart = null;
+				}
+				#end
+
+				if (SONG.validScore)
+				{
+					Highscore.saveWeekScore(storyWeek, campaignScore, storyDifficulty);
+				}
+
+				StoryMenuState.unlockNextWeek(storyWeek);
+			}
+			else
+			{
+				var diff:String = ["-easy", "", "-hard"][storyDifficulty];
+
+				Debug.logInfo('PlayState: Loading next story song ${PlayState.storyPlaylist[0]}-${diff}');
+
+				if (StringTools.replace(PlayState.storyPlaylist[0], " ", "-").toLowerCase() == 'eggnog')
+				{
+					var blackShit:FlxSprite = new FlxSprite(-FlxG.width * FlxG.camera.zoom,
+						-FlxG.height * FlxG.camera.zoom).makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
+					blackShit.scrollFactor.set();
+					add(blackShit);
+					camHUD.visible = false;
+
+					FlxG.sound.play(Paths.sound('Lights_Shut_off'));
+				}
+
+				FlxTransitionableState.skipNextTransIn = true;
+				FlxTransitionableState.skipNextTransOut = true;
+				prevCamFollow = camFollow;
+
+				PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0], diff);
+				FlxG.sound.music.stop();
+
+				LoadingState.loadAndSwitchState(new PlayState());
+				clean();
+			}
+		}
+	}
 }
+
+
 // u looked :O -ides
