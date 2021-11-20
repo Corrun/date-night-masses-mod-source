@@ -44,7 +44,12 @@ class Stage extends MusicBeatState
 			'senpai-angry' => [250, 460]
 		],
 		'schoolEvil' => ['gf-pixel' => [580, 430], 'bf-pixel' => [970, 670], 'spirit' => [-50, 200]],
-		'cloister' => ['table-sarv' => [-80, 250], 'ruv' => [453, -38], 'gf' => [1547, -1020]]
+		'cloister' => [
+			'table-sarv' => [-80, 250],
+			'ruv' => [453, -38],
+			'gf' => [1547, -1020],
+			'sticky' => [469, 406]
+		]
 	];
 
 	public function new(daStage:String)
@@ -59,14 +64,26 @@ class Stage extends MusicBeatState
 		{
 			case 'cloister':
 				curStage = 'cloister';
-				var bg:FlxSprite = new FlxSprite(100,100).loadGraphic(Paths.image('stages/house', 'date-night masses'));
+				var bg:FlxSprite = new FlxSprite(100, 100).loadGraphic(Paths.image('stages/house', 'date-night masses'));
 				bg.antialiasing = true;
 				bg.scrollFactor.set(0.9, 0.9);
 				bg.active = false;
 				bg.setGraphicSize(bg.frameWidth * 2);
-				
+
 				swagBacks['bg'] = bg;
 				toAdd.push(bg);
+
+				if (PlayState.storyDifficulty == 0)
+				{
+					var table:FlxSprite = new FlxSprite(373, 250).loadGraphic(Paths.image('stages/halftable', 'date-night masses'));
+					table.antialiasing = true;
+					table.scrollFactor.set(0.9, 0.9);
+					table.setGraphicSize(table.width * 0.5);
+					table.active = false;
+					swagBacks['table'] = table;
+					toAdd.push(table);
+				}
+
 			case 'halloween':
 				{
 					var hallowTex = Paths.getSparrowAtlas('halloween_bg', 'week2');

@@ -12,3 +12,4 @@ bf-christmas
 gf-christmas
 table-sarv
 ruv
+sticky
