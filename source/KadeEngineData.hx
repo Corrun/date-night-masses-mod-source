@@ -6,11 +6,6 @@ class KadeEngineData
 {
 	public static function initSave()
 	{
-		/*
-			if (FlxG.sound.music.volume == 0.0)
-				FlxG.sound.music.volume = 5.0;
-		 */
-
 		if (FlxG.save.data.weekUnlocked == null)
 			FlxG.save.data.weekUnlocked = 7;
 

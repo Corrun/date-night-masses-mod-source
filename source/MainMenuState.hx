@@ -41,6 +41,7 @@ class MainMenuState extends MusicBeatState
 
 	public static var kadeEngineVer:String = "1.8" + nightly;
 	public static var gameVer:String = "0.2.7.1";
+	public static var chosenMenu = Std.random(10);
 
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
@@ -64,7 +65,15 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		var bg:FlxSprite = new FlxSprite(-100).loadGraphic(Paths.loadImage('menuBG'));
+		var bg:FlxSprite;
+
+		bg = new FlxSprite(-100).loadGraphic(Paths.image('menu_bg/menuBGset1', 'date-night masses'));
+
+		if (chosenMenu >= 7 && chosenMenu <= 9)
+		{
+			bg = new FlxSprite(-100).loadGraphic(Paths.image('menu_bg/menuBGset2', 'date-night masses'));
+		}
+
 		bg.scrollFactor.x = 0;
 		bg.scrollFactor.y = 0.10;
 		bg.setGraphicSize(Std.int(bg.width * 1.1));
@@ -77,6 +86,16 @@ class MainMenuState extends MusicBeatState
 		add(camFollow);
 
 		magenta = new FlxSprite(-80).loadGraphic(Paths.loadImage('menuDesat'));
+
+		if (chosenMenu >= 0 && chosenMenu <= 6)
+		{
+			magenta = new FlxSprite(-80).loadGraphic(Paths.image('menu_bg/menuBGset1-magenta', 'date-night masses'));
+		}
+		else if (chosenMenu >= 7 && chosenMenu <= 9)
+		{
+			magenta = new FlxSprite(-80).loadGraphic(Paths.image('menu_bg/menuBGset2-magenta', 'date-night masses'));
+		}
+
 		magenta.scrollFactor.x = 0;
 		magenta.scrollFactor.y = 0.10;
 		magenta.setGraphicSize(Std.int(magenta.width * 1.1));

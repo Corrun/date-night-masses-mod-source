@@ -7,16 +7,16 @@ import flixel.group.FlxSpriteGroup;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 
-class MenuItem extends FlxSpriteGroup
+class MenuBanner extends FlxSpriteGroup
 {
 	public var targetY:Float = 0;
 	public var week:FlxSprite;
 	public var flashingInt:Int = 0;
 
-	public function new(x:Float, y:Float, weekNum:Int = 0)
+	public function new(weekNum:Int = 0)
 	{
-		super(x, y);
-		week = new FlxSprite().loadGraphic(Paths.loadImage('storymenu/week' + weekNum));
+		super();
+		week = new FlxSprite(0, 56).loadGraphic(Paths.image('weekBanners/week' + weekNum, 'date-night masses'));
 		week.antialiasing = FlxG.save.data.antialiasing;
 		add(week);
 	}
@@ -37,14 +37,14 @@ class MenuItem extends FlxSpriteGroup
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		y = FlxMath.lerp(y, (targetY * 120) + 480, 0.17 * (60 / FlxG.save.data.fpsCap));
+		// y = FlxMath.lerp(y, (targetY * 120) + 480, 0.17 * (60 / FlxG.save.data.fpsCap));
 
-		if (isFlashing)
-			flashingInt += 1;
+		// if (isFlashing)
+		//	flashingInt += 1;
 
-		if (flashingInt % fakeFramerate >= Math.floor(fakeFramerate / 2))
-			week.color = 0xFFDD4DB6;
-		else if (FlxG.save.data.flashing)
-			week.color = FlxColor.WHITE;
+		// if (flashingInt % fakeFramerate >= Math.floor(fakeFramerate / 2))
+		//	week.color = 0xFF33ffff;
+		// else if (FlxG.save.data.flashing)
+		//	week.color = FlxColor.WHITE;
 	}
 }

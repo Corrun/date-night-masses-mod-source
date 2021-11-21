@@ -143,7 +143,13 @@ class FreeplayState extends MusicBeatState
 
 		// LOAD CHARACTERS
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.loadImage('menuBGBlue'));
+		var bg:FlxSprite = new FlxSprite(-100).loadGraphic(Paths.image('menu_bg/menuBGset1-blue', 'date-night masses'));
+
+		if (MainMenuState.chosenMenu >= 7 && MainMenuState.chosenMenu <= 9)
+		{
+			bg = new FlxSprite().loadGraphic(Paths.image('menu_bg/menuBGset2-blue', 'date-night masses'));
+		}
+
 		bg.antialiasing = FlxG.save.data.antialiasing;
 		add(bg);
 
@@ -519,10 +525,10 @@ class FreeplayState extends MusicBeatState
 
 		curDifficulty += change;
 
-		if (curDifficulty < 0)
-			curDifficulty = 2;
+		if (curDifficulty < 1)
+			curDifficulty = 1;
 		if (curDifficulty > 2)
-			curDifficulty = 0;
+			curDifficulty = 2;
 
 		// adjusting the highscore song name to be compatible (changeDiff)
 		var songHighscore = StringTools.replace(songs[curSelected].songName, " ", "-");
