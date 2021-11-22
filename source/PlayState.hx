@@ -297,6 +297,7 @@ class PlayState extends MusicBeatState
 
 	public static var startTime = 0.0;
 
+	public var grpNoteSplash:FlxTypedGroup<NoteSplash>;
 	// API stuff
 
 	public function addObject(object:FlxBasic)
@@ -438,6 +439,7 @@ class PlayState extends MusicBeatState
 		FlxG.cameras.add(camHUD);
 		FlxG.cameras.add(camSustains);
 		FlxG.cameras.add(camNotes);
+		grpNoteSplash = new FlxTypedGroup<NoteSplash>();
 
 		camHUD.zoom = PlayStateChangeables.zoom;
 
@@ -780,6 +782,13 @@ class PlayState extends MusicBeatState
 		strumLineNotes = new FlxTypedGroup<StaticArrow>();
 		add(strumLineNotes);
 
+		add(grpNoteSplash);
+
+		var splash:NoteSplash = new NoteSplash(100, 100, 0);
+		grpNoteSplash.add(splash);
+		splash.alpha = 0.0;
+
+
 		playerStrums = new FlxTypedGroup<StaticArrow>();
 		cpuStrums = new FlxTypedGroup<StaticArrow>();
 
@@ -1025,6 +1034,7 @@ class PlayState extends MusicBeatState
 		}
 
 		strumLineNotes.cameras = [camHUD];
+		grpNoteSplash.cameras = [camHUD];
 		notes.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
 		healthBarBG.cameras = [camHUD];
@@ -3710,6 +3720,7 @@ class PlayState extends MusicBeatState
 				if (FlxG.save.data.accuracyMod == 0)
 					totalNotesHit += 1;
 				sicks++;
+				spawnNoteSplashOnNote(daNote);
 		}
 
 		if (songMultiplier >= 1.05)
@@ -4442,6 +4453,9 @@ class PlayState extends MusicBeatState
 		if (mashing != 0)
 			mashing = 0;
 
+		if (!note.isSustainNote) {
+			spawnNoteSplashOnNote(note);
+		}
 		var noteDiff:Float = -(note.strumTime - Conductor.songPosition);
 
 		if (loadRep)
@@ -4758,6 +4772,21 @@ class PlayState extends MusicBeatState
 		}
 	}
 
+	function spawnNoteSplashOnNote(note:Note) {
+		if (note != null) {
+			var strum:StaticArrow = playerStrums.members[note.noteData];
+			if (strum != null) {
+				spawnNoteSplash(strum.x, strum.y, note.noteData, note);
+			}
+		}
+	}
+
+	function spawnNoteSplash(x:Float, y:Float, data:Int, ?note:Note = null) {
+		var skin = 'noteSplashes';
+
+		var splash:NoteSplash = grpNoteSplash.recycle(NoteSplash);
+		splash.setupNoteSplash(x, y, data);
+	}
 	function nextSong()
 	{
 		campaignScore += Math.round(songScore);
