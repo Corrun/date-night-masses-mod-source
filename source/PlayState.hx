@@ -776,15 +776,29 @@ class PlayState extends MusicBeatState
 		playerStrums = new FlxTypedGroup<StaticArrow>();
 		cpuStrums = new FlxTypedGroup<StaticArrow>();
 
-		switch (SONG.songId.toLowerCase()) {
-			default:
-				noteskinPixelSprite = NoteskinHelpers.generatePixelSprite(FlxG.save.data.noteskin);
-				noteskinSprite = NoteskinHelpers.generateNoteskinSprite(FlxG.save.data.noteskin);
-				noteskinPixelSpriteEnds = NoteskinHelpers.generatePixelSprite(FlxG.save.data.noteskin, true);
-			case 'matins':
-				noteskinPixelSprite = NoteskinHelpers.generatePixelSprite(2);
-				noteskinSprite = NoteskinHelpers.generateNoteskinSprite(2);
-				noteskinPixelSpriteEnds = NoteskinHelpers.generatePixelSprite(2, true);
+		if (storyWeek == 0) {
+			switch (SONG.songId.toLowerCase()) {
+				default:
+					noteskinPixelSprite = NoteskinHelpers.generatePixelSprite(FlxG.save.data.noteskin);
+					noteskinSprite = NoteskinHelpers.generateNoteskinSprite(FlxG.save.data.noteskin);
+					noteskinPixelSpriteEnds = NoteskinHelpers.generatePixelSprite(FlxG.save.data.noteskin, true);
+				case 'matins':
+					noteskinPixelSprite = NoteskinHelpers.generatePixelSprite(2);
+					noteskinSprite = NoteskinHelpers.generateNoteskinSprite(2);
+					noteskinPixelSpriteEnds = NoteskinHelpers.generatePixelSprite(2, true);
+			}
+		}
+		if (storyWeek == 1) {
+			switch (SONG.songId.toLowerCase()) {
+				default:
+					noteskinPixelSprite = NoteskinHelpers.generatePixelSprite(FlxG.save.data.noteskin);
+					noteskinSprite = NoteskinHelpers.generateNoteskinSprite(FlxG.save.data.noteskin);
+					noteskinPixelSpriteEnds = NoteskinHelpers.generatePixelSprite(FlxG.save.data.noteskin, true);
+				case 'matins':
+					noteskinPixelSprite = NoteskinHelpers.generatePixelSprite(0);
+					noteskinSprite = NoteskinHelpers.generateNoteskinSprite(0);
+					noteskinPixelSpriteEnds = NoteskinHelpers.generatePixelSprite(0, true);
+			}
 		}
 
 
@@ -3609,7 +3623,7 @@ class PlayState extends MusicBeatState
 		switch (daRating)
 		{
 			case 'shit':
-				score = -300;
+				score = 0;
 				combo = 0;
 				misses++;
 				health -= 0.1;
@@ -3619,7 +3633,7 @@ class PlayState extends MusicBeatState
 					totalNotesHit -= 1;
 			case 'bad':
 				daRating = 'bad';
-				score = 0;
+				score = 50 + (50 * (combo / 25));
 				health -= 0.06;
 				ss = false;
 				bads++;
@@ -3627,12 +3641,13 @@ class PlayState extends MusicBeatState
 					totalNotesHit += 0.50;
 			case 'good':
 				daRating = 'good';
-				score = 200;
+				score = 100 + (100 * (combo / 25));
 				ss = false;
 				goods++;
 				if (FlxG.save.data.accuracyMod == 0)
 					totalNotesHit += 0.75;
 			case 'sick':
+				score = 300 + (300 * (combo / 25));
 				if (health < 2)
 					health += 0.04;
 				if (FlxG.save.data.accuracyMod == 0)
