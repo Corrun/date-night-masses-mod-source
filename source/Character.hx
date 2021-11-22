@@ -35,62 +35,6 @@ class Character extends FlxSprite
 
 		switch (curCharacter)
 		{
-			case "sticky":
-				var tex = Paths.getSparrowAtlas('characters/sticky', 'shared');
-				frames = tex;
-
-				animation.addByPrefix('idle', 'BF idle dance', 24, false);
-				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false); 
-				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
-				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
-				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
-				animation.addByPrefix('hey', 'BF HEY', 24, false);
-
-				animation.addByPrefix('firstDeath', "BF dies", 24, false);
-				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, false);
-				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
-
-				animation.addByPrefix('scared', 'BF idle shaking', 24);
-
-
-				playAnim('idle');
-
-				barColor = 0xFF31b0d1;
-
-				flipX = true;
-
-			case "ruv":
-				tex = Paths.getSparrowAtlas('characters/ruv', 'shared');
-				frames = tex;
-				animation.addByPrefix('idle', 'ruv idle', 36);
-				animation.addByPrefix('singUP', 'ruv up', 30);
-				animation.addByPrefix('singRIGHT', 'ruv right', 20);
-				animation.addByPrefix('singDOWN', 'ruv down', 20);
-				animation.addByPrefix('singLEFT', 'ruv left', 30);
-
-				animation.addByPrefix('singUPmiss', 'ruv miss', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'ruv miss', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'ruv miss', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'ruv miss', 24, false);
-				flipX = true;
-
-				playAnim('idle');
-				
-			case "table-sarv":
-				tex = Paths.getSparrowAtlas('characters/TableSarv', 'shared');
-				frames = tex;
-				animation.addByPrefix('idle', 'TableSarv idle', 12);
-				animation.addByPrefix('singUP', 'TableSarv up', 12);
-				animation.addByPrefix('singRIGHT', 'TableSarv right', 12);
-				animation.addByPrefix('singDOWN', 'TableSarv down', 12);
-				animation.addByPrefix('singLEFT', 'TableSarv left', 12);
-	
-				playAnim('idle');
-
 			case 'gf-christmas':
 				tex = Paths.getSparrowAtlas('gfChristmas', 'shared', true);
 				frames = tex;
@@ -443,12 +387,82 @@ class Character extends FlxSprite
 				barColor = 0xFF9a00f8;
 
 				playAnim('idle');
+
+			case "sticky":
+				var tex = Paths.getSparrowAtlas('characters/sticky', 'shared');
+				frames = tex;
+
+				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
+				animation.addByPrefix('hey', 'BF HEY', 24, false);
+
+				animation.addByPrefix('firstDeath', "BF dies", 24, false);
+				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, false);
+				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
+
+				animation.addByPrefix('scared', 'BF idle shaking', 24);
+
+				playAnim('idle');
+
+				barColor = 0xFF5AA06B;
+
+				flipX = true;
+			case "ruv":
+				tex = Paths.getSparrowAtlas('characters/ruv', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'ruv idle', 36);
+				animation.addByPrefix('singUP', 'ruv up', 30);
+				animation.addByPrefix('singRIGHT', 'ruv right', 20);
+				animation.addByPrefix('singDOWN', 'ruv down', 20);
+				animation.addByPrefix('singLEFT', 'ruv left', 30);
+
+				animation.addByPrefix('singUPmiss', 'ruv miss', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'ruv miss', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'ruv miss', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'ruv miss', 24, false);
+				flipX = true;
+
+				playAnim('idle');
+
+				barColor = 0xFFa798af;
+
+			case "table-sarv":
+				tex = Paths.getSparrowAtlas('characters/TableSarv', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'TableSarv idle', 12);
+				animation.addByPrefix('singUP', 'TableSarv up', 12);
+				animation.addByPrefix('singRIGHT', 'TableSarv right', 12);
+				animation.addByPrefix('singDOWN', 'TableSarv down', 12);
+				animation.addByPrefix('singLEFT', 'TableSarv left', 12);
+
+				playAnim('idle');
+
+				barColor = 0xFFd49dbd;
+			case "buffsarv":
+				tex = Paths.getSparrowAtlas('characters/buffsarv', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'arch0000', 12);
+				animation.addByPrefix('singUP', 'arch0000', 12);
+				animation.addByPrefix('singRIGHT', 'arch0001', 12);
+				animation.addByPrefix('singDOWN', 'arch0002', 12);
+				animation.addByPrefix('singLEFT', 'arch0003', 12);
+
+				playAnim('idle');
+
+				barColor = 0xFFd49dbd;
 			default:
 				parseDataFile();
 		}
 
-		if (curCharacter == 'table-sarv') 
-			this.scale.set(1.4 , 1.4);
+		if (curCharacter == 'table-sarv')
+			this.scale.set(1.4, 1.4);
 		if (curCharacter.startsWith('bf'))
 			dance();
 

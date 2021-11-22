@@ -25,7 +25,7 @@ class StoryMenuState extends MusicBeatState
 
 	static function weekData():Array<Dynamic>
 	{
-		return [['matins' /**,'seraphim','harmony'**/], ['matins']];
+		return [['matins' /**,'seraphim','harmony'**/], [/*'matins',*/ 'matins - clubs ver']];
 	}
 
 	var curDifficulty:Int = 1;

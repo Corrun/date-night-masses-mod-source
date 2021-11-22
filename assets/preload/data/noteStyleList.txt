@@ -1,2 +1,4 @@
 normal
 pixel
+flower
+heart

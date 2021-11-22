@@ -165,7 +165,7 @@ class DialogueBox extends FlxSpriteGroup
 		else if (PlayState.SONG.songId.toLowerCase() == 'matins')
 		{
 			// Sarvente Portrait setup
-			portraitLeft = new FlxSprite(-20, 40);
+			portraitLeft = new FlxSprite(200, 150);
 			portraitLeft.frames = Paths.getSparrowAtlas('portraits/sarvPortrait', 'date-night masses');
 
 			portraitLeft.animation.addByPrefix('sarvCheerful', 'sarv Cheerful', 24, false);
@@ -176,14 +176,14 @@ class DialogueBox extends FlxSpriteGroup
 			portraitLeft.animation.addByPrefix('sarvDateConfused', 'sarv DateConfused', 24, false);
 			portraitLeft.animation.addByPrefix('sarvDateDelighted', 'sarv DateDelighted', 24, false);
 
-			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 1.3 * 0.9));
+			// portraitLeft.setGraphicSize(Std.int(portraitLeft.height * 0.5));
 			portraitLeft.updateHitbox();
 			portraitLeft.scrollFactor.set();
 			add(portraitLeft);
 			portraitLeft.visible = false;
 
 			// Ruv Portrait setup
-			portraitRight = new FlxSprite(0, 40);
+			portraitRight = new FlxSprite(800, 130);
 			portraitRight.frames = Paths.getSparrowAtlas('portraits/ruvPortrait', 'date-night masses');
 
 			portraitRight.animation.addByPrefix('ruvContent', 'ruv Content', 24, false);
@@ -196,20 +196,19 @@ class DialogueBox extends FlxSpriteGroup
 
 			portraitRight.animation.addByPrefix('ron', 'ruv Ronv', 24, false);
 
-			portraitRight.setGraphicSize(Std.int(portraitRight.width * 1.3 * 0.9));
+			// portraitRight.setGraphicSize(Std.int(portraitRight.height * 0.5));
 			portraitRight.updateHitbox();
 			portraitRight.scrollFactor.set();
 			add(portraitRight);
 			portraitRight.visible = false;
 
-			box.setGraphicSize(Std.int(box.width * 1.3));
+			box.setGraphicSize(Std.int(box.width * 1.25));
 			box.updateHitbox();
 			add(box);
 
 			box.screenCenter(X);
 			box.y = FlxG.height - box.height * 0.9;
 
-			portraitLeft.screenCenter(X);
 			skipText = new FlxText(10, 10, Std.int(FlxG.width * 0.6), "", 16);
 			skipText.font = 'Pixel Arial 11 Bold';
 			skipText.color = 0x000000;
@@ -257,10 +256,12 @@ class DialogueBox extends FlxSpriteGroup
 			dialogueStarted = true;
 			portraitLeft.visible = true;
 			portraitRight.visible = true;
-			portraitLeft.x = box.x + portraitLeft.x * 0.2;
-			portraitLeft.y = box.y - portraitLeft.height * 0.6;
-			portraitRight.x = FlxG.width - portraitRight.width * 2;
-			portraitRight.y = box.y - portraitRight.height * 0.6;
+			/*
+				portraitLeft.x = box.x + portraitLeft.x * 0.2;
+				portraitLeft.y = box.y - portraitLeft.height * 0.6;
+				portraitRight.x = FlxG.width - portraitRight.width * 2;
+				portraitRight.y = box.y - portraitRight.height * 0.6;
+			 */
 		}
 		if (PlayerSettings.player1.controls.BACK && isEnding != true)
 		{
@@ -355,7 +356,7 @@ class DialogueBox extends FlxSpriteGroup
 			box.x = 20;
 			box.y = 340;
 			box.scale.set(0.95, 0.95);
-			portraitLeft.alpha = 0.7;
+			portraitLeft.alpha = 0.5;
 			portraitRight.alpha = 1;
 			box.updateHitbox();
 		}
@@ -367,7 +368,7 @@ class DialogueBox extends FlxSpriteGroup
 			box.y = 330;
 			box.scale.set(0.9, 0.9);
 			portraitLeft.alpha = 1;
-			portraitRight.alpha = 0.7;
+			portraitRight.alpha = 0.5;
 			box.updateHitbox();
 		}
 
@@ -393,6 +394,5 @@ class DialogueBox extends FlxSpriteGroup
 		trace("character = " + curCharacter);
 		trace("dialogue = " + dialogueList[0]);
 		trace("voice acting = " + actingString);
-
 	}
 }
