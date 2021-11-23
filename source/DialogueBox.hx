@@ -254,8 +254,8 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			startDialogue();
 			dialogueStarted = true;
-			portraitLeft.visible = true;
-			portraitRight.visible = true;
+			portraitLeft.visible = false;
+			portraitRight.visible = false;
 			/*
 				portraitLeft.x = box.x + portraitLeft.x * 0.2;
 				portraitLeft.y = box.y - portraitLeft.height * 0.6;
@@ -353,6 +353,7 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			portraitRight.animation.play(curCharacter);
 			box.animation.play('ruv');
+			portraitRight.visible = true;
 			box.x = 20;
 			box.y = 340;
 			box.scale.set(0.95, 0.95);
@@ -364,6 +365,7 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			portraitLeft.animation.play(curCharacter);
 			box.animation.play('sarv');
+			portraitLeft.visible = true;
 			box.x = 20;
 			box.y = 330;
 			box.scale.set(0.9, 0.9);

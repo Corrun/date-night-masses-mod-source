@@ -297,6 +297,7 @@ class PlayState extends MusicBeatState
 
 	public static var startTime = 0.0;
 
+	public var grpNoteSplash:FlxTypedGroup<NoteSplash>;
 	// API stuff
 
 	public function addObject(object:FlxBasic)
@@ -438,6 +439,7 @@ class PlayState extends MusicBeatState
 		FlxG.cameras.add(camHUD);
 		FlxG.cameras.add(camSustains);
 		FlxG.cameras.add(camNotes);
+		grpNoteSplash = new FlxTypedGroup<NoteSplash>();
 
 		camHUD.zoom = PlayStateChangeables.zoom;
 
@@ -780,19 +782,39 @@ class PlayState extends MusicBeatState
 		strumLineNotes = new FlxTypedGroup<StaticArrow>();
 		add(strumLineNotes);
 
+		add(grpNoteSplash);
+
+		var splash:NoteSplash = new NoteSplash(100, 100, 0);
+		grpNoteSplash.add(splash);
+		splash.alpha = 0.0;
+
+
 		playerStrums = new FlxTypedGroup<StaticArrow>();
 		cpuStrums = new FlxTypedGroup<StaticArrow>();
 
-		switch (SONG.songId.toLowerCase())
-		{
-			default:
-				noteskinPixelSprite = NoteskinHelpers.generatePixelSprite(FlxG.save.data.noteskin);
-				noteskinSprite = NoteskinHelpers.generateNoteskinSprite(FlxG.save.data.noteskin);
-				noteskinPixelSpriteEnds = NoteskinHelpers.generatePixelSprite(FlxG.save.data.noteskin, true);
-			case 'matins':
-				noteskinPixelSprite = NoteskinHelpers.generatePixelSprite(2);
-				noteskinSprite = NoteskinHelpers.generateNoteskinSprite(2);
-				noteskinPixelSpriteEnds = NoteskinHelpers.generatePixelSprite(2, true);
+		if (storyWeek == 0) {
+			switch (SONG.songId.toLowerCase()) {
+				default:
+					noteskinPixelSprite = NoteskinHelpers.generatePixelSprite(FlxG.save.data.noteskin);
+					noteskinSprite = NoteskinHelpers.generateNoteskinSprite(FlxG.save.data.noteskin);
+					noteskinPixelSpriteEnds = NoteskinHelpers.generatePixelSprite(FlxG.save.data.noteskin, true);
+				case 'matins':
+					noteskinPixelSprite = NoteskinHelpers.generatePixelSprite(2);
+					noteskinSprite = NoteskinHelpers.generateNoteskinSprite(2);
+					noteskinPixelSpriteEnds = NoteskinHelpers.generatePixelSprite(2, true);
+			}
+		}
+		if (storyWeek == 1) {
+			switch (SONG.songId.toLowerCase()) {
+				default:
+					noteskinPixelSprite = NoteskinHelpers.generatePixelSprite(FlxG.save.data.noteskin);
+					noteskinSprite = NoteskinHelpers.generateNoteskinSprite(FlxG.save.data.noteskin);
+					noteskinPixelSpriteEnds = NoteskinHelpers.generatePixelSprite(FlxG.save.data.noteskin, true);
+				case 'matins':
+					noteskinPixelSprite = NoteskinHelpers.generatePixelSprite(0);
+					noteskinSprite = NoteskinHelpers.generateNoteskinSprite(0);
+					noteskinPixelSpriteEnds = NoteskinHelpers.generatePixelSprite(0, true);
+			}
 		}
 
 		generateStaticArrows(0);
@@ -923,7 +945,7 @@ class PlayState extends MusicBeatState
 			case 'matins':
 				songComposer = 'Zhad The Impulsive';
 				songBPM = '120';
-				songCharter = 'Placeholder for charter';
+				songCharter = 'That one Belgian';
 			case 'serafim':
 				songComposer = 'Zhad The Impulsive';
 				songBPM = '140';
@@ -1016,6 +1038,7 @@ class PlayState extends MusicBeatState
 		}
 
 		strumLineNotes.cameras = [camHUD];
+		grpNoteSplash.cameras = [camHUD];
 		notes.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
 		healthBarBG.cameras = [camHUD];
@@ -3671,7 +3694,7 @@ class PlayState extends MusicBeatState
 		switch (daRating)
 		{
 			case 'shit':
-				score = -300;
+				score = 0;
 				combo = 0;
 				misses++;
 				health -= 0.1;
@@ -3681,7 +3704,7 @@ class PlayState extends MusicBeatState
 					totalNotesHit -= 1;
 			case 'bad':
 				daRating = 'bad';
-				score = 0;
+				score = 50 + (50 * (combo / 25));
 				health -= 0.06;
 				ss = false;
 				bads++;
@@ -3689,17 +3712,19 @@ class PlayState extends MusicBeatState
 					totalNotesHit += 0.50;
 			case 'good':
 				daRating = 'good';
-				score = 200;
+				score = 100 + (100 * (combo / 25));
 				ss = false;
 				goods++;
 				if (FlxG.save.data.accuracyMod == 0)
 					totalNotesHit += 0.75;
 			case 'sick':
+				score = 300 + (300 * (combo / 25));
 				if (health < 2)
 					health += 0.04;
 				if (FlxG.save.data.accuracyMod == 0)
 					totalNotesHit += 1;
 				sicks++;
+				spawnNoteSplashOnNote(daNote);
 		}
 
 		if (songMultiplier >= 1.05)
@@ -4432,6 +4457,9 @@ class PlayState extends MusicBeatState
 		if (mashing != 0)
 			mashing = 0;
 
+		if (!note.isSustainNote) {
+			spawnNoteSplashOnNote(note);
+		}
 		var noteDiff:Float = -(note.strumTime - Conductor.songPosition);
 
 		if (loadRep)
@@ -4748,6 +4776,21 @@ class PlayState extends MusicBeatState
 		}
 	}
 
+	function spawnNoteSplashOnNote(note:Note) {
+		if (note != null) {
+			var strum:StaticArrow = playerStrums.members[note.noteData];
+			if (strum != null) {
+				spawnNoteSplash(strum.x, strum.y, note.noteData, note);
+			}
+		}
+	}
+
+	function spawnNoteSplash(x:Float, y:Float, data:Int, ?note:Note = null) {
+		var skin = 'noteSplashes';
+
+		var splash:NoteSplash = grpNoteSplash.recycle(NoteSplash);
+		splash.setupNoteSplash(x, y, data);
+	}
 	function nextSong()
 	{
 		campaignScore += Math.round(songScore);
