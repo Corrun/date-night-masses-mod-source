@@ -940,6 +940,10 @@ class PlayState extends MusicBeatState
 				songComposer = 'Mike Geno';
 				songBPM = '107';
 				songCharter = 'Placeholder for charter';
+			default:
+				songComposer = 'Placeholder for SongComposer';
+				songBPM = 'Placeholder for BPM value';
+				songCharter = 'Placeholder for charter';
 		}
 
 		songInfo1 = new FlxText(kadeEngineWatermark.x + 30, kadeEngineWatermark.y - 87, "Composer: " + songComposer);
@@ -1249,7 +1253,7 @@ class PlayState extends MusicBeatState
 
 		var swagCounter:Int = 4;
 
-		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
+		startTimer = new FlxTimer().start(1, function(tmr:FlxTimer)
 		{
 			// this just based on beatHit stuff but compact
 			if (allowedToHeadbang && swagCounter % gfSpeed == 0)
