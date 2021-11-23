@@ -945,7 +945,7 @@ class PlayState extends MusicBeatState
 			case 'matins':
 				songComposer = 'Zhad The Impulsive';
 				songBPM = '120';
-				songCharter = 'Placeholder for charter';
+				songCharter = 'That one Belgian';
 			case 'serafim':
 				songComposer = 'Zhad The Impulsive';
 				songBPM = '140';
