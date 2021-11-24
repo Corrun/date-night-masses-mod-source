@@ -43,13 +43,13 @@ class Character extends FlxSprite
 				animation.addByPrefix('singUP', 'stickybm sing up', 24, false);
 				animation.addByPrefix('singLEFT', 'stickybm sing left', 24, false);
 				animation.addByPrefix('singRIGHT', 'stickybm sing right', 24, false);
-				animation.addByPrefix('singDOWN', 'stickybm sing down', 24, false);		
+				animation.addByPrefix('singDOWN', 'stickybm sing down', 24, false);
 				flipX = true;
 
 				playAnim('idle');
 				barColor = 0xFF5AA06B;
 
-				case "sticky":
+			case "sticky":
 				var tex = Paths.getSparrowAtlas('characters/sticky', 'shared');
 				frames = tex;
 

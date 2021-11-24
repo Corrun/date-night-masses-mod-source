@@ -1,11 +1,22 @@
 import flixel.input.gamepad.FlxGamepad;
 import openfl.Lib;
 import flixel.FlxG;
+import flixel.input.keyboard.FlxKey;
 
 class KadeEngineData
 {
 	public static function initSave()
 	{
+		if (FlxG.save.data.volDownBind == null)
+		{
+			FlxG.save.data.volDownBind = FlxKey.MINUS;
+		}
+
+		if (FlxG.save.data.volDownBind == null)
+		{
+			FlxG.save.data.volDownBind = FlxKey.MINUS;
+		}
+
 		if (FlxG.save.data.weekUnlocked == null)
 			FlxG.save.data.weekUnlocked = 7;
 

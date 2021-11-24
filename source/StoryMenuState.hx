@@ -139,6 +139,8 @@ class StoryMenuState extends MusicBeatState
 			grpWeekText.add(weekThing);
 
 			var weekThing2:MenuBanner = new MenuBanner(i);
+			if (i != 0)
+				weekThing2.alpha = 0;
 			// weekThing.y += ((weekThing.height + 20) * i);
 			// weekThing.targetY = i;
 			grpWeekBanner.add(weekThing2);
@@ -427,7 +429,7 @@ class StoryMenuState extends MusicBeatState
 
 		for (item in grpWeekBanner.members)
 		{
-			if (item.targetY == Std.int(0))
+			if (item.weekNum == curWeek && weekUnlocked[curWeek])
 			{
 				item.alpha = 1;
 			}

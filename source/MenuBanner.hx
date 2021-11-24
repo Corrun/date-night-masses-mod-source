@@ -12,10 +12,12 @@ class MenuBanner extends FlxSpriteGroup
 	public var targetY:Float = 0;
 	public var week:FlxSprite;
 	public var flashingInt:Int = 0;
+	public var weekNum:Int = 0;
 
 	public function new(weekNum:Int = 0)
 	{
 		super();
+		this.weekNum = weekNum;
 		week = new FlxSprite(0, 56).loadGraphic(Paths.image('weekBanners/week' + weekNum, 'date-night masses'));
 		week.antialiasing = FlxG.save.data.antialiasing;
 		add(week);

@@ -322,7 +322,7 @@ class VolUpBind extends Option
 		super();
 		description = desc;
 		acceptType = true;
-
+		FlxG.save.data.volUpBind == null
 		if (FlxG.save.data.volUpBind == null)
 		{
 			FlxG.save.data.volUpBind = FlxKey.PLUS;

@@ -63,19 +63,67 @@ class Stage extends MusicBeatState
 		switch (daStage)
 		{
 			case 'cloister':
+				camZoom = 0.9;
 				curStage = 'cloister';
-				var bg:FlxSprite = new FlxSprite(100, 100).loadGraphic(Paths.image('stages/house', 'date-night masses'));
+
+				var bg:FlxSprite = new FlxSprite(-350, -200).loadGraphic(Paths.image('stages/cloister/house', 'date-night masses'));
 				bg.antialiasing = true;
 				bg.scrollFactor.set(0.9, 0.9);
 				bg.active = false;
-				bg.setGraphicSize(bg.frameWidth * 2);
-
+				bg.setGraphicSize(Std.int(bg.width * 0.7));
+				bg.updateHitbox();
 				swagBacks['bg'] = bg;
 				toAdd.push(bg);
 
+				var cereal:FlxSprite = new FlxSprite(bg.width / 4, bg.height / 4 + 10).loadGraphic(Paths.image('cameos/c_h_e_e_r_io_s', 'date-night masses'));
+				cereal.antialiasing = true;
+				cereal.scrollFactor.set(0.9, 0.9);
+				cereal.active = false;
+				cereal.setGraphicSize(Std.int(cereal.width * 0.3));
+				cereal.updateHitbox();
+				swagBacks['cereal'] = cereal;
+				toAdd.push(cereal);
+
+				var cereal_2:FlxSprite = new FlxSprite(cereal.x + 125,
+					cereal.y).loadGraphic(Paths.image('cameos/eat this to be starvn_t', 'date-night masses'));
+				cereal_2.antialiasing = true;
+				cereal_2.scrollFactor.set(0.9, 0.9);
+				cereal_2.active = false;
+				cereal_2.setGraphicSize(Std.int(cereal_2.width * 0.4));
+				cereal_2.updateHitbox();
+				swagBacks['cereal_2'] = cereal_2;
+				toAdd.push(cereal_2);
+
+				var cookie:FlxSprite = new FlxSprite(cereal.x + 250, cereal.y + 20).loadGraphic(Paths.image('stages/cloister/cookies', 'date-night masses'));
+				if (Std.random(5) == 1)
+				{
+					cookie = new FlxSprite(cereal.x + 250, cereal.y + 20).loadGraphic(Paths.image('pogchair', 'cameos'));
+					cookie.setGraphicSize(Std.int(cookie.width * 0.075));
+				}
+				else
+				{
+					cookie.setGraphicSize(Std.int(cookie.width * 0.75));
+				}
+				cookie.updateHitbox();
+				cookie.antialiasing = true;
+				cookie.scrollFactor.set(0.9, 0.9);
+				cookie.active = false;
+				swagBacks['cookie'] = cookie;
+				toAdd.push(cookie);
+
+				var flowers:FlxSprite = new FlxSprite(bg.width / 2 - 400,
+					bg.height / 2 - 220).loadGraphic(Paths.image('stages/cloister/flowers', 'date-night masses'));
+				flowers.antialiasing = true;
+				flowers.scrollFactor.set(1, 1);
+				flowers.active = false;
+				flowers.setGraphicSize(Std.int(flowers.width * 0.6));
+				flowers.updateHitbox();
+				layInFront[2].push(flowers);
+				swagBacks['flowers'] = flowers;
+
 				if (PlayState.storyDifficulty == 0)
 				{
-					var table:FlxSprite = new FlxSprite(373, 250).loadGraphic(Paths.image('stages/halftable', 'date-night masses'));
+					var table:FlxSprite = new FlxSprite(373, 250).loadGraphic(Paths.image('stages/cloister/halftable', 'date-night masses'));
 					table.antialiasing = true;
 					table.scrollFactor.set(0.9, 0.9);
 					table.setGraphicSize(Std.int(table.width * 0.5));
