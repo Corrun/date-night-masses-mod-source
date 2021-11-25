@@ -1258,7 +1258,6 @@ class PlayState extends MusicBeatState
 		});
 	}
 
-	var startTimer:FlxTimer;
 	var perfectMode:Bool = false;
 	var luaWiggles:Array<WiggleEffect> = [];
 
@@ -1283,101 +1282,6 @@ class PlayState extends MusicBeatState
 			FlxG.sound.music.stop();
 		if (vocals != null)
 			vocals.stop();
-		/*
-			var swagCounter:Int = 4;
-
-			startTimer = new FlxTimer().start(1, function(tmr:FlxTimer)
-			{
-				// this just based on beatHit stuff but compact
-				if (allowedToHeadbang && swagCounter % gfSpeed == 0)
-					gf.dance();
-				if (swagCounter % idleBeat == 0)
-				{
-					if (idleToBeat && !boyfriend.animation.curAnim.name.endsWith("miss"))
-						boyfriend.dance(forcedToIdle);
-					if (idleToBeat)
-						dad.dance(forcedToIdle);
-				}
-				else if (dad.curCharacter == 'spooky' || dad.curCharacter == 'gf')
-					dad.dance();
-
-				var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-				introAssets.set('default', ['ready', "set", "go"]);
-				introAssets.set('pixel', ['weeb/pixelUI/ready-pixel', 'weeb/pixelUI/set-pixel', 'weeb/pixelUI/date-pixel']);
-
-				var introAlts:Array<String> = introAssets.get('default');
-				var week6Bullshit:String = null;
-
-				if (SONG.noteStyle == 'pixel')
-				{
-					introAlts = introAssets.get('pixel');
-					altSuffix = '-pixel';
-					week6Bullshit = 'week6';
-				}
-
-				switch (swagCounter)
-
-				{
-					case 0:
-						FlxG.sound.play(Paths.sound('intro3' + altSuffix), 0.6);
-					case 1:
-						var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.loadImage(introAlts[0], week6Bullshit));
-						ready.scrollFactor.set();
-						ready.updateHitbox();
-
-						if (SONG.noteStyle == 'pixel')
-							ready.setGraphicSize(Std.int(ready.width * CoolUtil.daPixelZoom));
-
-						ready.screenCenter();
-						add(ready);
-						FlxTween.tween(ready, {y: ready.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-							ease: FlxEase.cubeInOut,
-							onComplete: function(twn:FlxTween)
-							{
-								ready.destroy();
-							}
-						});
-						FlxG.sound.play(Paths.sound('intro2' + altSuffix), 0.6);
-					case 2:
-						var set:FlxSprite = new FlxSprite().loadGraphic(Paths.loadImage(introAlts[1], week6Bullshit));
-						set.scrollFactor.set();
-
-						if (SONG.noteStyle == 'pixel')
-							set.setGraphicSize(Std.int(set.width * CoolUtil.daPixelZoom));
-
-						set.screenCenter();
-						add(set);
-						FlxTween.tween(set, {y: set.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-							ease: FlxEase.cubeInOut,
-							onComplete: function(twn:FlxTween)
-							{
-								set.destroy();
-							}
-						});
-						FlxG.sound.play(Paths.sound('intro1' + altSuffix), 0.6);
-					case 3:
-						var go:FlxSprite = new FlxSprite().loadGraphic(Paths.loadImage(introAlts[2], week6Bullshit));
-						go.scrollFactor.set();
-
-						if (SONG.noteStyle == 'pixel')
-							go.setGraphicSize(Std.int(go.width * CoolUtil.daPixelZoom));
-
-						go.updateHitbox();
-
-						go.screenCenter();
-						add(go);
-						FlxTween.tween(go, {y: go.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-							ease: FlxEase.cubeInOut,
-							onComplete: function(twn:FlxTween)
-							{
-								go.destroy();
-							}
-						});
-						FlxG.sound.play(Paths.sound('introGo' + altSuffix), 0.6);
-				}
-
-				swagCounter += 1;
-		}, 4);*/
 	}
 
 	var previousFrameTime:Int = 0;
@@ -2026,8 +1930,6 @@ class PlayState extends MusicBeatState
 				+ " | Misses: "
 				+ misses, iconRPC);
 			#end
-			if (!startTimer.finished)
-				startTimer.active = false;
 		}
 
 		super.openSubState(SubState);
@@ -2055,29 +1957,25 @@ class PlayState extends MusicBeatState
 				resyncVocals();
 			}
 
-			if (!startTimer.finished)
-				startTimer.active = true;
 			paused = false;
 
 			#if FEATURE_DISCORD
-			if (startTimer.finished)
-			{
-				DiscordClient.changePresence(detailsText
-					+ " "
-					+ SONG.song
-					+ " ("
-					+ storyDifficultyText
-					+ ") "
-					+ Ratings.GenerateLetterRank(accuracy),
-					"\nAcc: "
-					+ HelperFunctions.truncateFloat(accuracy, 2)
-					+ "% | Score: "
-					+ songScore
-					+ " | Misses: "
-					+ misses, iconRPC, true,
-					songLength
-					- Conductor.songPosition);
-			}
+			DiscordClient.changePresence(detailsText
+				+ " "
+				+ SONG.song
+				+ " ("
+				+ storyDifficultyText
+				+ ") "
+				+ Ratings.GenerateLetterRank(accuracy),
+				"\nAcc: "
+				+ HelperFunctions.truncateFloat(accuracy, 2)
+				+ "% | Score: "
+				+ songScore
+				+ " | Misses: "
+				+ misses, iconRPC, true,
+				songLength
+				- Conductor.songPosition);
+
 			else
 			{
 				DiscordClient.changePresence(detailsText, SONG.songName + " (" + storyDifficultyText + ") " + Ratings.GenerateLetterRank(accuracy), iconRPC);

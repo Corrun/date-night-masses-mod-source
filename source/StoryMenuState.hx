@@ -366,7 +366,14 @@ class StoryMenuState extends MusicBeatState
 			PlayState.shits = 0;
 			PlayState.goods = 0;
 			PlayState.campaignMisses = 0;
-			PlayState.SONG = Song.conversionChecks(Song.loadFromJson(PlayState.storyPlaylist[0], diff));
+			if (curWeek != 1)
+			{
+				PlayState.SONG = Song.conversionChecks(Song.loadFromJson(PlayState.storyPlaylist[0], diff));
+			}
+			else
+			{
+				PlayState.SONG = Song.conversionChecks(Song.loadFromJson('coolmatins', diff));
+			}
 			PlayState.storyWeek = curWeek;
 			PlayState.campaignScore = 0;
 			new FlxTimer().start(1, function(tmr:FlxTimer)
@@ -461,7 +468,15 @@ class StoryMenuState extends MusicBeatState
 		// grpWeekCharacters.members[2].setCharacter(weekCharacters[curWeek][2]);
 
 		txtTracklist.text = "Tracks\n";
-		var stringThing:Array<String> = weekData()[curWeek];
+		var stringThing:Array<String>;
+		if (curWeek != 1)
+		{
+			stringThing = weekData()[curWeek];
+		}
+		else
+		{
+			stringThing = ['matins - club version'];
+		}
 
 		for (i in stringThing)
 			txtTracklist.text += "\n" + i;
