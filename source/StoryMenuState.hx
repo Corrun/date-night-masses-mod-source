@@ -25,7 +25,7 @@ class StoryMenuState extends MusicBeatState
 
 	static function weekData():Array<Dynamic>
 	{
-		return [['matins' /**,'seraphim','harmony'**/], [/*'matins',*/ 'matins - clubs ver']];
+		return [['matins' /**,'serafim','harmony'**/], ['archvente', 'matins - clubs ver']];
 	}
 
 	var curDifficulty:Int = 1;
@@ -474,7 +474,7 @@ class StoryMenuState extends MusicBeatState
 		}
 		else
 		{
-			stringThing = ['matins - club version'];
+			stringThing = ['archvente', 'matins - club version'];
 		}
 
 		for (i in stringThing)

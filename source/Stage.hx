@@ -45,11 +45,12 @@ class Stage extends MusicBeatState
 		],
 		'schoolEvil' => ['gf-pixel' => [580, 430], 'bf-pixel' => [970, 670], 'spirit' => [-50, 200]],
 		'cloister' => [
-			'table-sarv' => [-80, 250],
-			'ruv' => [453, -38],
+			'table-sarv' => [20, 350],
+			'ruv' => [553, 62],
 			'gf' => [1547, -1020],
-			'sticky' => [469, 406]
-		]
+			'sticky' => [840, 350]
+		],
+		'void' => ['gf' => [2000, -2000], 'buffsarv' => [-300, -200], 'cringeSticky' => [900, 300]]
 	];
 
 	public function new(daStage:String)
@@ -62,6 +63,10 @@ class Stage extends MusicBeatState
 
 		switch (daStage)
 		{
+			case 'void':
+				camZoom = 0.5;
+				curStage = 'void';
+
 			case 'cloister':
 				camZoom = 0.9;
 				curStage = 'cloister';
@@ -123,12 +128,21 @@ class Stage extends MusicBeatState
 
 				if (PlayState.storyWeek == 1)
 				{
-					var table:FlxSprite = new FlxSprite(373, 250).loadGraphic(Paths.image('stages/cloister/halftable', 'date-night masses'));
+					var table:FlxSprite = new FlxSprite(468, 425).loadGraphic(Paths.image('stages/cloister/halftable', 'date-night masses'));
 					table.antialiasing = true;
-					table.scrollFactor.set(0.9, 0.9);
+					// table.scrollFactor.set(0.9, 0.9);
+					table.setGraphicSize(Std.int(table.width * 0.67));
 					table.active = false;
 					swagBacks['table'] = table;
 					toAdd.push(table);
+
+					var chair:FlxSprite = new FlxSprite(750, 300).loadGraphic(Paths.image('stages/cloister/right chair', 'date-night masses'));
+					chair.antialiasing = true;
+					// chair.scrollFactor.set(0.9, 0.9);
+					chair.setGraphicSize(Std.int(chair.width * 0.8));
+					chair.active = false;
+					swagBacks['chair'] = chair;
+					toAdd.push(chair);
 				}
 
 			case 'halloween':

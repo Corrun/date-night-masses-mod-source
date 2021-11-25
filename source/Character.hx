@@ -44,7 +44,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT', 'stickybm sing left', 24, false);
 				animation.addByPrefix('singRIGHT', 'stickybm sing right', 24, false);
 				animation.addByPrefix('singDOWN', 'stickybm sing down', 24, false);
-				flipX = true;
+				// flipX = true;
 
 				playAnim('idle');
 				barColor = 0xFF5AA06B;
