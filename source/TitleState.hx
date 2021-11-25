@@ -38,8 +38,10 @@ class TitleState extends MusicBeatState
 	var credTextShit:Alphabet;
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
+	var mfmSpr:FlxSprite;
 
 	var curWacky:Array<String> = [];
+	var curWacky2:Array<String> = [];
 
 	var wackyImage:FlxSprite;
 
@@ -84,6 +86,7 @@ class TitleState extends MusicBeatState
 		Highscore.load();
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
+		curWacky2 = FlxG.random.getObject(getIntroTextShit());
 
 		trace('hello');
 
@@ -188,6 +191,15 @@ class TitleState extends MusicBeatState
 		ngSpr.screenCenter(X);
 		ngSpr.antialiasing = FlxG.save.data.antialiasing;
 
+		mfmSpr = new FlxSprite(0, FlxG.height * 0.42).loadGraphic(Paths.image('logo/beyondMFMlogo', 'date-night masses'));
+		add(mfmSpr);
+		mfmSpr.visible = false;
+		mfmSpr.setGraphicSize(Std.int(mfmSpr.width * 0.3));
+		mfmSpr.setGraphicSize(Std.int(mfmSpr.height * 0.3));
+		mfmSpr.updateHitbox();
+		mfmSpr.screenCenter(X);
+		mfmSpr.antialiasing = true;
+
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		FlxG.mouse.visible = false;
@@ -219,7 +231,7 @@ class TitleState extends MusicBeatState
 			FlxG.sound.playMusic(Paths.music('mp3'), 0);
 
 			FlxG.sound.music.fadeIn(4, 0, 0.75);
-			Conductor.changeBPM(102);
+			Conductor.changeBPM(150);
 			initialized = true;
 		}
 
@@ -360,7 +372,7 @@ class TitleState extends MusicBeatState
 	{
 		super.beatHit();
 
-		logoBl.animation.play('bump', true);
+		logoBl.animation.play('bump');
 		danceLeft = !danceLeft;
 
 		if (danceLeft)
@@ -368,23 +380,24 @@ class TitleState extends MusicBeatState
 		else
 			gfDance.animation.play('danceLeft');
 
+		FlxG.log.add(curBeat);
+
 		switch (curBeat)
 		{
-			case 0:
-				deleteCoolText();
 			case 1:
-				createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
+				createCoolText(['presented by']);
 			// credTextShit.visible = true;
 			case 3:
-				addMoreText('present');
+				mfmSpr.visible = true;
 			// credTextShit.text += '\npresent...';
 			// credTextShit.addText();
-			case 4:
-				deleteCoolText();
-			// credTextShit.visible = false;
-			// credTextShit.text = 'In association \nwith';
-			// credTextShit.screenCenter();
 			case 5:
+				deleteCoolText();
+				mfmSpr.visible = false;
+				// credTextShit.visible = false;
+				// credTextShit.text = 'In association \nwith';
+				// credTextShit.screenCenter();
+				// case 5:
 				if (Main.watermarks)
 					createCoolText(['Kade Engine', 'by']);
 				else
@@ -398,34 +411,40 @@ class TitleState extends MusicBeatState
 					ngSpr.visible = true;
 				}
 			// credTextShit.text += '\nNewgrounds';
-			case 8:
+			case 9:
 				deleteCoolText();
 				ngSpr.visible = false;
-			// credTextShit.visible = false;
+				// credTextShit.visible = false;
 
-			// credTextShit.text = 'Shoutouts Tom Fulp';
-			// credTextShit.screenCenter();
-			case 9:
+				// credTextShit.text = 'Shoutouts Tom Fulp';
+				// credTextShit.screenCenter();
+				// case 9:
 				createCoolText([curWacky[0]]);
 			// credTextShit.visible = true;
 			case 11:
 				addMoreText(curWacky[1]);
 			// credTextShit.text += '\nlmao';
-			case 12:
-				deleteCoolText();
-			// credTextShit.visible = false;
-			// credTextShit.text = "Friday";
-			// credTextShit.screenCenter();
 			case 13:
-				addMoreText('Friday');
-			// credTextShit.visible = true;
-			case 14:
-				addMoreText('Night');
-			// credTextShit.text += '\nNight';
+				deleteCoolText();
+				// credTextShit.visible = false;
+				// credTextShit.text = "Friday";
+				// credTextShit.screenCenter();
+				// case 13:
+				addMoreText(curWacky2[0]);
 			case 15:
-				addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
-
+				addMoreText(curWacky2[1]);
 			case 16:
+				deleteCoolText();
+			case 17:
+				addMoreText('Mid');
+			// credTextShit.visible = true;
+			case 18:
+				addMoreText('Date');
+			// credTextShit.text += '\nNight';
+			case 19:
+				addMoreText('Masses'); // credTextShit.text += '\nFunkin';
+
+			case 20:
 				skipIntro();
 		}
 	}
@@ -439,6 +458,7 @@ class TitleState extends MusicBeatState
 			Debug.logInfo("Skipping intro...");
 
 			remove(ngSpr);
+			remove(mfmSpr);
 
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);
