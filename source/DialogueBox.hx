@@ -255,7 +255,7 @@ class DialogueBox extends FlxSpriteGroup
 			startDialogue();
 			dialogueStarted = true;
 			portraitLeft.visible = false;
-			portraitRight.visible = false;
+			portraitRight.visible = true;
 			/*
 				portraitLeft.x = box.x + portraitLeft.x * 0.2;
 				portraitLeft.y = box.y - portraitLeft.height * 0.6;

@@ -97,7 +97,7 @@ class Stage extends MusicBeatState
 				var cookie:FlxSprite = new FlxSprite(cereal.x + 250, cereal.y + 20).loadGraphic(Paths.image('stages/cloister/cookies', 'date-night masses'));
 				if (Std.random(5) == 1)
 				{
-					cookie = new FlxSprite(cereal.x + 250, cereal.y + 20).loadGraphic(Paths.image('pogchair', 'cameos'));
+					cookie = new FlxSprite(cereal.x + 250, cereal.y + 20).loadGraphic(Paths.image('cameos/pogchair', 'date-night masses'));
 					cookie.setGraphicSize(Std.int(cookie.width * 0.075));
 				}
 				else
@@ -121,12 +121,12 @@ class Stage extends MusicBeatState
 				layInFront[2].push(flowers);
 				swagBacks['flowers'] = flowers;
 
-				if (PlayState.storyDifficulty == 0)
+				if (PlayState.storyWeek == 1)
 				{
 					var table:FlxSprite = new FlxSprite(373, 250).loadGraphic(Paths.image('stages/cloister/halftable', 'date-night masses'));
 					table.antialiasing = true;
 					table.scrollFactor.set(0.9, 0.9);
-					table.setGraphicSize(Std.int(table.width * 0.5));
+					table.setGraphicSize(Std.int(table.width * 0.6));
 					table.active = false;
 					swagBacks['table'] = table;
 					toAdd.push(table);
