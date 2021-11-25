@@ -126,7 +126,6 @@ class Stage extends MusicBeatState
 					var table:FlxSprite = new FlxSprite(373, 250).loadGraphic(Paths.image('stages/cloister/halftable', 'date-night masses'));
 					table.antialiasing = true;
 					table.scrollFactor.set(0.9, 0.9);
-					table.setGraphicSize(Std.int(table.width * 0.6));
 					table.active = false;
 					swagBacks['table'] = table;
 					toAdd.push(table);
