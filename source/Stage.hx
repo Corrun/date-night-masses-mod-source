@@ -46,7 +46,7 @@ class Stage extends MusicBeatState
 		'schoolEvil' => ['gf-pixel' => [580, 430], 'bf-pixel' => [970, 670], 'spirit' => [-50, 200]],
 		'cloister' => [
 			'table-sarv' => [20, 350],
-			'kikyo' => [150, -300],
+			'kikyo' => [120, -260],
 			'ruv' => [553, 62],
 			'gf' => [1547, -1020],
 			'sticky' => [840, 350]
@@ -65,7 +65,7 @@ class Stage extends MusicBeatState
 		switch (daStage)
 		{
 			case 'void':
-				camZoom = 0.8;
+				camZoom = 0.5;
 				curStage = 'void';
 
 			case 'cloister':
@@ -149,7 +149,7 @@ class Stage extends MusicBeatState
 
 						table2.flipX = true;
 
-						var table3:FlxSprite = new FlxSprite(-326, 425).loadGraphic(Paths.image('stages/cloister/halftable', 'date-night masses'));
+						var table3:FlxSprite = new FlxSprite(-226, 425).loadGraphic(Paths.image('stages/cloister/halftable', 'date-night masses'));
 						table3.antialiasing = true;
 						// table.scrollFactor.set(0.9, 0.9);
 						table3.setGraphicSize(Std.int(table3.width * 0.67));
