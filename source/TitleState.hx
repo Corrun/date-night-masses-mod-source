@@ -26,6 +26,9 @@ import flixel.util.FlxTimer;
 import lime.app.Application;
 import openfl.Assets;
 import flixel.input.keyboard.FlxKey;
+#if FEATURE_DISCORD
+import Discord.DiscordClient;
+#end
 
 using StringTools;
 
@@ -67,14 +70,15 @@ class TitleState extends MusicBeatState
 		KadeEngineData.initSave();
 
 		KeyBinds.keyCheck();
-		
+
 		// It doesn't reupdate the list before u restart rn lmao
 		NoteskinHelpers.updateNoteskins();
 
-		FlxG.sound.muteKeys = [FlxKey.fromString(FlxG.save.data.muteBind)]; /*
-		FlxG.sound.volumeDownKeys = [FlxKey.fromString(FlxG.save.data.volDownBind)];
-		FlxG.sound.volumeUpKeys = [FlxKey.fromString(FlxG.save.data.volUpBind)];
-*/
+		FlxG.sound.muteKeys = [FlxKey.fromString(FlxG.save.data.muteBind)];
+		/*
+			FlxG.sound.volumeDownKeys = [FlxKey.fromString(FlxG.save.data.volDownBind)];
+			FlxG.sound.volumeUpKeys = [FlxKey.fromString(FlxG.save.data.volUpBind)];
+		 */
 		FlxG.mouse.visible = false;
 
 		FlxG.worldBounds.set(0, 0);
@@ -92,6 +96,14 @@ class TitleState extends MusicBeatState
 
 		trace('hello');
 
+		#if FEATURE_DISCORD
+		DiscordClient.initialize();
+
+		Application.current.onExit.add(function(exitCode)
+		{
+			DiscordClient.shutdown();
+		});
+		#end
 		// DEBUG BULLSHIT
 
 		super.create();
