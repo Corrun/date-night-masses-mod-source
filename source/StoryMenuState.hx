@@ -28,7 +28,7 @@ class StoryMenuState extends MusicBeatState
 		return [['matins' /**,'serafim','harmony'**/], ['coolmatins', 'archvente']];
 	}
 
-	var curDifficulty:Int = 1;
+	var curDifficulty:Int = 2;
 
 	public static var weekUnlocked:Array<Bool> = [];
 
@@ -386,8 +386,8 @@ class StoryMenuState extends MusicBeatState
 	{
 		curDifficulty += change;
 
-		if (curDifficulty < 1)
-			curDifficulty = 1;
+		if (curDifficulty < 2)
+			curDifficulty = 2;
 		if (curDifficulty > 2)
 			curDifficulty = 2;
 

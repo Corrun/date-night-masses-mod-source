@@ -46,6 +46,7 @@ class Stage extends MusicBeatState
 		'schoolEvil' => ['gf-pixel' => [580, 430], 'bf-pixel' => [970, 670], 'spirit' => [-50, 200]],
 		'cloister' => [
 			'table-sarv' => [20, 350],
+			'kikyo' => [150, -300],
 			'ruv' => [553, 62],
 			'gf' => [1547, -1020],
 			'sticky' => [840, 350]
@@ -64,7 +65,7 @@ class Stage extends MusicBeatState
 		switch (daStage)
 		{
 			case 'void':
-				camZoom = 0.45;
+				camZoom = 0.8;
 				curStage = 'void';
 
 			case 'cloister':
@@ -126,7 +127,7 @@ class Stage extends MusicBeatState
 				layInFront[2].push(flowers);
 				swagBacks['flowers'] = flowers;
 
-				if (PlayState.storyWeek == 1)
+				if (PlayState.boyfriend.curCharacter == 'sticky')
 				{
 					var table:FlxSprite = new FlxSprite(468, 425).loadGraphic(Paths.image('stages/cloister/halftable', 'date-night masses'));
 					table.antialiasing = true;
@@ -135,6 +136,31 @@ class Stage extends MusicBeatState
 					table.active = false;
 					swagBacks['table'] = table;
 					toAdd.push(table);
+
+					if (PlayState.dad.curCharacter == 'kikyo')
+					{
+						var table2:FlxSprite = new FlxSprite(234, 425).loadGraphic(Paths.image('stages/cloister/halftable', 'date-night masses'));
+						table2.antialiasing = true;
+						// table.scrollFactor.set(0.9, 0.9);
+						table2.setGraphicSize(Std.int(table2.width * 0.67));
+						table2.active = false;
+						swagBacks['table2'] = table2;
+						toAdd.push(table2);
+
+						table2.flipX = true;
+
+						var table3:FlxSprite = new FlxSprite(-326, 425).loadGraphic(Paths.image('stages/cloister/halftable', 'date-night masses'));
+						table3.antialiasing = true;
+						// table.scrollFactor.set(0.9, 0.9);
+						table3.setGraphicSize(Std.int(table3.width * 0.67));
+						table3.active = false;
+						swagBacks['table3'] = table3;
+						toAdd.push(table3);
+
+						table3.flipX = true;
+
+						camZoom = 0.7;
+					}
 
 					var chair:FlxSprite = new FlxSprite(750, 300).loadGraphic(Paths.image('stages/cloister/right chair', 'date-night masses'));
 					chair.antialiasing = true;
