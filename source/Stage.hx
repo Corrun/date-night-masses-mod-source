@@ -64,7 +64,7 @@ class Stage extends MusicBeatState
 		switch (daStage)
 		{
 			case 'void':
-				camZoom = 0.5;
+				camZoom = 0.45;
 				curStage = 'void';
 
 			case 'cloister':
