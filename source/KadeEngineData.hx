@@ -7,16 +7,12 @@ class KadeEngineData
 {
 	public static function initSave()
 	{
-		if (FlxG.save.data.volDownBind == null)
-		{
+/*		if (FlxG.save.data.volDownBind == null)
 			FlxG.save.data.volDownBind = FlxKey.MINUS;
-		}
 
 		if (FlxG.save.data.volDownBind == null)
-		{
 			FlxG.save.data.volDownBind = FlxKey.MINUS;
-		}
-
+*/
 		if (FlxG.save.data.weekUnlocked == null)
 			FlxG.save.data.weekUnlocked = 7;
 

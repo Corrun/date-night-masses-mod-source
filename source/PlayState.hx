@@ -974,15 +974,15 @@ class PlayState extends MusicBeatState
 				songCharter = 'Placeholder for charter';
 		}
 
-		songInfo1 = new FlxText(kadeEngineWatermark.x + 30, kadeEngineWatermark.y - 87, "Composer: " + songComposer);
+		songInfo1 = new FlxText(kadeEngineWatermark.x, kadeEngineWatermark.y - 87, "Composer: " + songComposer, 16);
 		songInfo1.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		songInfo1.scrollFactor.set();
 		add(songInfo1);
-		songInfo2 = new FlxText(kadeEngineWatermark.x + 30, kadeEngineWatermark.y - 63, "BPM: " + songBPM);
+		songInfo2 = new FlxText(kadeEngineWatermark.x, kadeEngineWatermark.y - 63, "BPM: " + songBPM, 16);
 		songInfo2.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		songInfo2.scrollFactor.set();
 		add(songInfo2);
-		songInfo3 = new FlxText(kadeEngineWatermark.x + 30, kadeEngineWatermark.y - 39, "Charter: " + songCharter);
+		songInfo3 = new FlxText(kadeEngineWatermark.x, kadeEngineWatermark.y - 39, "Charter: " + songCharter, 16);
 		songInfo3.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		songInfo3.scrollFactor.set();
 		add(songInfo3);
@@ -1053,6 +1053,9 @@ class PlayState extends MusicBeatState
 		scoreTxt.cameras = [camHUD];
 		laneunderlay.cameras = [camHUD];
 		laneunderlayOpponent.cameras = [camHUD];
+		songInfo1.cameras = [camHUD];
+		songInfo2.cameras = [camHUD];
+		songInfo3.cameras = [camHUD];
 
 		if (isStoryMode)
 			doof.cameras = [camHUD];

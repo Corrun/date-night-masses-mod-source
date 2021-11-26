@@ -124,5 +124,6 @@ class KeyBinds
 		}
 
 		trace('${FlxG.save.data.leftBind}-${FlxG.save.data.downBind}-${FlxG.save.data.upBind}-${FlxG.save.data.rightBind}');
+		trace('heyo the volume keybinds are: ${FlxG.save.data.volumeUpKeys} for volUP and ${FlxG.save.data.volumeDownKeys}');
 	}
 }
