@@ -115,6 +115,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('deathConfirm', 'deadruv deathConfirm', 24);
 
 				playAnim('firstDeath');
+				barColor = 0xFFa798af;
 
 			case "table-sarv":
 				tex = Paths.getSparrowAtlas('characters/TableSarv', 'shared');
@@ -226,51 +227,54 @@ class Character extends FlxSprite
 
 	override function update(elapsed:Float)
 	{
-		if (!isPlayer)
+		if (curCharacter != 'deadRuv')
 		{
-			if (animation.curAnim.name.startsWith('sing'))
+			if (!isPlayer)
 			{
-				holdTimer += elapsed;
-			}
-
-			if (curCharacter.endsWith('-car')
-				&& !animation.curAnim.name.startsWith('sing')
-				&& animation.curAnim.finished
-				&& animation.getByName('idleHair') != null)
-				playAnim('idleHair');
-
-			if (animation.getByName('idleLoop') != null)
-			{
-				if (!animation.curAnim.name.startsWith('sing') && animation.curAnim.finished)
-					playAnim('idleLoop');
-			}
-
-			var dadVar:Float = 4;
-
-			if (curCharacter == 'dad')
-				dadVar = 6.1;
-			else if (curCharacter == 'gf' || curCharacter == 'spooky')
-				dadVar = 4.1; // fix double dances
-			if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001)
-			{
-				if (curCharacter == 'gf' || curCharacter == 'spooky')
-					playAnim('danceLeft'); // overridden by dance correctly later
-				dance();
-				holdTimer = 0;
-			}
-		}
-
-		switch (curCharacter)
-		{
-			case 'gf':
-				if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
+				if (animation.curAnim.name.startsWith('sing'))
 				{
-					danced = true;
-					playAnim('danceRight');
+					holdTimer += elapsed;
 				}
-		}
 
-		super.update(elapsed);
+				if (curCharacter.endsWith('-car')
+					&& !animation.curAnim.name.startsWith('sing')
+					&& animation.curAnim.finished
+					&& animation.getByName('idleHair') != null)
+					playAnim('idleHair');
+
+				if (animation.getByName('idleLoop') != null)
+				{
+					if (!animation.curAnim.name.startsWith('sing') && animation.curAnim.finished)
+						playAnim('idleLoop');
+				}
+
+				var dadVar:Float = 4;
+
+				if (curCharacter == 'dad')
+					dadVar = 6.1;
+				else if (curCharacter == 'gf' || curCharacter == 'spooky')
+					dadVar = 4.1; // fix double dances
+				if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001)
+				{
+					if (curCharacter == 'gf' || curCharacter == 'spooky')
+						playAnim('danceLeft'); // overridden by dance correctly later
+					dance();
+					holdTimer = 0;
+				}
+			}
+
+			switch (curCharacter)
+			{
+				case 'gf':
+					if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
+					{
+						danced = true;
+						playAnim('danceRight');
+					}
+			}
+
+			super.update(elapsed);
+		}
 	}
 
 	private var danced:Bool = false;

@@ -11,7 +11,7 @@ class Boyfriend extends Character
 {
 	public var stunned:Bool = false;
 
-	public function new(x:Float, y:Float, ?char:String = 'ruv')
+	public function new(x:Float, y:Float, ?char:String = 'deadruv')
 	{
 		super(x, y, char, true);
 	}

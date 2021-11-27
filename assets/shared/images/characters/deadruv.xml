@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<TextureAtlas imagePath="deadruv.png"><SubTexture name="deadruv firstDeath0000" x="0" y="0" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
+<TextureAtlas imagePath="deadRuv.png"><SubTexture name="deadruv firstDeath0000" x="0" y="0" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
 <SubTexture name="deadruv firstDeath0001" x="853" y="0" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
 <SubTexture name="deadruv firstDeath0002" x="1706" y="0" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
 <SubTexture name="deadruv firstDeath0003" x="2559" y="0" width="853" height="859" frameX="0" frameY="0" frameWidth="853" frameHeight="859" />
