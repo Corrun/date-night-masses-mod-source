@@ -491,7 +491,10 @@ class TitleState extends MusicBeatState
 
 			// It always bugged me that it didn't do this before.
 			// Skip ahead in the song to the drop.
-			FlxG.sound.music.time = 9400; // 9.4 seconds
+
+			FlxG.sound.music.kill();
+			FlxG.sound.music.loadEmbedded(Paths.music('Affinity', 'date-night masses'));
+			Conductor.changeBPM(95);
 
 			skippedIntro = true;
 		}
