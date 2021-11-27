@@ -99,6 +99,8 @@ class PlayState extends MusicBeatState
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
 
+	public static var end:Bool = false;
+
 	public static var songPosBG:FlxSprite;
 
 	public var visibleCombos:Array<FlxSprite> = [];
@@ -223,10 +225,13 @@ class PlayState extends MusicBeatState
 
 	var songComposer:String;
 	var songBPM:String;
+	var SprMakerDesc:String;
+	var SprMaker:String;
 	var songCharter:String;
 	var songInfo1:FlxText;
 	var songInfo2:FlxText;
 	var songInfo3:FlxText;
+	var songInfo4:FlxText;
 
 	var altSuffix:String = "";
 
@@ -946,7 +951,25 @@ class PlayState extends MusicBeatState
 		// for song andcahrt credits
 		switch (SONG.song.toLowerCase())
 		{
-			case 'matins' | 'matins - clubs ver':
+			case 'matins':
+				songComposer = 'Zhad The Impulsive';
+				songBPM = '120';
+				songCharter = 'That one Belgian';
+			case 'matins - clubs ver':
+				SprMakerDesc = 'sticky sprite maker : ';
+				SprMaker = 'nemoinabottle';
+				songComposer = 'Zhad The Impulsive';
+				songBPM = '120';
+				songCharter = 'That one Belgian';
+			case 'archvente':
+				SprMakerDesc = 'cringeSticky sprite maker : ';
+				SprMaker = 'onlyviolette';
+				songComposer = 'Zhad The Impulsive';
+				songBPM = '120';
+				songCharter = 'That one Belgian';
+			case 'dominance':
+				SprMakerDesc = 'kikyo sprite makers : ';
+				SprMaker = 'Marquisartuis and Samueljimenez15';
 				songComposer = 'Zhad The Impulsive';
 				songBPM = '120';
 				songCharter = 'That one Belgian';
@@ -971,7 +994,13 @@ class PlayState extends MusicBeatState
 				songBPM = 'Placeholder for BPM value';
 				songCharter = 'Placeholder for charter';
 		}
-
+		if (SprMakerDesc != null && SprMaker != null)
+		{
+			songInfo4 = new FlxText(kadeEngineWatermark.x, kadeEngineWatermark.y - 111, SprMakerDesc + SprMaker, 16);
+			songInfo4.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			songInfo4.scrollFactor.set();
+			add(songInfo4);
+		}
 		songInfo1 = new FlxText(kadeEngineWatermark.x, kadeEngineWatermark.y - 87, "Composer: " + songComposer, 16);
 		songInfo1.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		songInfo1.scrollFactor.set();
@@ -1054,6 +1083,10 @@ class PlayState extends MusicBeatState
 		songInfo1.cameras = [camHUD];
 		songInfo2.cameras = [camHUD];
 		songInfo3.cameras = [camHUD];
+		if (SprMakerDesc != null && SprMaker != null)
+		{
+			songInfo4.cameras = [camHUD];
+		}
 
 		if (isStoryMode)
 			doof.cameras = [camHUD];
@@ -1109,10 +1142,12 @@ class PlayState extends MusicBeatState
 				case 'matins':
 					{
 						startDialogue(doof);
-						new FlxTimer().start(2, function(timer)
-						{
-						});
-						startDialogue(doof);
+						/*
+							new FlxTimer().start(2, function(timer)
+							{
+							});
+							startDialogue(doof);
+						 */
 						// startCountdown();
 					}
 
@@ -3437,6 +3472,10 @@ class PlayState extends MusicBeatState
 					else if (SONG.songId == 'archvente')
 					{
 						FlxG.sound.music.stop();
+						if (PlayState.misses == 0)
+						{
+							FlxG.sound.music.loadEmbedded(Paths.music('gameover_1.21_sticky', 'date-night masses'));
+						}
 						FlxG.switchState(new StickyEndingState());
 					}
 					else

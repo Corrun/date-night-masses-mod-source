@@ -58,6 +58,10 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT', 'stickybm sing left', 24, false);
 				animation.addByPrefix('singRIGHT', 'stickybm sing right', 24, false);
 				animation.addByPrefix('singDOWN', 'stickybm sing down', 24, false);
+
+				animation.addByPrefix('firstDeath', "BadEnding firstDeat", 24, false);
+				animation.addByPrefix('deathLoop', "BadEnding deathLoop", 24, false);
+				animation.addByPrefix('deathConfirm', "BadEnding deathConfirm", 24, false);
 				// flipX = true;
 
 				playAnim('idle');
@@ -103,6 +107,10 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHTmiss', 'ruv miss', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'ruv miss', 24, false);
 				flipX = true;
+
+				animation.addByPrefix('firstDeath', "deadruv firstDeath", 12, false);
+				animation.addByPrefix('deathLoop', "deadruv deathLoop", 12, false);
+				animation.addByPrefix('deathConfirm', "deadruv deathConfirm", 12, false);
 
 				playAnim('idle');
 

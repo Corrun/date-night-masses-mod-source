@@ -35,6 +35,7 @@ class DialogueBox extends FlxSpriteGroup
 
 	var handSelect:FlxSprite;
 	var bgFade:FlxSprite;
+	var bg:FlxSprite;
 
 	var sound:FlxSound;
 	var voiceAct:FlxSound;
@@ -164,6 +165,22 @@ class DialogueBox extends FlxSpriteGroup
 		}
 		else if (PlayState.SONG.songId.toLowerCase() == 'matins')
 		{
+			// background setup
+			if (PlayState.end == false)
+			{
+				bg = new FlxSprite(0, 0).loadGraphic(Paths.image('cutscene_animatics/song1_beforeplay', 'date-night masses'));
+				PlayState.end = true;
+				bg.setGraphicSize(FlxG.width);
+				bg.updateHitbox();
+			}
+			else
+			{
+				bg = new FlxSprite(-200, -100).loadGraphic(Paths.image('cutscene_animatics/song1_afterplay', 'date-night masses'));
+				bg.setGraphicSize(Std.int(FlxG.width * 1.3));
+				bg.updateHitbox();
+			}
+			add(bg);
+
 			// Sarvente Portrait setup
 			portraitLeft = new FlxSprite(200, 150);
 			portraitLeft.frames = Paths.getSparrowAtlas('portraits/sarvPortrait', 'date-night masses');
@@ -266,6 +283,8 @@ class DialogueBox extends FlxSpriteGroup
 		if (PlayerSettings.player1.controls.BACK && isEnding != true)
 		{
 			remove(dialogue);
+			// if (PlayState.SONG.songId.toLowerCase() == 'matins')
+			// remove(bg);
 			isEnding = true;
 			switch (PlayState.SONG.songId.toLowerCase())
 			{
@@ -298,6 +317,7 @@ class DialogueBox extends FlxSpriteGroup
 		if (PlayerSettings.player1.controls.ACCEPT && dialogueStarted == true)
 		{
 			remove(dialogue);
+			// remove(bg);
 
 			FlxG.sound.play(Paths.sound('clickText'), 0.8);
 

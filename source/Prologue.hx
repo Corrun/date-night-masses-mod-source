@@ -27,7 +27,7 @@ class Prologue extends MusicBeatState
 
 		DiscordClient.changePresence("In the Prologue", null);
 
-		curBg = new FlxSprite(0, 0).loadGraphic(Paths.image('prologue/${curImage}', 'date-night masses'));
+		curBg = new FlxSprite(0, 0).loadGraphic(Paths.image('Prologue/${curImage}', 'date-night masses'));
 		add(curBg);
 		curBg.setGraphicSize(FlxG.width);
 		curBg.updateHitbox();
@@ -84,7 +84,7 @@ class Prologue extends MusicBeatState
 
 	function nextImage():Void
 	{
-		curBg.loadGraphic(Paths.image('prologue/${curImage}', 'date-night masses'));
+		curBg.loadGraphic(Paths.image('Prologue/${curImage}', 'date-night masses'));
 		curBg.setGraphicSize(FlxG.width);
 		curBg.updateHitbox();
 
