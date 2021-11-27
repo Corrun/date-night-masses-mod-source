@@ -459,19 +459,7 @@ class FreeplayState extends MusicBeatState
 		PlayState.storyDifficulty = difficulty;
 		PlayState.storyWeek = songs[curSelected].week;
 		Debug.logInfo('Loading song ${PlayState.SONG.songName} from week ${PlayState.storyWeek} into Free Play...');
-		#if FEATURE_STEPMANIA
-		if (songs[curSelected].songCharacter == "sm")
-		{
-			Debug.logInfo('Song is a StepMania song!');
-			PlayState.isSM = true;
-			PlayState.sm = songs[curSelected].sm;
-			PlayState.pathToSm = songs[curSelected].path;
-		}
-		else
-			PlayState.isSM = false;
-		#else
 		PlayState.isSM = false;
-		#end
 
 		PlayState.songMultiplier = rate;
 
@@ -562,17 +550,7 @@ class FreeplayState extends MusicBeatState
 		diffText.text = CoolUtil.difficultyFromInt(curDifficulty).toUpperCase();
 
 		#if PRELOAD_ALL
-		if (songs[curSelected].songCharacter == "sm")
-		{
-			var data = songs[curSelected];
-			trace("Loading " + data.path + "/" + data.sm.header.MUSIC);
-			var bytes = File.getBytes(data.path + "/" + data.sm.header.MUSIC);
-			var sound = new Sound();
-			sound.loadCompressedDataFromByteArray(bytes.getData(), bytes.length);
-			FlxG.sound.playMusic(sound);
-		}
-		else
-			FlxG.sound.playMusic(Paths.inst(songs[curSelected].songName), 0);
+		FlxG.sound.playMusic(Paths.inst(songs[curSelected].songName), 0);
 		#end
 
 		var hmm;
@@ -629,29 +607,14 @@ class FreeplayState extends MusicBeatState
 {
 	public var songName:String = "";
 	public var week:Int = 0;
-	#if FEATURE_STEPMANIA
-	public var sm:SMFile;
-	public var path:String;
-	#end
 	public var songCharacter:String = "";
 
 	public var diffs = [];
 
-	#if FEATURE_STEPMANIA
-	public function new(song:String, week:Int, songCharacter:String, ?sm:SMFile = null, ?path:String = "")
-	{
-		this.songName = song;
-		this.week = week;
-		this.songCharacter = songCharacter;
-		this.sm = sm;
-		this.path = path;
-	}
-	#else
 	public function new(song:String, week:Int, songCharacter:String)
 	{
 		this.songName = song;
 		this.week = week;
 		this.songCharacter = songCharacter;
 	}
-	#end
 }

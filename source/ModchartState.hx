@@ -338,9 +338,6 @@ class ModchartState
 
 		var path = Sys.getCwd() + "assets/data/songs/" + PlayState.SONG.songId + '/';
 
-		if (PlayState.isSM)
-			path = PlayState.pathToSm + "/";
-
 		var data:BitmapData = BitmapData.fromFile(path + spritePath + ".png");
 
 		var sprite:FlxSprite = new FlxSprite(0, 0);
@@ -422,8 +419,6 @@ class ModchartState
 		}
 
 		var path = Paths.lua('songs/${PlayState.SONG.songId}/modchart');
-		if (PlayState.isSM)
-			path = PlayState.pathToSm + "/modchart.lua";
 
 		var result = LuaL.dofile(lua, path); // execute le file
 
