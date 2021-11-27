@@ -107,7 +107,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 				barColor = 0xFFa798af;
-			case "deadRuv":
+			case "deadruv":
 				tex = Paths.getSparrowAtlas('characters/deadRuv', 'shared');
 				frames = tex;
 				animation.addByPrefix('firstDeath', 'deadRuv firstDeath', 24);
