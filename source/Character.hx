@@ -114,6 +114,8 @@ class Character extends FlxSprite
 				animation.addByPrefix('deathLoop', 'deadRuv deathLoop', 24);
 				animation.addByPrefix('deathConfirm', 'deadruv deathConfirm', 24);
 
+				playAnim('firstDeath');
+
 			case "table-sarv":
 				tex = Paths.getSparrowAtlas('characters/TableSarv', 'shared');
 				frames = tex;
