@@ -485,7 +485,7 @@ class StoryMenuState extends MusicBeatState
 		}
 		else
 		{
-			stringThing = ['matins - club version', 'archvente'];
+			stringThing = ['matins:\n club version', 'archvente'];
 		}
 
 		for (i in stringThing)
