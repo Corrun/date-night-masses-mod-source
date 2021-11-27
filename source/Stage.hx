@@ -68,6 +68,12 @@ class Stage extends MusicBeatState
 				camZoom = 0.5;
 				curStage = 'void';
 
+				var pipi:FlxSprite = new FlxSprite(600, 250).loadGraphic(Paths.image('stages/pipi', 'date-night masses'));
+				pipi.antialiasing = true;
+				pipi.scrollFactor.set(0.9, 0.9);
+				pipi.active = false;
+				toAdd.push(pipi);
+
 			case 'cloister':
 				camZoom = 0.9;
 				curStage = 'cloister';
