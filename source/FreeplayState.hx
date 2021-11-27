@@ -35,7 +35,7 @@ class FreeplayState extends MusicBeatState
 	public static var rate:Float = 1.0;
 
 	public static var curSelected:Int = 0;
-	public static var curDifficulty:Int = 1;
+	public static var curDifficulty:Int = 2;
 
 	var scoreText:FlxText;
 	var comboText:FlxText;
@@ -106,7 +106,7 @@ class FreeplayState extends MusicBeatState
 
 		// LOAD CHARACTERS
 
-		var bg:FlxSprite = new FlxSprite(-100).loadGraphic(Paths.image('menu_bg/menuBGset1-blue', 'date-night masses'));
+		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menu_bg/menuBGset1-blue', 'date-night masses'));
 
 		if (MainMenuState.chosenMenu >= 7 && MainMenuState.chosenMenu <= 9)
 		{

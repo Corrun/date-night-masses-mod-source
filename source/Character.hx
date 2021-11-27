@@ -35,6 +35,20 @@ class Character extends FlxSprite
 
 		switch (curCharacter)
 		{
+			case 'kikyo':
+				var tex = Paths.getSparrowAtlas('characters/Kikyo_assets', 'shared');
+				frames = tex;
+
+				animation.addByPrefix('idle', 'Kikyo IDLE', 24, false);
+				animation.addByPrefix('singUP', 'Kikyo UP', 24, false);
+				animation.addByPrefix('singLEFT', 'Kikyo LEFT', 24, false);
+				animation.addByPrefix('singRIGHT', 'Kikyo RIGHT', 24, false);
+				animation.addByPrefix('singDOWN', 'Kikyo DOWN', 24, false);
+				// flipX = true;
+
+				playAnim('idle');
+				barColor = 0xFF442785;
+
 			case "cringeSticky":
 				var tex = Paths.getSparrowAtlas('characters/stickybm', 'shared');
 				frames = tex;

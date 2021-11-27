@@ -2743,6 +2743,9 @@ class PlayState extends MusicBeatState
 						case 'senpai' | 'senpai-angry':
 							camFollow.y = dad.getMidpoint().y - 430;
 							camFollow.x = dad.getMidpoint().x - 100;
+						case 'buffsarv':
+							camFollow.y = dad.getMidpoint().y;
+							camFollow.x = dad.getMidpoint().x;
 					}
 				}
 
@@ -2774,6 +2777,9 @@ class PlayState extends MusicBeatState
 								camFollow.x = boyfriend.getMidpoint().x - 200;
 								camFollow.y = boyfriend.getMidpoint().y - 200;
 							case 'schoolEvil':
+								camFollow.x = boyfriend.getMidpoint().x - 200;
+								camFollow.y = boyfriend.getMidpoint().y - 200;
+							case 'void':
 								camFollow.x = boyfriend.getMidpoint().x - 200;
 								camFollow.y = boyfriend.getMidpoint().y - 200;
 						}
@@ -2836,7 +2842,7 @@ class PlayState extends MusicBeatState
 
 			if (health <= 0 && !cannotDie)
 			{
-				if (!usedTimeTravel)
+				if (!usedTimeTravel && SONG.songId != 'archvente')
 				{
 					boyfriend.stunned = true;
 
@@ -2873,6 +2879,11 @@ class PlayState extends MusicBeatState
 					#end
 					// God i love futabu!! so fucking much (From: McChomk)
 					// FlxG.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+				}
+				else if (SONG.songId == 'archvente')
+				{
+					FlxG.sound.music.stop();
+					FlxG.switchState(new StickyEndingState());
 				}
 				else
 					health = 1;
@@ -3422,6 +3433,11 @@ class PlayState extends MusicBeatState
 						camHUD.visible = false;
 
 						startDialogue(coolBox);
+					}
+					else if (SONG.songId == 'archvente')
+					{
+						FlxG.sound.music.stop();
+						FlxG.switchState(new StickyEndingState());
 					}
 					else
 					{

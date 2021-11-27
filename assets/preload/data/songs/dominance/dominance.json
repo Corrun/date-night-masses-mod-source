@@ -1831,7 +1831,7 @@
     "mustHitSection": true
    }
   ],
-  "player2": "table-sarv",
+  "player2": "kikyo",
   "chartVersion": "KE1",
   "eventObjects": [
    {
@@ -1842,7 +1842,7 @@
    }
   ],
   "offset": 0,
-  "song": "coolmatins",
+  "song": "dominance",
   "stage": "cloister",
   "validScore": true,
   "needsVoices": true,

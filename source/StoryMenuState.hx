@@ -28,7 +28,7 @@ class StoryMenuState extends MusicBeatState
 		return [['matins' /**,'serafim','harmony'**/], ['coolmatins', 'archvente']];
 	}
 
-	var curDifficulty:Int = 1;
+	var curDifficulty:Int = 2;
 
 	public static var weekUnlocked:Array<Bool> = [];
 
@@ -375,10 +375,21 @@ class StoryMenuState extends MusicBeatState
 			}
 			PlayState.storyWeek = curWeek;
 			PlayState.campaignScore = 0;
-			new FlxTimer().start(1, function(tmr:FlxTimer)
+
+			if (curWeek != 0)
 			{
-				LoadingState.loadAndSwitchState(new PlayState(), true);
-			});
+				new FlxTimer().start(1, function(tmr:FlxTimer)
+				{
+					LoadingState.loadAndSwitchState(new PlayState(), true);
+				});
+			}
+			else
+			{
+				new FlxTimer().start(1, function(tmr:FlxTimer)
+				{
+					LoadingState.loadAndSwitchState(new Prologue(), true);
+				});
+			}
 		}
 	}
 
