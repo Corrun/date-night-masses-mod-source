@@ -88,8 +88,8 @@ class StoryMenuState extends MusicBeatState
 		{
 			if (!FlxG.sound.music.playing)
 			{
-				FlxG.sound.playMusic(Paths.music('freakyMenu'));
-				Conductor.changeBPM(102);
+				FlxG.sound.playMusic(Paths.music('Affinity', 'date-night masses'));
+				Conductor.changeBPM(95);
 			}
 		}
 
@@ -485,7 +485,7 @@ class StoryMenuState extends MusicBeatState
 		}
 		else
 		{
-			stringThing = ['matins - club version', 'archvente'];
+			stringThing = ['matins:\n club version', 'archvente'];
 		}
 
 		for (i in stringThing)
