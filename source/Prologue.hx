@@ -41,6 +41,7 @@ class Prologue extends MusicBeatState
 		});
 
 		textStuff = [
+			'',
 			"Sarv?",
 			"Why did you do it Ruv...",
 			"It's all your fault Ruv. You're so unfair.",
@@ -66,10 +67,10 @@ class Prologue extends MusicBeatState
 
 			switch (curImage)
 			{
-				case 7:
+				case 8:
 					creepyMusic.stop();
 					nextImage();
-				case 10:
+				case 11:
 					nextImage();
 					new FlxTimer().start(2, function(tmr:FlxTimer)
 					{

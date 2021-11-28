@@ -46,7 +46,7 @@ class Stage extends MusicBeatState
 		'schoolEvil' => ['gf-pixel' => [580, 430], 'bf-pixel' => [970, 670], 'spirit' => [-50, 200]],
 		'cloister' => [
 			'table-sarv' => [20, 350],
-			'kikyo' => [120, -260],
+			'kikyo' => [-200, 0],
 			'ruv' => [553, 62],
 			'gf' => [1547, -1020],
 			'sticky' => [840, 350]
@@ -83,7 +83,7 @@ class Stage extends MusicBeatState
 				toAdd.push(rataver);
 
 			case 'cloister':
-				camZoom = 0.5;
+				camZoom = 0.9;
 				curStage = 'cloister';
 
 				var bg:FlxSprite = new FlxSprite(-350, -200).loadGraphic(Paths.image('stages/cloister/house', 'date-night masses'));
@@ -153,7 +153,7 @@ class Stage extends MusicBeatState
 
 					if (PlayState.dad.curCharacter == 'kikyo')
 					{
-						var table2:FlxSprite = new FlxSprite(234, 425).loadGraphic(Paths.image('stages/cloister/halftable', 'date-night masses'));
+						var table2:FlxSprite = new FlxSprite(94, 425).loadGraphic(Paths.image('stages/cloister/halftable', 'date-night masses'));
 						table2.antialiasing = true;
 						// table.scrollFactor.set(0.9, 0.9);
 						table2.setGraphicSize(Std.int(table2.width * 0.67));
@@ -162,16 +162,17 @@ class Stage extends MusicBeatState
 						toAdd.push(table2);
 
 						table2.flipX = true;
+						/*
+							var table3:FlxSprite = new FlxSprite(-226, 425).loadGraphic(Paths.image('stages/cloister/halftable', 'date-night masses'));
+							table3.antialiasing = true;
+							// table.scrollFactor.set(0.9, 0.9);
+							table3.setGraphicSize(Std.int(table3.width * 0.67));
+							table3.active = false;
+							swagBacks['table3'] = table3;
+							toAdd.push(table3);
 
-						var table3:FlxSprite = new FlxSprite(-226, 425).loadGraphic(Paths.image('stages/cloister/halftable', 'date-night masses'));
-						table3.antialiasing = true;
-						// table.scrollFactor.set(0.9, 0.9);
-						table3.setGraphicSize(Std.int(table3.width * 0.67));
-						table3.active = false;
-						swagBacks['table3'] = table3;
-						toAdd.push(table3);
-
-						table3.flipX = true;
+							table3.flipX = true;
+						 */
 
 						camZoom = 0.7;
 					}
@@ -185,11 +186,11 @@ class Stage extends MusicBeatState
 					toAdd.push(chair);
 				}
 
-				var rataver:FlxSprite = new FlxSprite(cookie.x + 50, cookie.y).loadGraphic(Paths.image('extras/rataver_2', 'date-night masses'));
+				var rataver:FlxSprite = new FlxSprite(cereal.x + 300, cereal.y + 20).loadGraphic(Paths.image('extras/rataver_2', 'date-night masses'));
 				rataver.antialiasing = true;
 				rataver.scrollFactor.set(0.9, 0.9);
 				rataver.active = false;
-				rataver.setGraphicSize(Std.int(rataver.width * 0.25));
+				rataver.setGraphicSize(Std.int(rataver.width * 0.3));
 				rataver.updateHitbox();
 				layInFront[1].push(rataver);
 				toAdd.push(rataver);

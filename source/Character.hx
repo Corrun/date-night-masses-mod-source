@@ -62,7 +62,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('firstDeath', "BadEnding firstDeat", 24, false);
 				animation.addByPrefix('deathLoop', "BadEnding deathLoop", 24, false);
 				animation.addByPrefix('deathConfirm', "BadEnding deathConfirm", 24, false);
-				// flipX = true;
+				flipX = true;
 
 				playAnim('idle');
 				barColor = 0xFF5AA06B;
@@ -72,10 +72,10 @@ class Character extends FlxSprite
 				frames = tex;
 
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
-				animation.addByPrefix('singUP', 'BF NOTE UP', 24, false);
-				animation.addByPrefix('singLEFT', 'BF NOTE RIGHT', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF NOTE LEFT', 24, false);
-				animation.addByPrefix('singDOWN', 'BF NOTE DOWN', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE RIGHT0', 24, false);
 				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
 				animation.addByPrefix('singLEFTmiss', 'BF NOTE RIGHT MISS', 24, false);
 				animation.addByPrefix('singRIGHTmiss', 'BF NOTE LEFT MISS', 24, false);
@@ -87,12 +87,11 @@ class Character extends FlxSprite
 				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
 
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
-
+				flipX = true;
 				playAnim('idle');
 
 				barColor = 0xFF5AA06B;
 
-				flipX = true;
 			case "ruv":
 				tex = Paths.getSparrowAtlas('characters/ruv', 'shared');
 				frames = tex;
@@ -106,12 +105,11 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFTmiss', 'ruv miss', 24, false);
 				animation.addByPrefix('singRIGHTmiss', 'ruv miss', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'ruv miss', 24, false);
-				flipX = true;
 
 				animation.addByPrefix('firstDeath', "deadruv firstDeath", 12, false);
 				animation.addByPrefix('deathLoop', "deadruv deathLoop", 12, false);
 				animation.addByPrefix('deathConfirm', "deadruv deathConfirm", 12, false);
-
+				flipX = true;
 				playAnim('idle');
 
 				barColor = 0xFFa798af;

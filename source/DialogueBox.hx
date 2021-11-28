@@ -175,8 +175,8 @@ class DialogueBox extends FlxSpriteGroup
 			}
 			else
 			{
-				bg = new FlxSprite(-200, -100).loadGraphic(Paths.image('cutscene_animatics/song1_afterplay', 'date-night masses'));
-				bg.setGraphicSize(Std.int(FlxG.width * 1.3));
+				bg = new FlxSprite(-75, -40).loadGraphic(Paths.image('cutscene_animatics/song1_afterplay', 'date-night masses'));
+				bg.setGraphicSize(Std.int(FlxG.width * 1.15));
 				bg.updateHitbox();
 			}
 			add(bg);

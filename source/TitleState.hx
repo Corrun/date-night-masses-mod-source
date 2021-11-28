@@ -244,7 +244,7 @@ class TitleState extends MusicBeatState
 			// music.play();
 			FlxG.sound.playMusic(Paths.music('mp3'), 0);
 
-			FlxG.sound.music.fadeIn(4, 0, 0.3);
+			FlxG.sound.music.fadeIn(4, 0, 0.75);
 			Conductor.changeBPM(150);
 			initialized = true;
 		}
