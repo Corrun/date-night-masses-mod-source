@@ -46,6 +46,8 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'Kikyo DOWN', 24, false);
 				// flipX = true;
 
+				loadOffsetFile(curCharacter);
+
 				playAnim('idle');
 				barColor = 0xFF442785;
 
@@ -59,10 +61,10 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'stickybm sing right', 24, false);
 				animation.addByPrefix('singDOWN', 'stickybm sing down', 24, false);
 
-				animation.addByPrefix('firstDeath', "BadEnding firstDeat", 24, false);
-				animation.addByPrefix('deathLoop', "BadEnding deathLoop", 24, false);
-				animation.addByPrefix('deathConfirm', "BadEnding deathConfirm", 24, false);
-				flipX = true;
+				animation.addByPrefix('firstDeath', "stickybm sing right", 24, false);
+				animation.addByPrefix('deathLoop', "stickybm sing down", 24, false);
+				animation.addByPrefix('deathConfirm', "stickybm sing down", 24, false);
+				// flipX = true;
 
 				playAnim('idle');
 				barColor = 0xFF5AA06B;

@@ -25,7 +25,7 @@ class GameOverSubstate extends MusicBeatSubstate
 				daBf = 'bf-pixel-dead';
 			case 'ruv':
 				daBf = 'ruv';
-			case 'sticky':
+			case 'sticky' | 'cringeSticky':
 				daBf = 'sticky';
 			default:
 				daBf = 'bf';

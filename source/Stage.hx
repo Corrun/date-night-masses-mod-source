@@ -174,7 +174,7 @@ class Stage extends MusicBeatState
 							table3.flipX = true;
 						 */
 
-						camZoom = 0.7;
+						// camZoom = 0.7;
 					}
 
 					var chair:FlxSprite = new FlxSprite(750, 300).loadGraphic(Paths.image('stages/cloister/right chair', 'date-night masses'));

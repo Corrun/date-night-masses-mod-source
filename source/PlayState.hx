@@ -2877,7 +2877,7 @@ class PlayState extends MusicBeatState
 
 			if (health <= 0 && !cannotDie)
 			{
-				if (!usedTimeTravel && SONG.songId != 'archvente')
+				if (!usedTimeTravel)
 				{
 					boyfriend.stunned = true;
 
