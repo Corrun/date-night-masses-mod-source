@@ -49,7 +49,7 @@ class Stage extends MusicBeatState
 			'kikyo' => [-200, 0],
 			'ruv' => [553, 62],
 			'gf' => [1547, -1020],
-			'sticky' => [840, 350]
+			'sticky' => [960, 320]
 		],
 		'void' => ['gf' => [2000, -2000], 'buffsarv' => [-300, -200], 'cringeSticky' => [900, 300]]
 	];
