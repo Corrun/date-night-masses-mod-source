@@ -964,7 +964,7 @@ class PlayState extends MusicBeatState
 			case 'archvente':
 				SprMakerDesc = 'cringeSticky sprite maker : ';
 				SprMaker = 'onlyviolette';
-				songComposer = 'Zhad The Impulsive';
+				songComposer = 'bbpanzu (zhad remix)';
 				songBPM = '120';
 				songCharter = 'That one Belgian';
 			case 'dominance':

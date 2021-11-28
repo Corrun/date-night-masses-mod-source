@@ -68,14 +68,22 @@ class Stage extends MusicBeatState
 				camZoom = 0.5;
 				curStage = 'void';
 
-				var pipi:FlxSprite = new FlxSprite(600, 250).loadGraphic(Paths.image('stages/pipi', 'date-night masses'));
+				var pipi:FlxSprite = new FlxSprite(200, 450).loadGraphic(Paths.image('extras/pipi', 'date-night masses'));
 				pipi.antialiasing = true;
 				pipi.scrollFactor.set(0.9, 0.9);
 				pipi.active = false;
+				pipi.setGraphicSize(Std.int(pipi.width * 0.3));
 				toAdd.push(pipi);
 
+				var rataver:FlxSprite = new FlxSprite(200, 250).loadGraphic(Paths.image('extras/rataver', 'date-night masses'));
+				rataver.antialiasing = true;
+				rataver.scrollFactor.set(0.9, 0.9);
+				rataver.active = false;
+				rataver.setGraphicSize(Std.int(rataver.width * 0.3));
+				toAdd.push(rataver);
+
 			case 'cloister':
-				camZoom = 0.9;
+				camZoom = 0.5;
 				curStage = 'cloister';
 
 				var bg:FlxSprite = new FlxSprite(-350, -200).loadGraphic(Paths.image('stages/cloister/house', 'date-night masses'));
@@ -176,6 +184,15 @@ class Stage extends MusicBeatState
 					swagBacks['chair'] = chair;
 					toAdd.push(chair);
 				}
+
+				var rataver:FlxSprite = new FlxSprite(cookie.x + 50, cookie.y).loadGraphic(Paths.image('extras/rataver_2', 'date-night masses'));
+				rataver.antialiasing = true;
+				rataver.scrollFactor.set(0.9, 0.9);
+				rataver.active = false;
+				rataver.setGraphicSize(Std.int(rataver.width * 0.25));
+				rataver.updateHitbox();
+				layInFront[1].push(rataver);
+				toAdd.push(rataver);
 
 			case 'halloween':
 				{
