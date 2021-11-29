@@ -11,7 +11,7 @@ class Boyfriend extends Character
 {
 	public var stunned:Bool = false;
 
-	public function new(x:Float, y:Float, ?char:String = 'bf')
+	public function new(x:Float, y:Float, ?char:String = 'deadruv')
 	{
 		super(x, y, char, true);
 	}
@@ -31,6 +31,9 @@ class Boyfriend extends Character
 			{
 				playAnim('idle', true, false, 10);
 			}
+
+			if (curCharacter.endsWith('-car') && !animation.curAnim.name.startsWith('sing') && animation.curAnim.finished)
+				playAnim('idleHair');
 
 			if (animation.curAnim.name == 'firstDeath' && animation.curAnim.finished)
 			{

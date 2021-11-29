@@ -42,9 +42,12 @@
 
 <SubTexture name="TableSarv down0000" x="453" y="1467" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
 <SubTexture name="TableSarv down0001" x="906" y="1467" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
+<<<<<<< HEAD
 
 <SubTexture name="TableSarv right0002" x="1359" y="1467" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
 <SubTexture name="TableSarv right0003" x="0" y="1956" width="453" height="489" frameX="0" frameY="0" frameWidth="453" frameHeight="489" />
 
+=======
+>>>>>>> Sticky-Build-Cleaned
 </TextureAtlas>
 

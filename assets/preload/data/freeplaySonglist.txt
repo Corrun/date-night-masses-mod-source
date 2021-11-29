@@ -1,3 +1,10 @@
+<<<<<<< HEAD
 matins:sweater-sarv:0
 serafim:garden-sarv:0
 harmony:face:0
+=======
+matins:table-sarv:0
+coolmatins:sticky:0
+archvente:sticky:0
+dominance:kikyo:0
+>>>>>>> Sticky-Build-Cleaned
