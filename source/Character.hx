@@ -94,7 +94,7 @@ class Character extends FlxSprite
 		{
 			//case 'your character name in case you want to hardcode him instead':
 
-			case:
+			
 			default:
 				var characterPath:String = 'characters/' + curCharacter + '.json';
 				#if MODS_ALLOWED

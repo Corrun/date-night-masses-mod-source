@@ -380,7 +380,7 @@ class PlayState extends MusicBeatState
 				bg.updateHitbox();
 				add(bg);
 
-				if ()
+				
 				if (!ClientPrefs.lowQuality) {
 					var cereal:FlxSprite = new FlxSprite(bg.width / 4, bg.height / 4 + 10).loadGraphic(Paths.image('cameos/c_h_e_e_r_io_s', 'date-night masses'));
 					add(cereal);
