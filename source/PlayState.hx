@@ -374,39 +374,6 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
-			case 'cloister': //YOOO It'S MATINS FROM DATE NIGHT MASSES NO WAY
-				var bg:BGSprite = new BGSprite('stages/cloister/house', -350, -200, 1, 1);
-				bg.setGraphicSize(Std.int(bg.width * 0.7));
-				bg.updateHitbox();
-				add(bg);
-
-				
-				if (!ClientPrefs.lowQuality) {
-					var cereal:FlxSprite = new FlxSprite(bg.width / 4, bg.height / 4 + 10).loadGraphic(Paths.image('cameos/c_h_e_e_r_io_s', 'date-night masses'));
-					add(cereal);
-
-					var eatCereal:FlxSprite = new FlxSprite(cereal.x + 125, cereal.y).loadGraphic(Paths.image('cameos/eat this to be starvn_t', 'date-night masses'));
-					add(eatCereal);
-
-					var cookie:FlxSprite;
-				
-					if (Std.random(5) == 1)
-					{
-						cookie = new FlxSprite(cereal.x + 250, cereal.y + 20).loadGraphic(Paths.image('cameos/pogchair', 'date-night masses'));
-						cookie.setGraphicSize(Std.int(cookie.width * 0.075));
-					}
-					else
-					{
-						new FlxSprite(cereal.x + 250, cereal.y + 20).loadGraphic(Paths.image('stages/cloister/cookies', 'date-night masses'));
-					}
-					cookie.updateHitbox();
-					add(cookie);
-
-					var flowers:FlxSprite = new FlxSprite(bg.width / 2 - 400, bg.height / 2 - 220).loadGraphic(Paths.image('stages/cloister/flowers', 'date-night masses'));
-					flowers.setGraphicSize(Std.int(flowers.width * 0.6));
-					flowers.updateHitbox();
-					add(flowers);
-				}
 			case 'stage': //Week 1
 				var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
 				add(bg);

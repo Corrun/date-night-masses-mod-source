@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin': Date Night Masses" file="DNM" packageName="com.shadowmario.psychengine" package="com.shadowmario.psychengine" main="Main" version="0.2.7" company="ShadowMario" />
+	<app title="Friday Night Funkin': Psych Engine" file="PsychEngine" packageName="com.shadowmario.psychengine" package="com.shadowmario.psychengine" main="Main" version="0.2.7" company="ShadowMario" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -44,13 +44,13 @@
 	<assets path="assets/preload" rename="assets" exclude="*.mp3"  unless="web"/>
 	
 	<!-- PSYCH ENGINE CUSTOMIZATION -->
-<!-- <define name="MODS_ALLOWED" if="desktop" /> -->
+	<define name="MODS_ALLOWED" if="desktop" />
 	<define name="LUA_ALLOWED" if="desktop" />
 	<define name="ACHIEVEMENTS_ALLOWED" />
 	<define name="VIDEOS_ALLOWED" if="web || windows" unless="32bits"/>
 
- 	<!-- DONT ENABLE THIS -->
-<!--	<define name="CHECK_FOR_UPDATES" if="desktop officialBuild"/> -->
+	<!-- DONT ENABLE THIS -->
+	<define name="CHECK_FOR_UPDATES" if="desktop officialBuild"/>
 
 	<!-- <define name="PRELOAD_ALL" /> -->
 	<define name="PRELOAD_ALL" unless="web" />
@@ -60,13 +60,21 @@
 	<section if="PRELOAD_ALL">
 		<library name="songs"         preload="true" />
 		<library name="shared"        preload="true" />
-
+		<library name="week2"         preload="true" />
+		<library name="week3"         preload="true" />
+		<library name="week4"         preload="true" />
+		<library name="week5"         preload="true" />
+		<library name="week6"         preload="true" />
 	</section>
 	
 	<section if="NO_PRELOAD_ALL">
 		<library name="songs"         preload="false" />
 		<library name="shared"        preload="false" />
-
+		<library name="week2"         preload="false" />
+		<library name="week3"         preload="false" />
+		<library name="week4"         preload="false" />
+		<library name="week5"         preload="false" />
+		<library name="week6"         preload="false" />
 	</section>
 	
 	<assets path="plugins/"             rename=''               if="VIDEOS_ALLOWED windows" />
@@ -76,8 +84,17 @@
 	<assets path="assets/songs"         library="songs"         exclude="*.mp3" unless="web"/>
 	<assets path="assets/shared"        library="shared"        exclude="*.ogg" if="web"/>
 	<assets path="assets/shared"        library="shared"        exclude="*.mp3" unless="web"/>
-	<assets path="assets/date-night masses" library="date-night masses" exclude="*.ogg" if="web"/>
-	<assets path="assets/date-night masses" library="date-night masses" exclude="*.mp3" unless="web"/>
+	<assets path="assets/week2"         library="week2"         exclude="*.ogg" if="web"/>
+	<assets path="assets/week2"         library="week2"         exclude="*.mp3" unless="web"/>
+	<assets path="assets/week3"         library="week3"         exclude="*.ogg" if="web"/>
+	<assets path="assets/week3"         library="week3"         exclude="*.mp3" unless="web"/>
+	<assets path="assets/week4"         library="week4"         exclude="*.ogg" if="web"/>
+	<assets path="assets/week4"         library="week4"         exclude="*.mp3" unless="web"/>
+	<assets path="assets/week5"         library="week5"         exclude="*.ogg" if="web"/>
+	<assets path="assets/week5"         library="week5"         exclude="*.mp3" unless="web"/>
+	<assets path="assets/week6"         library="week6"         exclude="*.ogg" if="web"/>
+	<assets path="assets/week6"         library="week6"         exclude="*.mp3" unless="web"/>
+	
 	<assets path='example_mods' rename='mods' embed='false' if="MODS_ALLOWED"/>
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
 	<!-- <template path='mods' /> -->
@@ -152,9 +169,5 @@
 	<icon path="art/icon16.png" size='16'/>
 	<icon path="art/icon32.png" size='32'/>
 	<icon path="art/icon64.png" size='64'/>
-	<icon path="art/icon256.png" size='256'/>
-	<icon path="art/icon128.png" size='128'/>
-	<icon path="art/icon512.png" size='512'/>
-	
 	<icon path="art/iconOG.png" />
 </project>

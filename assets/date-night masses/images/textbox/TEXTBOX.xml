@@ -1,6 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<TextureAtlas imagePath="TEXTBOX.png">
-<SubTexture name="TEXTBOX RuvQuiet0000" x="0" y="0" width="1256" height="485" frameX="0" frameY="0" frameWidth="1256" frameHeight="485" />
-<SubTexture name="TEXTBOX RuvNormal0000" x="1256" y="0" width="1248" height="483" frameX="0" frameY="0" frameWidth="1248" frameHeight="483" />
-<SubTexture name="TEXTBOX Sarvtext0000" x="2504" y="0" width="1312" height="485" frameX="0" frameY="0" frameWidth="1312" frameHeight="485" />
-</TextureAtlas>
