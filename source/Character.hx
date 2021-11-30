@@ -1,14 +1,45 @@
 package;
 
-import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.animation.FlxBaseAnimation;
 import flixel.graphics.frames.FlxAtlasFrames;
-import openfl.utils.Assets as OpenFlAssets;
+import flixel.tweens.FlxTween;
+import flixel.util.FlxSort;
+import Section.SwagSection;
+#if MODS_ALLOWED
+import sys.io.File;
+import sys.FileSystem;
+#end
+import openfl.utils.Assets;
 import haxe.Json;
+import haxe.format.JsonParser;
 
 using StringTools;
+
+typedef CharacterFile = {
+	var animations:Array<AnimArray>;
+	var image:String;
+	var scale:Float;
+	var sing_duration:Float;
+	var healthicon:String;
+
+	var position:Array<Float>;
+	var camera_position:Array<Float>;
+
+	var flip_x:Bool;
+	var no_antialiasing:Bool;
+	var healthbar_colors:Array<Int>;
+}
+
+typedef AnimArray = {
+	var anim:String;
+	var name:String;
+	var fps:Int;
+	var loop:Bool;
+	var indices:Array<Int>;
+	var offsets:Array<Int>;
+}
 
 class Character extends FlxSprite
 {
@@ -16,285 +47,194 @@ class Character extends FlxSprite
 	public var debugMode:Bool = false;
 
 	public var isPlayer:Bool = false;
-	public var curCharacter:String = 'bf';
-	public var barColor:FlxColor;
+	public var curCharacter:String = DEFAULT_CHARACTER;
 
+	public var colorTween:FlxTween;
 	public var holdTimer:Float = 0;
+	public var heyTimer:Float = 0;
+	public var specialAnim:Bool = false;
+	public var animationNotes:Array<Dynamic> = [];
+	public var stunned:Bool = false;
+	public var singDuration:Float = 4; //Multiplier of how long a character holds the sing pose
+	public var idleSuffix:String = '';
+	public var danceIdle:Bool = false; //Character use "danceLeft" and "danceRight" instead of "idle"
 
-	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
+	public var healthIcon:String = 'face';
+	public var animationsArray:Array<AnimArray> = [];
+
+	public var positionArray:Array<Float> = [0, 0];
+	public var cameraPosition:Array<Float> = [0, 0];
+
+	public var hasMissAnimations:Bool = false;
+
+	//Used on Character Editor
+	public var imageFile:String = '';
+	public var jsonScale:Float = 1;
+	public var noAntialiasing:Bool = false;
+	public var originalFlipX:Bool = false;
+	public var healthColorArray:Array<Int> = [255, 0, 0];
+	public var alreadyLoaded:Bool = true; //Used by "Change Character" event
+
+	public static var DEFAULT_CHARACTER:String = 'bf'; //In case a character is missing, it will use BF on its place
+	public function new(x:Float, y:Float, ?character:String = 'bf', ?isPlayer:Bool = false)
 	{
 		super(x, y);
 
-		barColor = isPlayer ? 0xFF66FF33 : 0xFFFF0000;
+		#if (haxe >= "4.0.0")
+		animOffsets = new Map();
+		#else
 		animOffsets = new Map<String, Array<Dynamic>>();
+		#end
 		curCharacter = character;
 		this.isPlayer = isPlayer;
+		antialiasing = ClientPrefs.globalAntialiasing;
 
-		var tex:FlxAtlasFrames;
-		antialiasing = FlxG.save.data.antialiasing;
-
+		var library:String = null;
 		switch (curCharacter)
 		{
-			case 'kikyo':
-				var tex = Paths.getSparrowAtlas('characters/Kikyo_assets', 'shared');
-				frames = tex;
+			//case 'your character name in case you want to hardcode him instead':
 
-				animation.addByPrefix('idle', 'Kikyo IDLE', 24, false);
-				animation.addByPrefix('singUP', 'Kikyo UP', 24, false);
-				animation.addByPrefix('singLEFT', 'Kikyo LEFT', 24, false);
-				animation.addByPrefix('singRIGHT', 'Kikyo RIGHT', 24, false);
-				animation.addByPrefix('singDOWN', 'Kikyo DOWN', 24, false);
-				// flipX = true;
-
-				loadOffsetFile(curCharacter);
-
-				playAnim('idle');
-				barColor = 0xFF442785;
-
-			case "cringeSticky":
-				var tex = Paths.getSparrowAtlas('characters/stickybm', 'shared');
-				frames = tex;
-
-				animation.addByPrefix('idle', 'stickybm idle', 24, false);
-				animation.addByPrefix('singUP', 'stickybm sing up', 24, false);
-				animation.addByPrefix('singLEFT', 'stickybm sing left', 24, false);
-				animation.addByPrefix('singRIGHT', 'stickybm sing right', 24, false);
-				animation.addByPrefix('singDOWN', 'stickybm sing down', 24, false);
-
-				animation.addByPrefix('firstDeath', "stickybm sing right", 24, false);
-				animation.addByPrefix('deathLoop', "stickybm sing down", 24, false);
-				animation.addByPrefix('deathConfirm', "stickybm sing down", 24, false);
-				// flipX = true;
-
-				playAnim('idle');
-				barColor = 0xFF5AA06B;
-
-			case "sticky":
-				var tex = Paths.getSparrowAtlas('characters/Ruvvy', 'shared');
-				frames = tex;
-
-				animation.addByPrefix('idle', 'BF idle dance', 24, false);
-				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'BF NOTE RIGHT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF NOTE LEFT0', 24, false);
-				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
-				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'BF NOTE RIGHT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF NOTE LEFT MISS', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
-				animation.addByPrefix('hey', 'BF HEY', 24, false);
-
-				animation.addByPrefix('firstDeath', "BF dies", 24, false);
-				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, false);
-				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
-
-				animation.addByPrefix('scared', 'BF idle shaking', 24);
-				flipX = true;
-				playAnim('idle');
-
-				barColor = 0xFF5AA06B;
-
-			case "ruv":
-				tex = Paths.getSparrowAtlas('characters/ruv', 'shared');
-				frames = tex;
-				animation.addByPrefix('idle', 'ruv idle', 36);
-				animation.addByPrefix('singUP', 'ruv up', 30);
-				animation.addByPrefix('singRIGHT', 'ruv right', 20);
-				animation.addByPrefix('singDOWN', 'ruv down', 20);
-				animation.addByPrefix('singLEFT', 'ruv left', 30);
-
-				animation.addByPrefix('singUPmiss', 'ruv miss', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'ruv miss', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'ruv miss', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'ruv miss', 24, false);
-<<<<<<< HEAD
-				/*
-				animation.addByPrefix('firstDeath', "BF dies", 24, false);
-				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, false);
-				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
-				*/
-	
-				playAnim('idle');
-=======
-
-				animation.addByPrefix('firstDeath', "deadruv firstDeath", 12, false);
-				animation.addByPrefix('deathLoop', "deadruv deathLoop", 12, false);
-				animation.addByPrefix('deathConfirm', "deadruv deathConfirm", 12, false);
->>>>>>> Sticky-Build-Cleaned
-				flipX = true;
-				playAnim('idle');
-<<<<<<< HEAD
-				flipX = true;
-			case 'sweater-sarv':
-				// DAD ANIMATION LOADING CODE
-				
-				//tex = Paths.getSparrowAtlas('characters/dogo', 'shared');
-				tex = Paths.getSparrowAtlas('characters/TableSarv', 'shared');
-				frames = tex;
-				animation.addByPrefix('idle', 'TableSarv idle', 36);
-				animation.addByPrefix('singUP', 'TableSarv up', 12);
-				animation.addByPrefix('singRIGHT', 'TableSarv right', 12);
-				animation.addByPrefix('singDOWN', 'TableSarv down', 12);
-				animation.addByPrefix('singLEFT', 'TableSarv left', 12);
-				
-				setGraphicSize(Std.int(width * 1.3));
-				setGraphicSize(Std.int(height * 1.3));
-
-				playAnim('idle');
-				
-				/*
-				tex = Paths.getSparrowAtlas('characters/Tori', 'shared');
-				frames = tex;
-				animation.addByPrefix('idle', 'arch0000', 24);
-				animation.addByPrefix('singUP', 'arch0001', 24);
-				animation.addByPrefix('singRIGHT', 'arch0002', 24);
-				animation.addByPrefix('singDOWN', 'arch0004', 24);
-				animation.addByPrefix('singLEFT', 'arch0003', 24);
-	
-				playAnim('idle');
-				*/
-			case 'garden-sarv':
-				// DAD ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('characters/DADDY_DEAREST', 'shared');
-=======
-
-				barColor = 0xFFa798af;
-			case "deadruv":
-				tex = Paths.getSparrowAtlas('characters/deadRuv', 'shared');
-				frames = tex;
-				animation.addByPrefix('firstDeath', 'deadRuv firstDeath', 24);
-				animation.addByPrefix('deathLoop', 'deadRuv deathLoop', 24);
-				animation.addByPrefix('deathConfirm', 'deadruv deathConfirm', 24);
-
-				playAnim('firstDeath');
-				barColor = 0xFFa798af;
-
-			case "table-sarv":
-				tex = Paths.getSparrowAtlas('characters/TableSarv', 'shared');
->>>>>>> Sticky-Build-Cleaned
-				frames = tex;
-				animation.addByPrefix('idle', 'TableSarv idle', 12);
-				animation.addByPrefix('singUP', 'TableSarv up', 12);
-				animation.addByPrefix('singRIGHT', 'TableSarv right', 12);
-				animation.addByPrefix('singDOWN', 'TableSarv down', 12);
-				animation.addByPrefix('singLEFT', 'TableSarv left', 12);
-
-				playAnim('idle');
-
-				barColor = 0xFFd49dbd;
-			case "buffsarv":
-				tex = Paths.getSparrowAtlas('characters/buffsarv', 'shared');
-				frames = tex;
-				animation.addByPrefix('idle', 'arch0000', 12);
-				animation.addByPrefix('singUP', 'arch0000', 12);
-				animation.addByPrefix('singRIGHT', 'arch0001', 12);
-				animation.addByPrefix('singDOWN', 'arch0002', 12);
-				animation.addByPrefix('singLEFT', 'arch0003', 12);
-
-				playAnim('idle');
-<<<<<<< HEAD
-			case 'Tori':
-				tex = Paths.getSparrowAtlas('characters/Tori', 'shared');
-				frames = tex;
-				animation.addByPrefix('idle', 'arch0000', 24);
-				animation.addByPrefix('singUP', 'arch0001', 24);
-				animation.addByPrefix('singRIGHT', 'arch0002', 24);
-				animation.addByPrefix('singDOWN', 'arch0004', 24);
-				animation.addByPrefix('singLEFT', 'arch0003', 24);
-	
-				playAnim('idle');
-=======
-
-				barColor = 0xFFd49dbd;
+			case:
 			default:
-				parseDataFile();
->>>>>>> Sticky-Build-Cleaned
+				var characterPath:String = 'characters/' + curCharacter + '.json';
+				#if MODS_ALLOWED
+				var path:String = Paths.modFolders(characterPath);
+				if (!FileSystem.exists(path)) {
+					path = Paths.getPreloadPath(characterPath);
+				}
+
+				if (!FileSystem.exists(path))
+				#else
+				var path:String = Paths.getPreloadPath(characterPath);
+				if (!Assets.exists(path))
+				#end
+				{
+					path = Paths.getPreloadPath('characters/' + DEFAULT_CHARACTER + '.json'); //If a character couldn't be found, change him to BF just to prevent a crash
+				}
+
+				#if MODS_ALLOWED
+				var rawJson = File.getContent(path);
+				#else
+				var rawJson = Assets.getText(path);
+				#end
+
+				var json:CharacterFile = cast Json.parse(rawJson);
+				#if MODS_ALLOWED
+				var txtToFind:String = Paths.getPath('images/' + json.image + '.txt', TEXT);
+				if(FileSystem.exists(txtToFind) || Assets.exists(txtToFind))
+				#else
+				if(Assets.exists(Paths.getPath('images/' + json.image + '.txt', TEXT)))
+				#end
+				{
+				//bozo forgot about the packer shits : P
+					frames = Paths.getPackerAtlas(json.image);
+				}
+				else
+				{
+					frames = Paths.getSparrowAtlas(json.image);
+				}
+				imageFile = json.image;
+
+				if(json.scale != 1) {
+					jsonScale = json.scale;
+					setGraphicSize(Std.int(width * jsonScale));
+					updateHitbox();
+				}
+
+				positionArray = json.position;
+				cameraPosition = json.camera_position;
+
+				healthIcon = json.healthicon;
+				singDuration = json.sing_duration;
+				flipX = !!json.flip_x;
+				if(json.no_antialiasing) {
+					antialiasing = false;
+					noAntialiasing = true;
+				}
+
+				if(json.healthbar_colors != null && json.healthbar_colors.length > 2)
+					healthColorArray = json.healthbar_colors;
+
+				antialiasing = !noAntialiasing;
+				if(!ClientPrefs.globalAntialiasing) antialiasing = false;
+
+				animationsArray = json.animations;
+				if(animationsArray != null && animationsArray.length > 0) {
+					for (anim in animationsArray) {
+						var animAnim:String = '' + anim.anim;
+						var animName:String = '' + anim.name;
+						var animFps:Int = anim.fps;
+						var animLoop:Bool = !!anim.loop; //Bruh
+						var animIndices:Array<Int> = anim.indices;
+						if(animIndices != null && animIndices.length > 0) {
+							animation.addByIndices(animAnim, animName, animIndices, "", animFps, animLoop);
+						} else {
+							animation.addByPrefix(animAnim, animName, animFps, animLoop);
+						}
+
+						if(anim.offsets != null && anim.offsets.length > 1) {
+							addOffset(anim.anim, anim.offsets[0], anim.offsets[1]);
+						}
+					}
+				} else {
+					quickAnimAdd('idle', 'BF idle dance');
+				}
+				//trace('Loaded file to character ' + curCharacter);
 		}
+		originalFlipX = flipX;
 
-		if (curCharacter == 'table-sarv')
-			this.scale.set(1.4, 1.4);
-		if (curCharacter.startsWith('bf'))
-			dance();
+		if(animOffsets.exists('singLEFTmiss') || animOffsets.exists('singDOWNmiss') || animOffsets.exists('singUPmiss') || animOffsets.exists('singRIGHTmiss')) hasMissAnimations = true;
+		recalculateDanceIdle();
+		dance();
 
-		if (isPlayer && frames != null)
+		if (isPlayer)
 		{
 			flipX = !flipX;
 
-			// Doesn't flip for BF, since his are already in the right place???
+			/*// Doesn't flip for BF, since his are already in the right place???
 			if (!curCharacter.startsWith('bf'))
 			{
 				// var animArray
-				var oldRight = animation.getByName('singRIGHT').frames;
-				animation.getByName('singRIGHT').frames = animation.getByName('singLEFT').frames;
-				animation.getByName('singLEFT').frames = oldRight;
+				if(animation.getByName('singLEFT') != null && animation.getByName('singRIGHT') != null)
+				{
+					var oldRight = animation.getByName('singRIGHT').frames;
+					animation.getByName('singRIGHT').frames = animation.getByName('singLEFT').frames;
+					animation.getByName('singLEFT').frames = oldRight;
+				}
 
 				// IF THEY HAVE MISS ANIMATIONS??
-				if (animation.getByName('singRIGHTmiss') != null)
+				if (animation.getByName('singLEFTmiss') != null && animation.getByName('singRIGHTmiss') != null)
 				{
 					var oldMiss = animation.getByName('singRIGHTmiss').frames;
 					animation.getByName('singRIGHTmiss').frames = animation.getByName('singLEFTmiss').frames;
 					animation.getByName('singLEFTmiss').frames = oldMiss;
 				}
-			}
-		}
-	}
-
-	function parseDataFile()
-	{
-		Debug.logInfo('Generating character (${curCharacter}) from JSON data...');
-
-		// Load the data from JSON and cast it to a struct we can easily read.
-		var jsonData = Paths.loadJSON('characters/${curCharacter}');
-		if (jsonData == null)
-		{
-			Debug.logError('Failed to parse JSON data for character ${curCharacter}');
-			return;
-		}
-
-		var data:CharacterData = cast jsonData;
-
-		var tex:FlxAtlasFrames = Paths.getSparrowAtlas(data.asset, 'shared');
-		frames = tex;
-		if (frames != null)
-			for (anim in data.animations)
-			{
-				var frameRate = anim.frameRate == null ? 24 : anim.frameRate;
-				var looped = anim.looped == null ? false : anim.looped;
-				var flipX = anim.flipX == null ? false : anim.flipX;
-				var flipY = anim.flipY == null ? false : anim.flipY;
-
-				if (anim.frameIndices != null)
-				{
-					animation.addByIndices(anim.name, anim.prefix, anim.frameIndices, "", frameRate, looped, flipX, flipY);
-				}
-				else
-				{
-					animation.addByPrefix(anim.name, anim.prefix, frameRate, looped, flipX, flipY);
-				}
-
-				animOffsets[anim.name] = anim.offsets == null ? [0, 0] : anim.offsets;
-			}
-
-		barColor = FlxColor.fromString(data.barColor);
-
-		playAnim(data.startingAnim);
-	}
-
-	public function loadOffsetFile(character:String, library:String = 'shared')
-	{
-		var offset:Array<String> = CoolUtil.coolTextFile(Paths.txt('images/characters/' + character + "Offsets", library));
-
-		for (i in 0...offset.length)
-		{
-			var data:Array<String> = offset[i].split(' ');
-			addOffset(data[0], Std.parseInt(data[1]), Std.parseInt(data[2]));
+			}*/
 		}
 	}
 
 	override function update(elapsed:Float)
 	{
-		if (curCharacter != 'deadRuv')
+		if(!debugMode && animation.curAnim != null)
 		{
+			if(heyTimer > 0)
+			{
+				heyTimer -= elapsed;
+				if(heyTimer <= 0)
+				{
+					if(specialAnim && animation.curAnim.name == 'hey' || animation.curAnim.name == 'cheer')
+					{
+						specialAnim = false;
+						dance();
+					}
+					heyTimer = 0;
+				}
+			} else if(specialAnim && animation.curAnim.finished)
+			{
+				specialAnim = false;
+				dance();
+			}
+
 			if (!isPlayer)
 			{
 				if (animation.curAnim.name.startsWith('sing'))
@@ -302,104 +242,48 @@ class Character extends FlxSprite
 					holdTimer += elapsed;
 				}
 
-				if (curCharacter.endsWith('-car')
-					&& !animation.curAnim.name.startsWith('sing')
-					&& animation.curAnim.finished
-					&& animation.getByName('idleHair') != null)
-					playAnim('idleHair');
-
-				if (animation.getByName('idleLoop') != null)
+				if (holdTimer >= Conductor.stepCrochet * 0.001 * singDuration)
 				{
-					if (!animation.curAnim.name.startsWith('sing') && animation.curAnim.finished)
-						playAnim('idleLoop');
-				}
-
-				var dadVar:Float = 4;
-
-				if (curCharacter == 'dad')
-					dadVar = 6.1;
-				else if (curCharacter == 'gf' || curCharacter == 'spooky')
-					dadVar = 4.1; // fix double dances
-				if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001)
-				{
-					if (curCharacter == 'gf' || curCharacter == 'spooky')
-						playAnim('danceLeft'); // overridden by dance correctly later
 					dance();
 					holdTimer = 0;
 				}
 			}
 
-			switch (curCharacter)
+			if(animation.curAnim.finished && animation.getByName(animation.curAnim.name + '-loop') != null)
 			{
-				case 'gf':
-					if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
-					{
-						danced = true;
-						playAnim('danceRight');
-					}
+				playAnim(animation.curAnim.name + '-loop');
 			}
-
-			super.update(elapsed);
 		}
+		super.update(elapsed);
 	}
 
-	private var danced:Bool = false;
+	public var danced:Bool = false;
 
 	/**
 	 * FOR GF DANCING SHIT
 	 */
-	public function dance(forced:Bool = false, altAnim:Bool = false)
+	public function dance()
 	{
-		if (!debugMode)
+		if (!debugMode && !specialAnim)
 		{
-			switch (curCharacter)
+			if(danceIdle)
 			{
-				case 'gf' | 'gf-christmas' | 'gf-car' | 'gf-pixel':
-					if (!animation.curAnim.name.startsWith('hair') && !animation.curAnim.name.startsWith('sing'))
-					{
-						danced = !danced;
+				danced = !danced;
 
-						if (danced)
-							playAnim('danceRight');
-						else
-							playAnim('danceLeft');
-					}
-				case 'spooky':
-					if (!animation.curAnim.name.startsWith('sing'))
-					{
-						danced = !danced;
-
-						if (danced)
-							playAnim('danceRight');
-						else
-							playAnim('danceLeft');
-					}
-				/*
-					// new dance code is gonna end up cutting off animation with the idle
-					// so here's example code that'll fix it. just adjust it to ya character 'n shit
-					case 'custom character':
-						if (!animation.curAnim.name.endsWith('custom animation'))
-							playAnim('idle', forced);
-				 */
-				default:
-					if (altAnim && animation.getByName('idle-alt') != null)
-						playAnim('idle-alt', forced);
-					else
-						playAnim('idle', forced);
+				if (danced)
+					playAnim('danceRight' + idleSuffix);
+				else
+					playAnim('danceLeft' + idleSuffix);
+			}
+			else if(animation.getByName('idle' + idleSuffix) != null) {
+					playAnim('idle' + idleSuffix);
 			}
 		}
 	}
 
 	public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
 	{
-		if (AnimName.endsWith('alt') && animation.getByName(AnimName) == null)
-		{
-			#if debug
-			FlxG.log.warn(['Such alt animation doesnt exist: ' + AnimName]);
-			#end
-			AnimName = AnimName.split('-')[0];
-		}
-
+		specialAnim = false;
 		animation.play(AnimName, Force, Reversed, Frame);
 
 		var daOffset = animOffsets.get(AnimName);
@@ -410,7 +294,7 @@ class Character extends FlxSprite
 		else
 			offset.set(0, 0);
 
-		if (curCharacter == 'gf')
+		if (curCharacter.startsWith('gf'))
 		{
 			if (AnimName == 'singLEFT')
 			{
@@ -428,46 +312,17 @@ class Character extends FlxSprite
 		}
 	}
 
+	public function recalculateDanceIdle() {
+		danceIdle = (animation.getByName('danceLeft' + idleSuffix) != null && animation.getByName('danceRight' + idleSuffix) != null);
+	}
+
 	public function addOffset(name:String, x:Float = 0, y:Float = 0)
 	{
 		animOffsets[name] = [x, y];
 	}
-}
 
-typedef CharacterData =
-{
-	var name:String;
-	var asset:String;
-	var startingAnim:String;
-
-	/**
-	 * The color of this character's health bar.
-	 */
-	var barColor:String;
-
-	var animations:Array<AnimationData>;
-}
-
-typedef AnimationData =
-{
-	var name:String;
-	var prefix:String;
-	var ?offsets:Array<Int>;
-
-	/**
-	 * Whether this animation is looped.
-	 * @default false
-	 */
-	var ?looped:Bool;
-
-	var ?flipX:Bool;
-	var ?flipY:Bool;
-
-	/**
-	 * The frame rate of this animation.
-	 		* @default 24
-	 */
-	var ?frameRate:Int;
-
-	var ?frameIndices:Array<Int>;
+	public function quickAnimAdd(name:String, anim:String)
+	{
+		animation.addByPrefix(name, anim, 24, false);
+	}
 }

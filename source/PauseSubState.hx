@@ -1,10 +1,5 @@
 package;
 
-import flixel.input.gamepad.FlxGamepad;
-import openfl.Lib;
-#if FEATURE_LUAMODCHART
-import llua.Lua;
-#end
 import Controls.Control;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -17,105 +12,97 @@ import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
+import flixel.FlxCamera;
 
 class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
-	public static var goToOptions:Bool = false;
-	public static var goBack:Bool = false;
-
-	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Options', 'Exit to menu'];
+	var menuItems:Array<String> = [];
+	var menuItemsOG:Array<String> = ['Resume', 'Restart Song', 'Change Difficulty', 'Toggle Practice Mode', 'Botplay', 'Exit to menu'];
+	var difficultyChoices = [];
 	var curSelected:Int = 0;
 
-	public static var playingPause:Bool = false;
-
 	var pauseMusic:FlxSound;
+	var practiceText:FlxText;
+	var botplayText:FlxText;
 
-	var perSongOffset:FlxText;
+	public static var transCamera:FlxCamera;
 
-	var offsetChanged:Bool = false;
-	var startOffset:Float = PlayState.songOffset;
-
-	var bg:FlxSprite;
-
-	public function new()
+	public function new(x:Float, y:Float)
 	{
 		super();
+		menuItems = menuItemsOG;
 
-		if (PlayState.instance.useVideo)
-		{
-			menuItems.remove("Resume");
-			if (GlobalVideo.get().playing)
-				GlobalVideo.get().pause();
+		for (i in 0...CoolUtil.difficultyStuff.length) {
+			var diff:String = '' + CoolUtil.difficultyStuff[i][0];
+			difficultyChoices.push(diff);
 		}
+		difficultyChoices.push('BACK');
 
-		if (FlxG.sound.music.playing)
-			FlxG.sound.music.pause();
+		pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast'), true, true);
+		pauseMusic.volume = 0;
+		pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
 
-		for (i in FlxG.sound.list)
-		{
-			if (i.playing && i.ID != 9000)
-				i.pause();
-		}
+		FlxG.sound.list.add(pauseMusic);
 
-		if (!playingPause)
-		{
-			playingPause = true;
-			pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast'), true, true);
-			pauseMusic.volume = 0;
-			pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
-			pauseMusic.ID = 9000;
-
-			FlxG.sound.list.add(pauseMusic);
-		}
-		else
-		{
-			for (i in FlxG.sound.list)
-			{
-				if (i.ID == 9000) // jankiest static variable
-					pauseMusic = i;
-			}
-		}
-
-		bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		bg.alpha = 0;
 		bg.scrollFactor.set();
 		add(bg);
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
-		levelInfo.text += PlayState.SONG.songName;
+		levelInfo.text += PlayState.SONG.song;
 		levelInfo.scrollFactor.set();
 		levelInfo.setFormat(Paths.font("vcr.ttf"), 32);
 		levelInfo.updateHitbox();
 		add(levelInfo);
 
 		var levelDifficulty:FlxText = new FlxText(20, 15 + 32, 0, "", 32);
-		levelDifficulty.text += CoolUtil.difficultyFromInt(PlayState.storyDifficulty).toUpperCase();
+		levelDifficulty.text += CoolUtil.difficultyString();
 		levelDifficulty.scrollFactor.set();
 		levelDifficulty.setFormat(Paths.font('vcr.ttf'), 32);
 		levelDifficulty.updateHitbox();
 		add(levelDifficulty);
 
+		var blueballedTxt:FlxText = new FlxText(20, 15 + 64, 0, "", 32);
+		blueballedTxt.text = "Blueballed: " + PlayState.deathCounter;
+		blueballedTxt.scrollFactor.set();
+		blueballedTxt.setFormat(Paths.font('vcr.ttf'), 32);
+		blueballedTxt.updateHitbox();
+		add(blueballedTxt);
+
+		practiceText = new FlxText(20, 15 + 101, 0, "PRACTICE MODE", 32);
+		practiceText.scrollFactor.set();
+		practiceText.setFormat(Paths.font('vcr.ttf'), 32);
+		practiceText.x = FlxG.width - (practiceText.width + 20);
+		practiceText.updateHitbox();
+		practiceText.visible = PlayState.practiceMode;
+		add(practiceText);
+
+		botplayText = new FlxText(20, FlxG.height - 40, 0, "BOTPLAY", 32);
+		botplayText.scrollFactor.set();
+		botplayText.setFormat(Paths.font('vcr.ttf'), 32);
+		botplayText.x = FlxG.width - (botplayText.width + 20);
+		botplayText.updateHitbox();
+		botplayText.visible = PlayState.cpuControlled;
+		add(botplayText);
+
+		blueballedTxt.alpha = 0;
 		levelDifficulty.alpha = 0;
 		levelInfo.alpha = 0;
 
 		levelInfo.x = FlxG.width - (levelInfo.width + 20);
 		levelDifficulty.x = FlxG.width - (levelDifficulty.width + 20);
+		blueballedTxt.x = FlxG.width - (blueballedTxt.width + 20);
 
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(levelInfo, {alpha: 1, y: 20}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
 		FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5});
+		FlxTween.tween(blueballedTxt, {alpha: 1, y: blueballedTxt.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.7});
 
 		grpMenuShit = new FlxTypedGroup<Alphabet>();
 		add(grpMenuShit);
-		perSongOffset = new FlxText(5, FlxG.height - 18, 0, "Hello chat", 12);
-		perSongOffset.scrollFactor.set();
-		perSongOffset.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-
-		#if FEATURE_FILESYSTEM
-		add(perSongOffset);
-		#end
 
 		for (i in 0...menuItems.length)
 		{
@@ -137,131 +124,80 @@ class PauseSubState extends MusicBeatSubstate
 
 		super.update(elapsed);
 
-		if (PlayState.instance.useVideo)
-			menuItems.remove('Resume');
+		var upP = controls.UI_UP_P;
+		var downP = controls.UI_DOWN_P;
+		var accepted = controls.ACCEPT;
 
-		for (i in FlxG.sound.list)
-		{
-			if (i.playing && i.ID != 9000)
-				i.pause();
-		}
-
-		if (bg.alpha > 0.6)
-			bg.alpha = 0.6;
-
-		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
-
-		var upPcontroller:Bool = false;
-		var downPcontroller:Bool = false;
-		var leftPcontroller:Bool = false;
-		var rightPcontroller:Bool = false;
-		var oldOffset:Float = 0;
-
-		if (gamepad != null && KeyBinds.gamepad)
-		{
-			upPcontroller = gamepad.justPressed.DPAD_UP;
-			downPcontroller = gamepad.justPressed.DPAD_DOWN;
-			leftPcontroller = gamepad.justPressed.DPAD_LEFT;
-			rightPcontroller = gamepad.justPressed.DPAD_RIGHT;
-		}
-
-		var songPath = 'assets/data/songs/${PlayState.SONG.songId}/';
-
-		#if FEATURE_STEPMANIA
-		if (PlayState.isSM && !PlayState.isStoryMode)
-			songPath = PlayState.pathToSm;
-		#end
-
-		if (controls.UP_P || upPcontroller)
+		if (upP)
 		{
 			changeSelection(-1);
 		}
-		else if (controls.DOWN_P || downPcontroller)
+		if (downP)
 		{
 			changeSelection(1);
 		}
 
-		if (controls.ACCEPT && !FlxG.keys.pressed.ALT)
+		if (accepted)
 		{
 			var daSelected:String = menuItems[curSelected];
+			for (i in 0...difficultyChoices.length-1) {
+				if(difficultyChoices[i] == daSelected) {
+					var name:String = PlayState.SONG.song.toLowerCase();
+					var poop = Highscore.formatSong(name, curSelected);
+					PlayState.SONG = Song.loadFromJson(poop, name);
+					PlayState.storyDifficulty = curSelected;
+					CustomFadeTransition.nextCamera = transCamera;
+					MusicBeatState.resetState();
+					FlxG.sound.music.volume = 0;
+					PlayState.changedDifficulty = true;
+					PlayState.cpuControlled = false;
+					return;
+				}
+			} 
 
 			switch (daSelected)
 			{
 				case "Resume":
 					close();
+				case 'Change Difficulty':
+					menuItems = difficultyChoices;
+					regenMenu();
+				case 'Toggle Practice Mode':
+					PlayState.practiceMode = !PlayState.practiceMode;
+					PlayState.usedPractice = true;
+					practiceText.visible = PlayState.practiceMode;
 				case "Restart Song":
-					PlayState.startTime = 0;
-					if (PlayState.instance.useVideo)
-					{
-						GlobalVideo.get().stop();
-						PlayState.instance.remove(PlayState.instance.videoSprite);
-						PlayState.instance.removedVideo = true;
-					}
-					PlayState.instance.clean();
-					FlxG.resetState();
-					PlayState.stageTesting = false;
-				case "Options":
-					goToOptions = true;
-					close();
+					CustomFadeTransition.nextCamera = transCamera;
+					MusicBeatState.resetState();
+					FlxG.sound.music.volume = 0;
+				case 'Botplay':
+					PlayState.cpuControlled = !PlayState.cpuControlled;
+					PlayState.usedPractice = true;
+					botplayText.visible = PlayState.cpuControlled;
 				case "Exit to menu":
-					PlayState.startTime = 0;
-					if (PlayState.instance.useVideo)
-					{
-						GlobalVideo.get().stop();
-						PlayState.instance.remove(PlayState.instance.videoSprite);
-						PlayState.instance.removedVideo = true;
+					PlayState.deathCounter = 0;
+					PlayState.seenCutscene = false;
+					CustomFadeTransition.nextCamera = transCamera;
+					if(PlayState.isStoryMode) {
+						MusicBeatState.switchState(new StoryMenuState());
+					} else {
+						MusicBeatState.switchState(new FreeplayState());
 					}
-					if (PlayState.loadRep)
-					{
-						FlxG.save.data.botplay = false;
-						FlxG.save.data.scrollSpeed = 1;
-						FlxG.save.data.downscroll = false;
-					}
-					PlayState.loadRep = false;
-					PlayState.stageTesting = false;
-					#if FEATURE_LUAMODCHART
-					if (PlayState.luaModchart != null)
-					{
-						PlayState.luaModchart.die();
-						PlayState.luaModchart = null;
-					}
-					#end
-					if (FlxG.save.data.fpsCap > 340)
-						(cast(Lib.current.getChildAt(0), Main)).setFPSCap(120);
+					FlxG.sound.playMusic(Paths.music('freakyMenu'));
+					PlayState.usedPractice = false;
+					PlayState.changedDifficulty = false;
+					PlayState.cpuControlled = false;
 
-					PlayState.instance.clean();
-
-					if (PlayState.isStoryMode)
-					{
-						GameplayCustomizeState.freeplayBf = 'bf';
-						GameplayCustomizeState.freeplayDad = 'dad';
-						GameplayCustomizeState.freeplayGf = 'gf';
-						GameplayCustomizeState.freeplayNoteStyle = 'normal';
-						GameplayCustomizeState.freeplayStage = 'stage';
-						GameplayCustomizeState.freeplaySong = 'bopeebo';
-						GameplayCustomizeState.freeplayWeek = 1;
-						FlxG.switchState(new StoryMenuState());
-					}
-					else
-						FlxG.switchState(new FreeplayState());
+				case 'BACK':
+					menuItems = menuItemsOG;
+					regenMenu();
 			}
-		}
-
-		if (FlxG.keys.justPressed.J)
-		{
-			// for reference later!
-			// PlayerSettings.player1.controls.replaceBinding(Control.LEFT, Keys, FlxKey.J, null);
 		}
 	}
 
 	override function destroy()
 	{
-		if (!goToOptions)
-		{
-			Debug.logTrace("destroying music for pauseeta");
-			pauseMusic.destroy();
-			playingPause = false;
-		}
+		pauseMusic.destroy();
 
 		super.destroy();
 	}
@@ -293,5 +229,19 @@ class PauseSubState extends MusicBeatSubstate
 				// item.setGraphicSize(Std.int(item.width));
 			}
 		}
+	}
+
+	function regenMenu():Void {
+		for (i in 0...grpMenuShit.members.length) {
+			this.grpMenuShit.remove(this.grpMenuShit.members[0], true);
+		}
+		for (i in 0...menuItems.length) {
+			var item = new Alphabet(0, 70 * i + 30, menuItems[i], true, false);
+			item.isMenuItem = true;
+			item.targetY = i;
+			grpMenuShit.add(item);
+		}
+		curSelected = 0;
+		changeSelection();
 	}
 }

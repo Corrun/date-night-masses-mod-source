@@ -1,12 +1,12 @@
 package;
 
-import Song.SongData;
-import flixel.FlxG;
+import Song.SwagSong;
 
 /**
  * ...
  * @author
  */
+
 typedef BPMChangeEvent =
 {
 	var stepTime:Int;
@@ -23,11 +23,11 @@ class Conductor
 	public static var lastSongPos:Float;
 	public static var offset:Float = 0;
 
-	public static var rawPosition:Float;
-
+//tryna do MS based judgment due to popular demand
+    public static var timingWindows = [166, 135, 90, 45];
+	
 	public static var safeFrames:Int = 10;
-	public static var safeZoneOffset:Float = Math.floor((safeFrames / 60) * 1000); // is calculated in create(), is safeFrames in milliseconds
-	public static var timeScale:Float = Conductor.safeZoneOffset / 166;
+	public static var safeZoneOffset:Float = (safeFrames / 60) * 1000; // is calculated in create(), is safeFrames in milliseconds
 
 	public static var bpmChangeMap:Array<BPMChangeEvent> = [];
 
@@ -35,14 +35,31 @@ class Conductor
 	{
 	}
 
-	public static function recalculateTimings()
-	{
-		Conductor.safeFrames = FlxG.save.data.frames;
-		Conductor.safeZoneOffset = Math.floor((Conductor.safeFrames / 60) * 1000);
-		Conductor.timeScale = Conductor.safeZoneOffset / 166;
-	}
-
-	public static function mapBPMChanges(song:SongData)
+    public static function judgeNote(note:Note,diff:Float=0)//STOLEN FROM KADE ENGINE
+    {
+       // var diff = Math.abs(note.strumTime - Conductor.songPosition) / (PlayState.songMultiplier >= 1 ? PlayState.songMultiplier : 1);
+        for(index in 0...timingWindows.length) // based on 4 timing windows, will break with anything else
+        {
+            var time = timingWindows[index];
+            var nextTime = index + 1 > timingWindows.length - 1 ? 0 : timingWindows[index + 1];
+            if (diff < time && diff >= nextTime)
+            {
+                switch(index)
+                {
+                    case 0: // shit
+                        return "shit";
+                    case 1: // bad
+                        return "bad";
+                    case 2: // good
+                        return "good";
+                    case 3: // sick
+                        return "sick";
+                }
+            }
+        }
+        return "shit";
+    }
+	public static function mapBPMChanges(song:SwagSong)
 	{
 		bpmChangeMap = [];
 
@@ -51,7 +68,7 @@ class Conductor
 		var totalPos:Float = 0;
 		for (i in 0...song.notes.length)
 		{
-			if (song.notes[i].changeBPM && song.notes[i].bpm != curBPM)
+			if(song.notes[i].changeBPM && song.notes[i].bpm != curBPM)
 			{
 				curBPM = song.notes[i].bpm;
 				var event:BPMChangeEvent = {
@@ -69,23 +86,7 @@ class Conductor
 		trace("new BPM map BUDDY " + bpmChangeMap);
 	}
 
-	public static function recalculateTimingStruct(SONG:SongData)
-	{
-		for (i in SONG.eventObjects)
-		{
-			/*TimingStruct.addTiming(beat,bpm,endBeat, Std.parseFloat(OFFSET));
-
-				if (changeEvents.length != 0)
-				{
-					var data = TimingStruct.AllTimings[currentIndex - 1];
-					data.endBeat = beat;
-					data.length = (data.endBeat - data.startBeat) / (data.bpm / 60);
-					TimingStruct.AllTimings[currentIndex].startTime = data.startTime + data.length;
-			}*/
-		}
-	}
-
-	public static function changeBPM(newBpm:Float, ?recalcLength = true)
+	public static function changeBPM(newBpm:Float)
 	{
 		bpm = newBpm;
 

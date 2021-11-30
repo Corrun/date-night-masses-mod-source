@@ -3,153 +3,147 @@ package;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSubState;
+import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 
 class GameOverSubstate extends MusicBeatSubstate
 {
 	var bf:Boyfriend;
-	var camFollow:FlxObject;
+	var camFollow:FlxPoint;
+	var camFollowPos:FlxObject;
+	var updateCamera:Bool = false;
 
 	var stageSuffix:String = "";
 
-	public function new(x:Float, y:Float)
-	{
-		var daStage = PlayState.Stage.curStage;
-		var daBf:String = '';
-		switch (PlayState.boyfriend.curCharacter)
-		{
-			case 'bf-pixel':
-				stageSuffix = '-pixel';
-				daBf = 'bf-pixel-dead';
-			case 'ruv':
-				daBf = 'ruv';
-			case 'sticky' | 'cringeSticky':
-				daBf = 'sticky';
-			default:
-				daBf = 'bf';
-		}
+	var lePlayState:PlayState;
 
+	public static var characterName:String = 'bf';
+	public static var deathSoundName:String = 'fnf_loss_sfx';
+	public static var loopSoundName:String = 'gameOver';
+	public static var endSoundName:String = 'gameOverEnd';
+
+	public static function resetVariables() {
+		characterName = 'bf';
+		deathSoundName = 'fnf_loss_sfx';
+		loopSoundName = 'gameOver';
+		endSoundName = 'gameOverEnd';
+	}
+
+	public function new(x:Float, y:Float, camX:Float, camY:Float, state:PlayState)
+	{
+		lePlayState = state;
+		state.setOnLuas('inGameOver', true);
 		super();
 
 		Conductor.songPosition = 0;
 
-		bf = new Boyfriend(x, y, daBf);
+		bf = new Boyfriend(x, y, characterName);
 		add(bf);
 
-		camFollow = new FlxObject(bf.getGraphicMidpoint().x, bf.getGraphicMidpoint().y, 1, 1);
-		add(camFollow);
+		camFollow = new FlxPoint(bf.getGraphicMidpoint().x, bf.getGraphicMidpoint().y);
 
-		if (PlayState.boyfriend.curCharacter == 'ruv')
-		{
-			FlxG.sound.play(Paths.sound('ruv_die', 'date-night masses'));
-			Conductor.changeBPM(100);
-		}
-		else
-		{
-			FlxG.sound.play(Paths.sound('fnf_loss_sfx' + stageSuffix));
-			Conductor.changeBPM(100);
-		}
+		FlxG.sound.play(Paths.sound(deathSoundName));
+		Conductor.changeBPM(100);
 		// FlxG.camera.followLerp = 1;
 		// FlxG.camera.focusOn(FlxPoint.get(FlxG.width / 2, FlxG.height / 2));
 		FlxG.camera.scroll.set();
 		FlxG.camera.target = null;
-		bf.playAnim('firstDeath');
-	}
 
-	var startVibin:Bool = false;
+		bf.playAnim('firstDeath');
+
+		var exclude:Array<Int> = [];
+
+		camFollowPos = new FlxObject(0, 0, 1, 1);
+		camFollowPos.setPosition(FlxG.camera.scroll.x + (FlxG.camera.width / 2), FlxG.camera.scroll.y + (FlxG.camera.height / 2));
+		add(camFollowPos);
+	}
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		lePlayState.callOnLuas('onUpdate', [elapsed]);
+		if(updateCamera) {
+			var lerpVal:Float = CoolUtil.boundTo(elapsed * 0.6, 0, 1);
+			camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
+		}
 
 		if (controls.ACCEPT)
 		{
 			endBullshit();
 		}
 
-		if (FlxG.save.data.InstantRespawn)
-		{
-			LoadingState.loadAndSwitchState(new PlayState());
-		}
-
 		if (controls.BACK)
 		{
 			FlxG.sound.music.stop();
+			PlayState.deathCounter = 0;
+			PlayState.seenCutscene = false;
 
 			if (PlayState.isStoryMode)
-			{
-				GameplayCustomizeState.freeplayBf = 'bf';
-				GameplayCustomizeState.freeplayDad = 'dad';
-				GameplayCustomizeState.freeplayGf = 'gf';
-				GameplayCustomizeState.freeplayNoteStyle = 'normal';
-				GameplayCustomizeState.freeplayStage = 'stage';
-				GameplayCustomizeState.freeplaySong = 'bopeebo';
-				GameplayCustomizeState.freeplayWeek = 1;
-				FlxG.switchState(new StoryMenuState());
-			}
+				MusicBeatState.switchState(new StoryMenuState());
 			else
-				FlxG.switchState(new FreeplayState());
-			PlayState.loadRep = false;
-			PlayState.stageTesting = false;
+				MusicBeatState.switchState(new FreeplayState());
+
+			FlxG.sound.playMusic(Paths.music('freakyMenu'));
+			lePlayState.callOnLuas('onGameOverConfirm', [false]);
 		}
 
-		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.curFrame == 12)
+		if (bf.animation.curAnim.name == 'firstDeath')
 		{
-			FlxG.camera.follow(camFollow, LOCKON, 0.01);
-		}
+			if(bf.animation.curAnim.curFrame == 12)
+			{
+				FlxG.camera.follow(camFollowPos, LOCKON, 1);
+				updateCamera = true;
+			}
 
-		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.finished)
-		{
-			if (PlayState.boyfriend.curCharacter == 'ruv')
+			if (bf.animation.curAnim.finished)
 			{
-				FlxG.sound.playMusic(Paths.music('SubRosa', 'date-night masses'));
-				// FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
+				coolStartDeath();
+				bf.startedDeath = true;
 			}
-			else
-			{
-				FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
-			}
-			startVibin = true;
 		}
 
 		if (FlxG.sound.music.playing)
 		{
 			Conductor.songPosition = FlxG.sound.music.time;
 		}
+		lePlayState.callOnLuas('onUpdatePost', [elapsed]);
 	}
 
 	override function beatHit()
 	{
 		super.beatHit();
 
-		if (startVibin && !isEnding)
-		{
-			bf.playAnim('deathLoop', true);
-		}
-		FlxG.log.add('beat');
+		//FlxG.log.add('beat');
 	}
 
 	var isEnding:Bool = false;
+
+	function coolStartDeath(?volume:Float = 1):Void
+	{
+		FlxG.sound.playMusic(Paths.music(loopSoundName), volume);
+	}
 
 	function endBullshit():Void
 	{
 		if (!isEnding)
 		{
-			PlayState.startTime = 0;
 			isEnding = true;
 			bf.playAnim('deathConfirm', true);
 			FlxG.sound.music.stop();
-			FlxG.sound.play(Paths.music('gameOverEnd' + stageSuffix));
+			FlxG.sound.play(Paths.music(endSoundName));
 			new FlxTimer().start(0.7, function(tmr:FlxTimer)
 			{
 				FlxG.camera.fade(FlxColor.BLACK, 2, false, function()
 				{
-					LoadingState.loadAndSwitchState(new PlayState());
-					PlayState.stageTesting = false;
+					MusicBeatState.resetState();
 				});
 			});
+			lePlayState.callOnLuas('onGameOverConfirm', [true]);
 		}
 	}
 }
