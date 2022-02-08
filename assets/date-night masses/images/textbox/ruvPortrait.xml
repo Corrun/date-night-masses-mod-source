@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="ruvPortrait.png"><SubTexture name="ruv Content0000" x="0" y="0" width="253" height="306" frameX="0" frameY="0" frameWidth="253" frameHeight="306" />
+<SubTexture name="ruv DateContent0000" x="253" y="0" width="268" height="322" frameX="0" frameY="0" frameWidth="268" frameHeight="322" />
+<SubTexture name="ruv DateNerv0000" x="521" y="0" width="268" height="324" frameX="0" frameY="0" frameWidth="268" frameHeight="324" />
+<SubTexture name="ruv DateNeutral0000" x="789" y="0" width="268" height="323" frameX="0" frameY="0" frameWidth="268" frameHeight="323" />
+<SubTexture name="ruv Nerv0000" x="0" y="324" width="256" height="309" frameX="0" frameY="0" frameWidth="256" frameHeight="309" />
+<SubTexture name="ruv Neutral0000" x="256" y="324" width="253" height="306" frameX="0" frameY="0" frameWidth="253" frameHeight="306" />
+<SubTexture name="ruv Ronv0000" x="509" y="324" width="268" height="323" frameX="0" frameY="0" frameWidth="268" frameHeight="323" />
+</TextureAtlas>

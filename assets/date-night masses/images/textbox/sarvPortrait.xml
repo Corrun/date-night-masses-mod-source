@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="sarvPortrait.png"><SubTexture name="sarv Cheerful0000" x="0" y="0" width="239" height="258" frameX="0" frameY="0" frameWidth="239" frameHeight="258" />
+<SubTexture name="sarv Confused0000" x="239" y="0" width="241" height="258" frameX="0" frameY="0" frameWidth="241" frameHeight="258" />
+<SubTexture name="sarv DateCheerful0000" x="480" y="0" width="236" height="258" frameX="0" frameY="0" frameWidth="236" frameHeight="258" />
+<SubTexture name="sarv DateConfuse0000" x="716" y="0" width="241" height="258" frameX="0" frameY="0" frameWidth="241" frameHeight="258" />
+<SubTexture name="sarv DateDelighted0000" x="0" y="258" width="236" height="258" frameX="0" frameY="0" frameWidth="236" frameHeight="258" />
+<SubTexture name="sarv Delighted0000" x="236" y="258" width="239" height="258" frameX="0" frameY="0" frameWidth="239" frameHeight="258" />
+</TextureAtlas>
