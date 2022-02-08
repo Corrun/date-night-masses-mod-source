@@ -31,18 +31,20 @@ class Paths
 	public static var customSoundsLoaded:Map<String, Sound> = new Map<String, Sound>();
 	#end
 	
-	public static var ignoreModFolders:Map<String, Bool> = [
-		'characters' => true,
-		'custom_events' => true,
-		'custom_notetypes' => true,
-		'data' => true,
-		'songs' => true,
-		'music' => true,
-		'sounds' => true,
-		'videos' => true,
-		'images' => true,
-		'stages' => true,
-		'weeks' => true
+	public static var ignoreModFolders:Array<String> = [
+		'characters',
+		'custom_events',
+		'custom_notetypes',
+		'data',
+		'songs',
+		'music',
+		'sounds',
+		'videos',
+		'images',
+		'stages',
+		'weeks',
+		'fonts',
+		'scripts'
 	];
 	#end
 
@@ -62,7 +64,7 @@ class Paths
 		#end
 	}
 
-	static public var currentModDirectory:String = null;
+	static public var currentModDirectory:String = '';
 	static var currentLevel:String;
 	static public function setCurrentLevel(name:String)
 	{
@@ -214,6 +216,16 @@ class Paths
 	{
 		#if MODS_ALLOWED
 		var imageToReturn:FlxGraphic = addCustomGraphic(key);
+		/*
+		//SHADOWMARIO TEST THIS IM NOT AT HOME RN.
+
+		//k so for sum reason even when a current mod is loaded, it will only pull from the graphics key shit : (((
+		//so i made it test if one exists in the mod folder or the mod directories.
+		var pathshit = modsImages(key)
+		if (FileSystem.exists(path)){
+			imageToReturn = BitmapData.fromFile(path);
+		}
+		*/
 		if(imageToReturn != null) return imageToReturn;
 		#end
 		return getPath('images/$key.png', IMAGE, library);
@@ -222,8 +234,10 @@ class Paths
 	static public function getTextFromFile(key:String, ?ignoreMods:Bool = false):String
 	{
 		#if sys
+		#if MODS_ALLOWED
 		if (!ignoreMods && FileSystem.exists(mods(key)))
 			return File.getContent(mods(key));
+		#end
 
 		if (FileSystem.exists(getPreloadPath(key)))
 			return File.getContent(getPreloadPath(key));
@@ -247,6 +261,12 @@ class Paths
 
 	inline static public function font(key:String)
 	{
+		#if MODS_ALLOWED
+		var file:String = modsFont(key);
+		if(FileSystem.exists(file)) {
+			return file;
+		}
+		#end
 		return 'assets/fonts/$key';
 	}
 
@@ -316,6 +336,10 @@ class Paths
 	inline static public function mods(key:String = '') {
 		return 'mods/' + key;
 	}
+	
+	inline static public function modsFont(key:String) {
+		return modFolders('fonts/' + key);
+	}
 
 	inline static public function modsJson(key:String) {
 		return modFolders('data/' + key + '.json');
@@ -357,6 +381,20 @@ class Paths
 			}
 		}
 		return 'mods/' + key;
+	}
+
+	static public function getModDirectories():Array<String> {
+		var list:Array<String> = [];
+		var modsFolder:String = Paths.mods();
+		if(FileSystem.exists(modsFolder)) {
+			for (folder in FileSystem.readDirectory(modsFolder)) {
+				var path = haxe.io.Path.join([modsFolder, folder]);
+				if (sys.FileSystem.isDirectory(path) && !Paths.ignoreModFolders.contains(folder) && !list.contains(folder)) {
+					list.push(folder);
+				}
+			}
+		}
+		return list;
 	}
 	#end
 }
