@@ -831,8 +831,8 @@ class PlayState extends MusicBeatState
 		// doof.y = FlxG.height * 0.5;
 		doof.scrollFactor.set();
 		doof.finishThing = startCountdown;
-		doof.nextDialogueThing = startNextDialogue;
-		doof.skipDialogueThing = skipDialogue;
+//		doof.nextDialogueThing = startNextDialogue;
+//		doof.skipDialogueThing = skipDialogue;
 
 		Conductor.songPosition = -5000;
 

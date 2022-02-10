@@ -126,7 +126,7 @@ class DialogueBox extends FlxSpriteGroup
 		if (PlayState.SONG.song.toLowerCase() == 'matins')
 		{
 			// background setup
-			if (PlayState.end == false)
+/*			if (PlayState.end == false)
 			{
 				bg = new FlxSprite(0, 0).loadGraphic(Paths.image('cutscene_animatics/song1_beforeplay', 'date-night masses'));
 				PlayState.end = true;
@@ -134,11 +134,11 @@ class DialogueBox extends FlxSpriteGroup
 				bg.updateHitbox();
 			}
 			else
-			{
+			{ */
 				bg = new FlxSprite(-75, -40).loadGraphic(Paths.image('cutscene_animatics/song1_afterplay', 'date-night masses'));
 				bg.setGraphicSize(Std.int(FlxG.width * 1.15));
 				bg.updateHitbox();
-			}
+			//}
 			add(bg);
 
 			// Sarvente Portrait setup
@@ -192,6 +192,7 @@ class DialogueBox extends FlxSpriteGroup
 			skipText.text = 'press back to skip';
 			add(skipText);
 		}
+
 		dropText = new FlxText(242, 432, Std.int(FlxG.width * 0.6), "", 32);
 		dropText.font = 'Pixel Arial 11 Bold';
 		dropText.color = 0xFFD89494;
