@@ -392,7 +392,7 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
-			case 'stage': //Week 1
+			case 'stage' | 'cloister': //Week 1
 				var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
 				add(bg);
 
@@ -663,6 +663,96 @@ class PlayState extends MusicBeatState
 					bg.antialiasing = false;
 					add(bg);
 				}
+			case 'greenhouse':
+				var BG:FlxSprite = new FlxSprite(-600, -500).loadGraphic(Paths.image('stages/Greenhouse/background2', 'date-night masses'));
+				BG.antialiasing = true;
+				BG.scrollFactor.set(0.9, 0.9);
+				BG.active = false;
+				BG.scale.x = 1;
+				BG.scale.y = 1;
+				add(BG);
+			case 'garden':
+				var BG:FlxSprite = new FlxSprite(-550, -650).loadGraphic(Paths.image('stages/Garden/BGSTG3', 'date-night masses'));
+				BG.antialiasing = true;
+				BG.scrollFactor.set(0.9, 0.9);
+				BG.active = false;
+				BG.scale.x = 1;
+				BG.scale.y = 1;
+				add(BG);
+			case 'church':
+				var posX = -900;
+				var posY = -700;
+				var scaleValue = 0.7;
+				var scrollFactorValue = 0.9;
+				var antialiasingBool = true;
+				var grpAssets = new FlxTypedGroup<FlxSprite>();
+
+				var BG:FlxSprite = new FlxSprite(posX, posY).loadGraphic(Paths.image('stages/church/BG','date-night masses'));
+				var kuro:FlxSprite = new FlxSprite(posX, posY).loadGraphic(Paths.image('stages/church/Kuro','date-night masses'));
+				var mikeGeno:FlxSprite = new FlxSprite(posX, posY).loadGraphic(Paths.image('stages/church/Geno','date-night masses'));
+
+				var leftBenchValue = Std.random(3) + 1;
+				var rightBenchValue = Std.random(3) + 1;
+
+				var backBench:FlxSprite = new FlxSprite(posX, posY).loadGraphic(Paths.image('stages/church/backBench','date-night masses'));
+				var backBenchLeftChars:FlxSprite = new FlxSprite(posX, posY).loadGraphic(Paths.image('stages/church/backBench/backBenchLeftChars' + Std.string(leftBenchValue),'date-night masses'));
+				var backBenchRightChars:FlxSprite = new FlxSprite(posX, posY).loadGraphic(Paths.image('stages/church/backBench/backBenchRightChars' + Std.string(rightBenchValue),'date-night masses'));
+
+				leftBenchValue = Std.random(3) + 1;
+				rightBenchValue = Std.random(3) + 1;
+
+				var middleBench:FlxSprite = new FlxSprite(posX, posY).loadGraphic(Paths.image('stages/church/middleBench','date-night masses'));
+				var middleBenchLeftChars:FlxSprite = new FlxSprite(posX, posY).loadGraphic(Paths.image('stages/church/middleBench/middleBenchLeftChars' + Std.string(leftBenchValue),'date-night masses'));
+				var middleBenchRightChars:FlxSprite = new FlxSprite(posX, posY).loadGraphic(Paths.image('stages/church/middleBench/middleBenchRightChars' + Std.string(rightBenchValue),'date-night masses'));
+
+				leftBenchValue = Std.random(3) + 1;
+				rightBenchValue = Std.random(3) + 1;
+
+				var frontBench:FlxSprite = new FlxSprite(posX, posY).loadGraphic(Paths.image('stages/church/frontBench','date-night masses'));
+				var frontBenchLeftChars:FlxSprite = new FlxSprite(posX, posY).loadGraphic(Paths.image('stages/church/frontBench/frontBenchLeftChars' + Std.string(leftBenchValue),'date-night masses'));
+				var frontBenchRightChars:FlxSprite = new FlxSprite(posX, posY).loadGraphic(Paths.image('stages/church/frontBench/frontBenchRightChars' + Std.string(rightBenchValue),'date-night masses'));
+				
+				grpAssets.add(BG);
+				grpAssets.add(kuro);
+				grpAssets.add(mikeGeno);
+
+				grpAssets.add(backBench);
+				grpAssets.add(backBenchLeftChars);
+				grpAssets.add(backBenchRightChars);
+
+				grpAssets.add(middleBench);
+				grpAssets.add(middleBenchLeftChars);
+				grpAssets.add(middleBenchRightChars);
+
+				grpAssets.add(frontBench);
+				grpAssets.add(frontBenchLeftChars);
+				grpAssets.add(frontBenchRightChars);
+
+				grpAssets.forEach(function(spr:FlxSprite) {
+					spr.scale.x = scaleValue;
+					spr.scale.y = scaleValue;
+					spr.scrollFactor.set(scrollFactorValue, scrollFactorValue);
+					spr.antialiasing = antialiasingBool;
+				});
+
+				add(grpAssets);
+			case 'archvoid':
+				var pipi:FlxSprite = new FlxSprite(200, 450).loadGraphic(Paths.image('stages/void/pipi', 'date-night masses'));
+				pipi.antialiasing = true;
+				pipi.scrollFactor.set(0.9, 0.9);
+				pipi.active = false;
+				pipi.scale.x = 0.3;
+				pipi.scale.y = 0.3;
+				add(pipi);
+
+				var rataver:FlxSprite = new FlxSprite(200, 250).loadGraphic(Paths.image('stages/void/rataver', 'date-night masses'));
+				rataver.antialiasing = true;
+				rataver.scrollFactor.set(0.9, 0.9);
+				rataver.active = false;
+				rataver.scale.x = 0.3;
+				rataver.scale.y = 0.3;
+				add(rataver);
+			case 'void':
 		}
 
 		if(isPixelStage) {
@@ -2236,15 +2326,16 @@ class PlayState extends MusicBeatState
 		if (health > 2)
 			health = 2;
 
-		if (healthBar.percent < 20)
+		if (healthBar.percent < 20) {
 			iconP1.animation.curAnim.curFrame = 1;
-		else
-			iconP1.animation.curAnim.curFrame = 0;
-
-		if (healthBar.percent > 80)
 			iconP2.animation.curAnim.curFrame = 1;
-		else
+		} else if (healthBar.percent > 80) {
+			iconP1.animation.curAnim.curFrame = 2;
+			iconP2.animation.curAnim.curFrame = 2;
+		} else {
+			iconP1.animation.curAnim.curFrame = 0;
 			iconP2.animation.curAnim.curFrame = 0;
+		}
 
 		if (FlxG.keys.anyJustPressed(debugKeysCharacter) && !endingSong && !inCutscene) {
 			persistentUpdate = false;

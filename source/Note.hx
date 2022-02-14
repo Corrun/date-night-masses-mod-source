@@ -256,7 +256,7 @@ class Note extends FlxSprite
 			loadPixelNoteAnims();
 			antialiasing = false;
 		} else {
-			frames = Paths.getSparrowAtlas(blahblah);
+			frames = Paths.getSparrowAtlas('notes/' + blahblah, 'date-night masses');
 			loadNoteAnims();
 			antialiasing = ClientPrefs.globalAntialiasing;
 		}
@@ -285,7 +285,7 @@ class Note extends FlxSprite
 
 		if (isSustainNote)
 		{
-			animation.addByPrefix('purpleholdend', 'pruple end hold');
+			animation.addByPrefix('purpleholdend', 'purple hold end');
 			animation.addByPrefix('greenholdend', 'green hold end');
 			animation.addByPrefix('redholdend', 'red hold end');
 			animation.addByPrefix('blueholdend', 'blue hold end');

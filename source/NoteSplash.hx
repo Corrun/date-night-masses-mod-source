@@ -13,7 +13,7 @@ class NoteSplash extends FlxSprite
 	public function new(x:Float = 0, y:Float = 0, ?note:Int = 0) {
 		super(x, y);
 
-		var skin:String = 'noteSplashes';
+		var skin:String = 'NOTE_Splashes';
 		if(PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) skin = PlayState.SONG.splashSkin;
 
 		loadAnims(skin);
@@ -30,7 +30,7 @@ class NoteSplash extends FlxSprite
 		alpha = 0.6;
 
 		if(texture == null) {
-			texture = 'noteSplashes';
+			texture = 'NOTE_Splashes';
 			if(PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) texture = PlayState.SONG.splashSkin;
 		}
 
@@ -48,7 +48,7 @@ class NoteSplash extends FlxSprite
 	}
 
 	function loadAnims(skin:String) {
-		frames = Paths.getSparrowAtlas(skin);
+		frames = Paths.getSparrowAtlas('notes/' + skin, 'date-night masses');
 		for (i in 1...3) {
 			animation.addByPrefix("note1-" + i, "note splash blue " + i, 24, false);
 			animation.addByPrefix("note2-" + i, "note splash green " + i, 24, false);

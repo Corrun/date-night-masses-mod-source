@@ -62,7 +62,7 @@ class StrumNote extends FlxSprite
 		}
 		else
 		{
-			frames = Paths.getSparrowAtlas(skin);
+			frames = Paths.getSparrowAtlas('notes/' + skin, 'date-night masses');
 			animation.addByPrefix('green', 'arrowUP');
 			animation.addByPrefix('blue', 'arrowDOWN');
 			animation.addByPrefix('purple', 'arrowLEFT');
@@ -74,21 +74,21 @@ class StrumNote extends FlxSprite
 			switch (Math.abs(leData))
 			{
 				case 0:
-					animation.addByPrefix('static', 'arrowLEFT');
-					animation.addByPrefix('pressed', 'left press', 24, false);
-					animation.addByPrefix('confirm', 'left confirm', 24, false);
+					animation.addByPrefix('static', 'arrowLEFT0');
+					animation.addByPrefix('pressed', 'left press0', 24, false);
+					animation.addByPrefix('confirm', 'left confirm0', 24, false);
 				case 1:
-					animation.addByPrefix('static', 'arrowDOWN');
-					animation.addByPrefix('pressed', 'down press', 24, false);
-					animation.addByPrefix('confirm', 'down confirm', 24, false);
+					animation.addByPrefix('static', 'arrowDOWN0');
+					animation.addByPrefix('pressed', 'down press0', 24, false);
+					animation.addByPrefix('confirm', 'down confirm0', 24, false);
 				case 2:
-					animation.addByPrefix('static', 'arrowUP');
-					animation.addByPrefix('pressed', 'up press', 24, false);
-					animation.addByPrefix('confirm', 'up confirm', 24, false);
+					animation.addByPrefix('static', 'arrowUP0');
+					animation.addByPrefix('pressed', 'up press0', 24, false);
+					animation.addByPrefix('confirm', 'up confirm0', 24, false);
 				case 3:
-					animation.addByPrefix('static', 'arrowRIGHT');
-					animation.addByPrefix('pressed', 'right press', 24, false);
-					animation.addByPrefix('confirm', 'right confirm', 24, false);
+					animation.addByPrefix('static', 'arrowRIGHT0');
+					animation.addByPrefix('pressed', 'right press0', 24, false);
+					animation.addByPrefix('confirm', 'right confirm0', 24, false);
 			}
 		}
 

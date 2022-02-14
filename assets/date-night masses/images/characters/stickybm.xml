@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="stickybm_assets.png">
+	<!-- Created with Adobe Animate version 20.5.0.29329 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="stickybm idle0000" x="5" y="5" width="421" height="546" frameX="0" frameY="-6" frameWidth="421" frameHeight="552"/>
+	<SubTexture name="stickybm idle0001" x="5" y="5" width="421" height="546" frameX="0" frameY="-6" frameWidth="421" frameHeight="552"/>
+	<SubTexture name="stickybm idle0002" x="5" y="5" width="421" height="546" frameX="0" frameY="-6" frameWidth="421" frameHeight="552"/>
+	<SubTexture name="stickybm idle0003" x="5" y="5" width="421" height="546" frameX="0" frameY="-6" frameWidth="421" frameHeight="552"/>
+	<SubTexture name="stickybm idle0004" x="5" y="5" width="421" height="546" frameX="0" frameY="-6" frameWidth="421" frameHeight="552"/>
+	<SubTexture name="stickybm idle0005" x="5" y="5" width="421" height="546" frameX="0" frameY="-6" frameWidth="421" frameHeight="552"/>
+	<SubTexture name="stickybm idle0006" x="5" y="5" width="421" height="546" frameX="0" frameY="-6" frameWidth="421" frameHeight="552"/>
+	<SubTexture name="stickybm idle0007" x="5" y="5" width="421" height="546" frameX="0" frameY="-6" frameWidth="421" frameHeight="552"/>
+	<SubTexture name="stickybm idle0008" x="431" y="5" width="411" height="552" frameX="0" frameY="0" frameWidth="421" frameHeight="552"/>
+	<SubTexture name="stickybm idle0009" x="431" y="5" width="411" height="552" frameX="0" frameY="0" frameWidth="421" frameHeight="552"/>
+	<SubTexture name="stickybm idle0010" x="431" y="5" width="411" height="552" frameX="0" frameY="0" frameWidth="421" frameHeight="552"/>
+	<SubTexture name="stickybm idle0011" x="431" y="5" width="411" height="552" frameX="0" frameY="0" frameWidth="421" frameHeight="552"/>
+	<SubTexture name="stickybm idle0012" x="431" y="5" width="411" height="552" frameX="0" frameY="0" frameWidth="421" frameHeight="552"/>
+	<SubTexture name="stickybm idle0013" x="431" y="5" width="411" height="552" frameX="0" frameY="0" frameWidth="421" frameHeight="552"/>
+
+	<SubTexture name="stickybm sing down0000" x="847" y="5" width="849" height="353" frameX="0" frameY="-52" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0001" x="1701" y="5" width="676" height="360" frameX="-86" frameY="-45" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0002" x="2382" y="5" width="582" height="380" frameX="-133" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0003" x="2969" y="5" width="448" height="405" frameX="-200" frameY="0" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0004" x="3422" y="5" width="352" height="388" frameX="-248" frameY="-17" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0005" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0006" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0007" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0008" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0009" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0010" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0011" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0012" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0013" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0014" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0015" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0016" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0017" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0018" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0019" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0020" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0021" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0022" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0023" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0024" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0025" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0026" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0027" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0028" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0029" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0030" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0031" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0032" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0033" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0034" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0035" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0036" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0037" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0038" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0039" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0040" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0041" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0042" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0043" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0044" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0045" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0046" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0047" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0048" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0049" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0050" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0051" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0052" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0053" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0054" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0055" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0056" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0057" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0058" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0059" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0060" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0061" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0062" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0063" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0064" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0065" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0066" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0067" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0068" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0069" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0070" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0071" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0072" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0073" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0074" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0075" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0076" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0077" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0078" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0079" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0080" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0081" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0082" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0083" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0084" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0085" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0086" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0087" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0088" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0089" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0090" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0091" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0092" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0093" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0094" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0095" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0096" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0097" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0098" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0099" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0100" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0101" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0102" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0103" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0104" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0105" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0106" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0107" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0108" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0109" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0110" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0111" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0112" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0113" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0114" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0115" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0116" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0117" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0118" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0119" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0120" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0121" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0122" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0123" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0124" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0125" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0126" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0127" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0128" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0129" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0130" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0131" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0132" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0133" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0134" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0135" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0136" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0137" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0138" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0139" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0140" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0141" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0142" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+	<SubTexture name="stickybm sing down0143" x="3779" y="5" width="299" height="379" frameX="-274" frameY="-25" frameWidth="849" frameHeight="405"/>
+
+	<SubTexture name="stickybm sing left0000" x="5" y="562" width="400" height="557" frameX="0" frameY="0" frameWidth="406" frameHeight="557"/>
+	<SubTexture name="stickybm sing left0001" x="5" y="562" width="400" height="557" frameX="0" frameY="0" frameWidth="406" frameHeight="557"/>
+	<SubTexture name="stickybm sing left0002" x="410" y="562" width="406" height="557"/>
+	<SubTexture name="stickybm sing left0003" x="410" y="562" width="406" height="557"/>
+	<SubTexture name="stickybm sing left0004" x="410" y="562" width="406" height="557"/>
+	<SubTexture name="stickybm sing left0005" x="410" y="562" width="406" height="557"/>
+	<SubTexture name="stickybm sing left0006" x="410" y="562" width="406" height="557"/>
+	<SubTexture name="stickybm sing left0007" x="410" y="562" width="406" height="557"/>
+	<SubTexture name="stickybm sing left0008" x="410" y="562" width="406" height="557"/>
+	<SubTexture name="stickybm sing left0009" x="410" y="562" width="406" height="557"/>
+
+	<SubTexture name="stickybm sing right0000" x="821" y="562" width="395" height="381" frameX="-1" frameY="0" frameWidth="396" frameHeight="381"/>
+	<SubTexture name="stickybm sing right0001" x="821" y="562" width="395" height="381" frameX="-1" frameY="0" frameWidth="396" frameHeight="381"/>
+	<SubTexture name="stickybm sing right0002" x="1221" y="562" width="388" height="381" frameX="0" frameY="0" frameWidth="396" frameHeight="381"/>
+	<SubTexture name="stickybm sing right0003" x="1221" y="562" width="388" height="381" frameX="0" frameY="0" frameWidth="396" frameHeight="381"/>
+	<SubTexture name="stickybm sing right0004" x="1221" y="562" width="388" height="381" frameX="0" frameY="0" frameWidth="396" frameHeight="381"/>
+	<SubTexture name="stickybm sing right0005" x="1221" y="562" width="388" height="381" frameX="0" frameY="0" frameWidth="396" frameHeight="381"/>
+	<SubTexture name="stickybm sing right0006" x="1221" y="562" width="388" height="381" frameX="0" frameY="0" frameWidth="396" frameHeight="381"/>
+	<SubTexture name="stickybm sing right0007" x="1221" y="562" width="388" height="381" frameX="0" frameY="0" frameWidth="396" frameHeight="381"/>
+	<SubTexture name="stickybm sing right0008" x="1221" y="562" width="388" height="381" frameX="0" frameY="0" frameWidth="396" frameHeight="381"/>
+	<SubTexture name="stickybm sing right0009" x="1221" y="562" width="388" height="381" frameX="0" frameY="0" frameWidth="396" frameHeight="381"/>
+
+	<SubTexture name="stickybm sing up0000" x="1614" y="562" width="338" height="574" frameX="0" frameY="0" frameWidth="344" frameHeight="574"/>
+	<SubTexture name="stickybm sing up0001" x="1614" y="562" width="338" height="574" frameX="0" frameY="0" frameWidth="344" frameHeight="574"/>
+	<SubTexture name="stickybm sing up0002" x="1957" y="562" width="342" height="570" frameX="-2" frameY="-3" frameWidth="344" frameHeight="574"/>
+	<SubTexture name="stickybm sing up0003" x="1957" y="562" width="342" height="570" frameX="-2" frameY="-3" frameWidth="344" frameHeight="574"/>
+	<SubTexture name="stickybm sing up0004" x="1957" y="562" width="342" height="570" frameX="-2" frameY="-3" frameWidth="344" frameHeight="574"/>
+	<SubTexture name="stickybm sing up0005" x="1957" y="562" width="342" height="570" frameX="-2" frameY="-3" frameWidth="344" frameHeight="574"/>
+	<SubTexture name="stickybm sing up0006" x="1957" y="562" width="342" height="570" frameX="-2" frameY="-3" frameWidth="344" frameHeight="574"/>
+	<SubTexture name="stickybm sing up0007" x="1957" y="562" width="342" height="570" frameX="-2" frameY="-3" frameWidth="344" frameHeight="574"/>
+	<SubTexture name="stickybm sing up0008" x="1957" y="562" width="342" height="570" frameX="-2" frameY="-3" frameWidth="344" frameHeight="574"/>
+	<SubTexture name="stickybm sing up0009" x="1957" y="562" width="342" height="570" frameX="-2" frameY="-3" frameWidth="344" frameHeight="574"/>
+
+	<SubTexture name="BadEnding firstDeath0000" x="0" y="2048" width="1280" height="720" frameX="0" frameY="0" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="BadEnding deathLoop0000" x="0" y="2048" width="1280" height="720" frameX="0" frameY="0" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="BadEnding deathConfirm0000" x="0" y="2048" width="1280" height="720" frameX="0" frameY="0" frameWidth="1280" frameHeight="720" />
+
+	<SubTexture name="GoodEnding firstDeath0000" x="1280" y="2048" width="1280" height="720" frameX="0" frameY="0" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="GoodEnding deathLoop0000" x="1280" y="2048" width="1280" height="720" frameX="0" frameY="0" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="GoodEnding deathConfirm0000" x="1280" y="2048" width="1280" height="720" frameX="0" frameY="0" frameWidth="1280" frameHeight="720" />
+
+	<SubTexture name="HiChat firstDeath0000" x="2560" y="2048" width="1280" height="720" frameX="0" frameY="0" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="HiChat deathLoop0000" x="2560" y="2048" width="1280" height="720" frameX="0" frameY="0" frameWidth="1280" frameHeight="720" />
+	<SubTexture name="HiChat deathConfirm0000" x="2560" y="2048" width="1280" height="720" frameX="0" frameY="0" frameWidth="1280" frameHeight="720" />
+</TextureAtlas>

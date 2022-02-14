@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Kikyo_assets.png">
+	<!-- Created with Adobe Animate version 19.2.1.408 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Kikyo DOWN0000" x="0" y="0" width="362" height="610" frameX="0" frameY="-7" frameWidth="362" frameHeight="617"/>
+	<SubTexture name="Kikyo DOWN0001" x="0" y="0" width="362" height="610" frameX="0" frameY="-7" frameWidth="362" frameHeight="617"/>
+	<SubTexture name="Kikyo DOWN0002" x="362" y="0" width="343" height="614" frameX="-11" frameY="-2" frameWidth="362" frameHeight="617"/>
+	<SubTexture name="Kikyo DOWN0003" x="705" y="0" width="334" height="615" frameX="-16" frameY="0" frameWidth="362" frameHeight="617"/>
+	<SubTexture name="Kikyo DOWN0004" x="705" y="0" width="334" height="615" frameX="-16" frameY="0" frameWidth="362" frameHeight="617"/>
+	<SubTexture name="Kikyo DOWN0005" x="705" y="0" width="334" height="615" frameX="-16" frameY="0" frameWidth="362" frameHeight="617"/>
+	<SubTexture name="Kikyo DOWN0006" x="705" y="0" width="334" height="615" frameX="-16" frameY="0" frameWidth="362" frameHeight="617"/>
+	<SubTexture name="Kikyo DOWN0007" x="705" y="0" width="334" height="615" frameX="-16" frameY="0" frameWidth="362" frameHeight="617"/>
+	<SubTexture name="Kikyo DOWN0008" x="705" y="0" width="334" height="615" frameX="-16" frameY="0" frameWidth="362" frameHeight="617"/>
+	<SubTexture name="Kikyo DOWN0009" x="705" y="0" width="334" height="615" frameX="-16" frameY="0" frameWidth="362" frameHeight="617"/>
+	<SubTexture name="Kikyo DOWN0010" x="705" y="0" width="334" height="615" frameX="-16" frameY="0" frameWidth="362" frameHeight="617"/>
+	<SubTexture name="Kikyo IDLE0000" x="1039" y="0" width="353" height="833" frameX="0" frameY="-2" frameWidth="389" frameHeight="835"/>
+	<SubTexture name="Kikyo IDLE0001" x="1392" y="0" width="346" height="834" frameX="-7" frameY="-1" frameWidth="389" frameHeight="835"/>
+	<SubTexture name="Kikyo IDLE0002" x="1392" y="0" width="346" height="834" frameX="-7" frameY="-1" frameWidth="389" frameHeight="835"/>
+	<SubTexture name="Kikyo IDLE0003" x="0" y="834" width="361" height="835" frameX="-17" frameY="0" frameWidth="389" frameHeight="835"/>
+	<SubTexture name="Kikyo IDLE0004" x="361" y="834" width="352" height="835" frameX="-30" frameY="0" frameWidth="389" frameHeight="835"/>
+	<SubTexture name="Kikyo IDLE0005" x="713" y="834" width="351" height="833" frameX="-37" frameY="-2" frameWidth="389" frameHeight="835"/>
+	<SubTexture name="Kikyo IDLE0006" x="1064" y="834" width="339" height="831" frameX="-50" frameY="-4" frameWidth="389" frameHeight="835"/>
+	<SubTexture name="Kikyo IDLE0007" x="1064" y="834" width="339" height="831" frameX="-50" frameY="-4" frameWidth="389" frameHeight="835"/>
+	<SubTexture name="Kikyo IDLE0008" x="1064" y="834" width="339" height="831" frameX="-50" frameY="-4" frameWidth="389" frameHeight="835"/>
+	<SubTexture name="Kikyo IDLE0009" x="1064" y="834" width="339" height="831" frameX="-50" frameY="-4" frameWidth="389" frameHeight="835"/>
+	<SubTexture name="Kikyo IDLE0010" x="1064" y="834" width="339" height="831" frameX="-50" frameY="-4" frameWidth="389" frameHeight="835"/>
+	<SubTexture name="Kikyo IDLE0011" x="1064" y="834" width="339" height="831" frameX="-50" frameY="-4" frameWidth="389" frameHeight="835"/>
+	<SubTexture name="Kikyo IDLE0012" x="1064" y="834" width="339" height="831" frameX="-50" frameY="-4" frameWidth="389" frameHeight="835"/>
+	<SubTexture name="Kikyo IDLE0013" x="1064" y="834" width="339" height="831" frameX="-50" frameY="-4" frameWidth="389" frameHeight="835"/>
+	<SubTexture name="Kikyo LEFT0000" x="1403" y="834" width="442" height="790" frameX="-2" frameY="0" frameWidth="444" frameHeight="790"/>
+	<SubTexture name="Kikyo LEFT0001" x="1403" y="834" width="442" height="790" frameX="-2" frameY="0" frameWidth="444" frameHeight="790"/>
+	<SubTexture name="Kikyo LEFT0002" x="0" y="1669" width="428" height="789" frameX="0" frameY="-1" frameWidth="444" frameHeight="790"/>
+	<SubTexture name="Kikyo LEFT0003" x="0" y="1669" width="428" height="789" frameX="0" frameY="-1" frameWidth="444" frameHeight="790"/>
+	<SubTexture name="Kikyo LEFT0004" x="0" y="1669" width="428" height="789" frameX="0" frameY="-1" frameWidth="444" frameHeight="790"/>
+	<SubTexture name="Kikyo LEFT0005" x="0" y="1669" width="428" height="789" frameX="0" frameY="-1" frameWidth="444" frameHeight="790"/>
+	<SubTexture name="Kikyo LEFT0006" x="0" y="1669" width="428" height="789" frameX="0" frameY="-1" frameWidth="444" frameHeight="790"/>
+	<SubTexture name="Kikyo LEFT0007" x="0" y="1669" width="428" height="789" frameX="0" frameY="-1" frameWidth="444" frameHeight="790"/>
+	<SubTexture name="Kikyo LEFT0008" x="0" y="1669" width="428" height="789" frameX="0" frameY="-1" frameWidth="444" frameHeight="790"/>
+	<SubTexture name="Kikyo LEFT0009" x="0" y="1669" width="428" height="789" frameX="0" frameY="-1" frameWidth="444" frameHeight="790"/>
+	<SubTexture name="Kikyo LEFT0010" x="0" y="1669" width="428" height="789" frameX="0" frameY="-1" frameWidth="444" frameHeight="790"/>
+	<SubTexture name="Kikyo RIGHT0000" x="428" y="1669" width="454" height="714" frameX="0" frameY="-1" frameWidth="454" frameHeight="715"/>
+	<SubTexture name="Kikyo RIGHT0001" x="428" y="1669" width="454" height="714" frameX="0" frameY="-1" frameWidth="454" frameHeight="715"/>
+	<SubTexture name="Kikyo RIGHT0002" x="882" y="1669" width="453" height="715" frameX="0" frameY="0" frameWidth="454" frameHeight="715"/>
+	<SubTexture name="Kikyo RIGHT0003" x="882" y="1669" width="453" height="715" frameX="0" frameY="0" frameWidth="454" frameHeight="715"/>
+	<SubTexture name="Kikyo RIGHT0004" x="882" y="1669" width="453" height="715" frameX="0" frameY="0" frameWidth="454" frameHeight="715"/>
+	<SubTexture name="Kikyo RIGHT0005" x="882" y="1669" width="453" height="715" frameX="0" frameY="0" frameWidth="454" frameHeight="715"/>
+	<SubTexture name="Kikyo RIGHT0006" x="882" y="1669" width="453" height="715" frameX="0" frameY="0" frameWidth="454" frameHeight="715"/>
+	<SubTexture name="Kikyo RIGHT0007" x="882" y="1669" width="453" height="715" frameX="0" frameY="0" frameWidth="454" frameHeight="715"/>
+	<SubTexture name="Kikyo RIGHT0008" x="882" y="1669" width="453" height="715" frameX="0" frameY="0" frameWidth="454" frameHeight="715"/>
+	<SubTexture name="Kikyo RIGHT0009" x="882" y="1669" width="453" height="715" frameX="0" frameY="0" frameWidth="454" frameHeight="715"/>
+	<SubTexture name="Kikyo UP0000" x="1335" y="1669" width="386" height="816"/>
+	<SubTexture name="Kikyo UP0001" x="1335" y="1669" width="386" height="816"/>
+	<SubTexture name="Kikyo UP0002" x="0" y="2485" width="386" height="802" frameX="0" frameY="-14" frameWidth="386" frameHeight="816"/>
+	<SubTexture name="Kikyo UP0003" x="386" y="2485" width="386" height="798" frameX="0" frameY="-18" frameWidth="386" frameHeight="816"/>
+	<SubTexture name="Kikyo UP0004" x="772" y="2485" width="386" height="798" frameX="0" frameY="-18" frameWidth="386" frameHeight="816"/>
+	<SubTexture name="Kikyo UP0005" x="772" y="2485" width="386" height="798" frameX="0" frameY="-18" frameWidth="386" frameHeight="816"/>
+	<SubTexture name="Kikyo UP0006" x="772" y="2485" width="386" height="798" frameX="0" frameY="-18" frameWidth="386" frameHeight="816"/>
+	<SubTexture name="Kikyo UP0007" x="772" y="2485" width="386" height="798" frameX="0" frameY="-18" frameWidth="386" frameHeight="816"/>
+	<SubTexture name="Kikyo UP0008" x="772" y="2485" width="386" height="798" frameX="0" frameY="-18" frameWidth="386" frameHeight="816"/>
+	<SubTexture name="Kikyo UP0009" x="772" y="2485" width="386" height="798" frameX="0" frameY="-18" frameWidth="386" frameHeight="816"/>
+</TextureAtlas>
