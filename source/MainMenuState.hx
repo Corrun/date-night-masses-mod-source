@@ -31,14 +31,15 @@ class MainMenuState extends MusicBeatState
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	private var camGame:FlxCamera;
 	private var camAchievement:FlxCamera;
+	public static var chosenBG = Std.random(10);
 	
 	var optionShit:Array<String> = [
 		'story_mode',
 		'freeplay',
-		#if MODS_ALLOWED 'mods', #end
+		#if MODS_ALLOWED /*'mods',*/ #end
 		#if ACHIEVEMENTS_ALLOWED 'awards', #end
 		'credits',
-		#if !switch 'donate', #end
+		#if !switch /*'donate',*/ #end
 		'options'
 	];
 
@@ -71,7 +72,17 @@ class MainMenuState extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 
 		var yScroll:Float = Math.max(0.25 - (0.05 * (optionShit.length - 4)), 0.1);
-		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuBG'));
+		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menu_bg/menuBGset1', 'date-night masses'));
+		trace(chosenBG);
+		if (chosenBG >= 6 && chosenBG <= 8)
+		{
+			bg = new FlxSprite(-80).loadGraphic(Paths.image('menu_bg/menuBGset2', 'date-night masses'));
+		} 
+		else if (chosenBG == 9)
+		{
+			bg = new FlxSprite(-80).loadGraphic(Paths.image('menu_bg/menuBGset3', 'date-night masses'));
+		}
+
 		bg.scrollFactor.set(0, yScroll);
 		bg.setGraphicSize(Std.int(bg.width * 1.175));
 		bg.updateHitbox();
@@ -84,7 +95,17 @@ class MainMenuState extends MusicBeatState
 		add(camFollow);
 		add(camFollowPos);
 
-		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
+		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menu_bg/menuBGset1-magenta', 'date-night masses'));
+
+		if (chosenBG >= 6 && chosenBG <= 8)
+		{
+			magenta = new FlxSprite(-80).loadGraphic(Paths.image('menu_bg/menuBGset2-magenta', 'date-night masses'));
+		} 
+		else if (chosenBG == 9)
+		{
+			magenta = new FlxSprite(-80).loadGraphic(Paths.image('menu_bg/menuBGset3-magenta', 'date-night masses'));
+		}
+
 		magenta.scrollFactor.set(0, yScroll);
 		magenta.setGraphicSize(Std.int(magenta.width * 1.175));
 		magenta.updateHitbox();

@@ -1,17 +1,18 @@
 {
 	"songs": [
-		["coolmatins", "spooky", [34, 51, 68]],
-		["archvente", "spooky", [34, 51, 68]]
+		["coolmatins", "sticky", [90, 150, 107]],
+		["archvente", "sticky", [90, 160, 107]]
 	],
+
 
 	"weekCharacters": [
 		"spooky",
 		"bf",
 		"gf"
 	],
-	"weekBackground": "halloween",
+	"weekBackground": "membership",
 
-	"storyName": "Spooky Month",
+	"storyName": "membersimp",
 	"weekBefore": "Week1",
 	"weekName": "Week 2",
 	"startUnlocked": true,

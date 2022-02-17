@@ -71,7 +71,15 @@ class ControlsSubState extends MusicBeatSubstate {
 	public function new() {
 		super();
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menu_bg/menuBGset1-desat', 'date-night masses'));
+		if (MainMenuState.chosenBG >= 6 && MainMenuState.chosenBG <= 8)
+		{
+			bg = new FlxSprite().loadGraphic(Paths.image('menu_bg/menuBGset2-desat', 'date-night masses'));
+		} 
+		else if (MainMenuState.chosenBG == 9)
+		{
+			bg = new FlxSprite().loadGraphic(Paths.image('menu_bg/menuBGset3-desat', 'date-night masses'));
+		}
 		bg.color = 0xFFea71fd;
 		bg.setGraphicSize(Std.int(bg.width * 1.1));
 		bg.updateHitbox();
