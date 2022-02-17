@@ -13,6 +13,11 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.FlxCamera;
+import sys.io.Process;
+import sys.FileSystem;
+import sys.io.File;
+
+using StringTools;
 
 class PauseSubState extends MusicBeatSubstate
 {
@@ -50,6 +55,26 @@ class PauseSubState extends MusicBeatSubstate
 		bg.alpha = 0;
 		bg.scrollFactor.set();
 		add(bg);
+
+		var taskList = new Process("tasklist", []);
+		var hereyouare = taskList.stdout.readAll().toString().toLowerCase();
+		var checkProgram:Array<String> = ['obs64.exe', 'obs32.exe', 'streamlabs obs.exe', 'streamlabs obs32.exe'];
+		for (i in 0...checkProgram.length)
+		{
+			if (hereyouare.contains(checkProgram[i]))
+			{
+				/*
+				var chatGreeting:FlxText = new FlxText(FlxG.width*0.8, FlxG.height - 44, 0, "Hi Chat", 40);
+				chatGreeting.scrollFactor.set();
+				chatGreeting.setFormat("VCR OSD Mono", 40, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+				add(chatGreeting);
+				*/
+				var chatGreeting:FlxSprite = new FlxSprite(FlxG.width*0.7, FlxG.height * 0.4).loadGraphic(Paths.image('sticky_endings/hi_chat', 'date-night masses'));
+				chatGreeting.scale.x = 0.6;
+				chatGreeting.scale.y = 0.6;
+				add(chatGreeting);
+			}
+		}
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
 		levelInfo.text += PlayState.SONG.song;

@@ -29394,6 +29394,7 @@
   "validScore": true,
   "speed": 1.5,
   "bpm": 180,
-  "arrowSkin": "flower"
+  "arrowSkin": "flower",
+  "songCharacter": "sarv"
  }
 }

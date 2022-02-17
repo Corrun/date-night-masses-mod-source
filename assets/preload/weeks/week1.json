@@ -1,8 +1,8 @@
 {
 	"songs": [
-		["matins", "dad", [146, 113, 253]],
-		["serafim", "dad", [146, 113, 253]],
-		["harmony", "dad", [146, 113, 253]]
+		["matins", "sarv", [221, 92, 153]],
+		["serafim", "sarv", [221, 92, 153]],
+		["harmony", "sarv", [221, 92, 153]]
 	],
 
 	"weekCharacters": [
@@ -10,9 +10,9 @@
 		"bf",
 		"gf"
 	],
-	"weekBackground": "stage",
+	"weekBackground": "date",
 
-	"storyName": "Date Night",
+	"storyName": "date night",
 	"weekBefore": "Week1",
 	"weekName": "Week 1",
 	"startUnlocked": true,

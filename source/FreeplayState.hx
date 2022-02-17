@@ -96,7 +96,17 @@ class FreeplayState extends MusicBeatState
 			}
 		}*/
 
-		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		bg = new FlxSprite().loadGraphic(Paths.image('menu_bg/menuBGset1-desat', 'date-night masses'));
+
+		if (MainMenuState.chosenBG >= 6 && MainMenuState.chosenBG <= 8)
+		{
+			bg = new FlxSprite().loadGraphic(Paths.image('menu_bg/menuBGset2-desat', 'date-night masses'));
+		} 
+		else if (MainMenuState.chosenBG == 9)
+		{
+			bg = new FlxSprite().loadGraphic(Paths.image('menu_bg/menuBGset3-desat', 'date-night masses'));
+		}
+
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
 
