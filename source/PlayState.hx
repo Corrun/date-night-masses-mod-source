@@ -43,7 +43,6 @@ import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
 import openfl.utils.Assets as OpenFlAssets;
 import editors.ChartingState;
-import editors.CharacterEditorState;
 import flixel.group.FlxSpriteGroup;
 import flixel.input.keyboard.FlxKey;
 import openfl.events.KeyboardEvent;
@@ -2336,7 +2335,7 @@ class PlayState extends MusicBeatState
 			iconP1.animation.curAnim.curFrame = 0;
 			iconP2.animation.curAnim.curFrame = 0;
 		}
-
+/*
 		if (FlxG.keys.anyJustPressed(debugKeysCharacter) && !endingSong && !inCutscene) {
 			persistentUpdate = false;
 			paused = true;
@@ -2344,7 +2343,7 @@ class PlayState extends MusicBeatState
 			CustomFadeTransition.nextCamera = camOther;
 			MusicBeatState.switchState(new CharacterEditorState(SONG.player2));
 		}
-
+*/
 		if (startingSong)
 		{
 			if (startedCountdown)
