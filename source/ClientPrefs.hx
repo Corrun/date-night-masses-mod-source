@@ -235,6 +235,16 @@ class ClientPrefs {
 			FlxG.sound.muted = FlxG.save.data.mute;
 		}
 
+		// flixel automatically saves your volume!
+		if(FlxG.save.data.stickyUnlocked == null)
+		{
+			FlxG.save.data.stickyUnlocked = false;
+		}
+		if (FlxG.save.data.kikyoUnlocked == null)
+		{
+			FlxG.save.data.kikyoUnlocked = false;
+		}
+
 		var save:FlxSave = new FlxSave();
 		save.bind('controls_v2', 'ninjamuffin99');
 		if(save != null && save.data.customControls != null) {

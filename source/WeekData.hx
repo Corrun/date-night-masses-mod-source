@@ -4,6 +4,7 @@ package;
 import sys.io.File;
 import sys.FileSystem;
 #end
+import flixel.FlxG;
 import lime.utils.Assets;
 import openfl.utils.Assets as OpenFlAssets;
 import haxe.Json;
@@ -125,6 +126,8 @@ class WeekData {
 		#end
 
 		var sexList:Array<String> = CoolUtil.coolTextFile(Paths.getPreloadPath('weeks/weekList.txt'));
+		if (FlxG.save.data.stickyUnlocked) sexList.push("week2");
+		if (FlxG.save.data.kikyoUnlocked) sexList.push("week3");
 		for (i in 0...sexList.length) {
 			for (j in 0...directories.length) {
 				var fileToCheck:String = directories[j] + 'weeks/' + sexList[i] + '.json';
@@ -149,6 +152,7 @@ class WeekData {
 		}
 
 		#if MODS_ALLOWED
+		/*
 		for (i in 0...directories.length) {
 			var directory:String = directories[i] + 'weeks/';
 			if(FileSystem.exists(directory)) {
@@ -174,6 +178,7 @@ class WeekData {
 				}
 			}
 		}
+		*/
 		#end
 	}
 

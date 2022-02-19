@@ -13,8 +13,8 @@
 	"weekBackground": "date",
 
 	"storyName": "date night",
-	"weekBefore": "Week1",
-	"weekName": "Week 1",
+	"weekBefore": "week1",
+	"weekName": "week1",
 	"startUnlocked": true,
 
 	"hideStoryMode": false,

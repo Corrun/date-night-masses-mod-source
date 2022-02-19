@@ -13,8 +13,8 @@
 	"weekBackground": "membership",
 
 	"storyName": "membersimp",
-	"weekBefore": "Week1",
-	"weekName": "Week 2",
+	"weekBefore": "week1",
+	"weekName": "week2",
 	"startUnlocked": true,
 
 	"hideStoryMode": false,

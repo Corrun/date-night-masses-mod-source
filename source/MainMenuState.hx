@@ -3,6 +3,7 @@ package;
 #if desktop
 import Discord.DiscordClient;
 #end
+import flixel.util.FlxSave;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -35,7 +36,6 @@ class MainMenuState extends MusicBeatState
 	
 	var optionShit:Array<String> = [
 		'story_mode',
-		'freeplay',
 		#if MODS_ALLOWED /*'mods',*/ #end
 		#if ACHIEVEMENTS_ALLOWED 'awards', #end
 		'credits',
@@ -54,6 +54,17 @@ class MainMenuState extends MusicBeatState
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
+		if (StoryMenuState.weekCompleted.get("week1")) {
+			optionShit = [
+				'story_mode',
+				'freeplay',
+				#if MODS_ALLOWED /*'mods',*/ #end
+				#if ACHIEVEMENTS_ALLOWED 'awards', #end
+				'credits',
+				#if !switch /*'donate',*/ #end
+				'options'
+			];
+		}
 
 		WeekData.setDirectoryFromWeek();
 		debugKeys = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
@@ -186,9 +197,42 @@ class MainMenuState extends MusicBeatState
 	#end
 
 	var selectedSomethin:Bool = false;
+	var code:String = "";
+	static var stickyPassword:String = "stickysimp";
+	static var kikyoPassword:String = "spookykikyo";
 
 	override function update(elapsed:Float)
 	{
+		if (StoryMenuState.weekCompleted.get("week1")) {
+				if (FlxG.keys.justPressed.ANY) {
+					code += FlxG.keys.getIsDown()[0].ID.toString().toLowerCase();
+					trace("current guess is " + code);
+				}
+				if (stickyPassword.startsWith(code) || kikyoPassword.startsWith(code)) {
+					if (code == stickyPassword && !FlxG.save.data.stickyUnlocked) {
+						trace('lets go you guessed the stickyPassword lmfao');
+						//FlxG.save.data.fState = !FlxG.save.data.fState;
+						FlxG.save.data.stickyUnlocked = true;
+						FlxG.switchState(new StoryMenuState());
+						trace(FlxG.save.data.stickyUnlocked); 
+						code = '';
+					} else if (code == kikyoPassword && !FlxG.save.data.kikyoUnlocked) {
+						trace('lets go you guessed the kikyoPassword lmfao');
+						//FlxG.save.data.fState = !FlxG.save.data.fState;
+						FlxG.save.data.kikyoUnlocked = true;
+						FlxG.switchState(new StoryMenuState());
+						trace(FlxG.save.data.kikyoUnlocked);
+						code = '';
+					}
+
+				} else {
+					if (code.length > 2/*code.length > stickyPassword.length && code.length > kikyoPassword.length*/) {
+						trace('password reset, you suck at guessing');
+						code = '';
+					}
+				}
+			}
+
 		if (FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
