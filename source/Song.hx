@@ -27,6 +27,8 @@ typedef SwagSong =
 
 	var arrowSkin:String;
 	var splashSkin:String;
+	var playerArrowSkin:String;
+	var playerSplashSkin:String;
 	var validScore:Bool;
 }
 
@@ -38,6 +40,8 @@ class Song
 	public var needsVoices:Bool = true;
 	public var arrowSkin:String;
 	public var splashSkin:String;
+	public var playerArrowSkin:String;
+	public var playerSplashSkin:String;
 	public var speed:Float = 1;
 	public var stage:String;
 

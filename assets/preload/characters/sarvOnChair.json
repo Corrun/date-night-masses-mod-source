@@ -2,46 +2,46 @@
 	"animations": [
 		{
 			"offsets": [
-				-9,
-				10
+				19,
+				-7
 			],
 			"loop": false,
 			"anim": "singLEFT",
 			"fps": 24,
-			"name": "Dad Sing Note LEFT",
+			"name": "Left0",
 			"indices": []
 		},
 		{
 			"offsets": [
-				0,
-				-30
+				-15,
+				-9
 			],
 			"loop": false,
 			"anim": "singDOWN",
 			"fps": 24,
-			"name": "Dad Sing Note DOWN",
+			"name": "Down0",
 			"indices": []
 		},
 		{
 			"offsets": [
-				-6,
-				50
+				1,
+				30
 			],
 			"loop": false,
 			"anim": "singUP",
 			"fps": 24,
-			"name": "Dad Sing Note UP",
+			"name": "Up0",
 			"indices": []
 		},
 		{
 			"offsets": [
-				0,
-				27
+				-22,
+				-11
 			],
 			"loop": false,
 			"anim": "singRIGHT",
 			"fps": 24,
-			"name": "Dad Sing Note RIGHT",
+			"name": "Right0",
 			"indices": []
 		},
 		{
@@ -52,79 +52,76 @@
 			"loop": false,
 			"anim": "idle",
 			"fps": 24,
-			"name": "Dad idle dance",
+			"name": "Idle0",
 			"indices": []
 		},
 		{
 			"offsets": [
-				0,
-				0
-			],
-			"loop": true,
-			"fps": 24,
-			"anim": "idle-loop",
-			"indices": [
-				10,
-				11,
-				12,
-				12
-			],
-			"name": "Dad idle dance"
-		},
-		{
-			"offsets": [
-				-9,
-				10
+				20,
+				-7
 			],
 			"loop": true,
 			"fps": 24,
 			"anim": "singLEFT-loop",
 			"indices": [
-				12,
-				13,
-				14,
-				15
+				3,
+				4,
+				5
 			],
-			"name": "Dad Sing Note LEFT"
+			"name": "Left0"
 		},
 		{
 			"offsets": [
-				0,
-				27
+				-21,
+				-11
 			],
 			"loop": true,
 			"fps": 24,
 			"anim": "singRIGHT-loop",
 			"indices": [
-				15,
-				16,
-				17,
-				18
+				3,
+				4,
+				5
 			],
-			"name": "Dad Sing Note RIGHT"
+			"name": "Right0"
 		},
 		{
 			"offsets": [
-				-6,
-				50
+				2,
+				30
 			],
 			"loop": true,
 			"fps": 24,
 			"anim": "singUP-loop",
 			"indices": [
-				56,
-				57,
-				58,
-				59
+				2,
+				3,
+				4,
+				5
 			],
-			"name": "Dad Sing Note UP"
+			"name": "Up0"
+		},
+		{
+			"offsets": [
+				-15,
+				-9
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "singDOWN-loop",
+			"indices": [
+				3,
+				4,
+				5
+			],
+			"name": "Down0"
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/DADDY_DEAREST",
+	"image": "characters/sarvOnChair",
 	"position": [
-		0,
-		0
+		70,
+		290
 	],
 	"healthicon": "sarv",
 	"flip_x": false,

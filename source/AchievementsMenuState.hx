@@ -31,7 +31,15 @@ class AchievementsMenuState extends MusicBeatState
 		DiscordClient.changePresence("Achievements Menu", null);
 		#end
 
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuBGBlue'));
+		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menu_bg/menuBGset1-blue', 'date-night masses'));
+		if (MainMenuState.chosenBG >= 6 && MainMenuState.chosenBG <= 8)
+		{
+			menuBG = new FlxSprite().loadGraphic(Paths.image('menu_bg/menuBGset2-blue', 'date-night masses'));
+		} 
+		else if (MainMenuState.chosenBG == 9)
+		{
+			menuBG = new FlxSprite().loadGraphic(Paths.image('menu_bg/menuBGset3-blue', 'date-night masses'));
+		}
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
 		menuBG.screenCenter();

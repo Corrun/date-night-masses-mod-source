@@ -1,5 +1,6 @@
 package;
 
+import flixel.input.mouse.FlxMouse;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -106,6 +107,7 @@ class PlayState extends MusicBeatState
 	public var boyfriendGroup:FlxSpriteGroup;
 	public var dadGroup:FlxSpriteGroup;
 	public var gfGroup:FlxSpriteGroup;
+	public var layInFront:Array<Array<FlxSprite>> = [[], [], []]; //for stage's layers, 1st for gf, 2nd for dad, 3rd for bf 
 
 	public static var curStage:String = '';
 	public static var isPixelStage:Bool = false;
@@ -114,6 +116,7 @@ class PlayState extends MusicBeatState
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
+	public var usedPractice:Bool = false;
 
 	public var vocals:FlxSound;
 
@@ -139,7 +142,7 @@ class PlayState extends MusicBeatState
 	public var grpNoteSplashes:FlxTypedGroup<NoteSplash>;
 
 	public var camZooming:Bool = false;
-	private var curSong:String = "";
+	public var curSong:String = "";
 
 	public var gfSpeed:Int = 1;
 	public var health:Float = 1;
@@ -240,6 +243,8 @@ class PlayState extends MusicBeatState
 	var storyDifficultyText:String = "";
 	var detailsText:String = "";
 	var detailsPausedText:String = "";
+	var keyIcon:String = "";
+	var smallIconText:String = "";
 	#end
 
 	//Achievement shit
@@ -262,6 +267,7 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
+		FlxG.autoPause = false;
 		#if MODS_ALLOWED
 		Paths.destroyLoadedImages();
 		#end
@@ -391,7 +397,7 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
-			case 'stage' | 'cloister': //Week 1
+			case 'stage': //Week 1
 				var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
 				add(bg);
 
@@ -662,6 +668,36 @@ class PlayState extends MusicBeatState
 					bg.antialiasing = false;
 					add(bg);
 				}
+			case 'cloister':
+				var BG:FlxSprite = new FlxSprite(-1300, -900).loadGraphic(Paths.image('stages/cloister/stage 1 bg(Final)', 'date-night masses'));
+				BG.antialiasing = true;
+				BG.scrollFactor.set(0.9, 0.9);
+				BG.active = false;
+				BG.scale.x = 0.4;
+				BG.scale.y = 0.4;
+				add(BG);
+
+				var table1:FlxSprite = new FlxSprite(-740, -340).loadGraphic(Paths.image('stages/cloister/BG furniture L4', 'date-night masses'));
+				table1.antialiasing = true;
+				table1.scrollFactor.set(0.9, 0.9);
+				table1.active = false;
+				table1.scale.x = 0.4;
+				table1.scale.y = 0.4;
+				add(table1);
+
+				//layInFront[0].push(BG);
+				//layInFront[0].push(table1);
+
+				
+				var table2:FlxSprite = new FlxSprite(-740, -340).loadGraphic(Paths.image('stages/cloister/BG furniture L2', 'date-night masses'));
+				table2.antialiasing = true;
+				table2.scrollFactor.set(0.9, 0.9);
+				table2.active = false;
+				table2.scale.x = 0.4;
+				table2.scale.y = 0.4;
+				//add(table2);
+				layInFront[1].push(table2);
+				
 			case 'greenhouse':
 				var BG:FlxSprite = new FlxSprite(-600, -500).loadGraphic(Paths.image('stages/Greenhouse/background2', 'date-night masses'));
 				BG.antialiasing = true;
@@ -758,14 +794,14 @@ class PlayState extends MusicBeatState
 			introSoundsSuffix = '-pixel';
 		}
 
-		add(gfGroup);
+		//add(gfGroup);
 
 		// Shitty layering but whatev it works LOL
 		if (curStage == 'limo')
 			add(limo);
 
-		add(dadGroup);
-		add(boyfriendGroup);
+		//add(dadGroup);
+		//add(boyfriendGroup);
 		
 		if(curStage == 'spooky') {
 			add(halloweenWhite);
@@ -885,6 +921,26 @@ class PlayState extends MusicBeatState
 		startCharacterPos(boyfriend);
 		boyfriendGroup.add(boyfriend);
 		startCharacterLua(boyfriend.curCharacter);
+
+		for (index => array in layInFront)
+			{
+				switch (index)
+				{
+					case 0:
+						add(gfGroup);
+						//gf.scrollFactor.set(0.95, 0.95);
+						for (bg in array)
+							add(bg);
+					case 1:
+						add(dadGroup);
+						for (bg in array)
+							add(bg);
+					case 2:
+						add(boyfriendGroup);
+						for (bg in array)
+							add(bg);
+				}
+			}
 		
 		var camPos:FlxPoint = new FlxPoint(gf.getGraphicMidpoint().x, gf.getGraphicMidpoint().y);
 		camPos.x += gf.cameraPosition[0];
@@ -1020,6 +1076,28 @@ class PlayState extends MusicBeatState
 			}
 		}
 		#end
+
+		#if desktop
+		//Discord Rich Presence small icon depends on the song.
+		switch(curSong) {
+			case 'matins' | 'serafim':
+				keyIcon = 'sarv';
+				smallIconText = 'sarv';
+			case 'harmony':
+				keyIcon = 'sarv-blush';
+				smallIconText = 'sarvBlushes';
+			case 'clandestine-ditty' | 'together' | 'rosebass':
+				keyIcon = 'date-ruv';
+				smallIconText = 'datingRuv';
+			case 'dominance' | 'archkikyo':
+				keyIcon = 'kikyo';
+				smallIconText = 'kikyo';
+			case 'coolmatins' | 'archvente':
+				keyIcon = 'sticky';
+				smallIconText = 'sticky';
+		}
+		#end
+
 		noteTypeMap.clear();
 		noteTypeMap = null;
 		eventPushedMap.clear();
@@ -1230,7 +1308,7 @@ class PlayState extends MusicBeatState
 
 		#if desktop
 		// Updating Discord Rich Presence.
-		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", keyIcon, smallIconText);
 		#end
 
 		if(!ClientPrefs.controllerMode)
@@ -1727,7 +1805,7 @@ class PlayState extends MusicBeatState
 		
 		#if desktop
 		// Updating Discord Rich Presence (with Time Left)
-		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength);
+		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", keyIcon, smallIconText, true, songLength);
 		#end
 		setOnLuas('songLength', songLength);
 		callOnLuas('onSongStart', []);
@@ -2055,11 +2133,11 @@ class PlayState extends MusicBeatState
 			#if desktop
 			if (startTimer.finished)
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", keyIcon, smallIconText, true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
 			}
 			else
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", keyIcon, smallIconText);
 			}
 			#end
 		}
@@ -2074,11 +2152,11 @@ class PlayState extends MusicBeatState
 		{
 			if (Conductor.songPosition > 0.0)
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", keyIcon, smallIconText, true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
 			}
 			else
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", keyIcon, smallIconText);
 			}
 		}
 		#end
@@ -2089,12 +2167,36 @@ class PlayState extends MusicBeatState
 	override public function onFocusLost():Void
 	{
 		#if desktop
-		if (health > 0 && !paused)
-		{
-			DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
-		}
+			if (health > 0 && !paused)
+			{
+				DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", keyIcon, smallIconText);
+			}
 		#end
 
+		if (startedCountdown && canPause && !paused) {
+		var ret:Dynamic = callOnLuas('onPause', []);
+		if(ret != FunkinLua.Function_Stop) {
+			persistentUpdate = false;
+			persistentDraw = true;
+			paused = true;
+
+			// 1 / 1000 chance for Gitaroo Man easter egg
+			/*if (FlxG.random.bool(0.1))
+			{
+				// gitaroo man easter egg
+				cancelFadeTween();
+				CustomFadeTransition.nextCamera = camOther;
+				MusicBeatState.switchState(new GitarooPause());
+			}
+			else {*/
+			if(FlxG.sound.music != null) {
+				FlxG.sound.music.pause();
+				vocals.pause();
+			}
+			PauseSubState.transCamera = camOther;
+			openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			}
+		}
 		super.onFocusLost();
 	}
 
@@ -2288,7 +2390,7 @@ class PlayState extends MusicBeatState
 				//}
 		
 				#if desktop
-				DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+				DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", keyIcon, smallIconText);
 				#end
 			}
 		}
@@ -2614,8 +2716,8 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		setOnLuas('cameraX', camFollowPos.x);
-		setOnLuas('cameraY', camFollowPos.y);
+		//setOnLuas('cameraX', camFollowPos.x);
+		//setOnLuas('cameraY', camFollowPos.y);
 		setOnLuas('botPlay', cpuControlled);
 		callOnLuas('onUpdatePost', [elapsed]);
 		#end
@@ -2636,6 +2738,7 @@ class PlayState extends MusicBeatState
 
 				vocals.stop();
 				FlxG.sound.music.stop();
+				FlxG.autoPause = true;
 
 				openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x - boyfriend.positionArray[0], boyfriend.getScreenPosition().y - boyfriend.positionArray[1], camFollowPos.x, camFollowPos.y));
 				for (tween in modchartTweens) {
@@ -2649,7 +2752,7 @@ class PlayState extends MusicBeatState
 				
 				#if desktop
 				// Game Over doesn't get his own variable because it's only used here
-				DiscordClient.changePresence("Game Over - " + detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+				DiscordClient.changePresence("Game Over - " + detailsText, SONG.song + " (" + storyDifficultyText + ")", keyIcon, smallIconText);
 				#end
 				isDead = true;
 				return true;
@@ -3166,9 +3269,9 @@ class PlayState extends MusicBeatState
 		if(achievementObj != null) {
 			return;
 		} else {
-			var achieve:String = checkForAchievement(['week1_nomiss', 'week2_nomiss', 'week3_nomiss', 'week4_nomiss',
-				'week5_nomiss', 'week6_nomiss', 'week7_nomiss', 'ur_bad',
-				'ur_good', 'hype', 'two_keys', 'toastie', 'debugger']);
+			var achieve:String = checkForAchievement(['happy_ending', 'ruv_suit', 'no_tables_allowed', 'dawn_of_a_new_day', 
+			'his_guardian_angel','two_harmonies_one_song','buff_gang','our_final_hymn','together_forever',
+			'whitty_reference','you_made_her_cry','ultimate_domination','poggers','no_skill_issue','completionist']);
 
 			if(achieve != null) {
 				startAchievement(achieve);
@@ -3203,6 +3306,7 @@ class PlayState extends MusicBeatState
 
 				if (storyPlaylist.length <= 0)
 				{
+					FlxG.autoPause = true;
 					FlxG.sound.playMusic(Paths.music('freakyMenu'));
 
 					cancelFadeTween();
@@ -3267,6 +3371,7 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
+				FlxG.autoPause = true;
 				trace('WENT BACK TO FREEPLAY??');
 				cancelFadeTween();
 				CustomFadeTransition.nextCamera = camOther;
@@ -3326,7 +3431,7 @@ class PlayState extends MusicBeatState
 
 		var coolText:FlxText = new FlxText(0, 0, 0, placement, 32);
 		coolText.screenCenter();
-		coolText.x = FlxG.width * 0.35;
+		coolText.x = FlxG.width * 0.1;
 		//
 
 		var rating:FlxSprite = new FlxSprite();
@@ -3399,7 +3504,7 @@ class PlayState extends MusicBeatState
 		rating.cameras = [camHUD];
 		rating.screenCenter();
 		rating.x = coolText.x - 40;
-		rating.y -= 60;
+		rating.y += 300;
 		rating.acceleration.y = 550;
 		rating.velocity.y -= FlxG.random.int(140, 175);
 		rating.velocity.x -= FlxG.random.int(0, 10);
@@ -3411,7 +3516,9 @@ class PlayState extends MusicBeatState
 		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));
 		comboSpr.cameras = [camHUD];
 		comboSpr.screenCenter();
-		comboSpr.x = coolText.x;
+		comboSpr.x = rating.x;
+		comboSpr.y = rating.y - 100;
+		comboSpr.y = rating.y + 200;
 		comboSpr.acceleration.y = 600;
 		comboSpr.velocity.y -= 150;
 		comboSpr.visible = !ClientPrefs.hideHud;
@@ -3424,9 +3531,9 @@ class PlayState extends MusicBeatState
 
 		if (!PlayState.isPixelStage)
 		{
-			rating.setGraphicSize(Std.int(rating.width * 0.7));
+			rating.setGraphicSize(Std.int(rating.width * 0.4));
 			rating.antialiasing = ClientPrefs.globalAntialiasing;
-			comboSpr.setGraphicSize(Std.int(comboSpr.width * 0.7));
+			comboSpr.setGraphicSize(Std.int(comboSpr.width * 0.4));
 			comboSpr.antialiasing = ClientPrefs.globalAntialiasing;
 		}
 		else
@@ -3453,8 +3560,8 @@ class PlayState extends MusicBeatState
 			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'num' + Std.int(i) + pixelShitPart2));
 			numScore.cameras = [camHUD];
 			numScore.screenCenter();
-			numScore.x = coolText.x + (43 * daLoop) - 90;
-			numScore.y += 80;
+			numScore.x = coolText.x + (43 * daLoop) - 40;
+			numScore.y += 370;
 
 			numScore.x += ClientPrefs.comboOffset[2];
 			numScore.y -= ClientPrefs.comboOffset[3];
@@ -3462,7 +3569,7 @@ class PlayState extends MusicBeatState
 			if (!PlayState.isPixelStage)
 			{
 				numScore.antialiasing = ClientPrefs.globalAntialiasing;
-				numScore.setGraphicSize(Std.int(numScore.width * 0.5));
+				numScore.setGraphicSize(Std.int(numScore.width * 0.3));
 			}
 			else
 			{
@@ -3704,8 +3811,12 @@ class PlayState extends MusicBeatState
 			}
 		});
 		combo = 0;
+		if (daNote.isSustainNote) {
+			health -= daNote.missSusTain * healthLoss;
+		} else {
+			health -= daNote.missHealth * healthLoss;
+		}
 
-		health -= daNote.missHealth * healthLoss;
 		if(instakillOnMiss)
 		{
 			doDeathCheck(true);
@@ -4372,75 +4483,102 @@ class PlayState extends MusicBeatState
 	}
 
 	#if ACHIEVEMENTS_ALLOWED
+	private function checkAll(achievesToCheck:Array<String>):Bool {
+		var valid:Bool = true;
+		for (i in 0...achievesToCheck.length) {
+			var achievementName:String = achievesToCheck[i];
+			if (!Achievements.isAchievementUnlocked(achievementName)) {
+				valid = false;
+			}
+		}
+		return valid;
+	}
+
 	private function checkForAchievement(achievesToCheck:Array<String>):String {
-		var usedPractice:Bool = (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false));
+		//var usedPractice:Bool = (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false));
 		for (i in 0...achievesToCheck.length) {
 			var achievementName:String = achievesToCheck[i];
 			if(!Achievements.isAchievementUnlocked(achievementName) && !cpuControlled) {
 				var unlock:Bool = false;
 				switch(achievementName)
 				{
-					case 'week1_nomiss' | 'week2_nomiss' | 'week3_nomiss' | 'week4_nomiss' | 'week5_nomiss' | 'week6_nomiss' | 'week7_nomiss':
-						if(isStoryMode && campaignMisses + songMisses < 1 && CoolUtil.difficultyString() == 'HARD' && storyPlaylist.length <= 1 && !changedDifficulty && !usedPractice)
+					case 'happy_ending' | 'ruv_suit' | 'no_tables_allowed':
+						if(isStoryMode && storyPlaylist.length <= 1)
 						{
 							var weekName:String = WeekData.getWeekFileName();
 							switch(weekName) //I know this is a lot of duplicated code, but it's easier readable and you can add weeks with different names than the achievement tag
 							{
 								case 'week1':
-									if(achievementName == 'week1_nomiss') unlock = true;
+									if(achievementName == 'happy_ending') unlock = true;
 								case 'week2':
-									if(achievementName == 'week2_nomiss') unlock = true;
+									if(achievementName == 'ruv_suit') unlock = true;
 								case 'week3':
-									if(achievementName == 'week3_nomiss') unlock = true;
-								case 'week4':
-									if(achievementName == 'week4_nomiss') unlock = true;
-								case 'week5':
-									if(achievementName == 'week5_nomiss') unlock = true;
-								case 'week6':
-									if(achievementName == 'week6_nomiss') unlock = true;
-								case 'week7':
-									if(achievementName == 'week7_nomiss') unlock = true;
+									if(achievementName == 'no_tables_allowed') unlock = true;
 							}
 						}
-					case 'ur_bad':
-						if(ratingPercent < 0.2 && !practiceMode) {
-							unlock = true;
-						}
-					case 'ur_good':
-						if(ratingPercent >= 1 && !usedPractice) {
-							unlock = true;
-						}
-					case 'roadkill_enthusiast':
-						if(Achievements.henchmenDeath >= 100) {
-							unlock = true;
-						}
-					case 'oversinging':
-						if(boyfriend.holdTimer >= 20 && !usedPractice) {
-							unlock = true;
-						}
-					case 'hype':
-						if(!boyfriendIdled && !usedPractice) {
-							unlock = true;
-						}
-					case 'two_keys':
-						if(!usedPractice) {
-							var howManyPresses:Int = 0;
-							for (j in 0...keysPressed.length) {
-								if(keysPressed[j]) howManyPresses++;
-							}
+					case 'you_made_her_cry':
+						if(healthBar.percent < 20 && !usedPractice &&
+							(dad.curCharacter == 'sarvOnChair' || dad.curCharacter == 'gardenSarv' || dad.curCharacter == 'dateSarv' || dad.curCharacter == 'swagSarv') && 
+							(boyfriend.curCharacter == 'standingRuv' || boyfriend.curCharacter == 'gardenRuv' || boyfriend.curCharacter == 'dateRuv' || boyfriend.curCharacter == 'swagRuv' 
+							|| boyfriend.curCharacter == 'stickyInRuvSuit')) {
 
-							if(howManyPresses <= 2) {
-								unlock = true;
-							}
-						}
-					case 'toastie':
-						if(/*ClientPrefs.framerate <= 60 &&*/ ClientPrefs.lowQuality && !ClientPrefs.globalAntialiasing && !ClientPrefs.imagesPersist) {
 							unlock = true;
 						}
-					case 'debugger':
-						if(Paths.formatToSongPath(SONG.song) == 'test' && !usedPractice) {
-							unlock = true;
+					case 'poggers':
+						if (curStage == 'cloister') {
+							unlock= true;
 						}
+					case 'dawn_of_a_new_day':
+						if (CoolUtil.difficultyString() == 'HARD' && curSong == 'matins' && !usedPractice && songMisses <= 10) {
+							unlock= true;
+						}
+					case 'his_guardian_angel':
+						if (CoolUtil.difficultyString() == 'HARD' && curSong == 'serafim' && !usedPractice && songMisses <= 10) {
+							unlock= true;
+						}
+					case 'two_harmonies_one_song':
+						if (CoolUtil.difficultyString() == 'HARD' && curSong == 'harmony' && !usedPractice && songMisses <= 10) {
+							unlock= true;
+						} 
+					case 'buff_gang':
+						if (CoolUtil.difficultyString() == 'HARD' && (curSong == 'archvente') && !usedPractice && songMisses <= 10) {
+							unlock= true;
+						}
+					case 'our_final_hymn':
+						if (CoolUtil.difficultyString() == 'HARD' && curSong == 'clandestine-ditty' && !usedPractice && songMisses <= 10) {
+							unlock= true;
+						}
+					case 'together_forever':
+						if (CoolUtil.difficultyString() == 'HARD' && curSong == 'together' && !usedPractice && songMisses <= 10) {
+							unlock= true;
+						}
+					case 'whitty_reference':
+						if (CoolUtil.difficultyString() == 'HARD' && curSong == 'rosebass' && !usedPractice && songMisses <= 10) {
+							unlock= true;
+						}
+					case 'ultimate_domination':
+						if (curSong == 'archkikyo' && !usedPractice && songMisses >= 49) {
+							unlock= true;
+						}
+					case 'no_skill_issue':
+						var skillAchievements:Array<String> = [
+							'dawn_of_a_new_day',
+							'his_guardian_angel',
+							'two_harmonies_one_song',
+							'buff_gang',
+							'our_final_hymn',
+							'together_forever',
+							'whitty_reference',
+						];
+						unlock = checkAll(skillAchievements);
+						
+					case 'completionist':
+						var allAchievements:Array<String> = [];
+						for (i in 0...Achievements.achievementsStuff.length) {
+							allAchievements[i] = Achievements.achievementsStuff[i][2];
+							//trace(Achievements.achievementsStuff[i][2]);
+						}
+						unlock = checkAll(allAchievements);
 				}
 
 				if(unlock) {

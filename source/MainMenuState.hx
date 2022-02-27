@@ -92,6 +92,15 @@ class MainMenuState extends MusicBeatState
 		else if (chosenBG == 9)
 		{
 			bg = new FlxSprite(-80).loadGraphic(Paths.image('menu_bg/menuBGset3', 'date-night masses'));
+			#if ACHIEVEMENTS_ALLOWED
+			Achievements.loadAchievements();
+			var achieveID:Int = Achievements.getAchievementIndex('choco_approves');
+			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { //It's a friday night. WEEEEEEEEEEEEEEEEEE
+				Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
+				giveAchievement('choco_approves');
+				ClientPrefs.saveSettings();
+			}
+			#end
 		}
 
 		bg.scrollFactor.set(0, yScroll);
@@ -173,14 +182,11 @@ class MainMenuState extends MusicBeatState
 
 		#if ACHIEVEMENTS_ALLOWED
 		Achievements.loadAchievements();
-		var leDate = Date.now();
-		if (leDate.getDay() == 5 && leDate.getHours() >= 18) {
-			var achieveID:Int = Achievements.getAchievementIndex('friday_night_play');
-			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { //It's a friday night. WEEEEEEEEEEEEEEEEEE
-				Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
-				giveAchievement();
-				ClientPrefs.saveSettings();
-			}
+		var achieveID:Int = Achievements.getAchievementIndex('a_new_world');
+		if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { //It's a friday night. WEEEEEEEEEEEEEEEEEE
+			Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
+			giveAchievement('a_new_world');
+			ClientPrefs.saveSettings();
 		}
 		#end
 
@@ -189,10 +195,10 @@ class MainMenuState extends MusicBeatState
 
 	#if ACHIEVEMENTS_ALLOWED
 	// Unlocks "Freaky on a Friday Night" achievement
-	function giveAchievement() {
-		add(new AchievementObject('friday_night_play', camAchievement));
+	function giveAchievement(achievementName:String) {
+		add(new AchievementObject(achievementName, camAchievement));
 		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-		trace('Giving achievement "friday_night_play"');
+		trace("Giving achievement : " + achievementName);
 	}
 	#end
 

@@ -16,6 +16,7 @@ import flixel.FlxCamera;
 import sys.io.Process;
 import sys.FileSystem;
 import sys.io.File;
+import Achievements;
 
 using StringTools;
 
@@ -24,19 +25,25 @@ class PauseSubState extends MusicBeatSubstate
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
 	var menuItems:Array<String> = [];
-	var menuItemsOG:Array<String> = ['Resume', 'Restart Song', 'Change Difficulty', 'Exit to menu'];
+	var menuItemsOG:Array<String> = ['Resume', 'Restart Song', 'Exit to menu'];
 	var difficultyChoices = [];
 	var curSelected:Int = 0;
 
 	var pauseMusic:FlxSound;
 	var practiceText:FlxText;
-	//var botplayText:FlxText;
+	var botplayText:FlxText;
 
 	public static var transCamera:FlxCamera;
+	private var camAchievement:FlxCamera;
 
 	public function new(x:Float, y:Float)
 	{
 		super();
+
+		if (!PlayState.isStoryMode) {
+			menuItemsOG = ['Resume', 'Restart Song', 'Change Difficulty', 'Botplay', 'Toggle Practice Mode', 'Exit to menu'];
+		}
+
 		menuItems = menuItemsOG;
 
 		for (i in 0...CoolUtil.difficulties.length) {
@@ -50,6 +57,11 @@ class PauseSubState extends MusicBeatSubstate
 		pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
 
 		FlxG.sound.list.add(pauseMusic);
+
+		camAchievement = new FlxCamera();
+		camAchievement.bgColor.alpha = 0;
+
+		FlxG.cameras.add(camAchievement);
 
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		bg.alpha = 0;
@@ -73,6 +85,16 @@ class PauseSubState extends MusicBeatSubstate
 				chatGreeting.scale.x = 0.6;
 				chatGreeting.scale.y = 0.6;
 				add(chatGreeting);
+
+				#if ACHIEVEMENTS_ALLOWED
+				Achievements.loadAchievements();
+				var achieveID:Int = Achievements.getAchievementIndex('hi_chat');
+				if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { //It's a friday night. WEEEEEEEEEEEEEEEEEE
+					Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
+					giveAchievement('hi_chat');
+					ClientPrefs.saveSettings();
+				}
+				#end
 			}
 		}
 
@@ -105,13 +127,13 @@ class PauseSubState extends MusicBeatSubstate
 		practiceText.visible = PlayState.instance.practiceMode;
 		add(practiceText);
 
-		/*botplayText = new FlxText(20, FlxG.height - 40, 0, "BOTPLAY", 32);
+		botplayText = new FlxText(20, FlxG.height - 40, 0, "BOTPLAY", 32);
 		botplayText.scrollFactor.set();
 		botplayText.setFormat(Paths.font('vcr.ttf'), 32);
 		botplayText.x = FlxG.width - (botplayText.width + 20);
 		botplayText.updateHitbox();
-		botplayText.visible = PlayState.cpuControlled;
-		add(botplayText);*/
+		botplayText.visible = PlayState.instance.cpuControlled;
+		add(botplayText);
 
 		blueballedTxt.alpha = 0;
 		levelDifficulty.alpha = 0;
@@ -187,19 +209,20 @@ class PauseSubState extends MusicBeatSubstate
 				case 'Change Difficulty':
 					menuItems = difficultyChoices;
 					regenMenu();
-				/*case 'Toggle Practice Mode':
-					PlayState.practiceMode = !PlayState.practiceMode;
-					PlayState.usedPractice = true;
-					practiceText.visible = PlayState.practiceMode;*/
+				case 'Toggle Practice Mode':
+					PlayState.instance.practiceMode = !PlayState.instance.practiceMode;
+					PlayState.instance.usedPractice = true;
+					practiceText.visible = PlayState.instance.practiceMode;
 				case "Restart Song":
 					CustomFadeTransition.nextCamera = transCamera;
 					MusicBeatState.resetState();
 					FlxG.sound.music.volume = 0;
-				/*case 'Botplay':
-					PlayState.cpuControlled = !PlayState.cpuControlled;
-					PlayState.usedPractice = true;
-					botplayText.visible = PlayState.cpuControlled;*/
+				case 'Botplay':
+					PlayState.instance.cpuControlled = !PlayState.instance.cpuControlled;
+					PlayState.instance.usedPractice = true;
+					botplayText.visible = PlayState.instance.cpuControlled;
 				case "Exit to menu":
+					FlxG.autoPause = true;
 					PlayState.deathCounter = 0;
 					PlayState.seenCutscene = false;
 					CustomFadeTransition.nextCamera = transCamera;
@@ -269,4 +292,13 @@ class PauseSubState extends MusicBeatSubstate
 		curSelected = 0;
 		changeSelection();
 	}
+
+	#if ACHIEVEMENTS_ALLOWED
+	// Unlocks "Freaky on a Friday Night" achievement
+	function giveAchievement(achievementName:String) {
+		add(new AchievementObject(achievementName, camAchievement));
+		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+		trace("Giving achievement : " + achievementName);
+	}
+	#end
 }

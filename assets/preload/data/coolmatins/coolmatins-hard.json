@@ -4090,8 +4090,10 @@
   "needsVoices": true,
   "uiType": "normal",
   "bpm": 120,
-  "arrowSkin": "NOTE_assets",
-  "splashSkin": "NOTE_Splashes",
+  "playerArrowSkin": "NOTE_assets",
+  "playerSplashSkin": "NOTE_Splashes",
+  "arrowSkin": "flower",
+  "splashSkin": "noteSplashesDate",
   "gf": "gf"
  }
 }

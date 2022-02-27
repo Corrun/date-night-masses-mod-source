@@ -11,22 +11,29 @@ using StringTools;
 
 class Achievements {
 	public static var achievementsStuff:Array<Dynamic> = [ //Name, Description, Achievement save tag, Hidden achievement
-		["Freaky on a Friday Night",	"Play on a Friday... Night.",						'friday_night_play',	 true],
-		["She Calls Me Daddy Too",		"Beat Week 1 on Hard with no Misses.",				'week1_nomiss',			false],
-		["No More Tricks",				"Beat Week 2 on Hard with no Misses.",				'week2_nomiss',			false],
-		["Call Me The Hitman",			"Beat Week 3 on Hard with no Misses.",				'week3_nomiss',			false],
-		["Lady Killer",					"Beat Week 4 on Hard with no Misses.",				'week4_nomiss',			false],
-		["Missless Christmas",			"Beat Week 5 on Hard with no Misses.",				'week5_nomiss',			false],
-		["Highscore!!",					"Beat Week 6 on Hard with no Misses.",				'week6_nomiss',			false],
-		["You'll Pay For That...",		"Beat Week 7 on Hard with no Misses.",				'week7_nomiss',			 true],
-		["What a Funkin' Disaster!",	"Complete a Song with a rating lower than 20%.",	'ur_bad',				false],
-		["Perfectionist",				"Complete a Song with a rating of 100%.",			'ur_good',				false],
-		["Roadkill Enthusiast",			"Watch the Henchmen die over 100 times.",			'roadkill_enthusiast',	false],
-		["Oversinging Much...?",		"Hold down a note for 20 seconds.",					'oversinging',			false],
-		["Hyperactive",					"Finish a Song without going Idle.",				'hype',					false],
-		["Just the Two of Us",			"Finish a Song pressing only two keys.",			'two_keys',				false],
-		["Toaster Gamer",				"Have you tried to run the game on a toaster?",		'toastie',				false],
-		["Debugger",					"Beat the \"Test\" Stage from the Chart Editor.",	'debugger',				 true]
+		["A New World",					"Play Date-Night masses for the first time.",							'a_new_world',				false],
+		["Happy Ending",				"Beat the date week.",													'happy_ending',				false],
+		["In Ruv Suit",					"Beat sticky date week.",												'ruv_suit',			 		false],
+		["Best Ending",					"get the \"Best Ending\".",												'best_ending',				false],
+		["Buy His Membership",			"Get the membership ending.",											'buy_his_membership',		false],
+		["No Tables allowed",			"Beat vibe check week.",												'no_tables_allowed',		false],
+		["Hi Chat",						"Get the streamer easter egg on the pause menu.",						'hi_chat',			 		false],
+		["Best Team",					"Check all team members",												'best_team',				false],
+		["Dawn of a New Day",			"Beat matins on hard with 10 or less misses.",							'dawn_of_a_new_day',		false],
+		["His Guardian Angel",			"Beat serafim on hard with 10 or less misses.",							'his_guardian_angel',		false],
+		["Two Harmonies, One Song",		"Beat harmony on hard with 10 or less misses.",							'two_harmonies_one_song',	false],
+		["Buff Gang",					"Beat archvente on hard with 10 or less misses.",						'buff_gang',				false],
+		["Our Final Hymn",				"Beat clandestine-ditty on hard with 10 or less misses.",				'our_final_hymn',			false],
+		["Together Forever",			"Beat together on hard with 10 or less misses.",						'together_forever',			false],
+		["Whitty Reference",			"Beat rosebass on hard with 10 or less misses.",						'whitty_reference',			false],
+		["Certified No Skill Issue",	"Get all 10 misses or less achievements.",								'no_skill_issue',			false],
+		["Completionist",				"Get all the achievements.",											'completionist',			false],
+		["You made her cry",			"Complete a Song with sarv, ruv and health lower than 20%.",			'you_made_her_cry',			true],
+		["Ultimate Domination",			"Get kikyo on top of 50 tables.",										'ultimate_domination',		true],
+		["POGGERS",						"Get the pog chair on the kitchen. (20%)",								'poggers',				 	true],
+		["Choco Approves",				"Get the wheelchair ruv background. (10%)",								'choco_approves',			true],
+		["Ruv Ronv",					"Get the Ruv Ronv portrait (1%).",										'ruv_ronv',				 	true],
+		["Sarv Ronv",					"Get the Sarv Ronv portrait (1%).",										'sarv_ronv',				true]
 	];
 	public static var achievementsMap:Map<String, Bool> = new Map<String, Bool>();
 

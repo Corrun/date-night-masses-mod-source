@@ -198,6 +198,8 @@ class ChartingState extends MusicBeatState
 				needsVoices: true,
 				arrowSkin: '',
 				splashSkin: 'noteSplashes',//idk it would crash if i didn't
+				playerArrowSkin: '',
+				playerSplashSkin: 'noteSplashes',//idk it would crash if i didn't
 				player1: 'bf',
 				player2: 'dad',
 				player3: 'gf',
@@ -2364,6 +2366,8 @@ class ChartingState extends MusicBeatState
 			speed: _song.speed,
 			arrowSkin: _song.arrowSkin,
 			splashSkin: _song.splashSkin,
+			playerArrowSkin: _song.playerArrowSkin,
+			playerSplashSkin: _song.playerSplashSkin,
 
 			player1: _song.player1,
 			player2: _song.player2,

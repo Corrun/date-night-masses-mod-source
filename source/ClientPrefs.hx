@@ -235,7 +235,7 @@ class ClientPrefs {
 			FlxG.sound.muted = FlxG.save.data.mute;
 		}
 
-		// flixel automatically saves your volume!
+		// passwords!
 		if(FlxG.save.data.stickyUnlocked == null)
 		{
 			FlxG.save.data.stickyUnlocked = false;
