@@ -188,6 +188,37 @@ class MainMenuState extends MusicBeatState
 			giveAchievement('a_new_world');
 			ClientPrefs.saveSettings();
 		}
+
+		achieveID = Achievements.getAchievementIndex('completionist');
+		var allAchievements:Array<String> = [
+			'a_new_world',
+			'happy_ending',
+			'ruv_suit',
+			'best_ending',
+			'buy_his_membership',
+			'no_tables_allowed',
+			'hi_chat',
+			'best_team',
+			'dawn_of_a_new_day',
+			'his_guardian_angel',
+			'two_harmonies_one_song',
+			'buff_gang',
+			'our_final_hymn',
+			'together_forever',
+			'whitty_reference',
+			'no_skill_issue',
+			'you_made_her_cry',
+			'ultimate_domination',
+			'poggers',
+			'choco_approves',
+			'ruv_ronv',
+			'sarv_ronv'
+		];
+		if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2]) && Achievements.checkAll(allAchievements)) { //It's a friday night. WEEEEEEEEEEEEEEEEEE
+			Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
+			giveAchievement('completionist');
+			ClientPrefs.saveSettings();
+		}
 		#end
 
 		super.create();
@@ -198,7 +229,7 @@ class MainMenuState extends MusicBeatState
 	function giveAchievement(achievementName:String) {
 		add(new AchievementObject(achievementName, camAchievement));
 		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-		trace("Giving achievement : " + achievementName);
+		trace("Giving achievement : " + achievementName); 
 	}
 	#end
 

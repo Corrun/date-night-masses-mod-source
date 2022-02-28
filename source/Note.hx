@@ -60,8 +60,8 @@ class Note extends FlxSprite
 	public var copyAlpha:Bool = true;
 
 	public var hitHealth:Float = 0.023;
-	public var missHealth:Float = 0.08;
-	public var missSusTain:Float = 0.1;
+	public var missHealth:Float = 0.09;
+	public var missSusTain:Float = 0.008;
 
 	public var texture(default, set):String = null;
 
@@ -94,7 +94,7 @@ class Note extends FlxSprite
 					colorSwap.hue = 0;
 					colorSwap.saturation = 0;
 					colorSwap.brightness = 0;
-					missSusTain = 0.1;
+					missSusTain = 0.008;
 					missHealth = 0.3;
 					hitCausesMiss = true;
 				case 'No Animation':

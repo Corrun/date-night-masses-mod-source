@@ -25,6 +25,8 @@ class AchievementsMenuState extends MusicBeatState
 	private var achievementArray:Array<AttachedAchievement> = [];
 	private var achievementIndex:Array<Int> = [];
 	private var descText:FlxText;
+	private var rewardState:Bool = false;
+	private var reward:FlxSprite =new FlxSprite();
 
 	override function create() {
 		#if desktop
@@ -78,22 +80,48 @@ class AchievementsMenuState extends MusicBeatState
 		add(descText);
 		changeSelection();
 
+		var textBG:FlxSprite = new FlxSprite(0, FlxG.height - 26).makeGraphic(FlxG.width, 26, 0xFF000000);
+		textBG.alpha = 0.6;
+		add(textBG);
+		var text:FlxText = new FlxText(textBG.x, textBG.y + 4, FlxG.width, "Press Enter to see your reward on unlocked trophies/ Press enter again to unsee it.", 18);
+		text.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, RIGHT);
+		text.scrollFactor.set();
+		add(text);
+
 		super.create();
 	}
 
 	override function update(elapsed:Float) {
 		super.update(elapsed);
 
-		if (controls.UI_UP_P) {
+		if (!rewardState && controls.UI_UP_P) {
 			changeSelection(-1);
 		}
-		if (controls.UI_DOWN_P) {
+		if (!rewardState && controls.UI_DOWN_P) {
 			changeSelection(1);
 		}
 
-		if (controls.BACK) {
+		if (Achievements.isAchievementUnlocked(Achievements.achievementsStuff[curSelected][2]) && controls.ACCEPT) {
+			achievementReward();
+		}
+
+		if (!rewardState && controls.BACK) {
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			MusicBeatState.switchState(new MainMenuState());
+		}
+	}
+
+	function achievementReward() {
+		rewardState = !rewardState;
+		if (rewardState) {
+			FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+			reward = new FlxSprite().loadGraphic(Paths.image('trophies/' + Achievements.achievementsStuff[curSelected][4], 'date-night masses'));
+			reward.screenCenter();
+			reward.visible = true;
+			add(reward);
+		} else if (!rewardState) {
+			FlxG.sound.play(Paths.sound('cancelMenu'));
+			reward.visible = false;
 		}
 	}
 

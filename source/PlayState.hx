@@ -697,6 +697,28 @@ class PlayState extends MusicBeatState
 				table2.scale.y = 0.4;
 				//add(table2);
 				layInFront[1].push(table2);
+
+				var pogStats = Std.random(5);
+
+				if (pogStats <= 4) {
+					var pog:FlxSprite = new FlxSprite().loadGraphic(Paths.image('cameos/pogchair', 'date-night masses'));
+					pog.antialiasing = true;
+					pog.scrollFactor.set(0.9, 0.9);
+					pog.active = false;
+					pog.scale.x = 0.065;
+					pog.scale.y = 0.065;
+					pog.screenCenter();
+					pog.x += 280;
+					pog.y += 20;
+					add(pog);
+
+					#if ACHIEVEMENTS_ALLOWED
+					var achieve:String = checkForAchievement(['poggers']);
+					if (achieve != null) {
+						startAchievement(achieve);
+					}
+					#end
+				}
 				
 			case 'greenhouse':
 				var BG:FlxSprite = new FlxSprite(-600, -500).loadGraphic(Paths.image('stages/Greenhouse/background2', 'date-night masses'));
@@ -1009,17 +1031,21 @@ class PlayState extends MusicBeatState
 		timeBarBG.color = FlxColor.BLACK;
 		timeBarBG.xAdd = -4;
 		timeBarBG.yAdd = -4;
-		add(timeBarBG);
+		if (!isStoryMode && Highscore.getScore(songName, storyDifficulty) >= 10) {
+			add(timeBarBG);
+		}
 
 		timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this,
 			'songPercent', 0, 1);
 		timeBar.scrollFactor.set();
-		timeBar.createFilledBar(0xFF000000, 0xFFFFFFFF);
+		timeBar.createFilledBar(0xFF000000, 0xFFe55777);
 		timeBar.numDivisions = 800; //How much lag this causes?? Should i tone it down to idk, 400 or 200?
 		timeBar.alpha = 0;
 		timeBar.visible = showTime;
-		add(timeBar);
-		add(timeTxt);
+		if (!isStoryMode && Highscore.getScore(songName, storyDifficulty) >= 10) {
+			add(timeBar);
+			add(timeTxt);
+		}
 		timeBarBG.sprTracker = timeBar;
 
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
@@ -2731,39 +2757,49 @@ class PlayState extends MusicBeatState
 		#end
 	}
 
+	function archventeCheck() {
+		FlxG.sound.music.stop();
+		FlxG.autoPause = true;
+		MusicBeatState.switchState(new ArchEndingState());
+	}
+
 	public var isDead:Bool = false; //Don't mess with this on Lua!!!
 	function doDeathCheck(?skipHealthCheck:Bool = false) {
 		if (((skipHealthCheck && instakillOnMiss) || health <= 0) && !practiceMode && !isDead)
 		{
-			var ret:Dynamic = callOnLuas('onGameOver', []);
-			if(ret != FunkinLua.Function_Stop) {
-				boyfriend.stunned = true;
-				deathCounter++;
+			if (curSong == 'archvente') {
+				archventeCheck();
+			} else {
+				var ret:Dynamic = callOnLuas('onGameOver', []);
+				if(ret != FunkinLua.Function_Stop) {
+					boyfriend.stunned = true;
+					deathCounter++;
 
-				persistentUpdate = false;
-				persistentDraw = false;
-				paused = true;
+					persistentUpdate = false;
+					persistentDraw = false;
+					paused = true;
 
-				vocals.stop();
-				FlxG.sound.music.stop();
-				FlxG.autoPause = true;
+					vocals.stop();
+					FlxG.sound.music.stop();
+					FlxG.autoPause = true;
 
-				openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x - boyfriend.positionArray[0], boyfriend.getScreenPosition().y - boyfriend.positionArray[1], camFollowPos.x, camFollowPos.y));
-				for (tween in modchartTweens) {
-					tween.active = true;
+					openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x - boyfriend.positionArray[0], boyfriend.getScreenPosition().y - boyfriend.positionArray[1], camFollowPos.x, camFollowPos.y));
+					for (tween in modchartTweens) {
+						tween.active = true;
+					}
+					for (timer in modchartTimers) {
+						timer.active = true;
+					}
+
+					// MusicBeatState.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+					
+					#if desktop
+					// Game Over doesn't get his own variable because it's only used here
+					DiscordClient.changePresence("Game Over - " + detailsText, SONG.song + " (" + storyDifficultyText + ")", keyIcon, smallIconText);
+					#end
+					isDead = true;
+					return true;
 				}
-				for (timer in modchartTimers) {
-					timer.active = true;
-				}
-
-				// MusicBeatState.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
-				
-				#if desktop
-				// Game Over doesn't get his own variable because it's only used here
-				DiscordClient.changePresence("Game Over - " + detailsText, SONG.song + " (" + storyDifficultyText + ")", keyIcon, smallIconText);
-				#end
-				isDead = true;
-				return true;
 			}
 		}
 		return false;
@@ -3279,7 +3315,7 @@ class PlayState extends MusicBeatState
 		} else {
 			var achieve:String = checkForAchievement(['happy_ending', 'ruv_suit', 'no_tables_allowed', 'dawn_of_a_new_day', 
 			'his_guardian_angel','two_harmonies_one_song','buff_gang','our_final_hymn','together_forever',
-			'whitty_reference','you_made_her_cry','ultimate_domination','poggers','no_skill_issue','completionist']);
+			'whitty_reference','you_made_her_cry','ultimate_domination','no_skill_issue','completionist']);
 
 			if(achieve != null) {
 				startAchievement(achieve);
@@ -3312,7 +3348,11 @@ class PlayState extends MusicBeatState
 
 				storyPlaylist.remove(storyPlaylist[0]);
 
-				if (storyPlaylist.length <= 0)
+				if (curSong == 'archvente') 
+				{
+					archventeCheck();
+				} 
+				else if (storyPlaylist.length <= 0)
 				{
 					FlxG.autoPause = true;
 					FlxG.sound.playMusic(Paths.music('freakyMenu'));
@@ -3568,7 +3608,7 @@ class PlayState extends MusicBeatState
 			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'num' + Std.int(i) + pixelShitPart2));
 			numScore.cameras = [camHUD];
 			numScore.screenCenter();
-			numScore.x = coolText.x + (43 * daLoop) - 40;
+			numScore.x = coolText.x + (30 * daLoop) - 40;
 			numScore.y += 370;
 
 			numScore.x += ClientPrefs.comboOffset[2];
@@ -4491,17 +4531,6 @@ class PlayState extends MusicBeatState
 	}
 
 	#if ACHIEVEMENTS_ALLOWED
-	private function checkAll(achievesToCheck:Array<String>):Bool {
-		var valid:Bool = true;
-		for (i in 0...achievesToCheck.length) {
-			var achievementName:String = achievesToCheck[i];
-			if (!Achievements.isAchievementUnlocked(achievementName)) {
-				valid = false;
-			}
-		}
-		return valid;
-	}
-
 	private function checkForAchievement(achievesToCheck:Array<String>):String {
 		//var usedPractice:Bool = (ClientPrefs.getGameplaySetting('practice', false) || ClientPrefs.getGameplaySetting('botplay', false));
 		for (i in 0...achievesToCheck.length) {
@@ -4549,7 +4578,7 @@ class PlayState extends MusicBeatState
 							unlock= true;
 						} 
 					case 'buff_gang':
-						if (CoolUtil.difficultyString() == 'HARD' && (curSong == 'archvente') && !usedPractice && songMisses <= 10) {
+						if (CoolUtil.difficultyString() == 'HARD' && curSong == 'archvente' && !usedPractice && songMisses <= 10) {
 							unlock= true;
 						}
 					case 'our_final_hymn':
@@ -4565,7 +4594,7 @@ class PlayState extends MusicBeatState
 							unlock= true;
 						}
 					case 'ultimate_domination':
-						if (curSong == 'archkikyo' && !usedPractice && songMisses >= 49) {
+						if (curSong == 'archkikyo' && songMisses >= 49) {
 							unlock= true;
 						}
 					case 'no_skill_issue':
@@ -4578,15 +4607,7 @@ class PlayState extends MusicBeatState
 							'together_forever',
 							'whitty_reference',
 						];
-						unlock = checkAll(skillAchievements);
-						
-					case 'completionist':
-						var allAchievements:Array<String> = [];
-						for (i in 0...Achievements.achievementsStuff.length) {
-							allAchievements[i] = Achievements.achievementsStuff[i][2];
-							//trace(Achievements.achievementsStuff[i][2]);
-						}
-						unlock = checkAll(allAchievements);
+						unlock = Achievements.checkAll(skillAchievements);
 				}
 
 				if(unlock) {

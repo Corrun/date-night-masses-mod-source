@@ -10,6 +10,8 @@ import flixel.input.FlxKeyManager;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import flixel.FlxCamera;
+import Achievements;
 
 using StringTools;
 
@@ -44,6 +46,8 @@ class DialogueBox extends FlxSpriteGroup
 	var currentAnim:String;
 
 	var hasVoice = false;
+
+	private var camAchievement:FlxCamera;
 
 	public function new(talkingRight:Bool = true, ?dialogueList:Array<String>)
 	{
@@ -111,13 +115,15 @@ class DialogueBox extends FlxSpriteGroup
 			portraitLeft = new FlxSprite(200, 150);
 			portraitLeft.frames = Paths.getSparrowAtlas('portraits/sarvPortrait', 'date-night masses');
 
-			portraitLeft.animation.addByPrefix('sarvCheerful', 'sarv Cheerful', 24, false);
-			portraitLeft.animation.addByPrefix('sarvConfused', 'sarv Confused', 24, false);
-			portraitLeft.animation.addByPrefix('sarvDelighted', 'sarv Delighted', 24, false);
+			portraitLeft.animation.addByPrefix('sarvCheerful', 'sarv Cheerful0', 24, false);
+			portraitLeft.animation.addByPrefix('sarvConfused', 'sarv Confused0', 24, false);
+			portraitLeft.animation.addByPrefix('sarvDelighted', 'sarv Delighted0', 24, false);
 
-			portraitLeft.animation.addByPrefix('sarvDateCheerful', 'sarv DateCheerful', 24, false);
-			portraitLeft.animation.addByPrefix('sarvDateConfused', 'sarv DateConfused', 24, false);
-			portraitLeft.animation.addByPrefix('sarvDateDelighted', 'sarv DateDelighted', 24, false);
+			portraitLeft.animation.addByPrefix('sarvDateCheerful', 'sarv DateCheerful0', 24, false);
+			portraitLeft.animation.addByPrefix('sarvDateConfused', 'sarv DateConfused0', 24, false);
+			portraitLeft.animation.addByPrefix('sarvDateDelighted', 'sarv DateDelighted0', 24, false);
+
+			portraitLeft.animation.addByPrefix('sorv', 'sarv Ronv0', 24, false);
 
 			// portraitLeft.setGraphicSize(Std.int(portraitLeft.height * 0.5));
 			portraitLeft.updateHitbox();
@@ -129,15 +135,15 @@ class DialogueBox extends FlxSpriteGroup
 			portraitRight = new FlxSprite(800, 130);
 			portraitRight.frames = Paths.getSparrowAtlas('portraits/ruvPortrait', 'date-night masses');
 
-			portraitRight.animation.addByPrefix('ruvContent', 'ruv Content', 24, false);
-			portraitRight.animation.addByPrefix('ruvNerv', 'ruv Nerv', 24, false);
-			portraitRight.animation.addByPrefix('ruvNeutral', 'ruv Neutral', 24, false);
+			portraitRight.animation.addByPrefix('ruvContent', 'ruv Content0', 24, false);
+			portraitRight.animation.addByPrefix('ruvNerv', 'ruv Nerv0', 24, false);
+			portraitRight.animation.addByPrefix('ruvNeutral', 'ruv Neutral0', 24, false);
 
-			portraitRight.animation.addByPrefix('ruvDateContent', 'ruv DateContent', 24, false);
-			portraitRight.animation.addByPrefix('ruvDateNervous', 'ruv DateNerv', 24, false);
-			portraitRight.animation.addByPrefix('ruvDateNeutral', 'ruv DateNeutral', 24, false);
+			portraitRight.animation.addByPrefix('ruvDateContent', 'ruv DateContent0', 24, false);
+			portraitRight.animation.addByPrefix('ruvDateNervous', 'ruv DateNerv0', 24, false);
+			portraitRight.animation.addByPrefix('ruvDateNeutral', 'ruv DateNeutral0', 24, false);
 
-			portraitRight.animation.addByPrefix('ron', 'ruv Ronv', 24, false);
+			portraitRight.animation.addByPrefix('ronv', 'ruv Ronv0', 24, false);
 
 			// portraitRight.setGraphicSize(Std.int(portraitRight.height * 0.5));
 			portraitRight.updateHitbox();
@@ -172,6 +178,10 @@ class DialogueBox extends FlxSpriteGroup
 		dialogue = new Alphabet(0, 80, "", false, true);
 		// dialogue.x = 90;
 		// add(dialogue);
+
+		camAchievement = new FlxCamera();
+		camAchievement.bgColor.alpha = 0;
+		FlxG.cameras.add(camAchievement);
 	}
 
 	var dialogueOpened:Bool = false;
@@ -310,7 +320,21 @@ class DialogueBox extends FlxSpriteGroup
 
 		if (curCharacter.startsWith('ruv'))
 		{
-			portraitRight.animation.play(curCharacter);
+			var chanceRonv = Std.random(100);
+			if (chanceRonv < 5) {
+				portraitRight.animation.play('ronv');
+				#if ACHIEVEMENTS_ALLOWED
+				Achievements.loadAchievements();
+				var achieveID:Int = Achievements.getAchievementIndex('ruv_ronv');
+				if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { 
+					Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
+					giveAchievement('ruv_ronv');
+					ClientPrefs.saveSettings();
+				}
+				#end
+			} else {
+				portraitRight.animation.play(curCharacter);
+			}
 			box.animation.play('ruv');
 			portraitRight.visible = true;
 			box.x = 20;
@@ -322,7 +346,21 @@ class DialogueBox extends FlxSpriteGroup
 		}
 		else if (curCharacter.startsWith('sarv'))
 		{
-			portraitLeft.animation.play(curCharacter);
+			var chanceSorv = Std.random(100);
+			if (chanceSorv < 5) {
+				portraitLeft.animation.play('sorv');
+				#if ACHIEVEMENTS_ALLOWED
+				Achievements.loadAchievements();
+				var achieveID:Int = Achievements.getAchievementIndex('sarv_ronv');
+				if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { 
+					Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
+					giveAchievement('sarv_ronv');
+					ClientPrefs.saveSettings();
+				}
+				#end
+			} else {
+				portraitLeft.animation.play(curCharacter);
+			}
 			box.animation.play('sarv');
 			portraitLeft.visible = true;
 			box.x = 20;
@@ -356,4 +394,13 @@ class DialogueBox extends FlxSpriteGroup
 		trace("dialogue = " + dialogueList[0]);
 		trace("voice acting = " + actingString);
 	}
+
+	#if ACHIEVEMENTS_ALLOWED
+	// Unlocks "Freaky on a Friday Night" achievement
+	function giveAchievement(achievementName:String) {
+		add(new AchievementObject(achievementName, camAchievement));
+		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+		trace("Giving achievement : " + achievementName); 
+	}
+	#end
 }

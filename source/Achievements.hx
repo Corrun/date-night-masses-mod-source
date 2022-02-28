@@ -11,10 +11,10 @@ using StringTools;
 
 class Achievements {
 	public static var achievementsStuff:Array<Dynamic> = [ //Name, Description, Achievement save tag, Hidden achievement
-		["A New World",					"Play Date-Night masses for the first time.",							'a_new_world',				false],
-		["Happy Ending",				"Beat the date week.",													'happy_ending',				false],
-		["In Ruv Suit",					"Beat sticky date week.",												'ruv_suit',			 		false],
-		["Best Ending",					"get the \"Best Ending\".",												'best_ending',				false],
+		["A New World",					"Play Date-Night masses for the first time.",							'a_new_world',				false, 'RuvRonv'],
+		["Happy Ending",				"Beat the date week.",													'happy_ending',				false, 'RuvRonv'],
+		["In Ruv Suit",					"Beat sticky date week.",												'ruv_suit',			 		false, 'sarvRonv'],
+		["Best Ending",					"get the \"Best Ending\".",												'best_ending',				false, 'bothRonv'],
 		["Buy His Membership",			"Get the membership ending.",											'buy_his_membership',		false],
 		["No Tables allowed",			"Beat vibe check week.",												'no_tables_allowed',		false],
 		["Hi Chat",						"Get the streamer easter egg on the pause menu.",						'hi_chat',			 		false],
@@ -27,13 +27,13 @@ class Achievements {
 		["Together Forever",			"Beat together on hard with 10 or less misses.",						'together_forever',			false],
 		["Whitty Reference",			"Beat rosebass on hard with 10 or less misses.",						'whitty_reference',			false],
 		["Certified No Skill Issue",	"Get all 10 misses or less achievements.",								'no_skill_issue',			false],
-		["Completionist",				"Get all the achievements.",											'completionist',			false],
+		["Completionist",				"Get all the achievements. (reload the game if necessary)",				'completionist',			false],
 		["You made her cry",			"Complete a Song with sarv, ruv and health lower than 20%.",			'you_made_her_cry',			true],
 		["Ultimate Domination",			"Get kikyo on top of 50 tables.",										'ultimate_domination',		true],
 		["POGGERS",						"Get the pog chair on the kitchen. (20%)",								'poggers',				 	true],
 		["Choco Approves",				"Get the wheelchair ruv background. (10%)",								'choco_approves',			true],
-		["Ruv Ronv",					"Get the Ruv Ronv portrait (1%).",										'ruv_ronv',				 	true],
-		["Sarv Ronv",					"Get the Sarv Ronv portrait (1%).",										'sarv_ronv',				true]
+		["Ruv Ronv",					"Get the Sorv portrait (5%).",											'ruv_ronv',				 	true],
+		["Sarv Ronv",					"Get the Ronv portrait (5%).",											'sarv_ronv',				true]
 	];
 	public static var achievementsMap:Map<String, Bool> = new Map<String, Bool>();
 
@@ -42,6 +42,16 @@ class Achievements {
 		FlxG.log.add('Completed achievement "' + name +'"');
 		achievementsMap.set(name, true);
 		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+	}
+
+	public static function checkAll(achievesToCheck:Array<String>):Bool {
+		for (i in 0...achievesToCheck.length) {
+			var achievementName:String = achievesToCheck[i];
+			if (!Achievements.isAchievementUnlocked(achievementName)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public static function isAchievementUnlocked(name:String) {
