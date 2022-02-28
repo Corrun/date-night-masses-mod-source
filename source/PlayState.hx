@@ -971,14 +971,14 @@ class PlayState extends MusicBeatState
 		if (OpenFlAssets.exists(file)) {
 			dialogue = CoolUtil.coolTextFile(file);
 		}
-		var doof:DialogueBox = new DialogueBox(false, dialogue);
+/*		var doof:DialogueBox = new DialogueBox(false, dialogue);
 		// doof.x += 70;
 		// doof.y = FlxG.height * 0.5;
 		doof.scrollFactor.set();
 		doof.finishThing = startCountdown;
 //		doof.nextDialogueThing = startNextDialogue;
 //		doof.skipDialogueThing = skipDialogue;
-
+*/
 		Conductor.songPosition = -5000;
 
 		strumLine = new FlxSprite(ClientPrefs.middleScroll ? STRUM_X_MIDDLESCROLL : STRUM_X, 50).makeGraphic(FlxG.width, 10);
@@ -1291,7 +1291,8 @@ class PlayState extends MusicBeatState
 				case 'senpai' | 'roses' | 'thorns':
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
-
+				case 'matins':
+					startVideo('dnm-prologue');
 				default:
 					startCountdown();
 			}
@@ -1470,6 +1471,11 @@ class PlayState extends MusicBeatState
 				remove(bg);
 				if(endingSong) {
 					endSong();
+				} else if (SONG.song.toLowerCase() == 'matins'){
+					var doof:DialogueBox = new DialogueBox(false, dialogue);
+					doof.scrollFactor.set();
+					doof.finishThing = startCountdown;
+					schoolIntro(doof);
 				} else {
 					startCountdown();
 				}
