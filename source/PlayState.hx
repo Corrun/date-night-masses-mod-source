@@ -967,7 +967,7 @@ class PlayState extends MusicBeatState
 			dialogueJson = DialogueBoxPsych.parseDialogue(file);
 		}
 
-		var file:String = Paths.txt(songName + '/' + songName + 'Dialogue'); //Checks for vanilla/Senpai dialogue
+		var file:String = Paths.txt(songName + '/' + songName.toLowerCase() + 'Dialogue'); //Checks for vanilla/Senpai dialogue
 		if (OpenFlAssets.exists(file)) {
 			dialogue = CoolUtil.coolTextFile(file);
 		}
@@ -1193,7 +1193,7 @@ class PlayState extends MusicBeatState
 		timeBar.cameras = [camHUD];
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
-		doof.cameras = [camHUD];
+//		doof.cameras = [camHUD];
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -1288,9 +1288,9 @@ class PlayState extends MusicBeatState
 							}
 						});
 					});
-				case 'senpai' | 'roses' | 'thorns':
+/*				case 'senpai' | 'roses' | 'thorns':
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
-					schoolIntro(doof);
+					schoolIntro(doof);*/
 				case 'matins':
 					startVideo('dnm-prologue');
 				default:
@@ -1475,6 +1475,8 @@ class PlayState extends MusicBeatState
 					var doof:DialogueBox = new DialogueBox(false, dialogue);
 					doof.scrollFactor.set();
 					doof.finishThing = startCountdown;
+					doof.cameras = [camHUD];
+					
 					schoolIntro(doof);
 				} else {
 					startCountdown();

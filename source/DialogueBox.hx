@@ -50,25 +50,7 @@ class DialogueBox extends FlxSpriteGroup
 		super();
 
 		trace(dialogueList);
-		switch (PlayState.SONG.song.toLowerCase())
-		{
-			case 'matins':
-				sound = new FlxSound().loadEmbedded(Paths.music('Morning', 'date-night masses'));
-				sound.volume = 0;
-				FlxG.sound.list.add(sound);
-				sound.fadeIn(1, 0, 0.8);
-			case 'senpai':
-				sound = new FlxSound().loadEmbedded(Paths.music('Lunchbox'), true);
-				sound.volume = 0;
-				FlxG.sound.list.add(sound);
-				sound.fadeIn(1, 0, 0.8);
-			case 'thorns':
-				sound = new FlxSound().loadEmbedded(Paths.music('LunchboxScary'), true);
-				sound.volume = 0;
-				FlxG.sound.list.add(sound);
-				sound.fadeIn(1, 0, 0.8);
-		}
-
+		
 		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
 		bgFade.scrollFactor.set();
 		bgFade.alpha = 0;
@@ -210,9 +192,20 @@ class DialogueBox extends FlxSpriteGroup
 
 	var dialogueOpened:Bool = false;
 	var dialogueStarted:Bool = false;
-
+	var musicStarted:Bool = false;
 	override function update(elapsed:Float)
 	{
+		if (!musicStarted) {
+			switch (PlayState.SONG.song.toLowerCase())
+			{
+			case 'matins':
+				sound = new FlxSound().loadEmbedded(Paths.music('Morning', 'date-night masses'));
+				sound.volume = 0;
+				FlxG.sound.list.add(sound);
+				sound.fadeIn(1, 0, 0.8);
+			}
+		musicStarted = true;
+		}
 		// HARD CODING CUZ IM STUPDI
 		if (PlayState.SONG.song.toLowerCase() == 'roses')
 			portraitLeft.visible = false;
@@ -253,7 +246,7 @@ class DialogueBox extends FlxSpriteGroup
 				case "roses":
 					trace("roses");
 				case "matins":
-					sound.fadeOut(4, 0);
+					sound.fadeOut(1, 0);
 					voiceAct.fadeOut(1, 0);
 				default:
 					trace("other song");
@@ -320,6 +313,8 @@ class DialogueBox extends FlxSpriteGroup
 
 	function startDialogue():Void
 	{
+		
+
 		cleanDialog();
 		// var theDialog:Alphabet = new Alphabet(0, 70, dialogueList[0], false, true);
 		// dialogue = theDialog;
