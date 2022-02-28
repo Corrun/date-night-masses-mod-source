@@ -71,10 +71,10 @@ class DialogueBox extends FlxSpriteGroup
 			case 'matins':
 				hasDialog = true;
 				hasVoice = true;
-				box.frames = Paths.getSparrowAtlas('portraits/textbox', 'date-night masses');
-				box.animation.addByPrefix('ruv', 'textbox ruv', 24, false);
-				box.animation.addByPrefix('sarv', 'textbox sarvente', 24, false);
-				box.animation.addByPrefix('other', 'textbox other', 24, false);
+				box.frames = Paths.getSparrowAtlas('portraits/TEXTBOX', 'date-night masses');
+				box.animation.addByPrefix('ruv', 'TEXTBOX RuvNormal', 24, false);
+				box.animation.addByPrefix('sarv', 'TEXTBOX RuvQuiet', 24, false);
+				box.animation.addByPrefix('other', 'TEXTBOX Sarvtext', 24, false);
 				box.scale.set(0.7, 0.7);
 				box.updateHitbox();
 
@@ -105,24 +105,8 @@ class DialogueBox extends FlxSpriteGroup
 
 
 	
-		if (PlayState.SONG.song.toLowerCase() == 'matins')
+		if (PlayState.SONG.song.toLowerCase() == 'matins' || PlayState.SONG.song.toLowerCase() == 'serafim' || PlayState.SONG.song.toLowerCase() == 'harmony')
 		{
-			// background setup
-/*			if (PlayState.end == false)
-			{
-				bg = new FlxSprite(0, 0).loadGraphic(Paths.image('cutscene_animatics/song1_beforeplay', 'date-night masses'));
-				PlayState.end = true;
-				bg.setGraphicSize(FlxG.width);
-				bg.updateHitbox();
-			}
-			else
-			{ */
-				bg = new FlxSprite(-75, -40).loadGraphic(Paths.image('cutscene_animatics/song1_afterplay', 'date-night masses'));
-				bg.setGraphicSize(Std.int(FlxG.width * 1.15));
-				bg.updateHitbox();
-			//}
-			add(bg);
-
 			// Sarvente Portrait setup
 			portraitLeft = new FlxSprite(200, 150);
 			portraitLeft.frames = Paths.getSparrowAtlas('portraits/sarvPortrait', 'date-night masses');
