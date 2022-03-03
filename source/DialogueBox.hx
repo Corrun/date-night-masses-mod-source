@@ -264,6 +264,7 @@ class DialogueBox extends FlxSpriteGroup
 		if (PlayerSettings.player1.controls.ACCEPT && dialogueStarted == true)
 		{
 			remove(dialogue);
+			voiceAct.pause();
 			// remove(bg);
 
 			// FlxG.sound.play(Paths.sound('clickText'), 0.8);
