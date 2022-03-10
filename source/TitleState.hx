@@ -61,7 +61,8 @@ class TitleState extends MusicBeatState
 	var credTextShit:Alphabet;
 	var textGroup:FlxGroup;
 	var logoSpr:FlxSprite;
-
+	var datelogo:FlxSprite;
+	
 	var curWacky:Array<String> = [];
 
 	var wackyImage:FlxSprite;
@@ -363,6 +364,13 @@ class TitleState extends MusicBeatState
 		logoSpr.screenCenter(X);
 		logoSpr.antialiasing = ClientPrefs.globalAntialiasing;
 
+		datelogo = new FlxSprite(0, FlxG.height * 0.4).loadGraphic(Paths.image('logo/beyondMFMlogo', 'date-night masses'));
+		add(datelogo);
+		datelogo.visible = false;
+		datelogo.setGraphicSize(Std.int(logoSpr.width * 0.55));
+		datelogo.updateHitbox();
+		datelogo.screenCenter(X);
+		datelogo.antialiasing = ClientPrefs.globalAntialiasing;
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		if (initialized)
@@ -567,53 +575,52 @@ class TitleState extends MusicBeatState
 			switch (sickBeats)
 			{
 				case 1:
-					createCoolText(['Psych Engine by'], 15);
+					createCoolText(['Date Night Masses'], 15);
 				// credTextShit.visible = true;
-				case 3:
-					addMoreText('Shadow Mario', 15);
-					addMoreText('RiverOaken', 15);
-					addMoreText('bb-panzu', 15);
+				case 5:
+					datelogo.visible = true;
 				// credTextShit.text += '\npresent...';
 				// credTextShit.addText();
-				case 4:
+				case 8:
 					deleteCoolText();
+					datelogo.visible = false;
 				// credTextShit.visible = false;
 				// credTextShit.text = 'In association \nwith';
 				// credTextShit.screenCenter();
-				case 5:
+				case 9:
 					createCoolText(['This is a mod to'], -60);
-				case 7:
+				case 11:
 					addMoreText('This game right below lol', -60);
 					logoSpr.visible = true;
 				// credTextShit.text += '\nNewgrounds';
-				case 8:
+				case 15:
 					deleteCoolText();
 					logoSpr.visible = false;
 				// credTextShit.visible = false;
 
 				// credTextShit.text = 'Shoutouts Tom Fulp';
 				// credTextShit.screenCenter();
-				case 9:
+				case 16:
 					createCoolText([curWacky[0]]);
 				// credTextShit.visible = true;
-				case 11:
+				case 19:
 					addMoreText(curWacky[1]);
 				// credTextShit.text += '\nlmao';
-				case 12:
+				case 23:
 					deleteCoolText();
 				// credTextShit.visible = false;
 				// credTextShit.text = "Friday";
 				// credTextShit.screenCenter();
-				case 13:
-					addMoreText('Friday');
+				case 24:
+					addMoreText('Date');
 				// credTextShit.visible = true;
-				case 14:
+				case 26:
 					addMoreText('Night');
 				// credTextShit.text += '\nNight';
-				case 15:
-					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
+				case 28:
+					addMoreText('Masses'); // credTextShit.text += '\nFunkin';
 
-				case 16:
+				case 30:
 					skipIntro();
 			}
 		}
