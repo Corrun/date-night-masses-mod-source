@@ -62,7 +62,7 @@ class TitleState extends MusicBeatState
 	var textGroup:FlxGroup;
 	var logoSpr:FlxSprite;
 	var datelogo:FlxSprite;
-	
+
 	var curWacky:Array<String> = [];
 
 	var wackyImage:FlxSprite;
@@ -364,10 +364,10 @@ class TitleState extends MusicBeatState
 		logoSpr.screenCenter(X);
 		logoSpr.antialiasing = ClientPrefs.globalAntialiasing;
 
-		datelogo = new FlxSprite(0, FlxG.height * 0.4).loadGraphic(Paths.image('logo/beyondMFMlogo', 'date-night masses'));
+		datelogo = new FlxSprite(0, FlxG.height * 0.5).loadGraphic(Paths.image('logo/beyondMFMlogo', 'date-night masses'));
 		add(datelogo);
 		datelogo.visible = false;
-		datelogo.setGraphicSize(Std.int(logoSpr.width * 0.55));
+		datelogo.setGraphicSize(Std.int(logoSpr.width * 0.8));
 		datelogo.updateHitbox();
 		datelogo.screenCenter(X);
 		datelogo.antialiasing = ClientPrefs.globalAntialiasing;
@@ -596,14 +596,12 @@ class TitleState extends MusicBeatState
 				case 15:
 					deleteCoolText();
 					logoSpr.visible = false;
+					createCoolText([curWacky[0]]);
 				// credTextShit.visible = false;
 
 				// credTextShit.text = 'Shoutouts Tom Fulp';
 				// credTextShit.screenCenter();
-				case 16:
-					createCoolText([curWacky[0]]);
-				// credTextShit.visible = true;
-				case 19:
+				case 18:
 					addMoreText(curWacky[1]);
 				// credTextShit.text += '\nlmao';
 				case 23:
@@ -611,16 +609,16 @@ class TitleState extends MusicBeatState
 				// credTextShit.visible = false;
 				// credTextShit.text = "Friday";
 				// credTextShit.screenCenter();
-				case 24:
+				case 25:
 					addMoreText('Date');
 				// credTextShit.visible = true;
-				case 26:
+				case 27:
 					addMoreText('Night');
 				// credTextShit.text += '\nNight';
-				case 28:
+				case 29:
 					addMoreText('Masses'); // credTextShit.text += '\nFunkin';
 
-				case 30:
+				case 31:
 					skipIntro();
 			}
 		}
