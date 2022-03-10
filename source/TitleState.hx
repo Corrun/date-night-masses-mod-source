@@ -227,13 +227,13 @@ class TitleState extends MusicBeatState
 			// music.play();
 
 			if(FlxG.sound.music == null) {
-				FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+				FlxG.sound.playMusic(Paths.music('Affinity', 'date-night masses'), 0);
 
 				FlxG.sound.music.fadeIn(4, 0, 0.7);
 			}
 		}
 
-		Conductor.changeBPM(titleJSON.bpm);
+		Conductor.changeBPM(95);
 		persistentUpdate = true;
 
 		var bg:FlxSprite = new FlxSprite();
@@ -471,7 +471,7 @@ class TitleState extends MusicBeatState
 							}
 						}
 
-						/*if(!isDifferent) {
+						if(!isDifferent) {
 							trace('Easter egg triggered!');
 							FlxG.save.data.psykaEasterEgg = !FlxG.save.data.psykaEasterEgg;
 							FlxG.sound.play(Paths.sound('secretSound'));
@@ -490,7 +490,7 @@ class TitleState extends MusicBeatState
 							lastKeysPressed = [];
 							closedState = true;
 							transitioning = true;
-						}*/
+						}
 					}
 				}
 			}
