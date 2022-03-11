@@ -77,29 +77,28 @@ class DialogueBox extends FlxSpriteGroup
 				hasVoice = true;
 				box.frames = Paths.getSparrowAtlas('portraits/TEXTBOX', 'date-night masses');
 				box.animation.addByPrefix('ruv', 'TEXTBOX RuvNormal', 24, false);
-				box.animation.addByPrefix('sarv', 'TEXTBOX RuvQuiet', 24, false);
-				box.animation.addByPrefix('other', 'TEXTBOX Sarvtext', 24, false);
+				box.animation.addByPrefix('sarv', 'TEXTBOX SarvText', 24, false);
+				box.animation.addByPrefix('other', 'TEXTBOX RuvQuiet', 24, false);
 				box.scale.set(0.7, 0.7);
 				box.updateHitbox();
-
-			case 'senpai':
+			case 'serafim':
 				hasDialog = true;
-				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-pixel');
-				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
-				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
-			case 'roses':
+				hasVoice = true;
+				box.frames = Paths.getSparrowAtlas('portraits/TEXTBOX', 'date-night masses');
+				box.animation.addByPrefix('ruv', 'TEXTBOX RuvNormal', 24, false);
+				box.animation.addByPrefix('sarv', 'TEXTBOX SarvText', 24, false);
+				box.animation.addByPrefix('other', 'TEXTBOX RuvQuiet', 24, false);
+				box.scale.set(0.7, 0.7);
+				box.updateHitbox();
+			case 'harmony':
 				hasDialog = true;
-				FlxG.sound.play(Paths.sound('ANGRY_TEXT_BOX'));
-
-				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-senpaiMad');
-				box.animation.addByPrefix('normalOpen', 'SENPAI ANGRY IMPACT SPEECH', 24, false);
-				box.animation.addByIndices('normal', 'SENPAI ANGRY IMPACT SPEECH', [4], "", 24);
-
-			case 'thorns':
-				hasDialog = true;
-				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-evil');
-				box.animation.addByPrefix('normalOpen', 'Spirit Textbox spawn', 24, false);
-				box.animation.addByIndices('normal', 'Spirit Textbox spawn', [11], "", 24);
+				hasVoice = true;
+				box.frames = Paths.getSparrowAtlas('portraits/TEXTBOX', 'date-night masses');
+				box.animation.addByPrefix('ruv', 'TEXTBOX RuvNormal', 24, false);
+				box.animation.addByPrefix('sarv', 'TEXTBOX SarvText', 24, false);
+				box.animation.addByPrefix('other', 'TEXTBOX RuvQuiet', 24, false);
+				box.scale.set(0.7, 0.7);
+				box.updateHitbox();
 		}
 
 		this.dialogueList = dialogueList;
@@ -197,18 +196,20 @@ class DialogueBox extends FlxSpriteGroup
 				sound.volume = 0;
 				FlxG.sound.list.add(sound);
 				sound.fadeIn(1, 0, 0.8);
+			case 'serafim':
+				sound = new FlxSound().loadEmbedded(Paths.music('Work', 'date-night masses'));
+				sound.volume = 0;
+				FlxG.sound.list.add(sound);
+				sound.fadeIn(1, 0, 0.8);
+			case 'harmony':
+				sound = new FlxSound().loadEmbedded(Paths.music('Evening', 'date-night masses'));
+				sound.volume = 0;
+				FlxG.sound.list.add(sound);
+				sound.fadeIn(1, 0, 0.8);
 			}
 		musicStarted = true;
 		}
-		// HARD CODING CUZ IM STUPDI
-		if (PlayState.SONG.song.toLowerCase() == 'roses')
-			portraitLeft.visible = false;
-		if (PlayState.SONG.song.toLowerCase() == 'thorns')
-		{
-			portraitLeft.visible = false;
-			swagDialogue.color = FlxColor.WHITE;
-			dropText.color = FlxColor.BLACK;
-		}
+		
 
 		dropText.text = swagDialogue.text;
 
@@ -235,11 +236,14 @@ class DialogueBox extends FlxSpriteGroup
 			isEnding = true;
 			switch (PlayState.SONG.song.toLowerCase())
 			{
-				case "senpai" | "thorns":
-					sound.fadeOut(2.2, 0);
-				case "roses":
-					trace("roses");
-				case "matins":
+				
+				case "matins": 
+					sound.fadeOut(1, 0);
+					voiceAct.fadeOut(1, 0);
+				case "serafim":
+					sound.fadeOut(1, 0);
+					voiceAct.fadeOut(1, 0);
+				case "harmony":
 					sound.fadeOut(1, 0);
 					voiceAct.fadeOut(1, 0);
 				default:
@@ -275,7 +279,7 @@ class DialogueBox extends FlxSpriteGroup
 				{
 					isEnding = true;
 
-					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns')
+					if (PlayState.SONG.song.toLowerCase() == 'matins' || PlayState.SONG.song.toLowerCase() == 'serafim' || PlayState.SONG.song.toLowerCase() == 'harmony')
 						sound.fadeOut(2.2, 0);
 					new FlxTimer().start(0.2, function(tmr:FlxTimer)
 					{

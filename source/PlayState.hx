@@ -184,6 +184,7 @@ class PlayState extends MusicBeatState
 	public var cameraSpeed:Float = 1;
 
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
+	var endDialogue:Array<String> = ['lol', 'ur mum'];
 	var dialogueJson:DialogueFile = null;
 
 	var halloweenBG:BGSprite;
@@ -3277,6 +3278,7 @@ class PlayState extends MusicBeatState
 
 
 	var transitioning = false;
+	var endDia = false;
 	public function endSong():Void
 	{
 		//Should kill you if you tried to cheat
@@ -3324,6 +3326,17 @@ class PlayState extends MusicBeatState
 		}
 		#end
 
+		if (SONG.song.toLowerCase() == 'matins' && !endDia) {
+			var file:String = Paths.txt(SONG.song.toLowerCase() + '/' + SONG.song.toLowerCase() + 'EndDialogue'); //Checks for vanilla/Senpai dialogue
+			if (OpenFlAssets.exists(file)) {
+				endDialogue = CoolUtil.coolTextFile(file);
+			}
+			var box = new DialogueBox(false, endDialogue);
+			box.scrollFactor.set();
+			box.finishThing = startCountdown;
+			schoolIntro(box);
+			return;
+		}
 		
 		#if LUA_ALLOWED
 		var ret:Dynamic = callOnLuas('onEndSong', []);
@@ -3355,7 +3368,7 @@ class PlayState extends MusicBeatState
 				else if (storyPlaylist.length <= 0)
 				{
 					FlxG.autoPause = true;
-					FlxG.sound.playMusic(Paths.music('freakyMenu'));
+					FlxG.sound.playMusic(Paths.music('Affinity', 'date-night masses'));
 
 					cancelFadeTween();
 					CustomFadeTransition.nextCamera = camOther;
@@ -3434,6 +3447,117 @@ class PlayState extends MusicBeatState
 		}
 	}
 
+	public function nextSong() {
+		#if LUA_ALLOWED
+		var ret:Dynamic = callOnLuas('onEndSong', []);
+		#else
+		var ret:Dynamic = FunkinLua.Function_Continue;
+		#end
+
+		if(ret != FunkinLua.Function_Stop && !transitioning) {
+			if (SONG.validScore)
+			{
+				#if !switch
+				var percent:Float = ratingPercent;
+				if(Math.isNaN(percent)) percent = 0;
+				Highscore.saveScore(SONG.song, songScore, storyDifficulty, percent);
+				#end
+			}
+
+			if (isStoryMode)
+			{
+				campaignScore += songScore;
+				campaignMisses += songMisses;
+
+				storyPlaylist.remove(storyPlaylist[0]);
+
+				if (curSong == 'archvente') 
+				{
+					archventeCheck();
+				} 
+				else if (storyPlaylist.length <= 0)
+				{
+					FlxG.autoPause = true;
+					FlxG.sound.playMusic(Paths.music('Affinity', 'date-night masses'));
+
+					cancelFadeTween();
+					CustomFadeTransition.nextCamera = camOther;
+					if(FlxTransitionableState.skipNextTransIn) {
+						CustomFadeTransition.nextCamera = null;
+					}
+					MusicBeatState.switchState(new StoryMenuState());
+
+					// if ()
+					if(!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false)) {
+						StoryMenuState.weekCompleted.set(WeekData.weeksList[storyWeek], true);
+
+						if (SONG.validScore)
+						{
+							Highscore.saveWeekScore(WeekData.getWeekFileName(), campaignScore, storyDifficulty);
+						}
+
+						FlxG.save.data.weekCompleted = StoryMenuState.weekCompleted;
+						FlxG.save.flush();
+					}
+					changedDifficulty = false;
+				}
+				else
+				{
+					var difficulty:String = CoolUtil.getDifficultyFilePath();
+
+					trace('LOADING NEXT SONG');
+					trace(Paths.formatToSongPath(PlayState.storyPlaylist[0]) + difficulty);
+
+					var winterHorrorlandNext = (Paths.formatToSongPath(SONG.song) == "eggnog");
+					if (winterHorrorlandNext)
+					{
+						var blackShit:FlxSprite = new FlxSprite(-FlxG.width * FlxG.camera.zoom,
+							-FlxG.height * FlxG.camera.zoom).makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
+						blackShit.scrollFactor.set();
+						add(blackShit);
+						camHUD.visible = false;
+
+						FlxG.sound.play(Paths.sound('Lights_Shut_off'));
+					}
+
+					FlxTransitionableState.skipNextTransIn = true;
+					FlxTransitionableState.skipNextTransOut = true;
+
+					prevCamFollow = camFollow;
+					prevCamFollowPos = camFollowPos;
+
+					PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0] + difficulty, PlayState.storyPlaylist[0]);
+					FlxG.sound.music.stop();
+
+					if(winterHorrorlandNext) {
+						new FlxTimer().start(1.5, function(tmr:FlxTimer) {
+							cancelFadeTween();
+							LoadingState.loadAndSwitchState(new PlayState());
+						});
+					} else {
+						cancelFadeTween();
+						LoadingState.loadAndSwitchState(new PlayState());
+					}
+				}
+			}
+			else
+			{
+				FlxG.autoPause = true;
+				trace('WENT BACK TO FREEPLAY??');
+				cancelFadeTween();
+				CustomFadeTransition.nextCamera = camOther;
+				if(FlxTransitionableState.skipNextTransIn) {
+					CustomFadeTransition.nextCamera = null;
+				}
+				MusicBeatState.switchState(new FreeplayState());
+				FlxG.sound.playMusic(Paths.music('freakyMenu'));
+				changedDifficulty = false;
+			}
+			transitioning = true;
+		}
+	}
+
+	
 	#if ACHIEVEMENTS_ALLOWED
 	var achievementObj:AchievementObject = null;
 	function startAchievement(achieve:String) {
