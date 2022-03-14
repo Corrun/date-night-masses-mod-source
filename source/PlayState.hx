@@ -678,7 +678,7 @@ class PlayState extends MusicBeatState
 				BG.scale.y = 0.4;
 				add(BG);
 
-				var table1:FlxSprite = new FlxSprite(-740, -340).loadGraphic(Paths.image('stages/cloister/BG furniture L4', 'date-night masses'));
+				var table1:FlxSprite = new FlxSprite(-740, -340).loadGraphic(Paths.image('stages/cloister/table_1', 'date-night masses'));
 				table1.antialiasing = true;
 				table1.scrollFactor.set(0.9, 0.9);
 				table1.active = false;
@@ -686,11 +686,18 @@ class PlayState extends MusicBeatState
 				table1.scale.y = 0.4;
 				add(table1);
 
-				//layInFront[0].push(BG);
-				//layInFront[0].push(table1);
+				var chair:FlxSprite = new FlxSprite(-740, -340).loadGraphic(Paths.image('stages/cloister/chair', 'date-night masses'));
+				chair.antialiasing = true;
+				chair.scrollFactor.set(0.9, 0.9);
+				chair.active = false;
+				chair.scale.x = 0.4;
+				chair.scale.y = 0.4;
+				//chair.x += 200;
+				//chair.flipX = true;
+				//add(table2);
+				layInFront[0].push(chair);
 
-				
-				var table2:FlxSprite = new FlxSprite(-740, -340).loadGraphic(Paths.image('stages/cloister/BG furniture L2', 'date-night masses'));
+				var table2:FlxSprite = new FlxSprite(-740, -340).loadGraphic(Paths.image('stages/cloister/table_2', 'date-night masses'));
 				table2.antialiasing = true;
 				table2.scrollFactor.set(0.9, 0.9);
 				table2.active = false;
@@ -748,16 +755,16 @@ class PlayState extends MusicBeatState
 				BG.antialiasing = true;
 				BG.scrollFactor.set(0.9, 0.9);
 				BG.active = false;
-				BG.scale.x = 0.6;
-				BG.scale.y = 0.6;
+				//BG.scale.x = 0.6;
+				//BG.scale.y = 0.6;
 				add(BG);
 
 				var bushes:FlxSprite = new FlxSprite(-1380, -1150).loadGraphic(Paths.image('stages/Greenhouse/Bushes', 'date-night masses'));
 				bushes.antialiasing = true;
 				bushes.scrollFactor.set(0.9, 0.9);
 				bushes.active = false;
-				bushes.scale.x = 0.6;
-				bushes.scale.y = 0.6;
+				//bushes.scale.x = 0.6;
+				//bushes.scale.y = 0.6;
 				layInFront[2].push(bushes);
 			case 'garden':
 				var BG:FlxSprite = new FlxSprite(-550, -650).loadGraphic(Paths.image('stages/Garden/BGSTG3', 'date-night masses'));

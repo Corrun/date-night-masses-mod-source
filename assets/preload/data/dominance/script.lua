@@ -5,6 +5,8 @@ function onCreate()
 	setPropertyFromClass('GameOverSubstate', 'endSoundName', 'gameOverEnd');
 
 	setProperty('gf.visible', false)
+
+	setProperty('notRuv', true)
 end
 
 local allowCountdown = false
