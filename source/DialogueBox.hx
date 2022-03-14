@@ -36,7 +36,6 @@ class DialogueBox extends FlxSpriteGroup
 	var portraitRight:FlxSprite;
 
 	var handSelect:FlxSprite;
-	var bgFade:FlxSprite;
 	var bg:FlxSprite;
 
 	var sound:FlxSound;
@@ -47,27 +46,19 @@ class DialogueBox extends FlxSpriteGroup
 
 	var hasVoice = false;
 
+	var backdrop:FlxSprite;
+
 	private var camAchievement:FlxCamera;
 
-	public function new(talkingRight:Bool = true, ?dialogueList:Array<String>)
+	public function new(talkingRight:Bool = true, ?dialogueList:Array<String>, ?end:Bool = false)
 	{
 		super();
 
 		trace(dialogueList);
 		
-		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
-		bgFade.scrollFactor.set();
-		bgFade.alpha = 0;
-		add(bgFade);
-
-		new FlxTimer().start(0.83, function(tmr:FlxTimer)
-		{
-			bgFade.alpha += (1 / 5) * 0.7;
-			if (bgFade.alpha > 0.7)
-				bgFade.alpha = 0.7;
-		}, 5);
 
 		box = new FlxSprite(-20, 45);
+		backdrop = new FlxSprite(-FlxG.width / 2, -FlxG.height / 2);
 
 		var hasDialog = false;
 		switch (PlayState.SONG.song.toLowerCase())
@@ -81,6 +72,14 @@ class DialogueBox extends FlxSpriteGroup
 				box.animation.addByPrefix('other', 'TEXTBOX RuvQuiet', 24, false);
 				box.scale.set(0.7, 0.7);
 				box.updateHitbox();
+
+				if (!end) backdrop.loadGraphic(Paths.image('Cutscene Animatics/1', 'date-night masses'));
+				else backdrop.loadGraphic(Paths.image('Cutscene Animatics/2', 'date-night masses'));
+				
+				backdrop.updateHitbox();
+				backdrop.scale.set(0.8, 0.8);
+				backdrop.updateHitbox();
+
 			case 'serafim':
 				hasDialog = true;
 				hasVoice = true;
@@ -90,6 +89,13 @@ class DialogueBox extends FlxSpriteGroup
 				box.animation.addByPrefix('other', 'TEXTBOX RuvQuiet', 24, false);
 				box.scale.set(0.7, 0.7);
 				box.updateHitbox();
+
+				if (!end) backdrop.loadGraphic(Paths.image('Cutscene Animatics/3', 'date-night masses'));
+				else backdrop.loadGraphic(Paths.image('Cutscene Animatics/4', 'date-night masses'));
+				
+				backdrop.updateHitbox();
+				backdrop.scale.set(0.8, 0.8);
+				backdrop.updateHitbox();
 			case 'harmony':
 				hasDialog = true;
 				hasVoice = true;
@@ -99,6 +105,13 @@ class DialogueBox extends FlxSpriteGroup
 				box.animation.addByPrefix('other', 'TEXTBOX RuvQuiet', 24, false);
 				box.scale.set(0.7, 0.7);
 				box.updateHitbox();
+
+				if (!end) backdrop.loadGraphic(Paths.image('Cutscene Animatics/5', 'date-night masses'));
+				else backdrop.loadGraphic(Paths.image('Cutscene Animatics/6', 'date-night masses'));
+
+				backdrop.updateHitbox();
+				backdrop.scale.set(0.8, 0.8);
+				backdrop.updateHitbox();
 		}
 
 		this.dialogueList = dialogueList;
@@ -110,6 +123,8 @@ class DialogueBox extends FlxSpriteGroup
 	
 		if (PlayState.SONG.song.toLowerCase() == 'matins' || PlayState.SONG.song.toLowerCase() == 'serafim' || PlayState.SONG.song.toLowerCase() == 'harmony')
 		{
+			backdrop.screenCenter();
+			add(backdrop);
 			// Sarvente Portrait setup
 			portraitLeft = new FlxSprite(200, 150);
 			portraitLeft.frames = Paths.getSparrowAtlas('portraits/sarvPortrait', 'date-night masses');
@@ -162,6 +177,7 @@ class DialogueBox extends FlxSpriteGroup
 			skipText.color = 0x000000;
 			skipText.text = 'press back to skip';
 			add(skipText);
+			
 		}
 
 		dropText = new FlxText(242, 432, Std.int(FlxG.width * 0.6), "", 32);
@@ -181,6 +197,8 @@ class DialogueBox extends FlxSpriteGroup
 		camAchievement = new FlxCamera();
 		camAchievement.bgColor.alpha = 0;
 		FlxG.cameras.add(camAchievement);
+		trace(backdrop.x);
+		trace(backdrop.y);
 	}
 
 	var dialogueOpened:Bool = false;
@@ -220,7 +238,7 @@ class DialogueBox extends FlxSpriteGroup
 			startDialogue();
 			dialogueStarted = true;
 			portraitLeft.visible = false;
-			portraitRight.visible = true;
+			portraitRight.visible = false;
 			/*
 				portraitLeft.x = box.x + portraitLeft.x * 0.2;
 				portraitLeft.y = box.y - portraitLeft.height * 0.6;
@@ -251,8 +269,8 @@ class DialogueBox extends FlxSpriteGroup
 			}
 			new FlxTimer().start(0.2, function(tmr:FlxTimer)
 			{
+				backdrop.alpha == 1 / 5;
 				box.alpha -= 1 / 5;
-				bgFade.alpha -= 1 / 5 * 0.7;
 				portraitLeft.visible = false;
 				portraitRight.visible = false;
 				swagDialogue.alpha -= 1 / 5;
@@ -284,7 +302,6 @@ class DialogueBox extends FlxSpriteGroup
 					new FlxTimer().start(0.2, function(tmr:FlxTimer)
 					{
 						box.alpha -= 1 / 5;
-						bgFade.alpha -= 1 / 5 * 0.7;
 						portraitLeft.visible = false;
 						portraitRight.visible = false;
 						swagDialogue.alpha -= 1 / 5;

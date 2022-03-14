@@ -1529,12 +1529,12 @@ class PlayState extends MusicBeatState
 				if(endingSong) {
 					endSong();
 				} else if (SONG.song.toLowerCase() == 'matins'){
-					var doof:DialogueBox = new DialogueBox(false, dialogue);
-					doof.scrollFactor.set();
-					doof.finishThing = startCountdown;
-					doof.cameras = [camHUD];
+					var poof:DialogueBox = new DialogueBox(false, dialogue);
+					poof.scrollFactor.set();
+					poof.finishThing = startCountdown;
+					poof.cameras = [camHUD];
 					
-					schoolIntro(doof);
+					schoolIntro(poof);
 				} else {
 					startCountdown();
 				}
@@ -3310,7 +3310,6 @@ class PlayState extends MusicBeatState
 
 
 	var transitioning = false;
-	var endDia = false;
 	public function endSong():Void
 	{
 		//Should kill you if you tried to cheat
@@ -3358,14 +3357,14 @@ class PlayState extends MusicBeatState
 		}
 		#end
 
-		if (SONG.song.toLowerCase() == 'matins' && !endDia) {
+		if (SONG.song.toLowerCase() == 'matins') {
 			var file:String = Paths.txt(SONG.song.toLowerCase() + '/' + SONG.song.toLowerCase() + 'EndDialogue'); //Checks for vanilla/Senpai dialogue
 			if (OpenFlAssets.exists(file)) {
 				endDialogue = CoolUtil.coolTextFile(file);
 			}
-			var box = new DialogueBox(false, endDialogue);
+			var box = new DialogueBox(false, endDialogue, true);
 			box.scrollFactor.set();
-			box.finishThing = startCountdown;
+			box.finishThing = nextSong;
 			schoolIntro(box);
 			return;
 		}

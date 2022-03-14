@@ -582,16 +582,16 @@ class TitleState extends MusicBeatState
 					datelogo.visible = true;
 				// credTextShit.text += '\npresent...';
 				// credTextShit.addText();
-				case 8:
+				case 7:
 					deleteCoolText();
 					datelogo.visible = false;
 				// credTextShit.visible = false;
 				// credTextShit.text = 'In association \nwith';
 				// credTextShit.screenCenter();
-				case 9:
+				case 8:
 					createCoolText(['This is a mod to'], -60);
-				case 11:
-					addMoreText('This game right below', -60);
+				case 12:
+					addMoreText('This game', -60);
 					logoSpr.visible = true;
 				// credTextShit.text += '\nNewgrounds';
 				case 15:
@@ -602,24 +602,24 @@ class TitleState extends MusicBeatState
 
 				// credTextShit.text = 'Shoutouts Tom Fulp';
 				// credTextShit.screenCenter();
-				case 18:
+				case 17:
 					addMoreText(curWacky[1]);
 				// credTextShit.text += '\nlmao';
-				case 23:
+				case 22:
 					deleteCoolText();
 				// credTextShit.visible = false;
 				// credTextShit.text = "Friday";
 				// credTextShit.screenCenter();
-				case 25:
+				case 24:
 					addMoreText('Date');
 				// credTextShit.visible = true;
-				case 27:
+				case 26:
 					addMoreText('Night');
 				// credTextShit.text += '\nNight';
-				case 29:
+				case 28:
 					addMoreText('Masses'); // credTextShit.text += '\nFunkin';
 
-				case 31:
+				case 30:
 					skipIntro();
 			}
 		}
