@@ -79,7 +79,7 @@ class DialogueBox extends FlxSpriteGroup
 				
 				backdrop.updateHitbox();
 				backdrop.scale.set(0.8, 0.8);
-				dimmer.makeGraphic(backdrop.width, backdrop.height, FlxColor.BLACK, false);
+				dimmer.makeGraphic(Std.int(backdrop.width), Std.int(backdrop.height), FlxColor.BLACK, false);
 				backdrop.updateHitbox();
 
 			case 'serafim':
@@ -97,7 +97,7 @@ class DialogueBox extends FlxSpriteGroup
 				
 				backdrop.updateHitbox();
 				backdrop.scale.set(0.8, 0.8);
-				dimmer.makeGraphic(backdrop.width, backdrop.height, FlxColor.BLACK, false);
+				dimmer.makeGraphic(Std.int(backdrop.width), Std.int(backdrop.height), FlxColor.BLACK, false);
 				backdrop.updateHitbox();
 			case 'harmony':
 				hasDialog = true;
@@ -114,7 +114,7 @@ class DialogueBox extends FlxSpriteGroup
 
 				backdrop.updateHitbox();
 				backdrop.scale.set(0.8, 0.8);
-				dimmer.makeGraphic(backdrop.width, backdrop.height, FlxColor.BLACK, false);
+				dimmer.makeGraphic(Std.int(backdrop.width), Std.int(backdrop.height), FlxColor.BLACK, false);
 				backdrop.updateHitbox();
 		}
 
@@ -203,8 +203,7 @@ class DialogueBox extends FlxSpriteGroup
 		camAchievement = new FlxCamera();
 		camAchievement.bgColor.alpha = 0;
 		FlxG.cameras.add(camAchievement);
-		trace(backdrop.x);
-		trace(backdrop.y);
+
 	}
 
 	var dialogueOpened:Bool = false;
@@ -244,8 +243,8 @@ class DialogueBox extends FlxSpriteGroup
 			dimmer.alpha = 0.3;
 			startDialogue();
 			dialogueStarted = true;
-			portraitLeft.visible = false;
-			portraitRight.visible = false;
+			portraitLeft.visible = true;
+			portraitRight.visible = true;
 			/*
 				portraitLeft.x = box.x + portraitLeft.x * 0.2;
 				portraitLeft.y = box.y - portraitLeft.height * 0.6;
@@ -337,8 +336,6 @@ class DialogueBox extends FlxSpriteGroup
 
 	function startDialogue():Void
 	{
-		
-
 		cleanDialog();
 		// var theDialog:Alphabet = new Alphabet(0, 70, dialogueList[0], false, true);
 		// dialogue = theDialog;
@@ -350,6 +347,9 @@ class DialogueBox extends FlxSpriteGroup
 
 		if (curCharacter.startsWith('ruv'))
 		{
+			portraitRight.visible = true;
+			portraitRight.alpha = 1;
+
 			var chanceRonv = Std.random(100);
 			if (chanceRonv < 5) {
 				portraitRight.animation.play('ronv');
@@ -376,6 +376,7 @@ class DialogueBox extends FlxSpriteGroup
 		}
 		else if (curCharacter.startsWith('sarv'))
 		{
+			portraitLeft.visible = true;
 			var chanceSorv = Std.random(100);
 			if (chanceSorv < 5) {
 				portraitLeft.animation.play('sorv');
