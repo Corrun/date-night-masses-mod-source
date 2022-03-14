@@ -47,7 +47,8 @@ class DialogueBox extends FlxSpriteGroup
 	var hasVoice = false;
 
 	var backdrop:FlxSprite;
-
+	var dimmer:FlxSprite;
+	
 	private var camAchievement:FlxCamera;
 
 	public function new(talkingRight:Bool = true, ?dialogueList:Array<String>, ?end:Bool = false)
@@ -56,7 +57,7 @@ class DialogueBox extends FlxSpriteGroup
 
 		trace(dialogueList);
 		
-
+		dimmer = new FlxSprite(-FlxG.width / 2, -FlxG.height / 2);
 		box = new FlxSprite(-20, 45);
 		backdrop = new FlxSprite(-FlxG.width / 2, -FlxG.height / 2);
 
@@ -78,6 +79,7 @@ class DialogueBox extends FlxSpriteGroup
 				
 				backdrop.updateHitbox();
 				backdrop.scale.set(0.8, 0.8);
+				dimmer.makeGraphic(backdrop.width, backdrop.height, FlxColor.BLACK, false);
 				backdrop.updateHitbox();
 
 			case 'serafim':
@@ -95,6 +97,7 @@ class DialogueBox extends FlxSpriteGroup
 				
 				backdrop.updateHitbox();
 				backdrop.scale.set(0.8, 0.8);
+				dimmer.makeGraphic(backdrop.width, backdrop.height, FlxColor.BLACK, false);
 				backdrop.updateHitbox();
 			case 'harmony':
 				hasDialog = true;
@@ -111,6 +114,7 @@ class DialogueBox extends FlxSpriteGroup
 
 				backdrop.updateHitbox();
 				backdrop.scale.set(0.8, 0.8);
+				dimmer.makeGraphic(backdrop.width, backdrop.height, FlxColor.BLACK, false);
 				backdrop.updateHitbox();
 		}
 
@@ -124,7 +128,9 @@ class DialogueBox extends FlxSpriteGroup
 		if (PlayState.SONG.song.toLowerCase() == 'matins' || PlayState.SONG.song.toLowerCase() == 'serafim' || PlayState.SONG.song.toLowerCase() == 'harmony')
 		{
 			backdrop.screenCenter();
+			dimmer.screenCenter();
 			add(backdrop);
+			add(dimmer);
 			// Sarvente Portrait setup
 			portraitLeft = new FlxSprite(200, 150);
 			portraitLeft.frames = Paths.getSparrowAtlas('portraits/sarvPortrait', 'date-night masses');
@@ -235,6 +241,7 @@ class DialogueBox extends FlxSpriteGroup
 
 		if (dialogueOpened && !dialogueStarted)
 		{
+			dimmer.alpha = 0.3;
 			startDialogue();
 			dialogueStarted = true;
 			portraitLeft.visible = false;
@@ -269,7 +276,8 @@ class DialogueBox extends FlxSpriteGroup
 			}
 			new FlxTimer().start(0.2, function(tmr:FlxTimer)
 			{
-				backdrop.alpha == 1 / 5;
+				dimmer.alpha -= 1 / 5;
+				backdrop.alpha -= 1 / 5;
 				box.alpha -= 1 / 5;
 				portraitLeft.visible = false;
 				portraitRight.visible = false;

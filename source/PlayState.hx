@@ -3365,6 +3365,7 @@ class PlayState extends MusicBeatState
 		#end
 
 		if (SONG.song.toLowerCase() == 'matins') {
+			camHUD.visible = false;
 			var file:String = Paths.txt(SONG.song.toLowerCase() + '/' + SONG.song.toLowerCase() + 'EndDialogue'); //Checks for vanilla/Senpai dialogue
 			if (OpenFlAssets.exists(file)) {
 				endDialogue = CoolUtil.coolTextFile(file);
