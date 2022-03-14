@@ -108,7 +108,7 @@ class Note extends FlxSprite
 		return value;
 	}
 
-	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inEditor:Bool = false)
+	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inEditor:Bool = false, ?isPlayer:Bool = false)
 	{
 		super();
 
@@ -219,12 +219,13 @@ class Note extends FlxSprite
 		x += offsetX;
 	}
 
-	function reloadNote(?prefix:String = '', ?texture:String = '', ?suffix:String = '') {
+	public function reloadNote(?prefix:String = '', ?texture:String = '', ?suffix:String = '') {
 		if(prefix == null) prefix = '';
 		if(texture == null) texture = '';
 		if(suffix == null) suffix = '';
 		
 		var skin:String = texture;
+		//if (mustPress) skin = skin = PlayState.SONG.playerArrowSkin;
 		if(texture.length < 1) {
 			skin = PlayState.SONG.arrowSkin;
 			if(skin == null || skin.length < 1) {
@@ -258,7 +259,11 @@ class Note extends FlxSprite
 			loadPixelNoteAnims();
 			antialiasing = false;
 		} else {
-			frames = Paths.getSparrowAtlas('notes/' + blahblah, 'date-night masses');
+			if (mustPress && PlayState.SONG.playerArrowSkin != null) {
+				frames = Paths.getSparrowAtlas('notes/' + PlayState.SONG.playerArrowSkin, 'date-night masses');
+			} else {
+				frames = Paths.getSparrowAtlas('notes/' + blahblah, 'date-night masses');
+			}
 			loadNoteAnims();
 			antialiasing = ClientPrefs.globalAntialiasing;
 		}

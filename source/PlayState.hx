@@ -670,7 +670,7 @@ class PlayState extends MusicBeatState
 					add(bg);
 				}
 			case 'cloister':
-				var BG:FlxSprite = new FlxSprite(-1300, -900).loadGraphic(Paths.image('stages/cloister/stage 1 bg(Final)', 'date-night masses'));
+				var BG:FlxSprite = new FlxSprite(-1300, -900).loadGraphic(Paths.image('stages/cloister/BG', 'date-night masses'));
 				BG.antialiasing = true;
 				BG.scrollFactor.set(0.9, 0.9);
 				BG.active = false;
@@ -699,18 +699,29 @@ class PlayState extends MusicBeatState
 				//add(table2);
 				layInFront[1].push(table2);
 
+				var cereals:FlxSprite = new FlxSprite().loadGraphic(Paths.image('cameos/cereals', 'date-night masses'));
+				cereals.antialiasing = true;
+				cereals.scrollFactor.set(0.9, 0.9);
+				cereals.active = false;
+				cereals.scale.x = 0.38;
+				cereals.scale.y = 0.38;
+				cereals.screenCenter();
+				cereals.x += 210;
+				cereals.y += 25;
+				add(cereals);
+
 				var pogStats = Std.random(5);
 
-				if (pogStats <= 4) {
+				if (pogStats == 0) {
 					var pog:FlxSprite = new FlxSprite().loadGraphic(Paths.image('cameos/pogchair', 'date-night masses'));
 					pog.antialiasing = true;
 					pog.scrollFactor.set(0.9, 0.9);
 					pog.active = false;
-					pog.scale.x = 0.065;
-					pog.scale.y = 0.065;
+					pog.scale.x = 0.055;
+					pog.scale.y = 0.055;
 					pog.screenCenter();
 					pog.x += 280;
-					pog.y += 20;
+					pog.y += 30;
 					add(pog);
 
 					#if ACHIEVEMENTS_ALLOWED
@@ -719,16 +730,35 @@ class PlayState extends MusicBeatState
 						startAchievement(achieve);
 					}
 					#end
+				} else {
+					var rataver:FlxSprite = new FlxSprite().loadGraphic(Paths.image('cameos/rataver', 'date-night masses'));
+					rataver.antialiasing = true;
+					rataver.scrollFactor.set(0.9, 0.9);
+					rataver.active = false;
+					rataver.scale.x = 0.38;
+					rataver.scale.y = 0.38;
+					rataver.screenCenter();
+					rataver.x += 285;
+					rataver.y += 40;
+					add(rataver);
 				}
 				
 			case 'greenhouse':
-				var BG:FlxSprite = new FlxSprite(-600, -500).loadGraphic(Paths.image('stages/Greenhouse/background2', 'date-night masses'));
+				var BG:FlxSprite = new FlxSprite(-1380, -1150).loadGraphic(Paths.image('stages/Greenhouse/BG', 'date-night masses'));
 				BG.antialiasing = true;
 				BG.scrollFactor.set(0.9, 0.9);
 				BG.active = false;
-				BG.scale.x = 1;
-				BG.scale.y = 1;
+				BG.scale.x = 0.6;
+				BG.scale.y = 0.6;
 				add(BG);
+
+				var bushes:FlxSprite = new FlxSprite(-1380, -1150).loadGraphic(Paths.image('stages/Greenhouse/Bushes', 'date-night masses'));
+				bushes.antialiasing = true;
+				bushes.scrollFactor.set(0.9, 0.9);
+				bushes.active = false;
+				bushes.scale.x = 0.6;
+				bushes.scale.y = 0.6;
+				layInFront[2].push(bushes);
 			case 'garden':
 				var BG:FlxSprite = new FlxSprite(-550, -650).loadGraphic(Paths.image('stages/Garden/BGSTG3', 'date-night masses'));
 				BG.antialiasing = true;
@@ -1191,7 +1221,7 @@ class PlayState extends MusicBeatState
 		add(iconP2);
 		reloadHealthBarColors();
 
-		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
+		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "ka", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
@@ -1922,6 +1952,7 @@ class PlayState extends MusicBeatState
 
 					var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote);
 					swagNote.mustPress = gottaHitNote;
+					swagNote.reloadNote();
 					swagNote.sustainLength = songNotes[2];
 					swagNote.noteType = songNotes[3];
 					if(!Std.isOfType(songNotes[3], String)) swagNote.noteType = editors.ChartingState.noteTypeList[songNotes[3]]; //Backward compatibility + compatibility with Week 7 charts
@@ -1941,6 +1972,7 @@ class PlayState extends MusicBeatState
 
 							var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + (Conductor.stepCrochet / FlxMath.roundDecimal(songSpeed, 2)), daNoteData, oldNote, true);
 							sustainNote.mustPress = gottaHitNote;
+							sustainNote.reloadNote();
 							sustainNote.noteType = swagNote.noteType;
 							sustainNote.scrollFactor.set();
 							unspawnNotes.push(sustainNote);
@@ -3440,7 +3472,7 @@ class PlayState extends MusicBeatState
 					CustomFadeTransition.nextCamera = null;
 				}
 				MusicBeatState.switchState(new FreeplayState());
-				FlxG.sound.playMusic(Paths.music('freakyMenu'));
+				FlxG.sound.playMusic(Paths.music('Affinity', 'date-night masses'));
 				changedDifficulty = false;
 			}
 			transitioning = true;
@@ -3550,7 +3582,7 @@ class PlayState extends MusicBeatState
 					CustomFadeTransition.nextCamera = null;
 				}
 				MusicBeatState.switchState(new FreeplayState());
-				FlxG.sound.playMusic(Paths.music('freakyMenu'));
+				FlxG.sound.playMusic(Paths.music('Affinity', 'date-night masses'));
 				changedDifficulty = false;
 			}
 			transitioning = true;

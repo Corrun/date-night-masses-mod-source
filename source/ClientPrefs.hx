@@ -229,6 +229,8 @@ class ClientPrefs {
 		if(FlxG.save.data.volume != null)
 		{
 			FlxG.sound.volume = FlxG.save.data.volume;
+		} else {
+			FlxG.sound.volume = 0.5;
 		}
 		if (FlxG.save.data.mute != null)
 		{

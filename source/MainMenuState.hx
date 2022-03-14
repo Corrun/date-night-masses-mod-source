@@ -19,6 +19,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import lime.app.Application;
 import Achievements;
+import haxe.io.Bytes;
 import editors.MasterEditorMenu;
 import flixel.input.keyboard.FlxKey;
 
@@ -50,6 +51,7 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
+
 		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
@@ -109,6 +111,20 @@ class MainMenuState extends MusicBeatState
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
+
+		var test:FlxText;
+		test = new FlxText(100,200, FlxG.width, "사르브?", 32);
+		test.setFormat(Paths.font("unifont-14.0.02.ttf"), 50, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		test.scrollFactor.set();
+		add(test);
+		trace("사르브?");
+
+		var test2:FlxText;
+		test2 = new FlxText(100,300, FlxG.width, "绝对不是", 32);
+		test2.setFormat(Paths.font("unifont-14.0.02.ttf"), 50, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		test2.scrollFactor.set();
+		add(test2);
+		trace("绝对不是");
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 		camFollowPos = new FlxObject(0, 0, 1, 1);
@@ -343,7 +359,7 @@ class MainMenuState extends MusicBeatState
 									case 'awards':
 										MusicBeatState.switchState(new AchievementsMenuState());
 									case 'credits':
-										MusicBeatState.switchState(new CreditsState());
+										MusicBeatState.switchState(new DNMCreditsState());
 									case 'options':
 										MusicBeatState.switchState(new options.OptionsState());
 								}

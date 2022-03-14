@@ -1,6 +1,6 @@
 function onCreate()
-	setPropertyFromClass('GameOverSubstate', 'characterName', 'gardenRuv');
-	setPropertyFromClass('GameOverSubstate', 'deathSoundName', 'ruv_die'); 
+	setPropertyFromClass('GameOverSubstate', 'characterName', 'dateRuv');
+	setPropertyFromClass('GameOverSubstate', 'deathSoundName', 'ruv_dies_3'); 
 	setPropertyFromClass('GameOverSubstate', 'loopSoundName', 'SubRosa');
 	setPropertyFromClass('GameOverSubstate', 'endSoundName', 'gameOverEnd');
 

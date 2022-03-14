@@ -575,9 +575,10 @@ class TitleState extends MusicBeatState
 			switch (sickBeats)
 			{
 				case 1:
-					createCoolText(['Date Night Masses'], 15);
+					createCoolText(['Date Night Masses'], -10);
 				// credTextShit.visible = true;
 				case 5:
+					createCoolText(['by'], 60);
 					datelogo.visible = true;
 				// credTextShit.text += '\npresent...';
 				// credTextShit.addText();
@@ -590,7 +591,7 @@ class TitleState extends MusicBeatState
 				case 9:
 					createCoolText(['This is a mod to'], -60);
 				case 11:
-					addMoreText('This game right below lol', -60);
+					addMoreText('This game right below', -60);
 					logoSpr.visible = true;
 				// credTextShit.text += '\nNewgrounds';
 				case 15:
@@ -631,6 +632,7 @@ class TitleState extends MusicBeatState
 		if (!skippedIntro)
 		{
 			remove(logoSpr);
+			remove(datelogo);
 
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);

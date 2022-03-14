@@ -35016,11 +35016,12 @@
   ],
   "song": "harmony",
   "stage": "garden",
+  "playerArrowSkin": "arrowsClover",
   "needsVoices": true,
   "validScore": true,
   "speed": 2.4,
   "bpm": 120,
-  "arrowSkin": "heart",
+  "arrowSkin": "arrowsClover",
   "splashSkin": "noteSplashesDate"
  }
 }

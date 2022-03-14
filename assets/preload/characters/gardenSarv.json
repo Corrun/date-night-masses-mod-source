@@ -2,46 +2,46 @@
 	"animations": [
 		{
 			"offsets": [
-				-9,
-				10
+				0,
+				0
 			],
 			"loop": false,
 			"anim": "singLEFT",
 			"fps": 24,
-			"name": "Dad Sing Note LEFT",
+			"name": "Left0",
 			"indices": []
 		},
 		{
 			"offsets": [
 				0,
-				-30
+				0
 			],
 			"loop": false,
 			"anim": "singDOWN",
 			"fps": 24,
-			"name": "Dad Sing Note DOWN",
-			"indices": []
-		},
-		{
-			"offsets": [
-				-6,
-				50
-			],
-			"loop": false,
-			"anim": "singUP",
-			"fps": 24,
-			"name": "Dad Sing Note UP",
+			"name": "Down0",
 			"indices": []
 		},
 		{
 			"offsets": [
 				0,
-				27
+				0
+			],
+			"loop": false,
+			"anim": "singUP",
+			"fps": 24,
+			"name": "Up0",
+			"indices": []
+		},
+		{
+			"offsets": [
+				0,
+				0
 			],
 			"loop": false,
 			"anim": "singRIGHT",
 			"fps": 24,
-			"name": "Dad Sing Note RIGHT",
+			"name": "Right0",
 			"indices": []
 		},
 		{
@@ -52,7 +52,7 @@
 			"loop": false,
 			"anim": "idle",
 			"fps": 24,
-			"name": "Dad idle dance",
+			"name": "Idle0",
 			"indices": []
 		},
 		{
@@ -62,69 +62,65 @@
 			],
 			"loop": true,
 			"fps": 24,
-			"anim": "idle-loop",
+			"anim": "singDOWN-loop",
 			"indices": [
-				10,
-				11,
-				12,
-				12
+				3,
+				4,
+				5
 			],
-			"name": "Dad idle dance"
+			"name": "Down0"
 		},
 		{
 			"offsets": [
-				-9,
-				10
+				0,
+				0
 			],
 			"loop": true,
 			"fps": 24,
 			"anim": "singLEFT-loop",
 			"indices": [
-				12,
-				13,
-				14,
-				15
+				3,
+				4,
+				5
 			],
-			"name": "Dad Sing Note LEFT"
+			"name": "Left0"
 		},
 		{
 			"offsets": [
 				0,
-				27
+				0
 			],
 			"loop": true,
 			"fps": 24,
 			"anim": "singRIGHT-loop",
 			"indices": [
-				15,
-				16,
-				17,
-				18
+				3,
+				4,
+				5
 			],
-			"name": "Dad Sing Note RIGHT"
+			"name": "Right0"
 		},
 		{
 			"offsets": [
-				-6,
-				50
+				0,
+				0
 			],
 			"loop": true,
 			"fps": 24,
 			"anim": "singUP-loop",
 			"indices": [
-				56,
-				57,
-				58,
-				59
+				3,
+				4,
+				5
 			],
-			"name": "Dad Sing Note UP"
+			"name": "Up0"
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/DADDY_DEAREST",
+	"image": "characters/gardenSarv",
 	"position": [
-		0,
-		0
+		70,
+		20
 	],
 	"healthicon": "sarv",
 	"flip_x": false,
