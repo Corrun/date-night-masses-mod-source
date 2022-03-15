@@ -1503,6 +1503,9 @@ class PlayState extends MusicBeatState
 		char.y += char.positionArray[1];
 	}
 
+	public function endweekvideo() {
+		startVideo('dnm-credits');
+	}
 	public function startVideo(name:String):Void {
 		#if VIDEOS_ALLOWED
 		var foundFile:Bool = false;
@@ -3285,7 +3288,7 @@ class PlayState extends MusicBeatState
 		}
 		#end
 
-		if (SONG.song.toLowerCase() == 'matins') {
+		if (SONG.song.toLowerCase() == 'matins' || SONG.song.toLowerCase() == 'serafim') {
 			camHUD.visible = false;
 			var file:String = Paths.txt(SONG.song.toLowerCase() + '/' + SONG.song.toLowerCase() + 'EndDialogue'); //Checks for vanilla/Senpai dialogue
 			if (OpenFlAssets.exists(file)) {
@@ -3294,6 +3297,18 @@ class PlayState extends MusicBeatState
 			var box = new DialogueBox(false, endDialogue, true);
 			box.scrollFactor.set();
 			box.finishThing = nextSong;
+			schoolIntro(box);
+			return;
+		}
+		else if (SONG.song.toLowerCase() == 'harmony') {
+			camHUD.visible = false;
+			var file:String = Paths.txt(SONG.song.toLowerCase() + '/' + SONG.song.toLowerCase() + 'EndDialogue'); //Checks for vanilla/Senpai dialogue
+			if (OpenFlAssets.exists(file)) {
+				endDialogue = CoolUtil.coolTextFile(file);
+			}
+			var box = new DialogueBox(false, endDialogue, true);
+			box.scrollFactor.set();
+			box.finishThing = endweekvideo;
 			schoolIntro(box);
 			return;
 		}
