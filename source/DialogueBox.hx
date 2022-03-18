@@ -142,8 +142,9 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			backdrop.screenCenter();
 			dimmer.screenCenter();
+			if (end) {
 			loldontlook.screenCenter();
-			add(loldontlook);
+			add(loldontlook); }
 			add(backdrop);
 			add(dimmer);
 			
