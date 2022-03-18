@@ -1538,8 +1538,9 @@ class PlayState extends MusicBeatState
 					if (SONG.song.toLowerCase() == 'harmony') {
 						nextSong();
 						}
-					
-					else {endSong();}
+					else {
+						endSong();
+					}
 				}
 				else if (SONG.song.toLowerCase() == 'matins') {
 					var poof:DialogueBox = new DialogueBox(false, dialogue);
@@ -3249,6 +3250,7 @@ class PlayState extends MusicBeatState
 	var seenEnd = false;
 	public function endSong():Void
 	{
+		trace('we gonna end song now');
 		//Should kill you if you tried to cheat
 		if(!startingSong) {
 			notes.forEach(function(daNote:Note) {
@@ -3308,7 +3310,7 @@ class PlayState extends MusicBeatState
 			seenEnd = true;
 			return;
 		}
-		else if(SONG.song.toLowerCase() == 'serafim') {
+		else if(SONG.song.toLowerCase() == 'serafim' && !seenEnd) {
 			camHUD.visible = false;
 			var file:String = Paths.txt(SONG.song.toLowerCase() + '/' + SONG.song.toLowerCase() + 'EndDialogue'); //Checks for vanilla/Senpai dialogue
 			if (OpenFlAssets.exists(file)) {
@@ -3322,7 +3324,7 @@ class PlayState extends MusicBeatState
 			seenEnd = true;
 			return;
 		}
-		else if (SONG.song.toLowerCase() == 'harmony') {
+		else if (SONG.song.toLowerCase() == 'harmony' && !seenEnd) {
 			camHUD.visible = false;
 			var file:String = Paths.txt(SONG.song.toLowerCase() + '/' + SONG.song.toLowerCase() + 'EndDialogue'); //Checks for vanilla/Senpai dialogue
 			if (OpenFlAssets.exists(file)) {
@@ -4343,6 +4345,7 @@ class PlayState extends MusicBeatState
 	{
 		super.beatHit();
 
+		if (!inCutscene) {
 		if(lastBeatHit >= curBeat) {
 			//trace('BEAT HIT: ' + curBeat + ', LAST HIT: ' + lastBeatHit);
 			return;
@@ -4462,6 +4465,7 @@ class PlayState extends MusicBeatState
 
 		callOnLuas('onBeatHit', []);
 	}
+}
 
 	public function callOnLuas(event:String, args:Array<Dynamic>):Dynamic {
 		var returnVal:Dynamic = FunkinLua.Function_Continue;

@@ -48,7 +48,8 @@ class DialogueBox extends FlxSpriteGroup
 
 	var backdrop:FlxSprite;
 	var dimmer:FlxSprite;
-	
+	var loldontlook:FlxSprite;
+
 	private var camAchievement:FlxCamera;
 
 	public function new(talkingRight:Bool = true, ?dialogueList:Array<String>, ?end:Bool = false)
@@ -61,6 +62,7 @@ class DialogueBox extends FlxSpriteGroup
 		box = new FlxSprite(-20, 45);
 		backdrop = new FlxSprite(-FlxG.width / 2, -FlxG.height / 2);
 
+		
 		var hasDialog = false;
 		switch (PlayState.SONG.song.toLowerCase())
 		{
@@ -126,6 +128,9 @@ class DialogueBox extends FlxSpriteGroup
 				backdrop.updateHitbox();
 		}
 
+		if (end) {
+			loldontlook = new FlxSprite(backdrop.x, backdrop.y).makeGraphic(Std.int(backdrop.width), Std.int(backdrop.height), FlxColor.BLACK, false);
+		}
 		this.dialogueList = dialogueList;
 
 		if (!hasDialog)
@@ -137,8 +142,11 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			backdrop.screenCenter();
 			dimmer.screenCenter();
+			loldontlook.screenCenter();
+			add(loldontlook);
 			add(backdrop);
 			add(dimmer);
+			
 			// Sarvente Portrait setup
 			portraitLeft = new FlxSprite(200, 150);
 			portraitLeft.frames = Paths.getSparrowAtlas('portraits/sarvPortrait', 'date-night masses');
