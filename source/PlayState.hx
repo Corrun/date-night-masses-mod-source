@@ -1253,7 +1253,7 @@ class PlayState extends MusicBeatState
 		timeBar.cameras = [camHUD];
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
-//		doof.cameras = [camHUD];
+		doof.cameras = [camHUD];
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -1535,8 +1535,13 @@ class PlayState extends MusicBeatState
 			(new FlxVideo(fileName)).finishCallback = function() {
 				remove(bg);
 				if(endingSong) {
-					endSong();
-				} else if (SONG.song.toLowerCase() == 'matins'){
+					if (SONG.song.toLowerCase() == 'harmony') {
+						nextSong();
+						}
+					
+					else {endSong();}
+				}
+				else if (SONG.song.toLowerCase() == 'matins') {
 					var poof:DialogueBox = new DialogueBox(false, dialogue);
 					poof.scrollFactor.set();
 					poof.finishThing = startCountdown;
@@ -3241,6 +3246,7 @@ class PlayState extends MusicBeatState
 
 
 	var transitioning = false;
+	var seenEnd = false;
 	public function endSong():Void
 	{
 		//Should kill you if you tried to cheat
@@ -3288,16 +3294,32 @@ class PlayState extends MusicBeatState
 		}
 		#end
 
-		if (SONG.song.toLowerCase() == 'matins' || SONG.song.toLowerCase() == 'serafim') {
+		if (SONG.song.toLowerCase() == 'matins' && !seenEnd) {
 			camHUD.visible = false;
 			var file:String = Paths.txt(SONG.song.toLowerCase() + '/' + SONG.song.toLowerCase() + 'EndDialogue'); //Checks for vanilla/Senpai dialogue
 			if (OpenFlAssets.exists(file)) {
 				endDialogue = CoolUtil.coolTextFile(file);
 			}
+			FlxG.camera.zoom = 1;
 			var box = new DialogueBox(false, endDialogue, true);
 			box.scrollFactor.set();
 			box.finishThing = nextSong;
 			schoolIntro(box);
+			seenEnd = true;
+			return;
+		}
+		else if(SONG.song.toLowerCase() == 'serafim') {
+			camHUD.visible = false;
+			var file:String = Paths.txt(SONG.song.toLowerCase() + '/' + SONG.song.toLowerCase() + 'EndDialogue'); //Checks for vanilla/Senpai dialogue
+			if (OpenFlAssets.exists(file)) {
+				endDialogue = CoolUtil.coolTextFile(file);
+			}
+			FlxG.camera.zoom = 1;
+			var box = new DialogueBox(false, endDialogue, true);
+			box.scrollFactor.set();
+			box.finishThing = nextSong;
+			schoolIntro(box);
+			seenEnd = true;
 			return;
 		}
 		else if (SONG.song.toLowerCase() == 'harmony') {
@@ -3306,121 +3328,18 @@ class PlayState extends MusicBeatState
 			if (OpenFlAssets.exists(file)) {
 				endDialogue = CoolUtil.coolTextFile(file);
 			}
+			FlxG.camera.zoom = 1;
 			var box = new DialogueBox(false, endDialogue, true);
 			box.scrollFactor.set();
 			box.finishThing = endweekvideo;
 			schoolIntro(box);
+			seenEnd = true;
 			return;
 		}
 		
-		#if LUA_ALLOWED
-		var ret:Dynamic = callOnLuas('onEndSong', []);
-		#else
-		var ret:Dynamic = FunkinLua.Function_Continue;
-		#end
-
-		if(ret != FunkinLua.Function_Stop && !transitioning) {
-			if (SONG.validScore)
-			{
-				#if !switch
-				var percent:Float = ratingPercent;
-				if(Math.isNaN(percent)) percent = 0;
-				Highscore.saveScore(SONG.song, songScore, storyDifficulty, percent);
-				#end
-			}
-
-			if (isStoryMode)
-			{
-				campaignScore += songScore;
-				campaignMisses += songMisses;
-
-				storyPlaylist.remove(storyPlaylist[0]);
-
-				if (curSong == 'archvente') 
-				{
-					archventeCheck();
-				} 
-				else if (storyPlaylist.length <= 0)
-				{
-					FlxG.autoPause = true;
-					FlxG.sound.playMusic(Paths.music('Affinity', 'date-night masses'));
-
-					cancelFadeTween();
-					CustomFadeTransition.nextCamera = camOther;
-					if(FlxTransitionableState.skipNextTransIn) {
-						CustomFadeTransition.nextCamera = null;
-					}
-					MusicBeatState.switchState(new StoryMenuState());
-
-					// if ()
-					if(!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false)) {
-						StoryMenuState.weekCompleted.set(WeekData.weeksList[storyWeek], true);
-
-						if (SONG.validScore)
-						{
-							Highscore.saveWeekScore(WeekData.getWeekFileName(), campaignScore, storyDifficulty);
-						}
-
-						FlxG.save.data.weekCompleted = StoryMenuState.weekCompleted;
-						FlxG.save.flush();
-					}
-					changedDifficulty = false;
-				}
-				else
-				{
-					var difficulty:String = CoolUtil.getDifficultyFilePath();
-
-					trace('LOADING NEXT SONG');
-					trace(Paths.formatToSongPath(PlayState.storyPlaylist[0]) + difficulty);
-
-					var winterHorrorlandNext = (Paths.formatToSongPath(SONG.song) == "eggnog");
-					if (winterHorrorlandNext)
-					{
-						var blackShit:FlxSprite = new FlxSprite(-FlxG.width * FlxG.camera.zoom,
-							-FlxG.height * FlxG.camera.zoom).makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
-						blackShit.scrollFactor.set();
-						add(blackShit);
-						camHUD.visible = false;
-
-						FlxG.sound.play(Paths.sound('Lights_Shut_off'));
-					}
-
-					FlxTransitionableState.skipNextTransIn = true;
-					FlxTransitionableState.skipNextTransOut = true;
-
-					prevCamFollow = camFollow;
-					prevCamFollowPos = camFollowPos;
-
-					PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0] + difficulty, PlayState.storyPlaylist[0]);
-					FlxG.sound.music.stop();
-
-					if(winterHorrorlandNext) {
-						new FlxTimer().start(1.5, function(tmr:FlxTimer) {
-							cancelFadeTween();
-							LoadingState.loadAndSwitchState(new PlayState());
-						});
-					} else {
-						cancelFadeTween();
-						LoadingState.loadAndSwitchState(new PlayState());
-					}
-				}
-			}
-			else
-			{
-				FlxG.autoPause = true;
-				trace('WENT BACK TO FREEPLAY??');
-				cancelFadeTween();
-				CustomFadeTransition.nextCamera = camOther;
-				if(FlxTransitionableState.skipNextTransIn) {
-					CustomFadeTransition.nextCamera = null;
-				}
-				MusicBeatState.switchState(new FreeplayState());
-				FlxG.sound.playMusic(Paths.music('Affinity', 'date-night masses'));
-				changedDifficulty = false;
-			}
-			transitioning = true;
-		}
+		nextSong();	
 	}
+
 
 	public function nextSong() {
 		#if LUA_ALLOWED

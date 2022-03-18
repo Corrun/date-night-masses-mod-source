@@ -148,7 +148,7 @@ class DialogueBox extends FlxSpriteGroup
 			portraitLeft.animation.addByPrefix('sarvDelighted', 'sarv Delighted0', 24, false);
 
 			portraitLeft.animation.addByPrefix('sarvDateCheerful', 'sarv DateCheerful', 24, false);
-			portraitLeft.animation.addByPrefix('sarvDateConfused', 'sarv DateConfused', 24, false);
+			portraitLeft.animation.addByPrefix('sarvDateConfused', 'sarv DateConfuse', 24, false);
 			portraitLeft.animation.addByPrefix('sarvDateDelighted', 'sarv DateDelighted', 24, false);
 
 			portraitLeft.animation.addByPrefix('sorv', 'sarv Ronv', 24, false);
