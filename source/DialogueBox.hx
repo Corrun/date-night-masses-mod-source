@@ -74,14 +74,22 @@ class DialogueBox extends FlxSpriteGroup
 				box.scale.set(0.7, 0.7);
 				box.updateHitbox();
 
-				if (!end) backdrop.loadGraphic(Paths.image('Cutscene Animatics/1', 'date-night masses'));
-				else backdrop.loadGraphic(Paths.image('Cutscene Animatics/2', 'date-night masses'));
-				
-				backdrop.updateHitbox();
-				backdrop.scale.set(0.8, 0.8);
-				dimmer.makeGraphic(Std.int(backdrop.width), Std.int(backdrop.height), FlxColor.BLACK, false);
-				backdrop.updateHitbox();
-
+				if (!end){
+					backdrop.loadGraphic(Paths.image('Cutscene Animatics/1', 'date-night masses'));
+					backdrop.updateHitbox();
+					backdrop.scale.set(0.8, 0.8);
+					dimmer.makeGraphic(Std.int(backdrop.width), Std.int(backdrop.height), FlxColor.BLACK, false);
+					backdrop.updateHitbox();
+				}
+				else	
+				{
+					backdrop.loadGraphic(Paths.image('Cutscene Animatics/2', 'date-night masses'));
+		
+					backdrop.updateHitbox();
+					backdrop.scale.set(0.9, 0.9);
+					dimmer.makeGraphic(Std.int(backdrop.width), Std.int(backdrop.height), FlxColor.BLACK, false);
+					backdrop.updateHitbox();
+				}
 			case 'serafim':
 				hasDialog = true;
 				hasVoice = true;
@@ -139,11 +147,11 @@ class DialogueBox extends FlxSpriteGroup
 			portraitLeft.animation.addByPrefix('sarvConfused', 'sarv Confused0', 24, false);
 			portraitLeft.animation.addByPrefix('sarvDelighted', 'sarv Delighted0', 24, false);
 
-			portraitLeft.animation.addByPrefix('sarvDateCheerful', 'sarv DateCheerful0', 24, false);
-			portraitLeft.animation.addByPrefix('sarvDateConfused', 'sarv DateConfused0', 24, false);
-			portraitLeft.animation.addByPrefix('sarvDateDelighted', 'sarv DateDelighted0', 24, false);
+			portraitLeft.animation.addByPrefix('sarvDateCheerful', 'sarv DateCheerful', 24, false);
+			portraitLeft.animation.addByPrefix('sarvDateConfused', 'sarv DateConfused', 24, false);
+			portraitLeft.animation.addByPrefix('sarvDateDelighted', 'sarv DateDelighted', 24, false);
 
-			portraitLeft.animation.addByPrefix('sorv', 'sarv Ronv0', 24, false);
+			portraitLeft.animation.addByPrefix('sorv', 'sarv Ronv', 24, false);
 
 			// portraitLeft.setGraphicSize(Std.int(portraitLeft.height * 0.5));
 			portraitLeft.updateHitbox();
@@ -159,11 +167,11 @@ class DialogueBox extends FlxSpriteGroup
 			portraitRight.animation.addByPrefix('ruvNerv', 'ruv Nerv0', 24, false);
 			portraitRight.animation.addByPrefix('ruvNeutral', 'ruv Neutral0', 24, false);
 
-			portraitRight.animation.addByPrefix('ruvDateContent', 'ruv DateContent0', 24, false);
-			portraitRight.animation.addByPrefix('ruvDateNervous', 'ruv DateNerv0', 24, false);
-			portraitRight.animation.addByPrefix('ruvDateNeutral', 'ruv DateNeutral0', 24, false);
+			portraitRight.animation.addByPrefix('ruvDateContent', 'ruv DateContent', 24, false);
+			portraitRight.animation.addByPrefix('ruvDateNerv', 'ruv DateNerv', 24, false);
+			portraitRight.animation.addByPrefix('ruvDateNeutral', 'ruv DateNeutral', 24, false);
 
-			portraitRight.animation.addByPrefix('ronv', 'ruv Ronv0', 24, false);
+			portraitRight.animation.addByPrefix('ronv', 'ruv Ronv', 24, false);
 
 			// portraitRight.setGraphicSize(Std.int(portraitRight.height * 0.5));
 			portraitRight.updateHitbox();

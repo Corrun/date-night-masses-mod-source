@@ -1553,7 +1553,9 @@ class PlayState extends MusicBeatState
 		}
 		#end
 		if(endingSong) {
-			endSong();
+			if (SONG.song.toLowerCase() == 'harmony') {
+			nextSong();
+			} else {endSong();}
 		} else {
 			startCountdown();
 		}
