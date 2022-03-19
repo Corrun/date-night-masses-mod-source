@@ -1,0 +1,5 @@
+:sarvCheerful:D’accord, tu m’as convaincue !:sarvVoice5
+:sarvCheerful:On peut passer la journée ensemble.:sarvVoice6
+:ruvNeutral:Ça me semble bien.:ruvVoice8
+:ruvNeutral:On commence par le jardin ?:ruvVoice9
+:sarvCheerful:Bonne idée !:sarvVoice7

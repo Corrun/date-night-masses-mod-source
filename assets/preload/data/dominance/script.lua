@@ -6,15 +6,9 @@ function onCreate()
 
 	setProperty('gf.visible', false)
 
-	setProperty('notRuv', true)
-end
+	setProperty('dad.x', getProperty('dad.x') - 160)
+	setProperty('dad.y', getProperty('dad.y') + 150)
 
-local allowCountdown = false
-function onStartCountdown()
-	if not allowCountdown and isStoryMode and not seenCutscene then --Block the first countdown
-		startVideo('sticky-and-kikyo');
-		allowCountdown = true;
-		return Function_Stop;
-	end
-	return Function_Continue;
+	setProperty('boyfriend.x', getProperty('boyfriend.x') + 25)
+	setProperty('boyfriend.y', getProperty('boyfriend.y') - 120)
 end

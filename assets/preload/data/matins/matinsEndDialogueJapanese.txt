@@ -1,0 +1,5 @@
+:sarvCheerful:うむむ…:sarvVoice5
+:sarvCheerful:決めたわ。そうしよう！:sarvVoice6
+:ruvNeutral:分かった。:ruvVoice8
+:ruvNeutral:じゃ、庭ではどうかな？:ruvVoice9
+:sarvCheerful:賛成！:sarvVoice7

@@ -1,0 +1,5 @@
+:sarvCheerful:알았어, 나를 설득시켰네!:sarvVoice5
+:sarvCheerful:우리 같이 시간을 보내도록 하자.:sarvVoice6
+:ruvNeutral:좋네.:ruvVoice8
+:ruvNeutral:정원으로 갈까?:ruvVoice9
+:sarvCheerful:응, 가자!:sarvVoice7

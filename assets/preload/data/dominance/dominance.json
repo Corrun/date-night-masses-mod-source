@@ -1846,8 +1846,9 @@
   "stage": "cloister",
   "validScore": true,
   "needsVoices": true,
-  "arrowSkin": "NOTE_assets",
+  "arrowSkin": "KikyoNOTE_assets",
   "splashSkin": "NOTE_Splashes",
+  "playerArrowSkin": "arrowsClover",
   "bpm": 100,
   "speed": 5.1
  }

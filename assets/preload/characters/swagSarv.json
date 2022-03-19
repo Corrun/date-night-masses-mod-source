@@ -2,46 +2,46 @@
 	"animations": [
 		{
 			"offsets": [
-				-9,
-				10
+				110,
+				-90
 			],
 			"loop": false,
 			"anim": "singLEFT",
 			"fps": 24,
-			"name": "Dad Sing Note LEFT",
+			"name": "SarvLeft0",
 			"indices": []
 		},
 		{
 			"offsets": [
-				0,
-				-30
+				-40,
+				-60
 			],
 			"loop": false,
 			"anim": "singDOWN",
 			"fps": 24,
-			"name": "Dad Sing Note DOWN",
+			"name": "SarvDown0",
 			"indices": []
 		},
 		{
 			"offsets": [
-				-6,
-				50
+				100,
+				0
 			],
 			"loop": false,
 			"anim": "singUP",
 			"fps": 24,
-			"name": "Dad Sing Note UP",
+			"name": "SarvUp0",
 			"indices": []
 		},
 		{
 			"offsets": [
-				0,
-				27
+				50,
+				-140
 			],
 			"loop": false,
 			"anim": "singRIGHT",
 			"fps": 24,
-			"name": "Dad Sing Note RIGHT",
+			"name": "SarvRight0",
 			"indices": []
 		},
 		{
@@ -52,76 +52,76 @@
 			"loop": false,
 			"anim": "idle",
 			"fps": 24,
-			"name": "Dad idle dance",
+			"name": "SarvIdle0",
 			"indices": []
 		},
 		{
 			"offsets": [
-				0,
-				0
-			],
-			"loop": true,
-			"fps": 24,
-			"anim": "idle-loop",
-			"indices": [
-				10,
-				11,
-				12,
-				12
-			],
-			"name": "Dad idle dance"
-		},
-		{
-			"offsets": [
-				-9,
-				10
+				110,
+				-90
 			],
 			"loop": true,
 			"fps": 24,
 			"anim": "singLEFT-loop",
 			"indices": [
+				10,
+				11,
 				12,
-				13,
-				14,
-				15
+				13
 			],
-			"name": "Dad Sing Note LEFT"
+			"name": "SarvLeft0"
 		},
 		{
 			"offsets": [
-				0,
-				27
+				50,
+				-140
 			],
 			"loop": true,
 			"fps": 24,
 			"anim": "singRIGHT-loop",
 			"indices": [
-				15,
-				16,
-				17,
-				18
+				10,
+				11,
+				12,
+				13
 			],
-			"name": "Dad Sing Note RIGHT"
+			"name": "SarvRight0"
 		},
 		{
 			"offsets": [
-				-6,
-				50
+				100,
+				0
 			],
 			"loop": true,
 			"fps": 24,
 			"anim": "singUP-loop",
 			"indices": [
-				56,
-				57,
-				58,
-				59
+				10,
+				11,
+				12,
+				13
 			],
-			"name": "Dad Sing Note UP"
+			"name": "SarvUp0"
+		},
+		{
+			"offsets": [
+				-40,
+				-60
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "singDOWN-loop",
+			"indices": [
+				10,
+				11,
+				12,
+				13
+			],
+			"name": "SarvDown0"
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/DADDY_DEAREST",
+	"image": "characters/coolsarv",
 	"position": [
 		0,
 		0

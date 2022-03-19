@@ -84,7 +84,7 @@ class AchievementsMenuState extends MusicBeatState
 		textBG.alpha = 0.6;
 		add(textBG);
 		var text:FlxText = new FlxText(textBG.x, textBG.y + 4, FlxG.width, "Press Enter to see your reward on unlocked trophies/ Press enter again to unsee it.", 18);
-		text.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, RIGHT);
+		text.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, CENTER);
 		text.scrollFactor.set();
 		add(text);
 
@@ -114,8 +114,7 @@ class AchievementsMenuState extends MusicBeatState
 	function achievementReward() {
 		rewardState = !rewardState;
 		if (rewardState) {
-			FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-			reward = new FlxSprite().loadGraphic(Paths.image('trophies/' + Achievements.achievementsStuff[curSelected][4], 'date-night masses'));
+			reward = new FlxSprite().loadGraphic(Paths.image('Rewards/' + Achievements.achievementsStuff[curSelected][4], 'date-night masses'));
 			reward.screenCenter();
 			reward.visible = true;
 			add(reward);

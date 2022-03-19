@@ -6,13 +6,9 @@ function onCreate()
 
 	setProperty('gf.visible', false)
 
-	setProperty('dad.scale.x', 2.2)
-	setProperty('dad.scale.y', 2.2)
 	setProperty('dad.x', getProperty('dad.x') - 150)
 	setProperty('dad.y', getProperty('dad.y') - 90)
 
-	setProperty('boyfriend.scale.x', 1.5)
-	setProperty('boyfriend.scale.y', 1.5)
 	setProperty('boyfriend.x', getProperty('boyfriend.x') + 350)
 	setProperty('boyfriend.y', getProperty('boyfriend.y') - 65)
 

@@ -1,0 +1,11 @@
+:ruvNeutral:なぁ、今日暇だろう？:ruvVoice1
+:sarvCheerful:今日？:sarvVoice1
+:sarvCheerful:そうだけど…:sarvVoice2
+:sarvCheerful:何かあるの？:sarvVoice3
+:ruvNerv:いや、別に…やりてぇことがねぇのかって思ったんだけど。:ruvVoice2
+:ruvNerv:久々なんだからな。:ruvVoice3
+:ruvNerv:二人だけで:ruvVoice4
+:sarvConfused:...:sarvVoice4
+:ruvNerv:...別にやらねぇといけねえ訳じゃねぇからな。:ruvVoice5
+:ruvNerv:庭で少し時間を過ごすとかピクニクとか…:ruvVoice6
+:ruvNerv:そういうものだっていい…と思う。.:ruvVoice7

@@ -2,46 +2,46 @@
 	"animations": [
 		{
 			"offsets": [
-				-9,
-				10
+				0,
+				0
 			],
 			"loop": false,
 			"anim": "singLEFT",
 			"fps": 24,
-			"name": "Dad Sing Note LEFT",
+			"name": "buffKikyo left0",
 			"indices": []
 		},
 		{
 			"offsets": [
 				0,
-				-30
+				0
 			],
 			"loop": false,
 			"anim": "singDOWN",
 			"fps": 24,
-			"name": "Dad Sing Note DOWN",
-			"indices": []
-		},
-		{
-			"offsets": [
-				-6,
-				50
-			],
-			"loop": false,
-			"anim": "singUP",
-			"fps": 24,
-			"name": "Dad Sing Note UP",
+			"name": "buffKikyo down0",
 			"indices": []
 		},
 		{
 			"offsets": [
 				0,
-				27
+				0
+			],
+			"loop": false,
+			"anim": "singUP",
+			"fps": 24,
+			"name": "buffKikyo up0",
+			"indices": []
+		},
+		{
+			"offsets": [
+				0,
+				0
 			],
 			"loop": false,
 			"anim": "singRIGHT",
 			"fps": 24,
-			"name": "Dad Sing Note RIGHT",
+			"name": "buffKikyo right0",
 			"indices": []
 		},
 		{
@@ -52,7 +52,7 @@
 			"loop": false,
 			"anim": "idle",
 			"fps": 24,
-			"name": "Dad idle dance",
+			"name": "buffKikyo idle0",
 			"indices": []
 		},
 		{
@@ -63,68 +63,59 @@
 			"loop": true,
 			"fps": 24,
 			"anim": "idle-loop",
-			"indices": [
-				10,
-				11,
-				12,
-				12
-			],
-			"name": "Dad idle dance"
-		},
-		{
-			"offsets": [
-				-9,
-				10
-			],
-			"loop": true,
-			"fps": 24,
-			"anim": "singLEFT-loop",
-			"indices": [
-				12,
-				13,
-				14,
-				15
-			],
-			"name": "Dad Sing Note LEFT"
+			"indices": [],
+			"name": "buffKikyo idle0"
 		},
 		{
 			"offsets": [
 				0,
-				27
+				0
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "singLEFT-loop",
+			"indices": [],
+			"name": "buffKikyo left0"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"anim": "singDOWN-loop",
+			"fps": 24,
+			"name": "buffKikyo down0",
+			"indices": []
+		},
+		{
+			"offsets": [
+				0,
+				0
 			],
 			"loop": true,
 			"fps": 24,
 			"anim": "singRIGHT-loop",
-			"indices": [
-				15,
-				16,
-				17,
-				18
-			],
-			"name": "Dad Sing Note RIGHT"
+			"indices": [],
+			"name": "buffKikyo right0"
 		},
 		{
 			"offsets": [
-				-6,
-				50
+				0,
+				0
 			],
 			"loop": true,
 			"fps": 24,
 			"anim": "singUP-loop",
-			"indices": [
-				56,
-				57,
-				58,
-				59
-			],
-			"name": "Dad Sing Note UP"
+			"indices": [],
+			"name": "buffKikyo up0"
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/DADDY_DEAREST",
+	"image": "characters/buffKikyo",
 	"position": [
-		0,
-		0
+		-140,
+		-190
 	],
 	"healthicon": "kikyo",
 	"flip_x": false,

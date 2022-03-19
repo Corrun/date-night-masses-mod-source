@@ -5,14 +5,14 @@ function onCreate()
 	setPropertyFromClass('GameOverSubstate', 'endSoundName', 'gameOverEnd');
 
 	setProperty('gf.visible', false)
+
+	makeLuaSprite("table0", 'table', getProperty('dad.x') - 250, getProperty('dad.y') + 400)
+	addLuaSprite("table0", false)
+
+	setProperty('dad.y', getProperty('dad.y') - 540)
 end
 
-local allowCountdown = false
-function onStartCountdown()
-	if not allowCountdown and isStoryMode and not seenCutscene then --Block the first countdown
-		startVideo('knock-knock-m');
-		allowCountdown = true;
-		return Function_Stop;
-	end
-	return Function_Continue;
+function onGameOverStart() 
+	setProperty('boyfriend.scale.x', 1.2)
+	setProperty('boyfriend.scale.y', 1.2)
 end

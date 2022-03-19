@@ -1,0 +1,6 @@
+:sarvCheerful:C’était une très bonne idée !:sarvVoice8
+:sarvCheerful:Je voulais replanter ces pivoines depuis des semaines !:sarvVoice9
+:ruvNeutral:Eh bien, je sais que tu aimes venir ici.:ruvVoice10
+:ruvNeutral:C’est le meilleur moyen de passer du temps avec toi.:ruvVoice11
+:sarvDelighted:Eh bien, je suis contente qu’on soit ici. Vraiment !:sarvVoice10
+:sarvDelighted:Tout ce que j’ai toujours voulu était de passer du temps avec toi.:sarvVoice11

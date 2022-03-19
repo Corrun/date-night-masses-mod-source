@@ -1,0 +1,6 @@
+:ruvDateNerv:嘿，Sarv? :ruvVoice13
+:sarvDateConfused:嗯？怎么了吗？:sarvVoice14
+:ruvDateNeutral:我- 我想告诉你些事...:ruvVoice14
+:ruvDateNeutral:我... :ruvVoice15
+:ruvDateNerv:...我非常喜欢和你花时间在一起。 :ruvVoice16
+:sarvDateCheerful:嘛...我非常喜欢你噢。:sarvVoice15

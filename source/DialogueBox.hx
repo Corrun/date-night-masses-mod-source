@@ -143,8 +143,9 @@ class DialogueBox extends FlxSpriteGroup
 			backdrop.screenCenter();
 			dimmer.screenCenter();
 			if (end) {
-			loldontlook.screenCenter();
-			add(loldontlook); }
+				loldontlook.screenCenter();
+				add(loldontlook); 
+			}
 			add(backdrop);
 			add(dimmer);
 			
@@ -206,11 +207,12 @@ class DialogueBox extends FlxSpriteGroup
 		dropText = new FlxText(242, 432, Std.int(FlxG.width * 0.6), "", 32);
 		dropText.font = 'Pixel Arial 11 Bold';
 		dropText.color = 0xFFD89494;
-		add(dropText);
+		//add(dropText);
 
 		swagDialogue = new FlxTypeText(240, 430, Std.int(FlxG.width * 0.6), "", 32);
-		swagDialogue.font = 'Pixel Arial 11 Bold';
-		swagDialogue.color = 0xFF3F2021;
+		swagDialogue.setFormat(Paths.font("unifont-14.0.02.ttf"), 42, FlxColor.BLACK, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		//swagDialogue.font = 'Pixel Arial 11 Bold';
+		//swagDialogue.color = 0xFF3F2021;
 		add(swagDialogue);
 
 		dialogue = new Alphabet(0, 80, "", false, true);
@@ -277,7 +279,6 @@ class DialogueBox extends FlxSpriteGroup
 			isEnding = true;
 			switch (PlayState.SONG.song.toLowerCase())
 			{
-				
 				case "matins": 
 					sound.fadeOut(1, 0);
 					voiceAct.fadeOut(1, 0);
@@ -368,7 +369,7 @@ class DialogueBox extends FlxSpriteGroup
 			portraitRight.alpha = 1;
 
 			var chanceRonv = Std.random(100);
-			if (chanceRonv < 5) {
+			if (chanceRonv < 2) {
 				portraitRight.animation.play('ronv');
 				#if ACHIEVEMENTS_ALLOWED
 				Achievements.loadAchievements();
@@ -395,7 +396,7 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			portraitLeft.visible = true;
 			var chanceSorv = Std.random(100);
-			if (chanceSorv < 5) {
+			if (chanceSorv < 2) {
 				portraitLeft.animation.play('sorv');
 				#if ACHIEVEMENTS_ALLOWED
 				Achievements.loadAchievements();

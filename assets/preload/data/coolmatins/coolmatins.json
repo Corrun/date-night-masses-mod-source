@@ -1846,8 +1846,10 @@
   "stage": "cloister",
   "validScore": true,
   "needsVoices": true,
-  "arrowSkin": "NOTE_assets",
+  "arrowSkin": "flower",
   "splashSkin": "NOTE_Splashes",
+  "playerArrowSkin": "arrowsClover",
+  "playerSplashSkin": "noteSplashesDate",
   "bpm": 100,
   "speed": 5.1
  }

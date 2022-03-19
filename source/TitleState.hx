@@ -250,13 +250,22 @@ class TitleState extends MusicBeatState
 		// bg.setGraphicSize(Std.int(bg.width * 0.6));
 		// bg.updateHitbox();
 		
+		logoBl = new FlxSprite(titleJSON.titlex, titleJSON.titley).loadGraphic(Paths.image('logo/DNM', 'date-night masses'));
+		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
+		logoBl.scale.x = 0.7;
+		logoBl.scale.y = 0.7;
+		//logoBl.y = ;
+		logoBl.updateHitbox();
+		logoBl.screenCenter();
+		logoBl.x += -300;
 		
-		
+		church = new FlxSprite().loadGraphic(Paths.image('logo/churchBG', 'date-night masses'));
+		church.screenCenter();
 		
 		add(bg);
 		add(church);
-		churhc.visible = false;
-		logoBl = new FlxSprite(titleJSON.titlex, titleJSON.titley);
+		add(logoBl);
+		//church.visible = false;
 		
 		
 		#if (desktop && MODS_ALLOWED)
@@ -273,11 +282,11 @@ class TitleState extends MusicBeatState
 //		logoBl.frames = FlxAtlasFrames.fromSparrow(BitmapData.fromFile(path),File.getContent(StringTools.replace(path,".png",".xml")));
 		#else
 		
-		logoBl = Paths.image('logo/DNM', 'date-night masses');
+		//logoBl = Paths.image('logo/DNM', 'date-night masses');
 		#end
 		
-		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
-		logoBl.updateHitbox();
+		//logoBl.antialiasing = ClientPrefs.globalAntialiasing;
+		//logoBl.updateHitbox();
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
 
@@ -306,7 +315,7 @@ class TitleState extends MusicBeatState
 		gfDance.antialiasing = ClientPrefs.globalAntialiasing;
 		add(gfDance);
 		gfDance.shader = swagShader.shader;*/
-		add(logoBl);
+		//add(logoBl);
 		//logoBl.shader = swagShader.shader;
 
 		titleText = new FlxSprite(titleJSON.startx, titleJSON.starty);
@@ -344,14 +353,14 @@ class TitleState extends MusicBeatState
 		logo.antialiasing = ClientPrefs.globalAntialiasing;
 		// add(logo);
 
-		FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
+		//FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
 		//FlxTween.tween(logo, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
 
 		credGroup = new FlxGroup();
 		add(credGroup);
 		textGroup = new FlxGroup();
 
-		blackScreen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.PINK);
+		blackScreen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		credGroup.add(blackScreen);
 
 		credTextShit = new Alphabet(0, 0, "", true);
@@ -639,6 +648,16 @@ class TitleState extends MusicBeatState
 
 			FlxG.camera.flash(FlxColor.PINK, 4);
 			remove(credGroup);
+
+			logoBl.angle = -4;
+
+			new FlxTimer().start(0.01, function(tmr:FlxTimer)
+				{
+					if (logoBl.angle == -4)
+						FlxTween.angle(logoBl, logoBl.angle, 4, 4, {ease: FlxEase.quartInOut});
+					if (logoBl.angle == 4)
+						FlxTween.angle(logoBl, logoBl.angle, -4, 4, {ease: FlxEase.quartInOut});
+				}, 0);
 
 			skippedIntro = true;
 			church.visible = true;

@@ -1,0 +1,11 @@
+:ruvNeutral:Así que.. ¿no tienes nada que hacer esta noche?:ruvVoice1
+:sarvCheerful:No:sarvVoice1
+:sarvCheerful:¡nada!:sarvVoice2
+:sarvCheerful:¿Cuáles son tus planes para hoy?:sarvVoice3
+:ruvNerv:Estaba pensando que podíamos pasar el tiempo juntos.:ruvVoice2
+:ruvNerv:Solo los dos.:ruvVoice3
+:ruvNerv:Hace rato que no lo hacíamos.:ruvVoice4
+:sarvConfused:...:sarvVoice4
+:ruvNerv:No lo tenemos que hacer si no quieres.:ruvVoice5
+:ruvNerv:Yo solo estaba pensando en que podríamos de pronto pasar la tarde juntos en el jardín.:ruvVoice6
+:ruvNerv:Comer la cena afuera, como en un picnic.:ruvVoice7

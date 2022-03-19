@@ -114,12 +114,14 @@ class DNMCreditsState extends MusicBeatState
 			'MFM Team',
 			'Helpers',
 			'',
+			'',
 			'Awesomes',
 			'',
 			'Psych Team',
 			'',
 			'Contributors',
 			"Funkin' Crew",
+			"",
 			"",
 		];
 
@@ -136,17 +138,17 @@ class DNMCreditsState extends MusicBeatState
 			['Cygthera', 			'cygthera',			'Stage 3 background',									'https://twitter.com/Cygthera',						'Many thanks to the MFM team for allowing me to work on this!',"help i've fallen into lancer ttrpg hell and cant get out", 'theres a bunch of really really cool people on this team go shoo look at them already'],
 			['Isa',					'isa',				'icons, storymode assets, backgrounds,\nDNM logo and Spanish Translation',	'https://twitter.com/isalia291','\nhope you enjoyed, thanks for everything!','\nsticky said my banner looked nice i win',"\nkitty woo"],
 
-			['Koiumina',			'kayden',				'album cover art and stage 1 poses (demo)',			'https://twitter.com/Koiumina1'],
+			['Koiumina',			'kayden',			'album cover art and stage 1 poses (demo)',			'https://twitter.com/Koiumina1'],
 			['Artceps',				'artceps',			'Ruv animator',											'https://twitter.com/MayflyingMink',				"The dedication and energy into this mod, don't regret a thing","Ruv's gloves can die","Ruv's gloves can die"],
 			['Spinbit',				'spinbit',			'Sarv animator',										'https://twitter.com/_Spinbit',						'Teehee, I do the funny animating','Icecream nun and oreo man my beloved','Animate crashed on me atleast 50 times'],
 
-			['NemoInABottle',		'nemo',					'sticky pritesheets',								'https://twitter.com/NemoInABottle'],
-			['OhSoVanilla',			'ohsovanilla',			'Stage 4 animator',									'https://twitter.com/OhSoVanilla64',				'Hihi!! I amimate!!!','Sarvente is my wife','I love ice cream!!'],
+			['NemoInABottle',		'nemo',				'sticky pritesheets',								'https://twitter.com/NemoInABottle'],
+			['OhSoVanilla',			'ohsovanilla',		'Stage 4 sarv animator',									'https://twitter.com/OhSoVanilla64',				'Hihi!! I amimate!!!','Sarvente is my wife','I love ice cream!!'],
 			[''],
 
-			['Implosion',			'faceimplosion',	'Composer of matins and serafim, credit song, pause song\nand video editor',		'https://twitter.com/ImplosionFace',				"\n52455741544348","\n544845","\n50524f4c4f475545"],
+			['Implosion',			'faceimplosion',	'Composer of matins and serafim, credit song, pause song\nand 3D cutscenes',		'https://twitter.com/ImplosionFace',				"\n52455741544348","\n544845","\n50524f4c4f475545"],
 			['LawfulMango',			'lawfulnessupstairs','Composer of harmony',									'https://twitter.com/LawfulnessU',					"If you can't tell, I like mangos",	"Purposely mispelled mangoes as mangos","Purposely mispelled mangoes as mangos"],
-			['NotARock',			'rock',				'credit song',											'https://twitter.com/RockRockBoulder'],
+			['NotARock',			'rock',				'credit song',											'https://twitter.com/RockRockBoulder',				"why are we here? just to suffer?","best tetrio plonker 2021","the mitochondria is the powerhouse of the cell"],
 
 			['IdioticSugar',		'idioticsugar',		'Composer of Rosebass',									'https://twitter.com/idioticsugar',				"I make music and Belgian wants to kill me","I used to simp for Kratos from GOW","listen to Ken Ashcorp"],
 			['Mike geno',			'mike',				'Composer of Clandestine-ditty',						'https://twitter.com/electro_mike'],
@@ -154,9 +156,9 @@ class DNMCreditsState extends MusicBeatState
 
 			['Belgian',				'belgian',			'Co-Director and charter', 								'https://twitter.com/belgianredacted',				"Tengen toppa gurren lagann mod pls","Hi mom I made funny arrows go brrr","It comes with an eggroll"],
 			['Noer',				'noer',				'Charter, playtester and Creative Consultant',			'https://twitter.com/ThisIsNoerlol',				'Without me this mod would be called "mid-night dating"',"sic ur a piss baby lol","My basedness is a mental thing i cant control it"],
-			['Cerbera',				'cerbera',			'Rosebass charter and chart corrector',					'https://twitter.com/Cerbera_fnf'],
+			['Cerbera',				'cerbera',			'Hard Rosebass charter and chart corrector',					'https://twitter.com/Cerbera_fnf'],
 
-			['Corrun',				'corrun',			'Coding and French translation',						'https://twitter.com/Corrun_UT',					'Excellency is not an art, but a habit.','500 hours on this mod. I regret nothing.','tomato dog my beloved'],
+			['Corrun',				'corrun',			'Coding, modCharting and French translation',						'https://twitter.com/Corrun_UT',					'Excellency is not an art, but a habit.','500 hours on this mod. I regret nothing.','tomato dog my beloved'],
 			['Panda',				'pad',				'Coding',												'https://twitter.com/Pandanomania'],
 			[''],
 
@@ -168,7 +170,7 @@ class DNMCreditsState extends MusicBeatState
 			['Mike geno',			'mike',				'Musician of MFM',										'https://twitter.com/electro_mike'],
 			['Kuro',				'kuro',				'Programmer of MFM',									'https://twitter.com/Kuroao_Anomal'],
 
-			['Sonzai',				'',					'Playtester and Hoster of the discord \nserver the team worked in',	'https://twitter.com/sonzai_buredo'],
+			['Sonzai',				'',					'Playtester and Server owner',	'https://twitter.com/sonzai_buredo',	"Damn shawty you shit so loud, what're your pronouns?","I FUCKING LOVE MID-FIGHT MASSES","Oh....my penis is big...."],
 			['Shift',				'',					'Korean translator',									'https://twitter.com/Shift7a_4'],
 			['Star',				'',					'Chinese translator',									'https://twitter.com/NihilityStar'],
 
@@ -180,9 +182,13 @@ class DNMCreditsState extends MusicBeatState
 			['Nosadx',				'',					'recruitment helper',									'https://twitter.com/poop47845836'],
 			['LordShaojiVIII',		'',					'Maker and Keeper of the DNM wiki page',				'https://twitter.com/ArtistVIII'],
 
-			['Sticky',				'',					'Dedicated supporter from start to end,\nsticky death sound',				'https://twitter.com/StickyBM'],
-			['Kikyo',				'',					'Dedicated supporter from start to end',				'https://twitter.com/KikyoBerry'],
-			[''],
+			['Marquisartuis',		'',					'kikyo sprites',										''],
+			['Samueljimenez15',		'',					'kikyo sprites',										''],
+			['Violette',			'',					'sticky sprites',										'https://twitter.com/onlyviolette'],
+
+			['Katse',				'',					'Tomato Dog animator',									''],
+			['Sticky',				'',					'Dedicated supporter,\nsticky death sounds',			'https://twitter.com/StickyBM'],
+			['Kikyo',				'',					'Dedicated supporter',									'https://twitter.com/KikyoBerry'],
 
 			['Shadow Mario',		'',					'Main Programmer of Psych Engine',						'https://twitter.com/Shadow_Mario_'],
 			['RiverOaken',			'',					'Main Artist/Animator of Psych Engine',					'https://twitter.com/river_oaken'],
@@ -208,7 +214,7 @@ class DNMCreditsState extends MusicBeatState
 		pageText = new FlxText(0,0,FlxG.width,"page " + (page + 1),8);
 		pageText.setFormat(Paths.font("vcr.ttf"), 28, FlxColor.BLACK, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.WHITE);
 		pageText.screenCenter();
-		pageText.x += 1080;
+		pageText.x += 1050;
 		pageText.y += 130;
 		add(pageText);
 
@@ -361,7 +367,9 @@ class DNMCreditsState extends MusicBeatState
 			MusicBeatState.switchState(new MainMenuState());
 		}
 		if(controls.ACCEPT) {
-			CoolUtil.browserLoad(creditsStuff[curSelected][3]);
+			if (creditsStuff[curSelected][3] != '') {
+				CoolUtil.browserLoad(creditsStuff[curSelected][3]);
+			}
 		}
 		super.update(elapsed);
 	}
@@ -404,7 +412,7 @@ class DNMCreditsState extends MusicBeatState
 		else if (curSelected >= (page + 1) * 6) page ++;
 
 		#if ACHIEVEMENTS_ALLOWED
-		if (page == 9) {
+		if (page == 10) {
 			Achievements.loadAchievements();
 			var achieveID:Int = Achievements.getAchievementIndex('best_team');
 			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { //It's a friday night. WEEEEEEEEEEEEEEEEEE

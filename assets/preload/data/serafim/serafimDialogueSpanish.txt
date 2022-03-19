@@ -1,0 +1,6 @@
+:sarvCheerful:¡Esto fue una buena idea!:sarvVoice8
+:sarvCheerful:He querido plantar estas peonías por semanas!:sarvVoice9
+:ruvNeutral:Yo sé cómo te gusta estar aquí.:ruvVoice10
+:ruvNeutral:Es el mejor método para pasar el tiempo contigo.:ruvVoice11
+:sarvDelighted:Si es así... entonces, estoy feliz por haber podido hacer esto. Lo digo enserio.:sarvVoice10
+:sarvDelighted:Todo lo que quiero hacer es pasar el tiempo contigo.:sarvVoice11

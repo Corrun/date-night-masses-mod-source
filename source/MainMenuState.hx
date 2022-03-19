@@ -37,6 +37,7 @@ class MainMenuState extends MusicBeatState
 	
 	var optionShit:Array<String> = [
 		'story_mode',
+		'freeplay',
 		#if MODS_ALLOWED /*'mods',*/ #end
 		#if ACHIEVEMENTS_ALLOWED 'awards', #end
 		'credits',
@@ -111,20 +112,6 @@ class MainMenuState extends MusicBeatState
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
-
-		var test:FlxText;
-		test = new FlxText(100,200, FlxG.width, "사르브?", 32);
-		test.setFormat(Paths.font("unifont-14.0.02.ttf"), 50, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		test.scrollFactor.set();
-		add(test);
-		trace("사르브?");
-
-		var test2:FlxText;
-		test2 = new FlxText(100,300, FlxG.width, "绝对不是", 32);
-		test2.setFormat(Paths.font("unifont-14.0.02.ttf"), 50, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		test2.scrollFactor.set();
-		add(test2);
-		trace("绝对不是");
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 		camFollowPos = new FlxObject(0, 0, 1, 1);

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="buffKikyo.png">
+<SubTexture name="buffKikyo right0000" x="0" y="0" width="585" height="962" frameX="0" frameY="0" frameWidth="585" frameHeight="962" />
+<SubTexture name="buffKikyo up0000" x="585" y="0" width="585" height="962" frameX="0" frameY="0" frameWidth="585" frameHeight="962" />
+<SubTexture name="buffKikyo left0000" x="1170" y="0" width="585" height="962" frameX="0" frameY="0" frameWidth="585" frameHeight="962" />
+<SubTexture name="buffKikyo down0000" x="1755" y="0" width="585" height="962" frameX="0" frameY="0" frameWidth="585" frameHeight="962" />
+<SubTexture name="buffKikyo idle0000" x="0" y="962" width="585" height="962" frameX="0" frameY="0" frameWidth="585" frameHeight="962" />
+</TextureAtlas>

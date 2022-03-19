@@ -98,7 +98,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			else
 				MusicBeatState.switchState(new FreeplayState());
 
-			FlxG.sound.playMusic(Paths.music('Affinity', 'date-night masses'), 0);
+			FlxG.sound.playMusic(Paths.music('Affinity', 'date-night masses'), 1);
 			PlayState.instance.callOnLuas('onGameOverConfirm', [false]);
 		}
 

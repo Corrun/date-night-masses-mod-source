@@ -1,0 +1,6 @@
+:ruvDateNerv:저기 사르브?:ruvVoice13
+:sarvDateConfused:흐음? 뭔데?:sarvVoice14
+:ruvDateNeutral:네-네게 하고 싶은 말이 있어서…:ruvVoice14
+:ruvDateNeutral:나…:ruvVoice15
+:ruvDateNerv:...너와 같이 시간 보내는게 정말 좋아.:ruvVoice16
+:sarvDateCheerful:음, 난 네가 정말 좋아.:sarvVoice15

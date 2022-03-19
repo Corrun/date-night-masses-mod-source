@@ -5,4 +5,7 @@ function onCreate()
 	setPropertyFromClass('GameOverSubstate', 'endSoundName', 'gameOverEnd');
 
 	setProperty('gf.visible', false)
+
+	setProperty('boyfriend.x', getProperty('boyfriend.x') - 35)
+	setProperty('boyfriend.y', getProperty('boyfriend.y') - 120)
 end

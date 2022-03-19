@@ -1,0 +1,6 @@
+:ruvDateNerv:Hey Sarv?:ruvVoice13
+:sarvDateConfused:Hm? Hva så?:sarvVoice14
+:ruvDateNeutral:Der er- Der var noget jeg godt gad at fortælle dig.:ruvVoice14
+:ruvDateNeutral:Jeg...:ruvVoice15
+:ruvDateNerv:......Kan virkelig godt lige at bruge min tid sammen med dig.:ruvVoice16
+:sarvDateCheerful:Nå da, men jeg kan virkelig godt lig dig.:sarvVoice15

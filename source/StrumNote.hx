@@ -10,6 +10,7 @@ class StrumNote extends FlxSprite
 {
 	private var colorSwap:ColorSwap;
 	public var resetAnim:Float = 0;
+	public var neverResetAnim:Bool = false;
 	private var noteData:Int = 0;
 	public var direction:Float = 30;//plan on doing scroll directions soon -bb
 
@@ -106,13 +107,14 @@ class StrumNote extends FlxSprite
 	}
 
 	override function update(elapsed:Float) {
-		if(resetAnim > 0) {
+		if(!neverResetAnim && resetAnim > 0) {
 			resetAnim -= elapsed;
 			if(resetAnim <= 0) {
 				playAnim('static');
 				resetAnim = 0;
 			}
 		}
+		
 		//if(animation.curAnim != null){ //my bad i was upset
 		if(animation.curAnim.name == 'confirm' && !PlayState.isPixelStage) {
 			centerOrigin();

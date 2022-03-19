@@ -450,6 +450,7 @@ class FunkinLua {
 				}));
 			}
 		});
+
 		Lua_helper.add_callback(lua, "noteTweenY", function(tag:String, note:Int, value:Dynamic, duration:Float, ease:String) {
 			cancelTween(tag);
 			if(note < 0) note = 0;

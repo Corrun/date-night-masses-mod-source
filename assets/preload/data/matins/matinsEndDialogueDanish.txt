@@ -1,0 +1,5 @@
+:sarvCheerful:Okay, du har overbevist mig!:sarvVoice5
+:sarvCheerful:Vi kan godt hænge ud i dag.:sarvVoice6
+:ruvNeutral:Fedt.:ruvVoice8
+:ruvNeutral:Skal vi starte i haven?:ruvVoice9
+:sarvCheerful:Det lyder som en plan!:sarvVoice7

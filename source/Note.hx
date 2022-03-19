@@ -61,15 +61,13 @@ class Note extends FlxSprite
 
 	public var hitHealth:Float = 0.023;
 	public var missHealth:Float = 0.09;
-	public var missSusTain:Float = 0.008;
+	public var missSusTain:Float = 0.015;
 
 	public var texture(default, set):String = null;
 
 	public var noAnimation:Bool = false;
 	public var hitCausesMiss:Bool = false;
 	public var distance:Float = 2000;//plan on doing scroll directions soon -bb
-
-	public var playerArrowSkin:FlxSprite = new FlxSprite();
 
 	private function set_texture(value:String):String {
 		if(texture != value) {
@@ -126,7 +124,6 @@ class Note extends FlxSprite
 		if(!inEditor) this.strumTime += ClientPrefs.noteOffset;
 
 		this.noteData = noteData;
-		//playerArrowSkin.frames = Paths.getSparrowAtlas('notes/' + PlayState.SONG.playerArrowSkin, 'date-night masses');
 
 		if(noteData > -1) {
 			texture = '';
@@ -147,8 +144,7 @@ class Note extends FlxSprite
 					case 3:
 						animToPlay = 'red';
 				}
-				/*if (noteData < 4)*/ animation.play(animToPlay + 'Scroll');
-				//if (noteData >= 4) playerArrowSkin.animation.play(animToPlay + 'Scroll');
+				animation.play(animToPlay + 'Scroll');
 			}
 		}
 
@@ -225,7 +221,6 @@ class Note extends FlxSprite
 		if(suffix == null) suffix = '';
 		
 		var skin:String = texture;
-		//if (mustPress) skin = skin = PlayState.SONG.playerArrowSkin;
 		if(texture.length < 1) {
 			skin = PlayState.SONG.arrowSkin;
 			if(skin == null || skin.length < 1) {
@@ -290,13 +285,6 @@ class Note extends FlxSprite
 		animation.addByPrefix('blueScroll', 'blue0');
 		animation.addByPrefix('purpleScroll', 'purple0');
 
-		/*
-		playerArrowSkin.animation.addByPrefix('greenScroll', 'green0');
-		playerArrowSkin.animation.addByPrefix('redScroll', 'red0');
-		playerArrowSkin.animation.addByPrefix('blueScroll', 'blue0');
-		playerArrowSkin.animation.addByPrefix('purpleScroll', 'purple0');
-		*/
-
 		if (isSustainNote)
 		{
 			animation.addByPrefix('purpleholdend', 'purple hold end');
@@ -308,21 +296,8 @@ class Note extends FlxSprite
 			animation.addByPrefix('greenhold', 'green hold piece');
 			animation.addByPrefix('redhold', 'red hold piece');
 			animation.addByPrefix('bluehold', 'blue hold piece');
-
-			/*
-			playerArrowSkin.animation.addByPrefix('purpleholdend', 'purple hold end');
-			playerArrowSkin.animation.addByPrefix('greenholdend', 'green hold end');
-			playerArrowSkin.animation.addByPrefix('redholdend', 'red hold end');
-			playerArrowSkin.animation.addByPrefix('blueholdend', 'blue hold end');
-
-			playerArrowSkin.animation.addByPrefix('purplehold', 'purple hold piece');
-			playerArrowSkin.animation.addByPrefix('greenhold', 'green hold piece');
-			playerArrowSkin.animation.addByPrefix('redhold', 'red hold piece');
-			playerArrowSkin.animation.addByPrefix('bluehold', 'blue hold piece');
-			*/
 		}
 
-		//playerArrowSkin.setGraphicSize(Std.int(width * 0.7));
 		setGraphicSize(Std.int(width * 0.7));
 		updateHitbox();
 	}

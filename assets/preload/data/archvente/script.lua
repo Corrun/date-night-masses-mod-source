@@ -6,3 +6,8 @@ function onCreate()
 
 	setProperty('gf.visible', false)
 end
+
+function onGameOverStart() 
+	setProperty('boyfriend.scale.x', 1.2)
+	setProperty('boyfriend.scale.y', 1.2)
+end

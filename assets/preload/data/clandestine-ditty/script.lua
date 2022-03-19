@@ -11,3 +11,8 @@ function onCreate()
 	setProperty('camFollow.x', getProperty('camFollow.x') - 155)
 	setProperty('camFollow.y', getProperty('camFollow.y') - 200)
 end
+
+function onGameOverStart() 
+	setProperty('boyfriend.scale.x', 0.9)
+	setProperty('boyfriend.scale.y', 0.9)
+end

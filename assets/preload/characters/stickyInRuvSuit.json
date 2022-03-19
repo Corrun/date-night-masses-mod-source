@@ -14,8 +14,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				40,
-				10
+				32,
+				8
 			],
 			"anim": "singLEFT",
 			"fps": 24,
@@ -25,8 +25,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				33,
-				-59
+				26.4,
+				-47.2
 			],
 			"anim": "singDOWN",
 			"fps": 24,
@@ -36,8 +36,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-19,
-				18
+				-15.2,
+				14.4
 			],
 			"anim": "singUP",
 			"fps": 24,
@@ -47,8 +47,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-12,
-				2
+				-9.6,
+				1.6
 			],
 			"anim": "singRIGHT",
 			"fps": 24,
@@ -58,8 +58,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				40,
-				10
+				32,
+				8
 			],
 			"anim": "singLEFTmiss",
 			"fps": 24,
@@ -69,8 +69,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				47,
-				-36
+				37.6,
+				-28.8
 			],
 			"anim": "singDOWNmiss",
 			"fps": 24,
@@ -80,8 +80,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-2,
-				32
+				-1.6,
+				25.6
 			],
 			"anim": "singUPmiss",
 			"fps": 24,
@@ -91,8 +91,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				-4,
-				3
+				-3.2,
+				2.4
 			],
 			"anim": "singRIGHTmiss",
 			"fps": 24,
@@ -102,8 +102,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				108,
-				35
+				86.4,
+				28
 			],
 			"anim": "firstDeath",
 			"fps": 24,
@@ -113,8 +113,8 @@
 		{
 			"loop": true,
 			"offsets": [
-				151,
-				-33
+				120.8,
+				-26.4
 			],
 			"anim": "deathLoop",
 			"fps": 24,
@@ -124,8 +124,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				151,
-				53
+				120.8,
+				42.4
 			],
 			"anim": "deathConfirm",
 			"fps": 24,
@@ -151,5 +151,5 @@
 		0
 	],
 	"sing_duration": 4,
-	"scale": 1
+	"scale": 0.8
 }

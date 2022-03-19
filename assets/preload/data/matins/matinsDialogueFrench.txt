@@ -1,0 +1,11 @@
+:ruvNeutral:Tu n’as rien de prévu ce soir ?:ruvVoice1
+:sarvCheerful:Non !:sarvVoice1
+:sarvCheerful:Rien du tout !:sarvVoice2
+:sarvCheerful:Pourquoi, quel sont tes plans pour la journée ?:sarvVoice3
+:ruvNerv:Eh bien, je pensais qu'on pourrait passer du temps ensemble ce soir.:ruvVoice2
+:ruvNerv:Rien que nous deux.:ruvVoice3
+:ruvNerv:Ça fait longtemps.:ruvVoice4
+:sarvConfused:...:sarvVoice4
+:ruvNerv:Tu n’as pas à te forcer.:ruvVoice5
+:ruvNerv:Je pensais juste qu’on pourrait peut-être passer l’après-midi dans le jardin.:ruvVoice6
+:ruvNerv:Avoir un diner dehors, comme a pique-nique:ruvVoice7

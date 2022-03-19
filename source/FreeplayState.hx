@@ -73,16 +73,14 @@ class FreeplayState extends MusicBeatState
 			}
 
 			WeekData.setDirectoryFromWeek(leWeek);
-			if (StoryMenuState.weekCompleted.get(leWeek.weekName) || (StoryMenuState.weekCompleted.get("week1") && leWeek.weekName == "extras")) {
-				for (song in leWeek.songs)
+			for (song in leWeek.songs)
+			{
+				var colors:Array<Int> = song[2];
+				if(colors == null || colors.length < 3)
 				{
-					var colors:Array<Int> = song[2];
-					if(colors == null || colors.length < 3)
-					{
-						colors = [146, 113, 253];
-					}
-					addSong(song[0], i, song[1], FlxColor.fromRGB(colors[0], colors[1], colors[2]));
+					colors = [146, 113, 253];
 				}
+				addSong(song[0], i, song[1], FlxColor.fromRGB(colors[0], colors[1], colors[2]));
 			}
 		}
 		WeekData.setDirectoryFromWeek();
@@ -317,6 +315,24 @@ class FreeplayState extends MusicBeatState
 			}
 
 			FlxG.sound.music.volume = 0;
+
+			#if PRELOAD_ALL
+		
+			//if (instPlaying != curSelected) {
+				destroyFreeplayVocals();
+				Paths.currentModDirectory = songs[curSelected].folder;
+				var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
+				PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].songName.toLowerCase());
+				vocals = new FlxSound();
+				
+				FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.7);
+				vocals.play();
+				vocals.persist = true;
+				vocals.looped = true;
+				vocals.volume = 0.7;
+				instPlaying = curSelected;
+			//}
+			#end
 					
 			destroyFreeplayVocals();
 		}
@@ -446,21 +462,6 @@ class FreeplayState extends MusicBeatState
 		{
 			curDifficulty = newPos;
 		}
-
-		#if PRELOAD_ALL
-			destroyFreeplayVocals();
-			Paths.currentModDirectory = songs[curSelected].folder;
-			var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
-			PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].songName.toLowerCase());
-			vocals = new FlxSound();
-			
-			FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.7);
-			vocals.play();
-			vocals.persist = true;
-			vocals.looped = true;
-			vocals.volume = 0.7;
-			instPlaying = curSelected;
-		#end
 	}
 
 	private function positionHighscore() {

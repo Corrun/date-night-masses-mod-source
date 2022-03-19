@@ -2,46 +2,46 @@
 	"animations": [
 		{
 			"offsets": [
-				-9,
-				10
+				4,
+				-2
 			],
 			"loop": false,
 			"anim": "singLEFT",
 			"fps": 24,
-			"name": "Dad Sing Note LEFT",
+			"name": "Left0",
 			"indices": []
 		},
 		{
 			"offsets": [
-				0,
-				-30
+				2,
+				-46
 			],
 			"loop": false,
 			"anim": "singDOWN",
 			"fps": 24,
-			"name": "Dad Sing Note DOWN",
+			"name": "Down0",
 			"indices": []
 		},
 		{
 			"offsets": [
-				-6,
-				50
+				-10,
+				22
 			],
 			"loop": false,
 			"anim": "singUP",
 			"fps": 24,
-			"name": "Dad Sing Note UP",
+			"name": "Up0",
 			"indices": []
 		},
 		{
 			"offsets": [
-				0,
-				27
+				12,
+				18
 			],
 			"loop": false,
 			"anim": "singRIGHT",
 			"fps": 24,
-			"name": "Dad Sing Note RIGHT",
+			"name": "Right0",
 			"indices": []
 		},
 		{
@@ -51,80 +51,63 @@
 			],
 			"loop": false,
 			"anim": "idle",
-			"fps": 24,
-			"name": "Dad idle dance",
+			"fps": 12,
+			"name": "Idle0",
 			"indices": []
 		},
 		{
 			"offsets": [
-				0,
-				0
+				2,
+				-46
 			],
-			"loop": true,
+			"loop": false,
+			"anim": "singDOWN-loop",
 			"fps": 24,
-			"anim": "idle-loop",
-			"indices": [
-				10,
-				11,
-				12,
-				12
-			],
-			"name": "Dad idle dance"
+			"name": "Down0",
+			"indices": []
 		},
 		{
 			"offsets": [
-				-9,
-				10
+				4,
+				-2
 			],
 			"loop": true,
 			"fps": 24,
 			"anim": "singLEFT-loop",
 			"indices": [
-				12,
-				13,
-				14,
-				15
 			],
-			"name": "Dad Sing Note LEFT"
+			"name": "Left0"
 		},
 		{
 			"offsets": [
-				0,
-				27
+				12,
+				18
 			],
 			"loop": true,
 			"fps": 24,
 			"anim": "singRIGHT-loop",
 			"indices": [
-				15,
-				16,
-				17,
-				18
 			],
-			"name": "Dad Sing Note RIGHT"
+			"name": "Right0"
 		},
 		{
 			"offsets": [
-				-6,
-				50
+				-10,
+				22
 			],
 			"loop": true,
 			"fps": 24,
 			"anim": "singUP-loop",
 			"indices": [
-				56,
-				57,
-				58,
-				59
 			],
-			"name": "Dad Sing Note UP"
+			"name": "Up0"
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/DADDY_DEAREST",
+	"image": "characters/DateSarv",
 	"position": [
-		0,
-		0
+		50,
+		450
 	],
 	"healthicon": "sarv",
 	"flip_x": false,
@@ -138,5 +121,5 @@
 		0
 	],
 	"sing_duration": 6.1,
-	"scale": 1
+	"scale": 2
 }

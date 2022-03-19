@@ -1,0 +1,6 @@
+:sarvCheerful:这可真是个好主意！:sarvVoice8
+:sarvCheerful:我已经打算重栽这些杜丹好几周了！ :sarvVoice9
+:ruvNeutral:嗯，我知道你喜欢在户外所以。:ruvVoice10
+:ruvNeutral:这也是和你一同度过时间的最好方式了吧。:ruvVoice11
+:sarvDelighted:那么，我很开心我们这么做了。认真的噢:sarvVoice10
+:sarvDelighted:我只想和你多花一点时间在一起而已。 :sarvVoice11

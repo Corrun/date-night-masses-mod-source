@@ -1,0 +1,6 @@
+:ruvDateNerv:Dis Sarv ?:ruvVoice13
+:sarvDateConfused:Hmm ? Qu’il a-t-il ?:sarvVoice14
+:ruvDateNeutral:J-Je voudrais te dire quelque chose.:ruvVoice14
+:ruvDateNeutral:Je...:ruvVoice15
+:ruvDateNerv:...veux vraiment passer du temps avec toi.:ruvVoice16
+:sarvDateCheerful:Eh bien, je t’aime beaucoup.:sarvVoice15

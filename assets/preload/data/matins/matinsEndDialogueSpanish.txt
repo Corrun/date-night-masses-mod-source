@@ -1,0 +1,5 @@
+:sarvCheerful:Okay, me convenciste!:sarvVoice5
+:sarvCheerful:Podemos pasar el día juntos.:sarvVoice6
+:ruvNeutral:A bueno.:ruvVoice8
+:ruvNeutral:¿Quieres comenzar en el jardín?:ruvVoice9
+:sarvCheerful:¡Claro que si!:sarvVoice7

@@ -1,0 +1,6 @@
+:ruvDateNerv:…な、Sarv.:ruvVoice13
+:sarvDateConfused:何、Ruv?:sarvVoice14
+:ruvDateNeutral:俺…俺、お前に言いてぇことある。:ruvVoice14
+:ruvDateNeutral:俺は…:ruvVoice15
+:ruvDateNerv:俺は…お前と時間過ごすの好きなんだ！:ruvVoice16
+:sarvDateCheerful:あたしだってあなたのことも好きだよ。:sarvVoice15

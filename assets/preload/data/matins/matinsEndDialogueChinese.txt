@@ -1,0 +1,5 @@
+:sarvCheerful:好吧，你成功的说服我了！:sarvVoice5
+:sarvCheerful:那我今天剩下的时间就交给你了噢。:sarvVoice6
+:ruvNeutral:那，真是太好了...:ruvVoice8
+:ruvNeutral:想要先去花园吗？ :ruvVoice9
+:sarvCheerful:不错的计划呢！:sarvVoice7

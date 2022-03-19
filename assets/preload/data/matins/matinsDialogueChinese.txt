@@ -1,0 +1,11 @@
+:ruvNeutral:所以，你今晚没什么打算么？:ruvVoice1
+:sarvCheerful:没有噢！:sarvVoice1
+:sarvCheerful:一点计划都没!:sarvVoice2
+:sarvCheerful:难道你有什么想法吗？:sarvVoice3
+:ruvNerv:嗯，我想，我们或许可以共度今晚的时光。:ruvVoice2
+:ruvNerv:仅是属于我们的二人世界:ruvVoice3
+:ruvNerv:我们已经很久没那样过了。:ruvVoice4
+:sarvConfused:...:sarvVoice4
+:ruvNerv:你不想也完全没关系的。:ruvVoice5
+:ruvNerv:我只是觉得我们或许可以在花园里渡过傍晚。:ruvVoice6
+:ruvNerv:像野餐一样吃个晚饭，仅此而已。:ruvVoice7

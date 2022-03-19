@@ -105,7 +105,7 @@ class NoteOffsetState extends MusicBeatState
 
 		rating = new FlxSprite().loadGraphic(Paths.image('sick'));
 		rating.cameras = [camHUD];
-		rating.setGraphicSize(Std.int(rating.width * 0.7));
+		rating.setGraphicSize(Std.int(rating.width * 0.4));
 		rating.updateHitbox();
 		rating.antialiasing = ClientPrefs.globalAntialiasing;
 		
@@ -126,7 +126,7 @@ class NoteOffsetState extends MusicBeatState
 		{
 			var numScore:FlxSprite = new FlxSprite(43 * daLoop).loadGraphic(Paths.image('num' + i));
 			numScore.cameras = [camHUD];
-			numScore.setGraphicSize(Std.int(numScore.width * 0.5));
+			numScore.setGraphicSize(Std.int(numScore.width * 0.3));
 			numScore.updateHitbox();
 			numScore.antialiasing = ClientPrefs.globalAntialiasing;
 			comboNums.add(numScore);
@@ -355,7 +355,7 @@ class NoteOffsetState extends MusicBeatState
 			persistentUpdate = false;
 			CustomFadeTransition.nextCamera = camOther;
 			MusicBeatState.switchState(new options.OptionsState());
-			FlxG.sound.playMusic(Paths.music('freakyMenu'), 1, true);
+			FlxG.sound.playMusic(Paths.music('Affinity', 'date-night masses'));
 			FlxG.mouse.visible = false;
 		}
 
@@ -408,12 +408,12 @@ class NoteOffsetState extends MusicBeatState
 	function repositionCombo()
 	{
 		rating.screenCenter();
-		rating.x = coolText.x - 40 + ClientPrefs.comboOffset[0];
-		rating.y -= 60 + ClientPrefs.comboOffset[1];
+		rating.x = coolText.x - 360 + ClientPrefs.comboOffset[0];
+		rating.y -= -240 + ClientPrefs.comboOffset[1];
 
 		comboNums.screenCenter();
-		comboNums.x = coolText.x - 90 + ClientPrefs.comboOffset[2];
-		comboNums.y += 80 - ClientPrefs.comboOffset[3];
+		comboNums.x = coolText.x - 360 + ClientPrefs.comboOffset[2];
+		comboNums.y += 290 - ClientPrefs.comboOffset[3];
 		reloadTexts();
 	}
 

@@ -72,7 +72,7 @@ class ArchEndingState extends MusicBeatState
 		super.update(elapsed);
 		if (controls.BACK || controls.ACCEPT)
 		{
-			FlxG.sound.playMusic(Paths.music('freakyMenu'));
+			FlxG.sound.playMusic(Paths.music('Affinity', 'date-night masses'));
 			MusicBeatState.switchState(new StoryMenuState());
 		}
 	}

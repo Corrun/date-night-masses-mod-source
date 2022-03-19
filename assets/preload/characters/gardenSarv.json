@@ -4,7 +4,7 @@
 			"loop": false,
 			"offsets": [
 				0,
-				-40
+				-88
 			],
 			"fps": 24,
 			"anim": "singLEFT",
@@ -14,8 +14,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				130,
-				-90
+				286,
+				-198
 			],
 			"fps": 24,
 			"anim": "singDOWN",
@@ -25,8 +25,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				30,
-				24
+				66,
+				52.8
 			],
 			"fps": 24,
 			"anim": "singUP",
@@ -36,8 +36,8 @@
 		{
 			"loop": false,
 			"offsets": [
-				50,
-				-28
+				110,
+				-61.6
 			],
 			"fps": 24,
 			"anim": "singRIGHT",
@@ -58,8 +58,8 @@
 		{
 			"loop": true,
 			"offsets": [
-				130,
-				-90
+				186,
+				-198
 			],
 			"anim": "singDOWN-loop",
 			"fps": 24,
@@ -74,7 +74,7 @@
 			"loop": true,
 			"offsets": [
 				0,
-				-40
+				-88
 			],
 			"anim": "singLEFT-loop",
 			"fps": 24,
@@ -88,16 +88,13 @@
 		{
 			"loop": true,
 			"offsets": [
-				50,
-				-28
+				110,
+				-61.6
 			],
 			"anim": "singRIGHT-loop",
 			"fps": 24,
 			"name": "Right0",
 			"indices": [
-				0,
-				1,
-				2,
 				3,
 				4,
 				5
@@ -106,8 +103,8 @@
 		{
 			"loop": true,
 			"offsets": [
-				30,
-				24
+				66,
+				52.8
 			],
 			"anim": "singUP-loop",
 			"fps": 24,
@@ -137,5 +134,5 @@
 		0
 	],
 	"sing_duration": 6.1,
-	"scale": 1
+	"scale": 2.2
 }

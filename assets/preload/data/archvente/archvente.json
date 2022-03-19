@@ -6874,7 +6874,8 @@
   "uiType": "normal",
   "bpm": 200,
   "gf": "gf",
-  "arrowSkin": "NOTE_assets",
-  "splashSkin": "NOTE_Splashes"
+  "arrowSkin": "flower",
+  "splashSkin": "NOTE_Splashes",
+  "playerArrowSkin": "arrowsClover"
  }
 }

@@ -1,0 +1,11 @@
+:ruvNeutral:Så, du har ikke rigtigt noget at lave her i aften?:ruvVoice1
+:sarvCheerful:Næ!:sarvVoice1
+:sarvCheerful:Slet ikke!:sarvVoice2
+:sarvCheerful:Hvorfor spørger du, havde du nogen plan få i dag?:sarvVoice3
+:ruvNerv:Tja, jeg tænkte faktisk om vi kunne bruge noget tid sammen.:ruvVoice2
+:ruvNerv:Bare os to.:ruvVoice3
+:ruvNerv:Det er noget tid siden vi sidst gjorde det.:ruvVoice4
+:sarvConfused:...:sarvVoice4
+:ruvNerv:Vi behøver ikke.:ruvVoice5
+:ruvNerv:Jeg troede bare vi kunne hænge ud i haven sammen over aftenen.:ruvVoice6
+:ruvNerv:Du ved, have aftensmad, ligesom en picnic.:ruvVoice7

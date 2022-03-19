@@ -1,0 +1,11 @@
+:ruvNeutral:그래서, 오늘 밤 일정이 아예 없는거야?:ruvVoice1
+:sarvCheerful:아니! :sarvVoice1
+:sarvCheerful:아무것도 없어!:sarvVoice2
+:sarvCheerful:왜, 네 일정은 뭐였는데?:sarvVoice3
+:ruvNerv:오늘 밤 시간좀 같이 보내면 좋겠다 싶어서.:ruvVoice2
+:ruvNerv:오랜만에:ruvVoice3
+:ruvNerv:우리 둘만.:ruvVoice4
+:sarvConfused:...:sarvVoice4
+:ruvNerv:하기 싫으면 안해도 돼. :ruvVoice5
+:ruvNerv:그냥 저녁을 정원에서 시간 같이 보내면 어떨까 하고.:ruvVoice6
+:ruvNerv:저녁도 먹고, 피크닉처럼.:ruvVoice7

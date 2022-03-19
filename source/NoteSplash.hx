@@ -31,7 +31,7 @@ class NoteSplash extends FlxSprite
 
 		if(texture == null) {
 			texture = 'NOTE_Splashes';
-			if(PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) texture = PlayState.SONG.splashSkin;
+			if (PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) texture = PlayState.SONG.splashSkin;
 		}
 
 		if(textureLoaded != texture) {
