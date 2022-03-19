@@ -62,7 +62,8 @@ class TitleState extends MusicBeatState
 	var textGroup:FlxGroup;
 	var logoSpr:FlxSprite;
 	var datelogo:FlxSprite;
-
+	var church:FlxSprite;
+	
 	var curWacky:Array<String> = [];
 
 	var wackyImage:FlxSprite;
@@ -253,7 +254,8 @@ class TitleState extends MusicBeatState
 		
 		
 		add(bg);
-
+		add(church);
+		churhc.visible = false;
 		logoBl = new FlxSprite(titleJSON.titlex, titleJSON.titley);
 		
 		
@@ -268,7 +270,7 @@ class TitleState extends MusicBeatState
 			path = "assets/images/logoBumpin.png";
 		}
 		//trace(path, FileSystem.exists(path));
-		logoBl.frames = FlxAtlasFrames.fromSparrow(BitmapData.fromFile(path),File.getContent(StringTools.replace(path,".png",".xml")));
+//		logoBl.frames = FlxAtlasFrames.fromSparrow(BitmapData.fromFile(path),File.getContent(StringTools.replace(path,".png",".xml")));
 		#else
 		
 		logoBl = Paths.image('logo/DNM', 'date-night masses');
@@ -332,6 +334,11 @@ class TitleState extends MusicBeatState
 		// titleText.screenCenter(X);
 		add(titleText);
 
+		church = new FlxSprite().loadGraphic(Paths.image('logo/image', 'date-night masses'));
+		church.screenCenter();
+		church.antialiasing = ClientPrefs.globalAntialiasing;
+		church.scale.set(0.4, 0.4);
+
 		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
 		logo.screenCenter();
 		logo.antialiasing = ClientPrefs.globalAntialiasing;
@@ -344,7 +351,7 @@ class TitleState extends MusicBeatState
 		add(credGroup);
 		textGroup = new FlxGroup();
 
-		blackScreen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		blackScreen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.PINK);
 		credGroup.add(blackScreen);
 
 		credTextShit = new Alphabet(0, 0, "", true);
@@ -590,7 +597,7 @@ class TitleState extends MusicBeatState
 					addMoreText('This game', -60);
 					logoSpr.visible = true;
 				// credTextShit.text += '\nNewgrounds';
-				case 15:
+				case 16:
 					deleteCoolText();
 					logoSpr.visible = false;
 					createCoolText([curWacky[0]]);
@@ -598,7 +605,7 @@ class TitleState extends MusicBeatState
 
 				// credTextShit.text = 'Shoutouts Tom Fulp';
 				// credTextShit.screenCenter();
-				case 17:
+				case 18:
 					addMoreText(curWacky[1]);
 				// credTextShit.text += '\nlmao';
 				case 22:
@@ -630,9 +637,13 @@ class TitleState extends MusicBeatState
 			remove(logoSpr);
 			remove(datelogo);
 
-			FlxG.camera.flash(FlxColor.WHITE, 4);
+			FlxG.camera.flash(FlxColor.PINK, 4);
 			remove(credGroup);
+
 			skippedIntro = true;
+			church.visible = true;
+			church.y += 100;
+			FlxTween.tween(church, {"scale.x": 1.6, "scale.y": 1.6}, 2.0);
 		}
 	}
 }

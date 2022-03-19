@@ -1543,6 +1543,9 @@ class PlayState extends MusicBeatState
 					}
 				}
 				else if (SONG.song.toLowerCase() == 'matins') {
+					var fillerBg:FlxSprite = new FlxSprite(-FlxG.width, -FlxG.height).makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK, false);
+					add(fillerBg);
+					trace(fillerBg.x + fillerBg.y);
 					var poof:DialogueBox = new DialogueBox(false, dialogue);
 					poof.scrollFactor.set();
 					poof.finishThing = startCountdown;
