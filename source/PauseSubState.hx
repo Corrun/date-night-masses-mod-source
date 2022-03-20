@@ -75,18 +75,10 @@ class PauseSubState extends MusicBeatSubstate
 		{
 			if (hereyouare.contains(checkProgram[i]))
 			{
-				/*
-				var chatGreeting:FlxText = new FlxText(FlxG.width*0.8, FlxG.height - 44, 0, "Hi Chat", 40);
-				chatGreeting.scrollFactor.set();
-				chatGreeting.setFormat("VCR OSD Mono", 40, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-				add(chatGreeting);
-				*/
-				var chatGreeting:FlxSprite = new FlxSprite(FlxG.width*0.6, FlxG.height * 0.2);
+				var chatGreeting:FlxSprite = new FlxSprite(FlxG.width*0.78, FlxG.height * 0.64);
 				chatGreeting.frames = Paths.getSparrowAtlas('pauseMenu/hichat', 'date-night masses');
 				chatGreeting.animation.addByPrefix('idle', "hichat0", 8);
 				chatGreeting.animation.play('idle');
-				chatGreeting.scale.x = 0.3;
-				chatGreeting.scale.y = 0.3;
 				add(chatGreeting);
 
 				#if ACHIEVEMENTS_ALLOWED

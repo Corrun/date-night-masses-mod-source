@@ -142,7 +142,7 @@ class DNMCreditsState extends MusicBeatState
 			['Artceps',				'artceps',			'Ruv animator',											'https://twitter.com/MayflyingMink',				"The dedication and energy into this mod, don't regret a thing","Ruv's gloves can die","Ruv's gloves can die"],
 			['Spinbit',				'spinbit',			'Sarv animator',										'https://twitter.com/_Spinbit',						'Teehee, I do the funny animating','Icecream nun and oreo man my beloved','Animate crashed on me atleast 50 times'],
 
-			['NemoInABottle',		'nemo',				'sticky pritesheets',								'https://twitter.com/NemoInABottle'],
+			['NemoInABottle',		'nemo',				'sticky spritesheet',								'https://twitter.com/NemoInABottle'],
 			['OhSoVanilla',			'ohsovanilla',		'Stage 4 sarv animator',									'https://twitter.com/OhSoVanilla64',				'Hihi!! I amimate!!!','Sarvente is my wife','I love ice cream!!'],
 			[''],
 
@@ -159,7 +159,7 @@ class DNMCreditsState extends MusicBeatState
 			['Cerbera',				'cerbera',			'Hard Rosebass charter and chart corrector',					'https://twitter.com/Cerbera_fnf'],
 
 			['Corrun',				'corrun',			'Coding, modCharting and French translation',						'https://twitter.com/Corrun_UT',					'Excellency is not an art, but a habit.','500 hours on this mod. I regret nothing.','tomato dog my beloved'],
-			['Panda',				'pad',				'Coding',												'https://twitter.com/Pandanomania'],
+			['Panda',				'pad',				'Coding (mainly demo)',												'https://twitter.com/Pandanomania'],
 			[''],
 
 			['Temp',				'temp',				'Director, writer, Sarvente VA',						'https://twitter.com/tt_thewriter',					"I'm probably your mom","I do the funni voices and write the silly stories","Ruvente Supremacy"],
@@ -170,7 +170,7 @@ class DNMCreditsState extends MusicBeatState
 			['Mike geno',			'mike',				'Musician of MFM',										'https://twitter.com/electro_mike'],
 			['Kuro',				'kuro',				'Programmer of MFM',									'https://twitter.com/Kuroao_Anomal'],
 
-			['Sonzai',				'',					'Playtester and Server owner',	'https://twitter.com/sonzai_buredo',	"Damn shawty you shit so loud, what're your pronouns?","I FUCKING LOVE MID-FIGHT MASSES","Oh....my penis is big...."],
+			['Sonzai',				'',					'Playtester and Siscord Server Owner',					'https://twitter.com/sonzai_buredo',	"Damn shawty you shit so loud, what're your pronouns?","I FUCKING LOVE MID-FIGHT MASSES","Oh....my penis is big...."],
 			['Shift',				'',					'Korean translator',									'https://twitter.com/Shift7a_4'],
 			['Star',				'',					'Chinese translator',									'https://twitter.com/NihilityStar'],
 
@@ -184,7 +184,7 @@ class DNMCreditsState extends MusicBeatState
 
 			['Marquisartuis',		'',					'kikyo sprites',										''],
 			['Samueljimenez15',		'',					'kikyo sprites',										''],
-			['Violette',			'',					'sticky sprites',										'https://twitter.com/onlyviolette'],
+			['Violette',			'',					'cringe sticky\'s sprites',										'https://twitter.com/onlyviolette'],
 
 			['Katse',				'',					'Tomato Dog animator',									''],
 			['Sticky',				'',					'Dedicated supporter,\nsticky death sounds',			'https://twitter.com/StickyBM'],

@@ -52,7 +52,7 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
-
+		FlxG.save.data.stickyUnlocked = true;
 		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
@@ -205,7 +205,6 @@ class MainMenuState extends MusicBeatState
 			'dawn_of_a_new_day',
 			'his_guardian_angel',
 			'two_harmonies_one_song',
-			'buff_gang',
 			'our_final_hymn',
 			'together_forever',
 			'whitty_reference',

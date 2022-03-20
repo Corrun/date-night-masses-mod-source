@@ -236,16 +236,19 @@ class DialogueBox extends FlxSpriteGroup
 			case 'matins':
 				sound = new FlxSound().loadEmbedded(Paths.music('Morning', 'date-night masses'));
 				sound.volume = 0;
+				sound.looped = true;
 				FlxG.sound.list.add(sound);
 				sound.fadeIn(1, 0, 0.8);
 			case 'serafim':
 				sound = new FlxSound().loadEmbedded(Paths.music('Work', 'date-night masses'));
 				sound.volume = 0;
+				sound.looped = true;
 				FlxG.sound.list.add(sound);
 				sound.fadeIn(1, 0, 0.8);
 			case 'harmony':
 				sound = new FlxSound().loadEmbedded(Paths.music('Evening', 'date-night masses'));
 				sound.volume = 0;
+				sound.looped = true;
 				FlxG.sound.list.add(sound);
 				sound.fadeIn(1, 0, 0.8);
 			}
@@ -369,7 +372,7 @@ class DialogueBox extends FlxSpriteGroup
 			portraitRight.alpha = 1;
 
 			var chanceRonv = Std.random(100);
-			if (chanceRonv < 2) {
+			if (chanceRonv < 1) {
 				portraitRight.animation.play('ronv');
 				#if ACHIEVEMENTS_ALLOWED
 				Achievements.loadAchievements();
@@ -396,7 +399,7 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			portraitLeft.visible = true;
 			var chanceSorv = Std.random(100);
-			if (chanceSorv < 2) {
+			if (chanceSorv < 1) {
 				portraitLeft.animation.play('sorv');
 				#if ACHIEVEMENTS_ALLOWED
 				Achievements.loadAchievements();

@@ -112,6 +112,7 @@ class AchievementsMenuState extends MusicBeatState
 	}
 
 	function achievementReward() {
+		FlxG.sound.play(Paths.sound('scrollMenu'));
 		rewardState = !rewardState;
 		if (rewardState) {
 			reward = new FlxSprite().loadGraphic(Paths.image('Rewards/' + Achievements.achievementsStuff[curSelected][4], 'date-night masses'));

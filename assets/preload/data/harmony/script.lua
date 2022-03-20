@@ -35,18 +35,12 @@ function onUpdate()
 	if getProperty('curStep') == 1080 then
 		for i = 0, 3 do
 			setPropertyFromGroup('opponentStrums', i, 'neverResetAnim',  true);
-			setPropertyFromGroup('opponentStrums', i, 'alpha',  1);
-		end
-	end
-
-	if getProperty('curStep') == 1100 then
-		for i = 0, 3 do
 			setPropertyFromGroup('playerStrums', i, 'neverResetAnim',  true);
-			setPropertyFromGroup('playerStrums', i, 'alpha',  1);
+			setPropertyFromGroup('opponentStrums', i, 'alpha',  1); --In case you're playing on middleScroll
 		end
 	end
 
-	if getProperty('isStoryMode') then
+	if getProperty('isStoryMode') == true then
 		if getProperty('curStep') == 1855 then
 
 			noteTweenX('note0TweenX',0,360,2.0,'linear')

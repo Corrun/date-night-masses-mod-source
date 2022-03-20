@@ -11,8 +11,8 @@ using StringTools;
 
 class Achievements {
 	public static var achievementsStuff:Array<Dynamic> = [ //Name, Description, Achievement save tag, Hidden achievement
-		["A New World",					"Play Date-Night Masses for the first time.\ncome check your reward.",	'a_new_world',				false, 'a_new_world'],
-		["Happy Ending",				"Beat the Date Week.\nCome check your reward.",													'happy_ending',				false, 'date_week'],
+		["A New World",					"Play Date-Night Masses for the first time.",							'a_new_world',				false, 'a_new_world'],
+		["Happy Ending",				"Beat the Date Week.",													'happy_ending',				false, 'date_week'],
 		["In Ruv Suit",					"Beat Sticky Date Week.",												'ruv_suit',			 		false, 'coolmatins'],
 		["Best Ending",					"Get the \"Best Ending\".",												'best_ending',				false, 'bestending'],
 		["Buy His Membership",			"Get the Membership Ending.",											'buy_his_membership',		false,	'membershipending'],
@@ -28,11 +28,11 @@ class Achievements {
 		["Certified No Skill Issue",	"Get all \"10 misses or less\" Achievements.",							'no_skill_issue',			false,	'10_or_less_all'],
 		["Completionist",				"Get all the Achievements.\n(reload the game if necessary)",			'completionist',			false,	'completionist'],
 		["You made her cry",			"Complete a Song with Sarv, Ruv and Health lower than 20%.",			'you_made_her_cry',			false,	'20_or_less'],
-		["Ultimate Domination",			"Get Kikyo on top of 50 tables.",										'ultimate_domination',		false,	'dominance'],
+		["Ultimate Domination",			"Beat archkikyo with 50 misses or more.",								'ultimate_domination',		false,	'dominance'],
 		["POGGERS",						"Get the Pog Chair on the kitchen. (20%)",								'poggers',				 	false,	'poggers'],
 		["Choco Approves",				"Get the Wheelchair Ruv background. (10%)",								'choco_approves',			false,	'wheelchair_ruv'],
-		["Sorv",						"Get the Sorv portrait (2%).",											'ruv_ronv',				 	false,	'Sorv'],
-		["Ronv",						"Get the Ronv portrait (2%).",											'sarv_ronv',				false,	'ronv']
+		["Sorv",						"Get the Sorv portrait (1%).",											'ruv_ronv',				 	false,	'Sorv'],
+		["Ronv",						"Get the Ronv portrait (1%).",											'sarv_ronv',				false,	'ronv']
 	];
 	public static var achievementsMap:Map<String, Bool> = new Map<String, Bool>();
 
@@ -160,6 +160,9 @@ class AchievementObject extends FlxSpriteGroup {
 		achievementName.scrollFactor.set();
 
 		var achievementText:FlxText = new FlxText(achievementName.x, achievementName.y + 32, 280, Achievements.achievementsStuff[id][1], 16);
+		if (achievementName.text == 'A New World' || achievementName.text == 'Happy Ending') {
+			achievementText.text += "\ncome check your reward.";
+		}
 		achievementText.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT);
 		achievementText.scrollFactor.set();
 

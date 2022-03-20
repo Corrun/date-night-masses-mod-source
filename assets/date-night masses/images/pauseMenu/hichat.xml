@@ -2,20 +2,20 @@
 <TextureAtlas imagePath="hichat.png">
 	<!-- Created with Adobe Animate version 19.2.0.405 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="hichat0000" x="0" y="0" width="695" height="905" frameX="-1" frameY="0" frameWidth="699" frameHeight="905"/>
-	<SubTexture name="hichat0001" x="0" y="0" width="695" height="905" frameX="-1" frameY="0" frameWidth="699" frameHeight="905"/>
-	<SubTexture name="hichat0002" x="0" y="0" width="695" height="905" frameX="-1" frameY="0" frameWidth="699" frameHeight="905"/>
-	<SubTexture name="hichat0003" x="0" y="0" width="695" height="905" frameX="-1" frameY="0" frameWidth="699" frameHeight="905"/>
-	<SubTexture name="hichat0004" x="695" y="0" width="697" height="900" frameX="0" frameY="-1" frameWidth="699" frameHeight="905"/>
-	<SubTexture name="hichat0005" x="695" y="0" width="697" height="900" frameX="0" frameY="-1" frameWidth="699" frameHeight="905"/>
-	<SubTexture name="hichat0006" x="695" y="0" width="697" height="900" frameX="0" frameY="-1" frameWidth="699" frameHeight="905"/>
-	<SubTexture name="hichat0007" x="695" y="0" width="697" height="900" frameX="0" frameY="-1" frameWidth="699" frameHeight="905"/>
-	<SubTexture name="hichat0008" x="0" y="905" width="697" height="897" frameX="-2" frameY="0" frameWidth="699" frameHeight="905"/>
-	<SubTexture name="hichat0009" x="0" y="905" width="697" height="897" frameX="-2" frameY="0" frameWidth="699" frameHeight="905"/>
-	<SubTexture name="hichat0010" x="0" y="905" width="697" height="897" frameX="-2" frameY="0" frameWidth="699" frameHeight="905"/>
-	<SubTexture name="hichat0011" x="0" y="905" width="697" height="897" frameX="-2" frameY="0" frameWidth="699" frameHeight="905"/>
-	<SubTexture name="hichat0012" x="697" y="905" width="695" height="900" frameX="-2" frameY="-1" frameWidth="699" frameHeight="905"/>
-	<SubTexture name="hichat0013" x="697" y="905" width="695" height="900" frameX="-2" frameY="-1" frameWidth="699" frameHeight="905"/>
-	<SubTexture name="hichat0014" x="697" y="905" width="695" height="900" frameX="-2" frameY="-1" frameWidth="699" frameHeight="905"/>
-	<SubTexture name="hichat0015" x="697" y="905" width="695" height="900" frameX="-2" frameY="-1" frameWidth="699" frameHeight="905"/>
+	<SubTexture name="hichat0000" x="0" y="0" width="209" height="272" frameX="0" frameY="0" frameWidth="209" frameHeight="272"/>
+	<SubTexture name="hichat0001" x="0" y="0" width="209" height="272" frameX="0" frameY="0" frameWidth="209" frameHeight="272"/>
+	<SubTexture name="hichat0002" x="0" y="0" width="209" height="272" frameX="0" frameY="0" frameWidth="209" frameHeight="272"/>
+	<SubTexture name="hichat0003" x="0" y="0" width="209" height="272" frameX="0" frameY="0" frameWidth="209" frameHeight="272"/>
+	<SubTexture name="hichat0004" x="209" y="0" width="210" height="270" frameX="0" frameY="-1" frameWidth="419" frameHeight="270"/>
+	<SubTexture name="hichat0005" x="209" y="0" width="210" height="270" frameX="0" frameY="-1" frameWidth="419" frameHeight="270"/>
+	<SubTexture name="hichat0006" x="209" y="0" width="210" height="270" frameX="0" frameY="-1" frameWidth="419" frameHeight="270"/>
+	<SubTexture name="hichat0007" x="209" y="0" width="210" height="270" frameX="0" frameY="-1" frameWidth="419" frameHeight="270"/>
+	<SubTexture name="hichat0008" x="0" y="272" width="210" height="261" frameX="0" frameY="0" frameWidth="210" frameHeight="533"/>
+	<SubTexture name="hichat0009" x="0" y="272" width="210" height="261" frameX="0" frameY="0" frameWidth="210" frameHeight="533"/>
+	<SubTexture name="hichat0010" x="0" y="272" width="210" height="261" frameX="0" frameY="0" frameWidth="210" frameHeight="533"/>
+	<SubTexture name="hichat0011" x="0" y="272" width="210" height="261" frameX="0" frameY="0" frameWidth="210" frameHeight="533"/>
+	<SubTexture name="hichat0012" x="211" y="272" width="209" height="270" frameX="-2" frameY="-1" frameWidth="220" frameHeight="542"/>
+	<SubTexture name="hichat0013" x="211" y="272" width="209" height="270" frameX="-2" frameY="-1" frameWidth="220" frameHeight="542"/>
+	<SubTexture name="hichat0014" x="211" y="272" width="209" height="270" frameX="-2" frameY="-1" frameWidth="220" frameHeight="542"/>
+	<SubTexture name="hichat0015" x="211" y="272" width="209" height="270" frameX="-2" frameY="-1" frameWidth="220" frameHeight="542"/>
 </TextureAtlas>

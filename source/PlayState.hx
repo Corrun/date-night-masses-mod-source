@@ -4678,10 +4678,6 @@ class PlayState extends MusicBeatState
 					case 'two_harmonies_one_song':
 						if (CoolUtil.difficultyString() == 'HARD' && curSong == 'harmony' && !usedPractice && songMisses <= 10) {
 							unlock= true;
-						} 
-					case 'buff_gang':
-						if (CoolUtil.difficultyString() == 'HARD' && curSong == 'archvente' && !usedPractice && songMisses <= 10) {
-							unlock= true;
 						}
 					case 'our_final_hymn':
 						if (CoolUtil.difficultyString() == 'HARD' && curSong == 'clandestine-ditty' && !usedPractice && songMisses <= 10) {
@@ -4696,7 +4692,7 @@ class PlayState extends MusicBeatState
 							unlock= true;
 						}
 					case 'ultimate_domination':
-						if (curSong == 'archkikyo' && songMisses >= 49) {
+						if (!usedPractice && curSong == 'archkikyo' && songMisses >= 50) {
 							unlock= true;
 						}
 					case 'no_skill_issue':
@@ -4704,7 +4700,6 @@ class PlayState extends MusicBeatState
 							'dawn_of_a_new_day',
 							'his_guardian_angel',
 							'two_harmonies_one_song',
-							'buff_gang',
 							'our_final_hymn',
 							'together_forever',
 							'whitty_reference',

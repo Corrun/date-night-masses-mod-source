@@ -45,6 +45,7 @@ class FreeplayState extends MusicBeatState
 	private var curPlaying:Bool = false;
 
 	private var iconArray:Array<HealthIcon> = [];
+	private var dateRuvIcon:HealthIcon;
 
 	var bg:FlxSprite;
 	var intendedColor:Int;
@@ -113,6 +114,11 @@ class FreeplayState extends MusicBeatState
 		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);
 
+		dateRuvIcon = new HealthIcon('date-ruv');
+		dateRuvIcon.flipX = true;
+		dateRuvIcon.animation.curAnim.curFrame = 2;
+		dateRuvIcon.angle += -10;
+
 		for (i in 0...songs.length)
 		{
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
@@ -125,11 +131,20 @@ class FreeplayState extends MusicBeatState
 			icon.sprTracker = songText;
 			if (songs[i].songCharacter == 'sticky') {
 				icon.flipX = true;
+			} else if (songs[i].songName == 'serafim') {
+				icon.animation.curAnim.curFrame = 2;
+			} else if (songs[i].songName == 'harmony') {
+				icon.animation.curAnim.curFrame = 2;
+				dateRuvIcon.playerSprTracker = songText;
+				icon.angle += 10;
 			}
 
 			// using a FlxGroup is too much fuss!
 			iconArray.push(icon);
 			add(icon);
+			if (songs[i].songName == 'harmony') {
+				add(dateRuvIcon);
+			}
 
 			// songText.x += 40;
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
@@ -412,6 +427,11 @@ class FreeplayState extends MusicBeatState
 		}
 
 		iconArray[curSelected].alpha = 1;
+		if (songs[curSelected].songName == 'harmony') {
+			dateRuvIcon.alpha = 1;
+		} else {
+			dateRuvIcon.alpha = 0.6;
+		}
 
 		for (item in grpSongs.members)
 		{
