@@ -31,8 +31,8 @@ class Achievements {
 		["Ultimate Domination",			"Beat archkikyo with 50 misses or more.",								'ultimate_domination',		false,	'dominance'],
 		["POGGERS",						"Get the Pog Chair on the kitchen. (20%)",								'poggers',				 	false,	'poggers'],
 		["Choco Approves",				"Get the Wheelchair Ruv background. (10%)",								'choco_approves',			false,	'wheelchair_ruv'],
-		["Sorv",						"Get the Sorv portrait (1%).",											'ruv_ronv',				 	false,	'Sorv'],
-		["Ronv",						"Get the Ronv portrait (1%).",											'sarv_ronv',				false,	'ronv']
+		["Sorv",						"Get the Sorv portrait (1%).",											'sarv_ronv',				false,	'Sorv'],
+		["Ronv",						"Get the Ronv portrait (1%).",											'ruv_ronv',					false,	'ronv']
 	];
 	public static var achievementsMap:Map<String, Bool> = new Map<String, Bool>();
 
