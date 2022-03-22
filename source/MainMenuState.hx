@@ -37,7 +37,6 @@ class MainMenuState extends MusicBeatState
 	
 	var optionShit:Array<String> = [
 		'story_mode',
-		'freeplay',
 		#if MODS_ALLOWED /*'mods',*/ #end
 		#if ACHIEVEMENTS_ALLOWED 'awards', #end
 		'credits',
@@ -52,7 +51,6 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
-		FlxG.save.data.stickyUnlocked = true;
 		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
@@ -60,7 +58,7 @@ class MainMenuState extends MusicBeatState
 		if (StoryMenuState.weekCompleted.get("week1")) {
 			optionShit = [
 				'story_mode',
-				'freeplay',
+				'freeplay', 	
 				#if MODS_ALLOWED /*'mods',*/ #end
 				#if ACHIEVEMENTS_ALLOWED 'awards', #end
 				'credits',

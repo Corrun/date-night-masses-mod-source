@@ -4410,7 +4410,7 @@ class PlayState extends MusicBeatState
 			return;
 		}
 
-		trace(curStep); 
+		trace(curStep);
 
 		lastStepHit = curStep;
 		setOnLuas('curStep', curStep);
@@ -4692,7 +4692,7 @@ class PlayState extends MusicBeatState
 							unlock= true;
 						}
 					case 'ultimate_domination':
-						if (!usedPractice && curSong == 'archkikyo' && songMisses >= 50) {
+						if (!usedPractice && curSong == 'vibe-check' && songMisses >= 50) {
 							unlock= true;
 						}
 					case 'no_skill_issue':

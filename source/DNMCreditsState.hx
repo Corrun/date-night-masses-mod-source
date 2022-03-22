@@ -170,7 +170,7 @@ class DNMCreditsState extends MusicBeatState
 			['Mike geno',			'mike',				'Musician of MFM',										'https://twitter.com/electro_mike'],
 			['Kuro',				'kuro',				'Programmer of MFM',									'https://twitter.com/Kuroao_Anomal'],
 
-			['Sonzai',				'',					'Playtester and Siscord Server Owner',					'https://twitter.com/sonzai_buredo',	"Damn shawty you shit so loud, what're your pronouns?","I FUCKING LOVE MID-FIGHT MASSES","Oh....my penis is big...."],
+			['Sonzai',				'',					'Playtester and Discord Server Owner',					'https://twitter.com/sonzai_buredo',	"Damn shawty you shit so loud, what're your pronouns?","I FUCKING LOVE MID-FIGHT MASSES","Oh....my penis is big...."],
 			['Shift',				'',					'Korean translator',									'https://twitter.com/Shift7a_4'],
 			['Star',				'',					'Chinese translator',									'https://twitter.com/NihilityStar'],
 
@@ -186,7 +186,7 @@ class DNMCreditsState extends MusicBeatState
 			['Samueljimenez15',		'',					'kikyo sprites',										''],
 			['Violette',			'',					'cringe sticky\'s sprites',										'https://twitter.com/onlyviolette'],
 
-			['Katse',				'',					'Tomato Dog animator',									''],
+			['Katse',				'',					'Tomato Dog animator',									'https://exampleskatze.carrd.co/'],
 			['Sticky',				'',					'Dedicated supporter,\nsticky death sounds',			'https://twitter.com/StickyBM'],
 			['Kikyo',				'',					'Dedicated supporter',									'https://twitter.com/KikyoBerry'],
 

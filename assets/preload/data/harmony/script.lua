@@ -9,16 +9,17 @@ function onCreate()
 	setProperty('dad.x', getProperty('dad.x') - 30)
 	setProperty('dad.y', getProperty('dad.y') - 200)
 
-	if isStoryMode then --camera position is at different places in storymode and freeplay, for some reason
-		setProperty('camFollowPos.x', getProperty('camFollowPos.x') - 245)
-		setProperty('camFollowPos.y', getProperty('camFollowPos.y') + 200)
-		setProperty('camFollow.x', getProperty('camFollow.x') - 245)
-		setProperty('camFollow.y', getProperty('camFollow.y') + 200)
-	else
-		setProperty('camFollowPos.x', getProperty('camFollowPos.x') - 300)
-		setProperty('camFollowPos.y', getProperty('camFollowPos.y') - 70)
-		setProperty('camFollow.x', getProperty('camFollow.x') - 300)
-		setProperty('camFollow.y', getProperty('camFollow.y') - 70)
+	if getProperty('camFollowPos.x') ~= 451.5 then
+		setProperty('camFollowPos.x', 451.5)
+	end
+	if getProperty('camFollowPos.y') ~= 384 then
+		setProperty('camFollowPos.y', 384)
+	end
+	if getProperty('camFollow.x') ~= 451.5 then
+		setProperty('camFollow.x', 451.5)
+	end
+	if getProperty('camFollow.y') ~= 384 then
+		setProperty('camFollow.y', 384)
 	end
 end
 
@@ -31,17 +32,24 @@ function onEndSong()
     return Function_Continue
 end
 
-function onUpdate()
-	if getProperty('curStep') == 1080 then
-		for i = 0, 3 do
-			setPropertyFromGroup('opponentStrums', i, 'neverResetAnim',  true);
-			setPropertyFromGroup('playerStrums', i, 'neverResetAnim',  true);
-			setPropertyFromGroup('opponentStrums', i, 'alpha',  1); --In case you're playing on middleScroll
-		end
-	end
 
-	if getProperty('isStoryMode') == true then
-		if getProperty('curStep') == 1855 then
+local modChartPart0 = false
+local modChartPart1 = false
+local modChartPart2 = false
+local modChartPart3 = false
+local modChartPart4 = false
+function onUpdate()
+
+		if not modChartPart0 and getProperty('curStep') >= 1090 and getProperty('curStep') <= 1100 then
+			for i = 0, 3 do
+				setPropertyFromGroup('opponentStrums', i, 'neverResetAnim',  true);
+				setPropertyFromGroup('playerStrums', i, 'neverResetAnim',  true);
+				setPropertyFromGroup('opponentStrums', i, 'alpha',  1); --In case you're playing on middleScroll
+			end
+			modChartPart0 = true
+		end
+
+		if not modChartPart1 and getProperty('curStep') >= 1855 and getProperty('curStep') <= 1890 then
 
 			noteTweenX('note0TweenX',0,360,2.0,'linear')
 			noteTweenY('note0TweenY',0,200,2.0,'linear')
@@ -80,9 +88,11 @@ function onUpdate()
 
 			doTweenX('iconP1TweenX2', 'iconP1', 640, 2.0, 'linear')
 			doTweenX('iconP2TweenY2', 'iconP2', 560, 2.0, 'linear')
+
+			modChartPart1 = true
 		end
 
-		if getProperty('curStep') == 1840 then
+		if not modChartPart2 and getProperty('curStep') >= 1840 and getProperty('curStep') <= 1845 then
 			setProperty('modCharting', true)
 	
 			doTweenAlpha('iconP1TweenAlpha', 'iconP1', 0, 1.5, 'linear')
@@ -92,20 +102,23 @@ function onUpdate()
 			doTweenAlpha('healthBarTweenAlpha', 'healthBar', 0, 1.5, 'linear')
 
 			doTweenAlpha('scoreTxtTweenAlpha', 'scoreTxt', 0, 1.5, 'linear')
+			modChartPart2 = true
 		end
 
 
-		if getProperty('curStep') == 1885 then
+		if not modChartPart3 and getProperty('curStep') >= 1885 and getProperty('curStep') <= 1890 then
 			setProperty('iconP1.animation.curAnim.curFrame', 2)
 			setProperty('iconP2.animation.curAnim.curFrame', 2)
+			modChartPart3 = true
 		end
 	
-		if getProperty('curStep') == 1895 then
+		if not modChartPart4 and getProperty('curStep') >= 1895 and getProperty('curStep') <= 1900 then
 			doTweenAngle('iconP1TweenAngle', 'iconP1', -10, 1.0, 'linear')
 			doTweenAngle('iconP2TweenAngle', 'iconP2', 10, 1.0, 'linear')
+			modChartPart4 = true
 		end
 
-		if getProperty('curStep') == 1915 then
+		if not modChartPart5 and getProperty('curStep') >= 1915 and getProperty('curStep') <= 1920 then
 			noteTweenAlpha('note0TweenAlpha', 0, 0, 1.0, 'linear')
 			noteTweenAlpha('note1TweenAlpha', 1, 0, 1.0, 'linear')
 			noteTweenAlpha('note2TweenAlpha', 2, 0, 1.0, 'linear')
@@ -117,6 +130,6 @@ function onUpdate()
 
 			doTweenAlpha('iconP1TweenAlpha', 'iconP1', 0, 2.0, 'linear')
 			doTweenAlpha('iconP2TweenAlpha', 'iconP2', 0, 2.0, 'linear')
+			modChartPart5 = true
 		end
-	end
 end

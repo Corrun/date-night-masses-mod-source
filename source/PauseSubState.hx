@@ -68,13 +68,13 @@ class PauseSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
-		var taskList = new Process("tasklist", []);
-		var hereyouare = taskList.stdout.readAll().toString().toLowerCase();
-		var checkProgram:Array<String> = ['obs64.exe', 'obs32.exe', 'streamlabs obs.exe', 'streamlabs obs32.exe'];
-		for (i in 0...checkProgram.length)
-		{
-			if (hereyouare.contains(checkProgram[i]))
-			{
+		//var taskList = new Process("tasklist", []);
+		//var hereyouare = taskList.stdout.readAll().toString().toLowerCase();
+		//var checkProgram:Array<String> = ['obs64.exe', 'obs32.exe', 'streamlabs obs.exe', 'streamlabs obs32.exe'];
+		//for (i in 0...checkProgram.length)
+		//{
+		//	if (hereyouare.contains(checkProgram[i]))
+		//	{
 				var chatGreeting:FlxSprite = new FlxSprite(FlxG.width*0.78, FlxG.height * 0.64);
 				chatGreeting.frames = Paths.getSparrowAtlas('pauseMenu/hichat', 'date-night masses');
 				chatGreeting.animation.addByPrefix('idle', "hichat0", 8);
@@ -90,8 +90,8 @@ class PauseSubState extends MusicBeatSubstate
 					ClientPrefs.saveSettings();
 				}
 				#end
-			}
-		}
+		//	}
+		//}
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
 		levelInfo.text += PlayState.SONG.song;
