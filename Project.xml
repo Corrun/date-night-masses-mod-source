@@ -80,6 +80,8 @@
 	<assets path="assets/shared"        library="shared"        exclude="*.mp3" unless="web"/>
 	<assets path="assets/date-night masses"         library="date-night masses"         exclude="*.ogg" if="web"/>
 	<assets path="assets/date-night masses"         library="date-night masses"         exclude="*.mp3" unless="web"/>
+	<assets path="assets/videos" include="*.mp3" if="web"/>
+	<assets path="assets/videos" include="*.ogg" unless="web"/>
 
 	
 	<assets path='example_mods' rename='mods' embed='false' if="MODS_ALLOWED"/>
@@ -116,6 +118,8 @@
 
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->
+	<haxelib name="actuate" />
+	<haxelib name="extension-webm" if="desktop" />
 
 	<!--In case you want to use nape with flixel-->
 	<!--<haxelib name="nape-haxe4" />-->

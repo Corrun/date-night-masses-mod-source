@@ -53,6 +53,9 @@ class StoryMenuState extends MusicBeatState
 
 	override function create()
 	{
+		if (FlxG.sound.music.volume == 0) {
+			FlxG.sound.playMusic(Paths.music('Affinity', 'date-night masses'), 1);
+		}
 		#if MODS_ALLOWED
 		Paths.destroyLoadedImages();
 		#end
@@ -302,10 +305,20 @@ class StoryMenuState extends MusicBeatState
 			PlayState.campaignScore = 0;
 			PlayState.campaignMisses = 0;
 			new FlxTimer().start(1, function(tmr:FlxTimer)
-			{
-				LoadingState.loadAndSwitchState(new PlayState(), true);
-				FreeplayState.destroyFreeplayVocals();
-			});
+				{
+					switch(PlayState.SONG.song.toLowerCase())
+						{
+						case 'matins':
+							LoadingState.loadAndSwitchState(new VideoState("assets/videos/prologue/dnm-prologue.webm", new PlayState()));
+						case 'coolmatins':
+							LoadingState.loadAndSwitchState(new VideoState("assets/videos/coolmatins/coolmatins_cutscene.webm", new PlayState()));
+						case 'dominance':
+							LoadingState.loadAndSwitchState(new VideoState("assets/videos/dominance/dominance_cutscene.webm", new PlayState()));
+						default:
+							LoadingState.loadAndSwitchState(new PlayState());
+						}
+					FreeplayState.destroyFreeplayVocals();
+				});
 		} else {
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 		}

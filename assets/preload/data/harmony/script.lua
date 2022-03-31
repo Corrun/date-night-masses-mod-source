@@ -23,16 +23,6 @@ function onCreate()
 	end
 end
 
-function onEndSong()
-    if isStoryMode and not seenCutscene then
-        startVideo('dnm-credits')
-        seenCutscene = true
-        return Function_Stop
-    end
-    return Function_Continue
-end
-
-
 local modChartPart0 = false
 local modChartPart1 = false
 local modChartPart2 = false

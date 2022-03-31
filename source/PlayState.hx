@@ -107,8 +107,8 @@ class PlayState extends MusicBeatState
 	public var boyfriendGroup:FlxSpriteGroup;
 	public var dadGroup:FlxSpriteGroup;
 	public var gfGroup:FlxSpriteGroup;
-	public var layInFront:Array<Array<FlxSprite>> = [[], [], []]; //for stage's layers, 1st for gf, 2nd for dad, 3rd for bf 
-
+	public var layInFront:Array<Array<FlxSprite>> = [[], [], []]; //for stage's layers, 1st for gf, 2nd for dad, 3rd for bf
+	
 	public static var curStage:String = '';
 	public static var isPixelStage:Bool = false;
 	public static var SONG:SwagSong = null;
@@ -1409,16 +1409,8 @@ class PlayState extends MusicBeatState
 /*				case 'senpai' | 'roses' | 'thorns':
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);*/
-				case 'matins':
-					startVideo('dnm-prologue');
-				case 'serafim' | 'harmony':
+				case 'matins' | 'serafim' | 'harmony':
 					schoolIntro(doof);
-				case 'coolmatins':
-					startVideo('coolmatins_cutscene');
-				case 'dominance':
-					startVideo('dominance_cutscene');
-				case 'vibe-check':
-					startVideo('vibe-check_cutscene');
 				default:
 					startCountdown();
 			}
@@ -3418,7 +3410,26 @@ class PlayState extends MusicBeatState
 		var fillerBg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK, false);
 		fillerBg.screenCenter();
 		add(fillerBg);
-		endSong();
+		nextSong();
+	}
+
+	public function videoStart() {
+		var fillerBg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK, false);
+		fillerBg.screenCenter();
+		add(fillerBg);
+		switch(PlayState.SONG.song.toLowerCase())
+		{
+			case 'matins':
+				LoadingState.loadAndSwitchState(new VideoState("assets/videos/prologue/dnm-prologue.webm", new PlayState()));
+			case 'coolmatins':
+				LoadingState.loadAndSwitchState(new VideoState("assets/videos/coolmatins/coolmatins_cutscene.webm", new PlayState()));
+			case 'dominance':
+				LoadingState.loadAndSwitchState(new VideoState("assets/videos/dominance/dominance_cutscene.webm", new PlayState()));
+			case 'vibe-check':
+				LoadingState.loadAndSwitchState(new VideoState("assets/videos/vibe-check/vibe-check_cutscene.webm", new PlayState()));
+			//default:
+			//	LoadingState.loadAndSwitchState(new PlayState());
+		}
 	}
 
 	public function nextSong() {
@@ -3445,21 +3456,25 @@ class PlayState extends MusicBeatState
 
 				storyPlaylist.remove(storyPlaylist[0]);
 
-				if (curSong == 'archvente') 
-				{
-					archventeCheck();
-				} 
-				else if (storyPlaylist.length <= 0)
+				if (storyPlaylist.length <= 0)
 				{
 					FlxG.autoPause = true;
-					FlxG.sound.playMusic(Paths.music('Affinity', 'date-night masses'));
 
 					cancelFadeTween();
 					CustomFadeTransition.nextCamera = camOther;
 					if(FlxTransitionableState.skipNextTransIn) {
 						CustomFadeTransition.nextCamera = null;
 					}
-					MusicBeatState.switchState(new StoryMenuState());
+					switch(curSong)
+					{
+						case 'harmony':
+							LoadingState.loadAndSwitchState(new VideoState("assets/videos/credits/dnm-credits.webm", new StoryMenuState()));
+						case 'archvente':
+							archventeCheck();
+						default:
+							FlxG.sound.playMusic(Paths.music('Affinity', 'date-night masses'));
+							MusicBeatState.switchState(new StoryMenuState());
+					}
 
 					// if ()
 					if(!ClientPrefs.getGameplaySetting('practice', false) && !ClientPrefs.getGameplaySetting('botplay', false)) {
@@ -3509,8 +3524,14 @@ class PlayState extends MusicBeatState
 							LoadingState.loadAndSwitchState(new PlayState());
 						});
 					} else {
-						cancelFadeTween();
-						LoadingState.loadAndSwitchState(new PlayState());
+						switch(curSong)
+						{
+							case 'dominance':
+								LoadingState.loadAndSwitchState(new VideoState("assets/videos/vibe-check/vibe-check_cutscene.webm", new PlayState()));
+							default:
+								cancelFadeTween();
+								LoadingState.loadAndSwitchState(new PlayState());
+						}
 					}
 				}
 			}
