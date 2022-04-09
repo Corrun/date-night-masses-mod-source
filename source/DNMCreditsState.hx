@@ -14,6 +14,7 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.FlxCamera;
 import flixel.tweens.FlxTween;
+import Math;
 import Achievements;
 #if MODS_ALLOWED
 import sys.FileSystem;
@@ -115,6 +116,7 @@ class DNMCreditsState extends MusicBeatState
 			'Helpers',
 			'',
 			'',
+			'',
 			'Awesomes',
 			'',
 			'Psych Team',
@@ -172,11 +174,15 @@ class DNMCreditsState extends MusicBeatState
 
 			['Sonzai',				'',					'Playtester and Discord Server Owner',					'https://twitter.com/sonzai_buredo',	"Damn shawty you shit so loud, what're your pronouns?","I FUCKING LOVE MID-FIGHT MASSES","Oh....my penis is big...."],
 			['Shift',				'',					'Korean translator',									'https://twitter.com/Shift7a_4'],
-			['Star',				'',					'Chinese translator',									'https://twitter.com/NihilityStar'],
+			[''],
 
+			['Star',				'',					'Chinese translator',									'https://twitter.com/NihilityStar'],
 			['Kade',				'',					'Maker of Kade Engine (used for demo)',					'https://twitter.com/kade0912'],
+			['LegendaryPlz',		'',					'polish translator',									'https://twitter.com/LegendaryPlz'],
+
 			['Oxydation',			'',					'Art Consultant',										'https://twitter.com/Nishaniie'],
 			['KerbeYoshu',			'',					'Gamejolt banner',										'https://twitter.com/KerbeYoshu'],
+			[''],
 
 			['TentaRJ',				'',					'Gamejolt integration\n(not used in the end)',			'https://twitter.com/TentaRJ'],
 			['Nosadx',				'',					'recruitment helper',									'https://twitter.com/poop47845836'],
@@ -484,7 +490,7 @@ class DNMCreditsState extends MusicBeatState
 
 		pagetitleText.text = titleStuff[page * 2];
 		pagetitleText2.text = titleStuff[page * 2 + 1];
-		pageText.text = 'page ' + (page + 1) + "/" + titleStuff.length/2;
+		pageText.text = 'page ' + (page + 1) + "/" +  Math.floor(titleStuff.length/2);
 	}
 
 	function pageDisplay(compare:Int, pageLength:Int):Bool {

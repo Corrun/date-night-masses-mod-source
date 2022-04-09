@@ -1,0 +1,5 @@
+:sarvCheerful:Dobra, przekonałeś mnie!:sarvVoice5
+:sarvCheerful:Możemy spędzić dzień razem.:sarvVoice6
+:ruvNeutral:Brzmi dobrze.:ruvVoice8
+:ruvNeutral:Chcesz zacząć w ogrodzie?:ruvVoice9
+:sarvCheerful:Brzmi jak plan dla mnie!:sarvVoice7

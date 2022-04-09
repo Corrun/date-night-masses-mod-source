@@ -39,7 +39,7 @@ class DialoguesLanguageSubState extends BaseOptionsMenu
 			'cutsceneLanguage',
 			'string',
 			'English',
-			['English', 'French', 'Spanish', 'Danish', 'Korean', 'Chinese', 'Japanese']);
+			['English', 'French', 'Spanish', 'Danish', 'Korean', 'Chinese', 'Japanese','Polish']);
 		addOption(option);
 		super();
 	}

@@ -1,0 +1,6 @@
+:sarvCheerful:To był znakomity pomysł!:sarvVoice8
+:sarvCheerful:Chciałam przesadzić te piwonie od tygodni!:sarvVoice9
+:ruvNeutral:No cóż, wiem że lubisz tutaj być.:ruvVoice10
+:ruvNeutral:To najlepszy sposób żeby spędzać z tobą czas.:ruvVoice11
+:sarvDelighted:Cóż, jestem zadowolona że to zrobiliśmy. Naprawdę.:sarvVoice10
+:sarvDelighted:Wszystko czego kiedykolwiek chciałam było spędzanie czasu z tobą.:sarvVoice11

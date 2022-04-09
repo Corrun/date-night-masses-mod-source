@@ -1,0 +1,11 @@
+:ruvNeutral:A więc, nie masz nic do roboty dzisiejszej nocy?:ruvVoice1
+:sarvCheerful:Nie!:sarvVoice1
+:sarvCheerful:Nic a nic!:sarvVoice2
+:sarvCheerful:Czemu, jakie miałeś plany na dzisiaj?:sarvVoice3
+:ruvNerv:No cóż, myślałem że może byśmy mogli spędzić ze sobą czas tej nocy.:ruvVoice2
+:ruvNerv:Tylko dwoje z nas.:ruvVoice3
+:ruvNerv:Minęło trochę czasu od kiedy…:ruvVoice4
+:sarvConfused:...:sarvVoice4
+:ruvNerv:Nie musisz.:ruvVoice5
+:ruvNerv:Tylko myślałem że może moglibyśmy spędzić wieczór razem w ogrodzie.:ruvVoice6
+:ruvNerv:Zjeść tam obiad, jak piknik.:ruvVoice7
